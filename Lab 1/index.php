@@ -11,6 +11,14 @@
 		background: url("images/BG.png") no-repeat center center fixed;
 		background-size: cover; 
 	}
+	table{
+		background-color: #ffffff;
+		border-collapse: collapse;
+	}
+	td{
+		padding: 4px;
+		border: 1px solid #000000;
+	}
 	.box{
 		background-color: #e8e8e8;
 		border-radius: 15px;
@@ -23,7 +31,6 @@
 		line-height: 20px;
 		font-size: 16px;
 	}
-	
 	.content{
 
 	}
@@ -39,13 +46,13 @@
 	.hidden{
 		display: none;
 	}
-	
-	.formContainer{
+	.formContainer, .flexCenter{
 		display: flex;
 		align-items: center;
 		justify-content: center;
 	}
-	@media (max-width: 960px) {
+
+	@media (max-width: 550px) {
 		.formContainer{
 			flex-direction: column;
 		}
@@ -53,7 +60,7 @@
 			margin-bottom: 70px;
 		}
 	}
-	@media (min-width: 961px){
+	@media (min-width: 551px){
 		.boxSpaceRight{
 			margin-right: 50px;
 		}
@@ -95,7 +102,8 @@
 				<img src="images/COTN.png" >
 			</div>
 		</div>
-		<table border="true" >
+		<div class="flexCenter">
+		<table>
 			<thead>
 				<tr>
 					<td>X</td>
@@ -110,6 +118,7 @@
 
 			</tbody>
 		</table>
+	</div>
 	</div>
 </body> 
 </html> 
