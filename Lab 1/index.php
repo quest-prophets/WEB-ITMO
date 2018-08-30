@@ -8,10 +8,7 @@
 		margin-bottom: 120px;
 	}
 	body{
-		background: url("images/BG.png") no-repeat center center;
-		-webkit-background-size: cover;
-		-moz-background-size: cover;
-		-o-background-size: cover;
+		background: url("images/BG.png") no-repeat center center fixed;
 		background-size: cover; 
 	}
 	.box{
@@ -30,14 +27,19 @@
 	.content{
 
 	}
+	.boxError, .boxResult{
+		line-height: 30px;
+	}
 	.boxError{
-		top:670px;
-		line-height: 10px;
-		background-color: #ff6666;
+		background-color: #ff7f7f;
+	}
+	.boxResult{
+		background-color: #97ff89; 
 	}
 	.hidden{
 		display: none;
 	}
+	
 	.formContainer{
 		display: flex;
 		align-items: center;
@@ -53,8 +55,8 @@
 	}
 	@media (min-width: 961px){
 		.boxSpaceRight{
-		margin-right: 50px;
-	}
+			margin-right: 50px;
+		}
 	}
 </style>
 <script type="text/javascript" src="something.js"></script>
@@ -72,7 +74,7 @@
 	<div class="content">
 		<div class="formContainer">
 			<div class="box boxSpaceRight">
-				<form action="calculation.php" method="post">
+				<form action="calculation.php" method="post" id="form">
 					X: <input type="text" name="x" id="x"> <br>
 					Y: <label><input type="radio" name="y" value="0"> 0</label>
 					<label><input type="radio" name="y" value="1"> 1</label>
@@ -84,13 +86,30 @@
 						<label style= margin-left:100px><input type="submit" id="submit"></label>
 					</form>
 					<div class="box boxError hidden" id="error">
-			You are GAY
-		</div>
+						You are GAY
+					</div>
+					<div class="box boxResult hidden" id="boxResult">
+						Результат:
+					</div>
 				</div>
 				<img src="images/COTN.png" >
 			</div>
 		</div>
-		
+		<table border="true" >
+			<thead>
+				<tr>
+					<td>X</td>
+					<td>Y</td>
+					<td>Z</td>
+					<td>Результат</td>
+					<td>Время</td>
+					<td>Время выполнения</td>
+				</tr>
+			</thead>
+			<tbody id="result">
+
+			</tbody>
+		</table>
 	</div>
 </body> 
 </html> 
