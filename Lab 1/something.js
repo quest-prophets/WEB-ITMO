@@ -1,17 +1,18 @@
 function submit(event){
 	event.preventDefault();
-	var x = document.getElementById("x").value;
+	var y = document.getElementById("y").value;
 	var error = document.getElementById("error");
 	var boxResult = document.getElementById("boxResult");
-	if (!isNaN(Number(x))) {
+	var resultValue = document.getElementById("resultValue");
+	if (!isNaN(Number(y))) {
 		var formData = new FormData(document.getElementById("form"));
 		fetch("calculation.php", { method: "POST", body: formData })
 		.then(function(response) { return response.text(); })
 		.then(function(html) {
-			document.getElementById("result").insertAdjacentHTML("beforeend", html);
+			document.getElementById("resultTable").insertAdjacentHTML("beforeend", html);
 			error.classList.add("hidden");
 			boxResult.classList.remove("hidden");
-			boxResult.textContent = "Результат: " + document.querySelector("#result tr:last-of-type td:nth-last-of-type(3)").textContent;
+			resultValue.textContent = document.querySelector("#resultTable tr:last-of-type td:nth-last-of-type(3)").textContent;
 		});
 	}
 	else {
