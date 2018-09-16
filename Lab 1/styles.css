@@ -2,11 +2,14 @@
 		background: url("images/BG.png") no-repeat center center fixed;
 		background-size: cover; 
 	}
-	table{
+	table, tr, td{
+		border: none;
+	}
+	.resultTable{
 		background-color: #ffffff;
 		border-collapse: collapse;
 	}
-	td{
+	.tdWithBorders{
 		padding: 4px;
 		border: 1px solid #000000;
 	}
@@ -20,10 +23,9 @@
 	}
 	.boxHeader{
 		font-family: sans-serif;
-		margin-bottom: 120px;
 		line-height: 20px;
 		font-size: 15px;
-		color: #509f31;
+		color: #000000;
 	}
 	.boxError{
 		background-color: #ff7f7f;
@@ -42,16 +44,7 @@
 	.bold{
 		font-weight: bold;
 	}
-	@media (max-width: 550px) {
-		.formContainer{
-			flex-direction: column;
-		}
-		header{
-			margin-bottom: 70px;
-		}
-	}
-	@media (min-width: 551px){
-		.boxSpaceRight{
-			margin-right: 50px;
-		}
-	}
+
+	button:active, button.active {
+            background: #b9c3d1;
+        }

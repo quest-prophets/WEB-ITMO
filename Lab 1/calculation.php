@@ -1,3 +1,10 @@
+<style type="text/css">
+	.tdWithBorders{
+		padding: 4px;
+		border: 1px solid #000000;
+	}
+</style>
+
 <?php $start = microtime(true);
 
 function check($x,$y,$r){
@@ -13,17 +20,17 @@ function check($x,$y,$r){
 	else return False;
 }
 
-$result = check($_POST['x'], $_POST['y'], $_POST['r']) ? "True": "False";
+$result = check($_GET['x'], $_GET['y'], $_GET['r']) ? "True": "False";
 
 $end = microtime(true); 
 $executionTime = $end - $start ?>
 
 <tr>
-	<td><?= $_POST['x']; ?> </td>
-	<td><?= $_POST['y']; ?> </td>
-	<td><?= $_POST['r']; ?> </td>
-	<td><?= $result; ?></td>
-	<td><?= date('H:i:s') ?> </td>
-	<td><?= $executionTime ?></td>
+	<td class = "tdWithBorders"><?= $_GET['x']; ?> </td>
+	<td class = "tdWithBorders"><?= $_GET['y']; ?> </td>
+	<td class = "tdWithBorders"><?= $_GET['r']; ?> </td>
+	<td class = "tdWithBorders"><?= $result; ?></td>
+	<td class = "tdWithBorders"><?= date('H:i:s') ?> </td>
+	<td class = "tdWithBorders"><?= $executionTime ?></td>
 </tr>
 
