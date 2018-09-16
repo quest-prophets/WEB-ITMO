@@ -1,10 +1,12 @@
 	body{
 		background: url("images/BG.png") no-repeat center center fixed;
 		background-size: cover; 
+		font-family: Calibri;
 	}
 	table, tr, td{
 		border: none;
 	}
+
 	.resultTable{
 		background-color: #ffffff;
 		border-collapse: collapse;
@@ -12,6 +14,9 @@
 	.tdWithBorders{
 		padding: 4px;
 		border: 1px solid #000000;
+	}
+	thead:first-child{
+		background-color: #EEEEEE;
 	}
 	.box{
 		background-color: #e8e8e8;
@@ -26,6 +31,9 @@
 		line-height: 20px;
 		font-size: 15px;
 		color: #000000;
+	}
+	.boxHeader::first-line{
+		font-weight: bold;
 	}
 	.boxError{
 		background-color: #ff7f7f;
@@ -45,6 +53,7 @@
 		font-weight: bold;
 	}
 
-	button:active, button.active {
+	
+	button.active, button:hover {
             background: #b9c3d1;
         }

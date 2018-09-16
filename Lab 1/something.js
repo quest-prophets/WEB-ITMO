@@ -38,8 +38,7 @@ function submit(event){
 function buttonAction(event){
 	event.preventDefault();
 	var x = 0;
-    x = parseInt(event.currentTarget.innerText);
-    document.querySelector("#x").value = x;
+    document.querySelector("#x").value = event.currentTarget.innerText;
     Array.prototype.slice.call(document.querySelectorAll("button")).forEach(function(el){el.classList.remove("active")});
     event.currentTarget.classList.add("active");
 }
