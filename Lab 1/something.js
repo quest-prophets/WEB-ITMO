@@ -28,7 +28,7 @@ function submit(event){
 			document.getElementById("resultTable").insertAdjacentHTML("beforeend", html);
 			error.classList.add("hidden");
 			boxResult.classList.remove("hidden");
-			resultValue.textContent = document.querySelector("#resultTable tr:last-of-type td:nth-last-of-type(3)").textContent;
+			resultValue.textContent = document.querySelector("#resultTable tr:last-of-type td:nth-of-type(4)").textContent;
 		});
 	}
 }
