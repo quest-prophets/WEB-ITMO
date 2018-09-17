@@ -35,8 +35,8 @@
 					<button value="0" type="button" > 0 </button> 
 					<button value="0.5" type="button" > 0.5 </button> 
 					<button value="1" type="button" > 1 </button> 
-					<button value="1.5" type="button" "> 1.5 </button> 
-					<button value="2" type="button" > 2 </button>  </input><br>
+					<button value="1.5" type="button"> 1.5 </button> 
+					<button value="2" type="button" > 2 </button><br>
 					<label style= margin-left:40%><input type="submit" id="submit"></label>
 				</form>
 			</td>
