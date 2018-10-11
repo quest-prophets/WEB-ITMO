@@ -44,7 +44,6 @@ function submit(event){
 }
 
 
-
 function buttonAction(event){
 	event.preventDefault();
 	var x = 0;
@@ -53,11 +52,7 @@ function buttonAction(event){
     event.currentTarget.classList.add("active");
 }
 
-function clear(event){
-}
-
 document.addEventListener("DOMContentLoaded", function() {
 	document.getElementById("submit").addEventListener("click", submit);
 	Array.prototype.slice.call(document.querySelectorAll("button")).forEach(function (e) { if(e.id !== "clearButton")e.addEventListener("click", buttonAction)});
-	document.getElementById("clearButton").addEventListener("click", clear);
 })
