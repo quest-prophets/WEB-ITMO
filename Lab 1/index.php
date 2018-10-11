@@ -1,8 +1,9 @@
+<!DOCTYPE html>
 <html>
 <head> 
 	<title>title</title>
 	<link rel="icon" href= "images/COTN.png">
-	<link rel="stylesheet" href="styles.css">
+	<link rel="stylesheet" type="text/css" href="styles.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<script type="text/javascript" src="something.js"></script>
 </head>
@@ -32,13 +33,14 @@
 					<button value="-1.5" type="button" > -1.5 </button> 
 					<button value="-1" type="button" > -1 </button> 
 					<button value="-0.5" type="button" > -0.5 </button> 
-					<button value="0" type="button" > 0 </button> 
+					<button value="0" type="button"> 0 </button> 
 					<button value="0.5" type="button" > 0.5 </button> 
 					<button value="1" type="button" > 1 </button> 
 					<button value="1.5" type="button"> 1.5 </button> 
 					<button value="2" type="button" > 2 </button><br>
 					<label style= margin-left:40%><input type="submit" id="submit"></label>
 				</form>
+				<form action="clear.php" method="get"><button type = "submit" id = "clearButton">Очистить</button></form>
 			</td>
 			<td></td>
 		</tr>
@@ -72,6 +74,23 @@
 						</tr>
 					</thead>
 					<tbody id="resultTable">
+						<?php
+					session_start();
+					if (!isset($_SESSION['history'])) {
+						$_SESSION['history'] = array();
+					}
+					foreach ($_SESSION['history'] as $value) { ?>
+		<tr>
+			<td class = "tdWithBorders"><?php echo $value[0] ?></td>
+			<td class = "tdWithBorders"><?php echo $value[1] ?></td>
+			<td class = "tdWithBorders"><?php echo $value[2] ?></td>
+			<td class = "tdWithBorders"><?php echo $value[3] ? 'True' : 'False' ?></td>
+			<td class = "tdWithBorders"><?php echo $value[4] ?></td>
+			<td class = "tdWithBorders"s><?php echo $value[5] ?></td>
+		</tr>
+<?php
+	}
+	?>
 					</tbody>
 				</table>
 

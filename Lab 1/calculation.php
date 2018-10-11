@@ -5,7 +5,17 @@
 	}
 </style>
 
-<?php $start = microtime(true);
+<?php 
+$x = $_GET['x'];
+if ($x == "") {
+	$x = "0";
+}
+$y = $_GET['y'];
+
+$r = $_GET['r'];
+
+
+$start = microtime(true);
 
 function check($x,$y,$r){
 	if ($x >= 0 && $y >= 0){
@@ -20,17 +30,27 @@ function check($x,$y,$r){
 	else return False;
 }
 
-$result = check($_GET['x'], $_GET['y'], $_GET['r']) ? "True": "False";
+
+
+$result = check($x, $y, $r) ? "True": "False";
 
 $end = microtime(true); 
-$executionTime = $end - $start ?>
+$executionTime = $end - $start; 
+$time = date('H:i:s');
+$full_data = array($x, $y, $r, $result, $time, $executionTime);
+session_start();
+if (!isset($_SESSION['history'])) {
+		$_SESSION['history'] = array();
+	}
+	array_push($_SESSION['history'], $full_data);
+?>
 
 <tr>
-	<td class = "tdWithBorders"><?= $_GET['x']; ?> </td>
-	<td class = "tdWithBorders"><?= $_GET['y']; ?> </td>
-	<td class = "tdWithBorders"><?= $_GET['r']; ?> </td>
-	<td class = "tdWithBorders"><?= $result; ?></td>
-	<td class = "tdWithBorders"><?= date('H:i:s') ?> </td>
-	<td class = "tdWithBorders"><?= $executionTime ?></td>
+	<td class = "tdWithBorders"><?php echo $x; ?> </td>
+	<td class = "tdWithBorders"><?php echo $y; ?> </td>
+	<td class = "tdWithBorders"><?php echo $r; ?> </td>
+	<td class = "tdWithBorders"><?php echo $result; ?></td>
+	<td class = "tdWithBorders"><?php echo $time ?> </td>
+	<td class = "tdWithBorders"><?php echo $executionTime ?></td>
 </tr>
 

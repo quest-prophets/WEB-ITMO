@@ -1,18 +1,26 @@
 function submit(event){
 	event.preventDefault();
-	var y = Number(document.getElementById("y").value);
+	var y = document.getElementById("y").value
+	console.log(y);
+	
 	var error = document.getElementById("error");
 	var boxResult = document.getElementById("boxResult");
 	var resultValue = document.getElementById("resultValue");
-	if (isNaN(y)) {
+	if (y == ""){
+		error.classList.remove("hidden");
+		error.textContent = "Значение Y — не число!";
+	}
+	else {
+		y = Number(y);
+		if (isNaN(y)) {
 		boxResult.classList.add("hidden");
 		error.classList.remove("hidden");
 		error.textContent = "Значение Y — не число!"
 	}
-	else if (y < -3 || y > 5){
+	else if (y <= -3 || y >= 5){
 		boxResult.classList.add("hidden");
 		error.classList.remove("hidden");
-		error.textContent = "Y не может быть меньше -3 или больше 5"
+		error.textContent = "Y должен входить в интервал (-3...5)"
 	}
 	else {
 		function something(formData) {
@@ -31,6 +39,8 @@ function submit(event){
 			resultValue.textContent = document.querySelector("#resultTable tr:last-of-type td:nth-of-type(4)").textContent;
 		});
 	}
+	}
+	
 }
 
 
@@ -43,7 +53,11 @@ function buttonAction(event){
     event.currentTarget.classList.add("active");
 }
 
+function clear(event){
+}
+
 document.addEventListener("DOMContentLoaded", function() {
 	document.getElementById("submit").addEventListener("click", submit);
-	Array.prototype.slice.call(document.querySelectorAll("button")).forEach(function (e) { e.addEventListener("click", buttonAction)});
+	Array.prototype.slice.call(document.querySelectorAll("button")).forEach(function (e) { if(e.id !== "clearButton")e.addEventListener("click", buttonAction)});
+	document.getElementById("clearButton").addEventListener("click", clear);
 })
