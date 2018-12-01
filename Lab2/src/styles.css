@@ -1,0 +1,59 @@
+	body{
+		background: url("images/BG.png") no-repeat center center fixed;
+		background-size: cover;
+        font-family: Calibri, serif;
+        font-size: 17px;
+	}
+
+	.resultTable{
+		background-color: #ffffff;
+		border-collapse: collapse;
+	}
+	.tdWithBorders{
+		padding: 4px;
+		border: 1px solid #000000;
+	}
+	thead:first-child{
+		background-color: #EEEEEE;
+	}
+	.box{
+		background-color: #e8e8e8;
+		border-radius: 15px;
+		display: inline-block;
+		padding: 10px;
+		line-height: 35px;
+	}
+	.boxHeader{
+		line-height: 20px;
+		color: #000000;
+	}
+	.boxError{
+		background-color: #ff7f7f;
+	}
+	.boxResult{
+		background-color: #97ff89; 
+	}
+	.hidden{
+		display: none;
+	}
+	.flexContainer{
+		display: flex;
+		align-items: center;
+        flex-direction: column;
+	}
+	.bold{
+		font-weight: bold;
+	}
+
+    /* not used */
+    .centerHorizontally{
+        margin: auto;
+        position: absolute;
+        left: 0;
+        right: 0;
+    }
+
+	
+	button.active, button:hover {
+            background: #b9c3d1;
+        }
