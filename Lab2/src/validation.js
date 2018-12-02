@@ -29,7 +29,7 @@ function submit(event){
 	else {
 		function something(formData) {
     	var params = new URLSearchParams();
-    	for (var kv of formData) { params.append(kv[0], kv[1]); };
+    	for (var kv of formData) { params.append(kv[0], kv[1]); }
     	return params.toString();
   		}
 		var formData = new FormData(document.getElementById("form"));
@@ -50,7 +50,6 @@ function submit(event){
 
 function buttonAction(event){
 	event.preventDefault();
-	var x = 0;
     document.querySelector("#x").value = event.currentTarget.innerText;
     Array.prototype.slice.call(document.querySelectorAll("button")).forEach(function(el){el.classList.remove("active")});
     event.currentTarget.classList.add("active");
@@ -59,4 +58,4 @@ function buttonAction(event){
 document.addEventListener("DOMContentLoaded", function() {
 	document.getElementById("submit").addEventListener("click", submit);
 	Array.prototype.slice.call(document.querySelectorAll("button")).forEach(function (e) { if(e.id !== "clearButton")e.addEventListener("click", buttonAction)});
-})
+});

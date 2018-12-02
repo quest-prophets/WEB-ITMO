@@ -16,10 +16,10 @@
 </header>
 
 <div class="flexContainer" style="margin-top: -40px">
-    <img style="margin-bottom: 8px" src="images/graph.png">
+    <img style="margin-bottom: 8px" src="images/graph.png" alt = "Delete this">
     <div class="box" style="margin-bottom: 8px">
         <form action="calculation.php" method="get" id="form">
-            R: &emsp;<input type="text" name="r" id="y" placeholder="[2 ... 5]"><br>
+            R: &emsp;<input type="text" name="r" id="r" placeholder="[2 ... 5]"><br>
             <table style="display: inline-table">
                 <tr>
                     <td>X: &ensp;</td>
@@ -61,21 +61,7 @@
         </tr>
         </thead>
         <tbody id="resultTable">
-        <?php
-        session_start();
-        if (!isset($_SESSION['history'])) {
-            $_SESSION['history'] = array();
-        }
-        foreach ($_SESSION['history'] as $value) { ?>
-            <tr>
-                <td class="tdWithBorders"><?php echo $value[0] ?></td>
-                <td class="tdWithBorders"><?php echo $value[1] ?></td>
-                <td class="tdWithBorders"><?php echo $value[2] ?></td>
-                <td class="tdWithBorders"><?php echo $value[3] ? 'True' : 'False' ?></td>
-            </tr>
-            <?php
-        }
-        ?>
+
         </tbody>
     </table>
 </div>
