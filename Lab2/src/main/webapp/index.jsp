@@ -17,7 +17,39 @@
 </header>
 
 <div class="flexContainer" style="margin-top: -40px">
-    <img style="margin-bottom: 8px" src="images/graph.png" alt = "Delete this">
+    <svg class="graph" ref="svg" xmlns="http://www.w3.org/2000/svg" width = "400" height="400">
+        <g id="graph__coordinate-plane">
+            """ +
+            /* horizontal and vertical axes */
+            """
+            <path fill="none" stroke="#000" stroke-width="1px" d="M 0 200 h 400"></path>
+            <path fill="none" stroke="#000" stroke-width="1px" d="M 200 0 v 400"></path>
+            """ +
+            /* arrows */
+            """
+            <path fill="none" stroke="#000" stroke-width="1px" d="M 200 0 l -3 7"></path>
+            <path fill="none" stroke="#000" stroke-width="1px" d="M 200 0 l 3 7"></path>
+            <path fill="none" stroke="#000" stroke-width="1px" d="M 400 200 l -6 -3"></path>
+            <path fill="none" stroke="#000" stroke-width="1px" d="M 400 200 l -6 3"></path>
+        </g>
+        <path fill="#3399ff"stroke="#000" stroke-width="1px" d="M 200 40 v 160 h -80 Z"></path>
+        <path fill="#3399ff" stroke="#000" stroke-width="1px" d="M 40 200 q 0 160 160 160 v -160 Z"></path>
+        <path fill="#3399ff" stroke="#000" stroke-width="1px" d="M 200 200 h 160 v 160 h -160 Z"></path>
+        """ +
+        /* axis labels */
+        """
+        <text x="180" y="44" font-weight="400"><tspan x="180" y="44" font-size="16px">R</tspan></text>
+        <text x="106" y="190" font-weight="400"><tspan x="20" y="190" font-size="16px">R</tspan></text>
+        <text x="166" y="296" font-weight="400"><tspan x="209" y="380" font-size="16px">R</tspan></text>
+        <text x="360" y="190" font-weight="400"><tspan x="360" y="190" font-size="16px">R</tspan></text>
+        <text x="360" y="190" font-weight="400"><tspan x="90" y="190" font-size="16px">R/2</tspan></text>
+        <g id="graph__points">
+            """ +
+            renderPoints() +
+            """
+        </g>
+    </svg>
+
     <div class="box" style="margin-bottom: 8px">
         <form action="../../calculation.php" method="get" id="form">
             R: &emsp;<input type="text" name="r" id="r" placeholder="[2 ... 5]"><br>
