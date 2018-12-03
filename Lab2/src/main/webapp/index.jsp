@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Lab 2</title>
+    <meta charset="utf-8">
     <link rel="icon" href="images/favicon.ico">
     <link rel="stylesheet" type="text/css" href="styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,7 +19,7 @@
 <div class="flexContainer" style="margin-top: -40px">
     <img style="margin-bottom: 8px" src="images/graph.png" alt = "Delete this">
     <div class="box" style="margin-bottom: 8px">
-        <form action="calculation.php" method="get" id="form">
+        <form action="../../calculation.php" method="get" id="form">
             R: &emsp;<input type="text" name="r" id="r" placeholder="[2 ... 5]"><br>
             <table style="display: inline-table">
                 <tr>
@@ -58,6 +59,8 @@
             <td class="tdWithBorders">X</td>
             <td class="tdWithBorders">Y</td>
             <td class="tdWithBorders">Result</td>
+            <td class="tdWithBorders">Time</td>
+            <td class="tdWithBorders">Execution Time</td>
         </tr>
         </thead>
         <tbody id="resultTable">
@@ -66,4 +69,4 @@
     </table>
 </div>
 </body>
-</html> 
+</html>
