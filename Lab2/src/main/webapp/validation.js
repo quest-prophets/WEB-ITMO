@@ -1,6 +1,7 @@
 function submit(event){
 	event.preventDefault();
 	var y = document.getElementById("y").value
+    var r = document.getElementById("r").value
 	console.log(y);
 	
 	var error = document.getElementById("error");
@@ -21,10 +22,15 @@ function submit(event){
 		error.classList.remove("hidden");
 		error.textContent = "Значение Y — не число!"
 	}
-	else if (y <= -5 || y >= 3){
+	else if (y < -5 || y > 3){
 		boxResult.classList.add("hidden");
 		error.classList.remove("hidden");
 		error.textContent = "Y must be in range [-5 ... 3]"
+	}
+	else if (r < 2 || r > 5) {
+            boxResult.classList.add("hidden");
+            error.classList.remove("hidden");
+            error.textContent = "R must be in range [2 ... 5]";
 	}
 	else {
 		function something(formData) {
@@ -47,6 +53,26 @@ function submit(event){
 	
 }
 
+function placePoint(e) {
+    const svg = e.target.closest('svg');
+    const referencePt = svg.createSVGPoint();
+    referencePt.x = e.clientX;
+    referencePt.y = e.clientY;
+    const axisDim = 400;
+    const rDim = 160;
+    const { x: graphX, y: graphY } = referencePt.matrixTransform(
+        svg.getScreenCTM().inverse());
+
+    const r = document.getElementById("r").value;
+    const x = ((graphX - (axisDim / 2)) / rDim) * r;
+    const y = -((graphY - (axisDim / 2)) / rDim) * r;
+
+    fetch(`hitCheck?x=${x}&y=${y}&r=${r}`, { method: "GET"})
+        .then(response => response.text())
+        .then(text => console.log(text))
+
+}
+
 
 function buttonAction(event){
 	event.preventDefault();
@@ -56,6 +82,7 @@ function buttonAction(event){
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-	document.getElementById("submit").addEventListener("click", submit);
+	document.getElementById("check").addEventListener("click", submit);
+	document.querySelector("svg").addEventListener("click", placePoint);
 	Array.prototype.slice.call(document.querySelectorAll("button")).forEach(function (e) { if(e.id !== "clearButton")e.addEventListener("click", buttonAction)});
 });
