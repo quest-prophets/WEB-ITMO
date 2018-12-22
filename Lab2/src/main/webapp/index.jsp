@@ -1,5 +1,4 @@
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="lab2.Dot" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
@@ -71,7 +70,7 @@
             </table>
             <br>
             Y: &emsp;<input type="text" name="y" id="y" placeholder="[-5 ... 3]">
-            <br/> <input type="submit" id = "check" value="Check for belonging" onClick= "//checkValid(event)">
+            <br/> <input type="submit" id = "check" value="Check for belonging" onClick= "placePoint(event)">
             <br/>
             <br/> <input type="button" id = "cle" value="Clear current R checks" onClick= "cl()">
             <br/>
@@ -99,9 +98,11 @@
 
         </tbody>
         <script>
+            var rad = document.getElementById("r").value;
+
 
             function cl() {
-                areaRads[rad-1].length=0; //-1
+                areaRads[rad-1].length=0;
                 drawArea();
                 let tbl = document.getElementById("resultTable");
                 let rowC = tbl.rows.length;
@@ -110,7 +111,7 @@
                         tbl.deleteRow(i);
                     }
                 }
-                fetch(`clearHistory?rad=${rad}`, { method: 'GET' });
+                fetch(`clearHistory?r=${rad}`, { method: 'GET' });
 
             }
             function clearAll() {

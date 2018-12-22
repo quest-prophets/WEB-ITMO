@@ -12,11 +12,13 @@ import java.util.Iterator;
 
 @WebServlet("/")
 public class ControllerServlet extends HttpServlet {
+    /*
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
         ArrayList<Dot> checkings = new ArrayList<>();
         getServletContext().setAttribute("resultTable", checkings);
     }
+    */
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String query = request.getRequestURI();
@@ -37,6 +39,7 @@ public class ControllerServlet extends HttpServlet {
                 }
             }
         } else {
+            /*
             if (query.contains("clearHistory")) {
                 if (request.getParameter("r") != null) {
                     int rd = Integer.parseInt(request.getParameter("r"));
@@ -53,7 +56,7 @@ public class ControllerServlet extends HttpServlet {
                     getServletContext().setAttribute("resultTable", new ArrayList<Dot>());
                 }
             } else {
-
+            */
                 if (query.contains("hitCheck")) {
                     response.setContentType("text/html;charset=UTF-8");
                     String kx = request.getParameter("x");
@@ -65,7 +68,8 @@ public class ControllerServlet extends HttpServlet {
                     if (kx != null && ky != null && r != null) {
                         request.getRequestDispatcher("/areaCheck").forward(request, response);
                     } else {
-                        response.sendError(400);
+                        response.setContentType("text/html;charset=UTF-8");
+                        request.getRequestDispatcher("index.jsp").forward(request, response);
                     }
                 }
                 else {
@@ -75,41 +79,4 @@ public class ControllerServlet extends HttpServlet {
             }
         }
 
-    }
-
-    /*
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        String query = request.getRequestURI();
-        if (query.contains("clearHistory")) {
-            if (request.getParameter("rad") != null) {
-                int rd = Integer.parseInt(request.getParameter("rad"));
-                ArrayList<Dot> getTbl = (ArrayList<Dot>) getServletContext().getAttribute("resultTable");
-                Iterator<Dot> i = getTbl.iterator();
-                while (i.hasNext()) {
-                    Dot s = i.next();
-                    if (s.rad.equals(Integer.toString(rd))) {
-                        i.remove();
-                    }
-                }
-                getServletContext().setAttribute("resultTable", getTbl);
-            } else {
-                getServletContext().setAttribute("resultTable", new ArrayList<Dot>());
-            }
-        } else {
-
-            response.setContentType("text/html;charset=UTF-8");
-            String kx = request.getParameter("koordX");
-            request.setAttribute("X", kx);
-            String ky = request.getParameter("koordY");
-            request.setAttribute("Y", ky);
-            String rad = request.getParameter("radius");
-            request.setAttribute("RAD", rad);
-            if (kx != null && ky != null && rad != null) {
-                request.getRequestDispatcher("/areaCheck").forward(request, response);
-            } else {
-                response.sendError(400);
-            }
-        }
-    }
-    */
 }
