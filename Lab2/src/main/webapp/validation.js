@@ -54,40 +54,31 @@ function submit(event) {
 }
 
 function placePoint(e) {
-    //const svg = e.target.closest('svg');
-    //const referencePt = svg.createSVGPoint();
-    //referencePt.x = e.clientX;
-    //referencePt.y = e.clientY;
-    //const axisDim = 400;
-    //const rDim = 160;
-    //const {x: graphX, y: graphY} = referencePt.matrixTransform(
-    //    svg.getScreenCTM().inverse());
-//
-    //const r = document.getElementById("r").value;
-    //const x = ((graphX - (axisDim / 2)) / rDim) * r;
-    //const y = -((graphY - (axisDim / 2)) / rDim) * r;
-//
-    //console.log(x);
-    //console.log(y);
-
     const r = document.getElementById("r").value;
     const xs = document.getElementsByName("x");
     const y = document.getElementById("y").value;
 
     const svgns = "http://www.w3.org/2000/svg";
     xs.forEach(function (x) {
-        const circle = document.createElementNS(svgns, 'circle');
-        circle.setAttributeNS(null, 'cx', x.value/r*160 + 200);
-        circle.setAttributeNS(null, 'cy', -y/r*160+200);
-        circle.setAttributeNS(null, 'r', 3);
-        circle.setAttributeNS(null, 'style', 'fill: red; stroke: red; stroke-width: 1px;');
-        document.getElementById("graph").appendChild(circle);
+        if (x.checked) {
+            const circle = document.createElementNS(svgns, 'circle');
+            circle.setAttributeNS(null, 'cx', x.value / r * 160 + 200);
+            circle.setAttributeNS(null, 'cy', -y / r * 160 + 200);
+            circle.setAttributeNS(null, 'r', 3);
+            circle.setAttributeNS(null, 'style', 'fill: red; stroke: red; stroke-width: 1px;');
+            document.getElementById("graph").appendChild(circle);
+        }
     });
 
 
-    fetch(`hitCheck?x=${x}&y=${y}&r=${r}`, {method: "GET"})
-        .then(response => response.text())
-        .then(text => console.log(text))
+
+    let element = document.createElement("html");
+    element.innerHTML;
+    console.log(e.innerHTML);
+    let row = element.getElementsByTagName("tr")[0];
+    row.removeChild(row.lastChild);
+    document.getElementById("resultTable").appendChild(row);
+    //document.getElementById("res_table").style.display = "block";
 
 }
 

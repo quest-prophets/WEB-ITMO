@@ -56,7 +56,7 @@
     </svg>
 
     <div class="box" style="margin-bottom: 8px">
-        <form action="../../calculation.php" method="get" id="form">
+        <form action="controller" method="get" id="form">
             R: &emsp;<input type="text" name="r" id="r" placeholder="[2 ... 5]"><br>
             <table style="display: inline-table">
                 <tr>
