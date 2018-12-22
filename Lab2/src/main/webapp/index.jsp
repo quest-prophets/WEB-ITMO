@@ -20,7 +20,7 @@
 </header>
 
 <div class="flexContainer" style="margin-top: -40px">
-    <svg class="graph" ref="svg" xmlns="http://www.w3.org/2000/svg" width = "400" height="400">
+    <svg class="graph" id="graph" ref="svg" xmlns="http://www.w3.org/2000/svg" width="400" height="400">
         <g id="graph__coordinate-plane">
 
             <path fill="none" stroke="#000" stroke-width="1px" d="M 0 200 h 400"></path>
@@ -35,11 +35,21 @@
         <path fill="#3399ff" stroke="#000" stroke-width="1px" d="M 40 200 q 0 160 160 160 v -160 Z"></path>
         <path fill="#3399ff" stroke="#000" stroke-width="1px" d="M 200 200 h 160 v 160 h -160 Z"></path>
 
-        <text x="180" y="44" font-weight="400"><tspan x="180" y="44" font-size="16px">R</tspan></text>
-        <text x="106" y="190" font-weight="400"><tspan x="20" y="190" font-size="16px">R</tspan></text>
-        <text x="166" y="296" font-weight="400"><tspan x="209" y="380" font-size="16px">R</tspan></text>
-        <text x="360" y="190" font-weight="400"><tspan x="360" y="190" font-size="16px">R</tspan></text>
-        <text x="360" y="190" font-weight="400"><tspan x="90" y="190" font-size="16px">R/2</tspan></text>
+        <text x="180" y="44" font-weight="400">
+            <tspan x="180" y="44" font-size="16px">R</tspan>
+        </text>
+        <text x="106" y="190" font-weight="400">
+            <tspan x="20" y="190" font-size="16px">R</tspan>
+        </text>
+        <text x="166" y="296" font-weight="400">
+            <tspan x="209" y="380" font-size="16px">R</tspan>
+        </text>
+        <text x="360" y="190" font-weight="400">
+            <tspan x="360" y="190" font-size="16px">R</tspan>
+        </text>
+        <text x="360" y="190" font-weight="400">
+            <tspan x="90" y="190" font-size="16px">R/2</tspan>
+        </text>
         <g id="graph__points">
 
         </g>
@@ -70,11 +80,7 @@
             </table>
             <br>
             Y: &emsp;<input type="text" name="y" id="y" placeholder="[-5 ... 3]">
-            <br/> <input type="submit" id = "check" value="Check for belonging" onClick= "placePoint(event)">
-            <br/>
-            <br/> <input type="button" id = "cle" value="Clear current R checks" onClick= "cl()">
-            <br/>
-            <br/> <input type="button" id = "clAll" value="Clear all R checks" onClick= "clearAll()">
+            <br/> <input type="submit" id="check" value="Check for belonging" onClick="placePoint(event)">
             <br/>
             <%-- <button type="submit" id="check">Submit</button> --%>
         </form>
@@ -97,37 +103,6 @@
         <tbody id="resultTable">
 
         </tbody>
-        <script>
-            var rad = document.getElementById("r").value;
-
-
-            function cl() {
-                areaRads[rad-1].length=0;
-                drawArea();
-                let tbl = document.getElementById("resultTable");
-                let rowC = tbl.rows.length;
-                for (let i = rowC - 1; i > 0; i--) {
-                    if (tbl.rows[i].cells[2].textContent.trim() === rad) {
-                        tbl.deleteRow(i);
-                    }
-                }
-                fetch(`clearHistory?r=${rad}`, { method: 'GET' });
-
-            }
-            function clearAll() {
-                for (r=0; r<areaRads.length; r++) {
-                    areaRads[r].length=0;
-                }
-                drawArea();
-                let tbl = document.getElementById("resultTable");
-                let rowCount = tbl.rows.length;
-                for (let i = rowCount-1; i > 0; i--) {
-                    tbl.deleteRow(i);
-                }
-                fetch(`clearHistory`, { method: 'GET'});
-            }
-
-        </script>
     </table>
 </div>
 </body>
