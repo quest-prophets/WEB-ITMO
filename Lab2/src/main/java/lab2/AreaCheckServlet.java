@@ -27,53 +27,40 @@ public class AreaCheckServlet extends HttpServlet {
         return false;
     }
 
+    private static boolean checkDataValidity (String x, String y, String r) {
+        try {
+            Double.parseDouble(x);
+            Double.parseDouble(y);
+            Double.parseDouble(r);
+        }
+        catch (NumberFormatException e){
+            return false;
+        }
+        return true;
+    }
+
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String x = request.getParameter("x");
         String y = request.getParameter("y");
         String r = request.getParameter("r");
-        double dx = Double.parseDouble(x);
-        double dy = Double.parseDouble(y);
-        double dr = Double.parseDouble(r);
-
-        boolean res = checkAreaHit(dx,dy,dr);
         String sRes;
 
-        if (res)
-            sRes = "True";
-        else
-            sRes = "False";
+        if (!checkDataValidity(x,y,r)) {
+            sRes = "Error";
+        }
+        else {
+            double dx = Double.parseDouble(x);
+            double dy = Double.parseDouble(y);
+            double dr = Double.parseDouble(r);
 
+            boolean res = checkAreaHit(dx, dy, dr);
+
+            if (res)
+                sRes = "True";
+            else
+                sRes = "False";
+        }
         PrintWriter out = response.getWriter();
-        /*
-        out.write("\n");
-        out.write("<!DOCTYPE html>\n");
-        out.write("<html>\n");
-        out.write("<head>\n");
-        out.write("    <meta charset=\"UTF-8\">\n");
-        out.write("</head>\n");
-        out.write("\n");
-        out.write("<body>\n");
-        out.write("<table>\n");
-        out.write("    <tr>\n");
-        out.write("        <td>\n");
-        out.write(x + "\n");
-        out.write("        </td>\n");
-        out.write("        <td>\n");
-        out.write(y + "\n");
-        out.write("        </td>\n");
-        out.write("        <td>\n");
-        out.write(r + "\n");
-        out.write("        </td>\n");
-        out.write("        <td>\n");
-        out.write(sRes + "\n");
-        out.write("        </td>\n");
-        out.write("        <td>\n");
-        out.write("<a href = http://localhost:8080/Lab2-1.0/</a>\n");
-        out.write("        </td>\n");
-        out.write("    </tr>\n");
-        out.write("</table>\n");
-        out.write("</body>\n");
-        */
 
         out.write(sRes);
 
