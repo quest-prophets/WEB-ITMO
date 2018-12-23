@@ -39,11 +39,12 @@ public class AreaCheckServlet extends HttpServlet {
         String sRes;
 
         if (res)
-            sRes = "Point is in the area";
+            sRes = "True";
         else
-            sRes = "Point is not in the area";
+            sRes = "False";
 
         PrintWriter out = response.getWriter();
+        /*
         out.write("\n");
         out.write("<!DOCTYPE html>\n");
         out.write("<html>\n");
@@ -72,6 +73,9 @@ public class AreaCheckServlet extends HttpServlet {
         out.write("    </tr>\n");
         out.write("</table>\n");
         out.write("</body>\n");
+        */
+
+        out.write(sRes);
 
         String resultString = x + " " + y + " " + r + " " + sRes;
         HttpSession httpSession = request.getSession();

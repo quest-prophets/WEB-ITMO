@@ -6,7 +6,7 @@
 <head>
     <title>Lab 2</title>
     <meta charset="utf-8">
-    <link rel="icon" href="images/favicon.ico">
+    <link rel="icon" href="favicon.ico">
     <link rel="stylesheet" type="text/css" href="styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="text/javascript" src="validation.js"></script>

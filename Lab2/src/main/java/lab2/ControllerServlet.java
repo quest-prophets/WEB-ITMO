@@ -10,7 +10,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-@WebServlet("/controller")
+@WebServlet("/")
 public class ControllerServlet extends HttpServlet {
     /*
     public void init(ServletConfig config) throws ServletException {
@@ -31,7 +31,7 @@ public class ControllerServlet extends HttpServlet {
             String filename = query.split("/")[query.split("/").length - 1];
             InputStream res = getServletContext().getResourceAsStream("/" + filename);
             if (res == null) {
-                response.setStatus(403);
+                response.setStatus(404);
             } else {
                 byte[] buffer = new byte[1024];
                 int len;
@@ -66,6 +66,8 @@ public class ControllerServlet extends HttpServlet {
                     request.setAttribute("y", ky);
                     String r = request.getParameter("r");
                     request.setAttribute("r", r);
+
+
                     if (kx != null && ky != null && r != null) {
                         request.getRequestDispatcher("/areaCheck").forward(request, response);
                     } else {
