@@ -76,9 +76,9 @@ function placePointForm(e) {
             circle.setAttributeNS(null, 'style', 'fill: red; stroke: red; stroke-width: 1px;');
             document.getElementById("graph").appendChild(circle);
 
-            //fetch(`hitCheck?x=${x.value}&y=${y}&r=${r}`, {method: "GET"})
-            //   .then(response => response.text())
-            //    .then(text => console.log(text))
+            fetch(`hitCheck?x=${x.value}&y=${y}&r=${r}`, {method: "GET"})
+               .then(response => response.text())
+               .then(text => console.log(text))
 //
             //fetch(("hitCheck?x=" + x + "&y=" + y + "&r=" + r), {method: "GET"})
             //    .then(response => response.text())
@@ -120,6 +120,10 @@ function placePointGraph(e) {
         const y = -(e.pageY - graph.offset().top - 200) * r / 160;
         console.log(x);
         console.log(y);
+
+        fetch(`hitCheck?x=${x}&y=${y}&r=${r}`, {method: "GET"})
+            .then(response => response.text())
+            .then(text => console.log(text))
     }
 }
 

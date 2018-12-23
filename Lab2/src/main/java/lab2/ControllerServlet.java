@@ -10,7 +10,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-@WebServlet("/controller")
+@WebServlet("/")
 public class ControllerServlet extends HttpServlet {
     /*
     public void init(ServletConfig config) throws ServletException {
