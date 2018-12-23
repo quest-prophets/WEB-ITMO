@@ -1,147 +1,97 @@
-function submit(event) {
-    event.preventDefault();
-    let y = document.getElementById("y").value;
-    let r = document.getElementById("r").value;
-    let error = document.getElementById("error");
-    let boxResult = document.getElementById("boxResult");
-    if (y === "") {
-        error.classList.remove("hidden");
-        error.textContent = "Y is not defined!";
-    } else if (r === "") {
-        error.classList.remove("hidden");
-        error.textContent = "R is not defined!";
-    } else {
-        y = Number(y);
-        if (isNaN(y)) {
-            boxResult.classList.add("hidden");
-            error.classList.remove("hidden");
-            error.textContent = "Y is not a number!"
-        }
-        r = Number(r);
-        if (isNaN(r)) {
-            boxResult.classList.add("hidden");
-            error.classList.remove("hidden");
-            error.textContent = "R is not a number!"
-        } else if (y < -5 || y > 3) {
-            boxResult.classList.add("hidden");
-            error.classList.remove("hidden");
-            error.textContent = "Y must be in range [-5 ... 3]"
-        } else if (r < 2 || r > 5) {
-            boxResult.classList.add("hidden");
-            error.classList.remove("hidden");
-            error.textContent = "R must be in range [2 ... 5]";
-        }
-    }
-
-}
-
-function placePointForm(e) {
-    const r = document.getElementById("r").value;
-    const xs = document.getElementsByName("x");
-    const y = document.getElementById("y").value;
-    let resultValue = document.getElementById("resultValue");
-
-
-    //let AJAXRequest = function (url, callback) {
-    //    let clb = callback || addData;
-    //    let req = new XMLHttpRequest();
-//
-    //    req.onreadystatechange = function () {
-    //        if (req.readyState === 4 && req.status === 200) {
-    //            clb((req.responseText));
-    //        }
-    //    };
-//
-    //    req.open("GET", url);
-    //    req.send();
-    //};
-//
-//    let addData = function (data) {
- //       let element = document.createElement("html");
- //        element.innerHTML = data;
- //        console.log("hellooo");
-  //       console.log(data);
- //        let row = element.getElementsByTagName("tr")[0];
-  //      row.removeChild(row.lastChild);
- //       document.getElementById("resultTable").appendChild(row);
-  //   };
-
-    const svgns = "http://www.w3.org/2000/svg";
-    xs.forEach(function (x) {
-        if (x.checked) {
-            const circle = document.createElementNS(svgns, 'circle');
-            circle.setAttributeNS(null, 'cx', x.value / r * 160 + 200);
-            circle.setAttributeNS(null, 'cy', -y / r * 160 + 200);
-            circle.setAttributeNS(null, 'r', 3);
-            circle.setAttributeNS(null, 'style', 'fill: red; stroke: red; stroke-width: 1px;');
-            document.getElementById("graph").appendChild(circle);
-
-            fetch(`hitCheck?x=${x.value}&y=${y}&r=${r}`, {method: "GET"})
-               .then(response => response.text())
-               .then(text => console.log(text))
-//
-            //fetch(("hitCheck?x=" + x + "&y=" + y + "&r=" + r), {method: "GET"})
-            //    .then(response => response.text())
-            //    .then(function (html) {
-            //        console.log(html);
-            //        document.getElementById("resultTable").insertAdjacentHTML("beforeend", html);
-            //        resultValue.textContent = document.querySelector("#resultTable tr:last-of-type td:nth-of-type(4)").textContent;
-            //    });
-//
-            // AJAXRequest("hitCheck?x=" + x + "&y=" + y + "&r=" + r);
-
-        }
-    });
-
-}
-
-function placePointGraph(e) {
-    const r = document.getElementById("r").value;
-    const error = document.getElementById("error");
-    let boxResult = document.getElementById("boxResult");
-    if (r === "") {
-        error.classList.remove("hidden");
-        error.textContent = "Enter R!";
-    } else if (r < 2 || r > 5) {
-        boxResult.classList.add("hidden");
-        error.classList.remove("hidden");
-        error.textContent = "R must be in range [2 ... 5]";
-    } else {
-        const svgns = "http://www.w3.org/2000/svg";
-        const circle = document.createElementNS(svgns, 'circle');
-        const graph = $('#graph');
-        circle.setAttributeNS(null, 'cx', e.pageX - graph.offset().left);
-        circle.setAttributeNS(null, 'cy', e.pageY - graph.offset().top);
-        circle.setAttributeNS(null, 'r', 3);
-        circle.setAttributeNS(null, 'style', 'fill: red; stroke: red; stroke-width: 1px;');
-        document.getElementById("graph").appendChild(circle);
-
-        const x = (e.pageX - graph.offset().left - 200) * r / 160;
-        const y = -(e.pageY - graph.offset().top - 200) * r / 160;
-        console.log(x);
-        console.log(y);
-
-        fetch(`hitCheck?x=${x}&y=${y}&r=${r}`, {method: "GET"})
-            .then(response => response.text())
-            .then(text => console.log(text))
-    }
-}
-
-
-function buttonAction(event) {
-    event.preventDefault();
-    document.querySelector("#x").value = event.currentTarget.innerText;
-    Array.prototype.slice.call(document.querySelectorAll("button")).forEach(function (el) {
-        el.classList.remove("active")
-    });
-    event.currentTarget.classList.add("active");
-}
+var error;
+var boxResult;
+var resultValue;
+var resultTable;
+var graph
+var rElement;
+var r;
+var xs;
+var yElement;
+var y;
 
 document.addEventListener("DOMContentLoaded", function () {
-    document.getElementById("check").addEventListener("click", placePointForm);
-    document.getElementById("graph").addEventListener("click", placePointGraph);
-    //document.querySelector("svg").addEventListener("click", placePointForm);
-    Array.prototype.slice.call(document.querySelectorAll("button")).forEach(function (e) {
-        if (e.id !== "clearButton") e.addEventListener("click", buttonAction)
-    });
+    error = $('#error');
+    boxResult = $('#boxResult');
+    resultValue = $('#resultValue');
+    resultTable = $('#resultTable');
+    graph = $('#graph');
+    rElement = $('#r');
+    xs = $('[name="x"]');
+    yElement = $('#y');
+    document.getElementById("graph").addEventListener("click", doForm);
+    document.getElementById("check").addEventListener("click", doGraph);
+
 });
+
+function updateValues() {
+    r = rElement.val();
+    y = yElement.val();
+}
+
+function checkR() {
+    updateValues();
+    if (r === "") setError("R is not defined!");
+    else if (r < 2 || r > 5) setError("R must be in range [2 ... 5]");
+    else if (isNaN(Number(r))) setError("R is not a number!");
+    else return true;
+}
+
+function checkY() {
+    if (y === "") setError("Y is not defined!");
+    else if (y < -5 || y > 3) setError("Y must be in range [-5 ... 3]");
+    else if (isNaN(Number(y))) setError("Y is not a number!");
+    else return true;
+}
+
+function setError(text) {
+    error.removeClass("hidden");
+    boxResult.addClass("hidden");
+    error.text(text);
+}
+
+function setResult(text) {
+    boxResult.removeClass("hidden");
+    error.addClass("hidden");
+    resultValue.text(text);
+}
+
+function drawPoint(x, y) {
+    const circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');
+    circle.setAttributeNS(null, 'cx', x);
+    circle.setAttributeNS(null, 'cy', y);
+    circle.setAttributeNS(null, 'r', 3);
+    circle.setAttributeNS(null, 'style', 'fill: red; stroke: red; stroke-width: 1px;');
+    graph.append(circle);
+}
+
+function sendData(x, y, r) {
+    fetch(`hitCheck?x=${x}&y=${y}&r=${r}`, {method: "GET"})
+        .then(response => response.text())
+        .then(function (result) {
+            resultTable.append("<tr>\n" +
+                "<td class=\"tdWithBorders\">" + r + "</td>\n" +
+                "<td class=\"tdWithBorders\">" + x + "</td>\n" +
+                "<td class=\"tdWithBorders\">" + y + "</td>\n" +
+                "<td class=\"tdWithBorders\">" + result + "</td>\n" +
+                "</tr>");
+            setResult(result);
+        })
+}
+
+function doForm(e) {
+    if (checkR() && checkY()) {
+        xs.each(function (i, x) {
+            if (x.checked) {
+                drawPoint(x.value / r * 160 + 200, -y / r * 160 + 200);
+                sendData(x.value, y, r);
+            }
+        })
+    }
+}
+
+function doGraph(e) {
+    if (checkR()) {
+        drawPoint(e.pageX - graph.offset().left, e.pageY - graph.offset().top)
+        sendData((e.pageX - graph.offset().left - 200) * r / 160, -(e.pageY - graph.offset().top - 200) * r / 160)
+    }
+}

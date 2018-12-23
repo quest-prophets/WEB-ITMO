@@ -11,8 +11,8 @@
     <link rel="icon" href="favicon.ico">
     <link rel="stylesheet" type="text/css" href="styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="jquery-3.3.1.js"></script>
     <script type="text/javascript" src="validation.js"></script>
-    <script type = "text/javascript" src="jquery-3.3.1.js"></script>
 </head>
 
 <body>
@@ -59,7 +59,7 @@
     </svg>
 
     <div class="box" style="margin-bottom: 8px">
-        <form action="controller" method="get" id="form">
+        <form method="get" id="form">
             R: &emsp;<input type="text" name="r" id="r" placeholder="[2 ... 5]"><br>
             <table style="display: inline-table">
                 <tr>
@@ -83,14 +83,12 @@
             </table>
             <br>
             Y: &emsp;<input type="text" name="y" id="y" placeholder="[-5 ... 3]">
-            <br/> <input type="submit" id="check" value="Check for belonging" onClick="placePointForm(event)">
+            <br/> <input type="button" id="check" value="Check for belonging">
             <br/>
             <%-- <button type="submit" id="check">Submit</button> --%>
         </form>
     </div>
-    <div class="box boxError hidden" id="error">
-        Y is not a number!
-    </div>
+    <div class="box boxError hidden" id="error"></div>
     <div class="box boxResult hidden" id="boxResult">
         Результат: <span class="bold" id="resultValue"></span>
     </div>
@@ -111,10 +109,14 @@
         <% length = list.size(); %>
         <% for (int i = 0; i < length; i++) { %>
         <tr class="rows">
-            <td><%= list.get(i).r %></td>
-            <td><%= list.get(i).x %></td>
-            <td><%= list.get(i).y %></td>
-            <td><%= list.get(i).res %></td>
+            <td><%= list.get(i).r %>
+            </td>
+            <td><%= list.get(i).x %>
+            </td>
+            <td><%= list.get(i).y %>
+            </td>
+            <td><%= list.get(i).res %>
+            </td>
         </tr>
         <%}%>
         <% } %>
