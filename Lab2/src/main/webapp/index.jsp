@@ -117,6 +117,7 @@
             <td><%= list.get(i).res %></td>
         </tr>
         <%}%>
+        <% } %>
 
         </tbody>
     </table>

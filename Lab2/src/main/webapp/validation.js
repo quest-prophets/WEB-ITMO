@@ -56,16 +56,16 @@ function placePointForm(e) {
     //    req.send();
     //};
 //
-    //let addData = function (data) {
-    //    let element = document.createElement("html");
-    //    element.innerHTML = data;
-    //    console.log("hellooo");
-    //    console.log(data);
-    //    let row = element.getElementsByTagName("tr")[0];
-    //    row.removeChild(row.lastChild);
-    //    document.getElementById("resultTable").appendChild(row);
-    //};
-//
+//    let addData = function (data) {
+ //       let element = document.createElement("html");
+ //        element.innerHTML = data;
+ //        console.log("hellooo");
+  //       console.log(data);
+ //        let row = element.getElementsByTagName("tr")[0];
+  //      row.removeChild(row.lastChild);
+ //       document.getElementById("resultTable").appendChild(row);
+  //   };
+
     const svgns = "http://www.w3.org/2000/svg";
     xs.forEach(function (x) {
         if (x.checked) {
@@ -138,9 +138,9 @@ function buttonAction(event) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-    document.getElementById("check").addEventListener("click", submit);
+    document.getElementById("check").addEventListener("click", placePointForm);
     document.getElementById("graph").addEventListener("click", placePointGraph);
-    document.querySelector("svg").addEventListener("click", placePointForm);
+    //document.querySelector("svg").addEventListener("click", placePointForm);
     Array.prototype.slice.call(document.querySelectorAll("button")).forEach(function (e) {
         if (e.id !== "clearButton") e.addEventListener("click", buttonAction)
     });
