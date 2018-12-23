@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
     graph.bind("click", doGraph);
     $('#check').bind("click", doForm);
     rElement.bind("input", changeR);
-
+    yElement.bind("input", changeY);
 });
 
 function updateValues() {
@@ -40,6 +40,7 @@ function checkR() {
 }
 
 function checkY() {
+    updateValues();
     if (y === "") setError("Y is not defined!");
     else if (y < -5 || y > 3) setError("Y must be in range [-5 ... 3]");
     else if (isNaN(Number(y))) setError("Y is not a number!");
@@ -61,6 +62,16 @@ function setResult(text) {
 function changeR() {
     if (rElement.val() !== "") {
         if (checkR()) error.addClass("hidden")
+    }
+}
+
+function changeY() {
+    if (yElement.val() !== "") {
+        if (checkY()) {
+            if (rElement.val() !== "") {
+                if (checkR()) error.addClass("hidden")
+            }
+        }
     }
 }
 
