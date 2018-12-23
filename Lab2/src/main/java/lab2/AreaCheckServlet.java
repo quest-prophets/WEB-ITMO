@@ -77,17 +77,17 @@ public class AreaCheckServlet extends HttpServlet {
 
         out.write(sRes);
 
-        String resultString = x + " " + y + " " + r + " " + sRes;
         HttpSession httpSession = request.getSession();
-        List<String> list = new LinkedList<String>();
+        Result result = new Result(x,y,r,sRes);
+        List<Result> list = new LinkedList<Result>();
 
         if (httpSession.getAttribute("dotChecks") == null) {
-            list.add(resultString);
+            list.add(result);
             httpSession.setAttribute("dotChecks", list);
         }
         else {
-            list = (List<String>) httpSession.getAttribute("dotChecks");
-            list.add(resultString);
+            list = (List<Result>) httpSession.getAttribute("dotChecks");
+            list.add(result);
             httpSession.setAttribute("dotChecks", list);
         }
 

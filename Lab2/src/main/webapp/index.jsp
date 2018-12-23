@@ -1,4 +1,6 @@
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="lab2.Result" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
@@ -102,6 +104,19 @@
         </tr>
         </thead>
         <tbody id="resultTable">
+        <%! List<Result> list; %>
+        <%! int length;%>
+        <% list = (List<Result>) session.getAttribute("dotChecks"); %>
+        <% if (!(list == null)) {%>
+        <% length = list.size(); %>
+        <% for (int i = 0; i < length; i++) { %>
+        <tr class="rows">
+            <td><%= list.get(i).r %></td>
+            <td><%= list.get(i).x %></td>
+            <td><%= list.get(i).y %></td>
+            <td><%= list.get(i).res %></td>
+        </tr>
+        <%}%>
 
         </tbody>
     </table>
