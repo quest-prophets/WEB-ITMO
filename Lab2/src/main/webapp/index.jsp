@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="text/javascript" src="validation.js"></script>
+    <script type = "text/javascript" src="jquery-3.3.1.js"></script>
 </head>
 
 <body>
@@ -80,7 +81,7 @@
             </table>
             <br>
             Y: &emsp;<input type="text" name="y" id="y" placeholder="[-5 ... 3]">
-            <br/> <input type="submit" id="check" value="Check for belonging" onClick="placePoint(event)">
+            <br/> <input type="submit" id="check" value="Check for belonging" onClick="placePointForm(event)">
             <br/>
             <%-- <button type="submit" id="check">Submit</button> --%>
         </form>
