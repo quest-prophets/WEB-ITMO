@@ -67,6 +67,9 @@ function placePoint(e) {
             circle.setAttributeNS(null, 'r', 3);
             circle.setAttributeNS(null, 'style', 'fill: red; stroke: red; stroke-width: 1px;');
             document.getElementById("graph").appendChild(circle);
+            fetch(`hitCheck?x=${x.value}&y=${y}&r=${r}`, {method: "GET"})
+                .then(response => response.text())
+                .then(text => console.log(text))
         }
     });
 
