@@ -18,8 +18,8 @@ document.addEventListener("DOMContentLoaded", function () {
     rElement = $('#r');
     xs = $('[name="x"]');
     yElement = $('#y');
-    document.getElementById("graph").addEventListener("click", doForm);
-    document.getElementById("check").addEventListener("click", doGraph);
+    document.getElementById("graph").addEventListener("click", doGraph);
+    document.getElementById("check").addEventListener("click", doForm);
 
 });
 
@@ -91,7 +91,7 @@ function doForm(e) {
 
 function doGraph(e) {
     if (checkR()) {
-        drawPoint(e.pageX - graph.offset().left, e.pageY - graph.offset().top)
-        sendData((e.pageX - graph.offset().left - 200) * r / 160, -(e.pageY - graph.offset().top - 200) * r / 160)
+        drawPoint(e.pageX - graph.offset().left, e.pageY - graph.offset().top);
+        sendData((e.pageX - graph.offset().left - 200) * r / 160, -(e.pageY - graph.offset().top - 200) * r / 160, r);
     }
 }
