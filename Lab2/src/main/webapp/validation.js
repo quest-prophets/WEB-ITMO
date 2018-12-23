@@ -2,7 +2,8 @@ var error;
 var boxResult;
 var resultValue;
 var resultTable;
-var graph
+var graph;
+var graphDots;
 var rElement;
 var r;
 var xs;
@@ -15,11 +16,13 @@ document.addEventListener("DOMContentLoaded", function () {
     resultValue = $('#resultValue');
     resultTable = $('#resultTable');
     graph = $('#graph');
+    graphDots = $('#graphDots');
     rElement = $('#r');
     xs = $('[name="x"]');
     yElement = $('#y');
-    document.getElementById("graph").addEventListener("click", doGraph);
-    document.getElementById("check").addEventListener("click", doForm);
+    graph.bind("click", doGraph);
+    $('#check').bind("click", doForm);
+    rElement.bind("input", changeR);
 
 });
 
@@ -55,6 +58,12 @@ function setResult(text) {
     resultValue.text(text);
 }
 
+function changeR() {
+    if (rElement.val() !== "") {
+        if (checkR()) error.addClass("hidden")
+    }
+}
+
 function drawPoint(x, y) {
     const circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');
     circle.setAttributeNS(null, 'cx', x);
@@ -64,7 +73,7 @@ function drawPoint(x, y) {
     graph.append(circle);
 }
 
-function sendData(x, y, r) {
+function sendData(x, y, r, toSetResult) {
     fetch(`hitCheck?x=${x}&y=${y}&r=${r}`, {method: "GET"})
         .then(response => response.text())
         .then(function (result) {
@@ -74,18 +83,25 @@ function sendData(x, y, r) {
                 "<td class=\"tdWithBorders\">" + y + "</td>\n" +
                 "<td class=\"tdWithBorders\">" + result + "</td>\n" +
                 "</tr>");
-            setResult(result);
+            if (toSetResult) setResult(result);
+            else boxResult.addClass("hidden");
         })
 }
 
 function doForm(e) {
     if (checkR() && checkY()) {
+        let xChecked = 0;
+        let toSetResult = true;
+        xs.each((i, x) => {
+            if (x.checked) xChecked++
+        });
+        if (xChecked > 1) toSetResult = false;
         xs.each(function (i, x) {
             if (x.checked) {
                 drawPoint(x.value / r * 160 + 200, -y / r * 160 + 200);
-                sendData(x.value, y, r);
+                sendData(x.value, y, r, toSetResult);
             }
-        })
+        });
     }
 }
 

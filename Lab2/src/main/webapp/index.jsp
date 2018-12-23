@@ -57,16 +57,15 @@
             </div>
         </div>
 
-        <svg class="graph" id="graph" xmlns="http://www.w3.org/2000/svg" width="400" height="400">
-            <g id="graph__coordinate-plane">
-                <path fill="none" stroke="#000" stroke-width="1px" d="M 0 200 h 400"></path>
-                <path fill="none" stroke="#000" stroke-width="1px" d="M 200 0 v 400"></path>
+        <svg id="graph" xmlns="http://www.w3.org/2000/svg" width="400" height="400">
+            <path fill="none" stroke="#000" stroke-width="1px" d="M 0 200 h 400"></path>
+            <path fill="none" stroke="#000" stroke-width="1px" d="M 200 0 v 400"></path>
 
-                <path fill="none" stroke="#000" stroke-width="1px" d="M 200 0 l -3 7"></path>
-                <path fill="none" stroke="#000" stroke-width="1px" d="M 200 0 l 3 7"></path>
-                <path fill="none" stroke="#000" stroke-width="1px" d="M 400 200 l -6 -3"></path>
-                <path fill="none" stroke="#000" stroke-width="1px" d="M 400 200 l -6 3"></path>
-            </g>
+            <path fill="none" stroke="#000" stroke-width="1px" d="M 200 0 l -3 7"></path>
+            <path fill="none" stroke="#000" stroke-width="1px" d="M 200 0 l 3 7"></path>
+            <path fill="none" stroke="#000" stroke-width="1px" d="M 400 200 l -6 -3"></path>
+            <path fill="none" stroke="#000" stroke-width="1px" d="M 400 200 l -6 3"></path>
+
             <path fill="#3399ff" stroke="#000" stroke-width="1px" d="M 200 40 v 160 h -80 Z"></path>
             <path fill="#3399ff" stroke="#000" stroke-width="1px" d="M 40 200 q 0 160 160 160 v -160 Z"></path>
             <path fill="#3399ff" stroke="#000" stroke-width="1px" d="M 200 200 h 160 v 160 h -160 Z"></path>
@@ -86,6 +85,7 @@
             <text x="360" y="190" font-weight="400">
                 <tspan x="90" y="190" font-size="16px">R/2</tspan>
             </text>
+            <g id="graphDots"></g>
         </svg>
     </div>
 
