@@ -48,7 +48,6 @@
                 <br>
                 Y: &emsp;<input type="text" name="y" id="y" placeholder="[-5 ... 3]">
                 <br> <input type="button" id="check" value="Check for belonging">
-                <br> <input type="button" id="clearCurrent" value="Clear all current dots">
                 <br> <input type="button" id="clearAll" value="Clear all dots">
             </div>
             <div class="box boxError hidden" id="error" style="margin-top: 15px"></div>

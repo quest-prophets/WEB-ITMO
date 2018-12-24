@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
     yElement = $('#y');
     graph.bind("click", doGraph);
     $('#check').bind("click", doForm);
+    $('#clearAll').bind("click", clear);
     rElement.bind("input", changeR);
     yElement.bind("input", changeY);
 });
@@ -68,8 +69,7 @@ function changeR() {
         const oldR = lastCorrectR;
         if (checkR()) {
             error.addClass("hidden");
-            let dots = graphDots.children();
-            dots.each(function (i, dot) {
+            graphDots.children().each(function (i, dot) {
                 const x = dot.getAttribute('cx');
                 const y = dot.getAttribute('cy');
                 dot.remove();
@@ -104,12 +104,13 @@ function drawPoint(x, y) {
 function sendData(x, y, r, toSetResult) {
     fetch(`hitCheck?x=${x}&y=${y}&r=${r}`, {method: "GET"})
         .then(response => response.text())
-        .then(function (result) {
+        .then(function (resultText) {
             resultTable.append("<tr>\n" +
                 "<td class=\"tdWithBorders\">" + r + "</td>\n" +
                 "<td class=\"tdWithBorders\">" + x + "</td>\n" +
                 "<td class=\"tdWithBorders\">" + y + "</td>\n" +
-                "<td class=\"tdWithBorders\">" + result + "</td>\n" +
+                "<td class=\"tdWithBorders\">" + resultText.split(" ")[0] + "</td>\n" +
+                "<td class=\"tdWithBorders\">" + resultText.split(" ")[1] + "</td>\n" +
                 "</tr>");
             if (toSetResult) setResult(result);
             else boxResult.addClass("hidden");
@@ -138,4 +139,13 @@ function doGraph(e) {
         drawPoint(e.pageX - graph.offset().left, e.pageY - graph.offset().top);
         sendData((e.pageX - graph.offset().left - 200) * r / 160, -(e.pageY - graph.offset().top - 200) * r / 160, r);
     }
+}
+
+function clear() {
+    fetch(`clearHistory`, {method: "GET"})
+        .then(response => response.text())
+        .then(() => {
+            $("#resultTable").html("");
+            graphDots.children().each((i, dot) => dot.remove());
+        })
 }
