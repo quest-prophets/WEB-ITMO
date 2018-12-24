@@ -10,10 +10,9 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.DoubleBuffer;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 import static java.lang.Math.pow;
 
@@ -44,6 +43,8 @@ public class AreaCheckServlet extends HttpServlet {
         String y = request.getParameter("y");
         String r = request.getParameter("r");
         String sRes;
+        DateFormat df = new SimpleDateFormat("HH:mm:ss");
+        String currentTime = df.format(new Date());
 
         if (!checkDataValidity(x,y,r)) {
             sRes = "Error";
@@ -65,7 +66,7 @@ public class AreaCheckServlet extends HttpServlet {
         out.write(sRes);
 
         HttpSession httpSession = request.getSession();
-        Result result = new Result(x,y,r,sRes);
+        Result result = new Result(x,y,r,sRes,currentTime);
         List<Result> list = new LinkedList<Result>();
 
         if (httpSession.getAttribute("dotChecks") == null) {
