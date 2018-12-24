@@ -137,7 +137,7 @@ function doForm() {
 function doGraph(e) {
     if (checkR()) {
         drawPoint(e.pageX - graph.offset().left, e.pageY - graph.offset().top);
-        sendData((e.pageX - graph.offset().left - 200) * r / 160, -(e.pageY - graph.offset().top - 200) * r / 160, r);
+        sendData((e.pageX - graph.offset().left - 200) * r / 160, -(e.pageY - graph.offset().top - 200) * r / 160, r, true);
     }
 }
 
