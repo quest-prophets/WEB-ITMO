@@ -9,6 +9,7 @@ var r;
 var xs;
 var yElement;
 var y;
+var lastCorrectR;
 
 document.addEventListener("DOMContentLoaded", function () {
     error = $('#error');
@@ -36,7 +37,10 @@ function checkR() {
     if (r === "") setError("R is not defined!");
     else if (r < 2 || r > 5) setError("R must be in range [2 ... 5]");
     else if (isNaN(Number(r))) setError("R is not a number!");
-    else return true;
+    else {
+        lastCorrectR = r;
+        return true;
+    }
 }
 
 function checkY() {
@@ -61,7 +65,20 @@ function setResult(text) {
 
 function changeR() {
     if (rElement.val() !== "") {
-        if (checkR()) error.addClass("hidden")
+        const oldR = lastCorrectR;
+        if (checkR()) {
+            error.addClass("hidden");
+            let dots = graphDots.children();
+            dots.each(function (i, dot) {
+                const x = dot.getAttribute('cx');
+                const y = dot.getAttribute('cy');
+                dot.remove();
+                if (x >= 200 && y >= 200) drawPoint((x - 200) * oldR / r + 200, (y - 200) * oldR / r + 200);
+                else if (x < 200 && y > 200) drawPoint(200 - (200 - x) * oldR / r, (y - 200) * oldR / r + 200);
+                else if (x > 200 && y < 200) drawPoint((x - 200) * oldR / r + 200, 200 - (200 - y) * oldR / r);
+                else if (x < 200 && y < 200) drawPoint(200 - (200 - x) * oldR / r, 200 - (200 - y) * oldR / r);
+            });
+        }
     }
 }
 
@@ -69,7 +86,7 @@ function changeY() {
     if (yElement.val() !== "") {
         if (checkY()) {
             if (rElement.val() !== "") {
-                if (checkR()) error.addClass("hidden")
+                if (checkR()) error.addClass("hidden");
             }
         }
     }
@@ -81,7 +98,7 @@ function drawPoint(x, y) {
     circle.setAttributeNS(null, 'cy', y);
     circle.setAttributeNS(null, 'r', 3);
     circle.setAttributeNS(null, 'style', 'fill: red; stroke: red; stroke-width: 1px;');
-    graph.append(circle);
+    graphDots.append(circle);
 }
 
 function sendData(x, y, r, toSetResult) {
@@ -99,7 +116,7 @@ function sendData(x, y, r, toSetResult) {
         })
 }
 
-function doForm(e) {
+function doForm() {
     if (checkR() && checkY()) {
         let xChecked = 0;
         let toSetResult = true;
