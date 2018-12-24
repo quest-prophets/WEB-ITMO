@@ -64,6 +64,7 @@ public class AreaCheckServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         out.write(sRes);
+        out.write(currentTime);
 
         HttpSession httpSession = request.getSession();
         Result result = new Result(x,y,r,sRes,currentTime);
