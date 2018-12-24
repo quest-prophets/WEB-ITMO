@@ -112,7 +112,7 @@ function sendData(x, y, r, toSetResult) {
                 "<td class=\"tdWithBorders\">" + resultText.split(" ")[0] + "</td>\n" +
                 "<td class=\"tdWithBorders\">" + resultText.split(" ")[1] + "</td>\n" +
                 "</tr>");
-            if (toSetResult) setResult(result);
+            if (toSetResult) setResult(resultText.split(" ")[0]);
             else boxResult.addClass("hidden");
         })
 }
