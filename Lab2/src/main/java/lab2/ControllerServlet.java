@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 
 @WebServlet("/")
 public class ControllerServlet extends HttpServlet {
@@ -40,24 +42,11 @@ public class ControllerServlet extends HttpServlet {
                 }
             }
         } else {
-            /*
+
             if (query.contains("clearHistory")) {
-                if (request.getParameter("r") != null) {
-                    int rd = Integer.parseInt(request.getParameter("r"));
-                    ArrayList<Dot> getTbl = (ArrayList<Dot>) getServletContext().getAttribute("resultTable");
-                    Iterator<Dot> i = getTbl.iterator();
-                    while (i.hasNext()) {
-                        Dot s = i.next();
-                        if (s.rad.equals(Integer.toString(rd))) {
-                            i.remove();
-                        }
-                    }
-                    getServletContext().setAttribute("resultTable", getTbl);
-                } else {
-                    getServletContext().setAttribute("resultTable", new ArrayList<Dot>());
-                }
+                getServletContext().setAttribute("dotChecks", new LinkedList<Result>());
             } else {
-            */
+
                 if (query.contains("hitCheck")) {
                     response.setContentType("text/html;charset=UTF-8");
                     String kx = request.getParameter("x");
@@ -74,12 +63,12 @@ public class ControllerServlet extends HttpServlet {
                         response.setContentType("text/html;charset=UTF-8");
                         request.getRequestDispatcher("index.jsp").forward(request, response);
                     }
-                }
-                else {
+                } else {
                     response.setContentType("text/html;charset=UTF-8");
                     request.getRequestDispatcher("index.jsp").forward(request, response);
                 }
             }
         }
 
+    }
 }

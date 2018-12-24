@@ -120,7 +120,7 @@
                 <%= list.get(i).res %>
             </td>
             <td class="tdWithBorders">
-                <%-- Lesha DO the T I M E --%>
+                <%= list.get(i).time %>
             </td>
         </tr>
         <%}%>
