@@ -47,8 +47,8 @@ public class ControllerServlet extends HttpServlet {
             if (query.contains("clearHistory")) {
                 HttpSession session = request.getSession();
                 session.setAttribute("dotChecks", new LinkedList<Result>());
-            } else {
-
+            }
+            else {
                 if (query.contains("hitCheck")) {
                     response.setContentType("text/html;charset=UTF-8");
                     String kx = request.getParameter("x");

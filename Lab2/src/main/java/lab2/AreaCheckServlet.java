@@ -16,10 +16,13 @@ import java.util.*;
 
 import static java.lang.Math.pow;
 
-@WebServlet("/areaCheck")
+@WebServlet({"/areaCheck", "/areaCheck/recompute"})
 public class AreaCheckServlet extends HttpServlet {
 
-    private static boolean checkAreaHit(double x, double y, double r) {
+    private static boolean checkAreaHit(String X, String Y, String R) {
+        double x = Double.parseDouble(X);
+        double y = Double.parseDouble(Y);
+        double r = Double.parseDouble(R);
         if ((x <= 0) && (y >= 0) && (y <= (2 * x + r))) return true;
         if ((x <= 0) && (y <= 0) && ((pow(x, 2) + pow(y, 2)) <= pow(r, 2))) return true;
         if ((x >= 0) && (y <= 0) && (x <= r && (y >= (-r)))) return true;
@@ -38,6 +41,25 @@ public class AreaCheckServlet extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String query = request.getRequestURI();
+        PrintWriter out = response.getWriter();
+        HttpSession httpSession = request.getSession();
+
+        if (query.contains("recompute")) {
+            String r = request.getParameter("r");
+
+            out.write("[");
+            if (httpSession.getAttribute("dotChecks") != null) {
+                List<Result> list = (List<Result>) httpSession.getAttribute("dotChecks");
+                for (int i = 0; i < list.size(); i++) {
+                    out.write("{" + "\"x\":" + list.get(i).x + ",\"y\":" + list.get(i).y + ",\"res\":" + checkAreaHit(list.get(i).x, list.get(i).y, r) + "}");
+                    if (i < list.size() - 1) out.write(",");
+                }
+            }
+            out.write("]");
+            return;
+        }
+
         String x = request.getParameter("x");
         String y = request.getParameter("y");
         String r = request.getParameter("r");
@@ -48,22 +70,16 @@ public class AreaCheckServlet extends HttpServlet {
         if (!checkDataValidity(x, y, r)) {
             sRes = "Error";
         } else {
-            double dx = Double.parseDouble(x);
-            double dy = Double.parseDouble(y);
-            double dr = Double.parseDouble(r);
-
-            boolean res = checkAreaHit(dx, dy, dr);
+            boolean res = checkAreaHit(x, y, r);
 
             if (res)
                 sRes = "True";
             else
                 sRes = "False";
         }
-        PrintWriter out = response.getWriter();
 
         out.write(sRes + " " + currentTime);
 
-        HttpSession httpSession = request.getSession();
         Result result = new Result(x, y, r, sRes, currentTime);
         List<Result> list = new LinkedList<Result>();
 

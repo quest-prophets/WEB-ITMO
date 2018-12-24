@@ -8,6 +8,7 @@ public class Result implements Serializable {
     public String r;
     public String res;
     public String time;
+    private int i;
 
     public Result(String x, String y, String r, String res, String time) {
         this.x = x;
@@ -15,5 +16,8 @@ public class Result implements Serializable {
         this.r = r;
         this.res = res;
         this.time = time;
+    }
+    public void service(){
+        int i = 20;
     }
 }

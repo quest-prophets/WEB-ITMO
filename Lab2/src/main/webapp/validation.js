@@ -66,18 +66,9 @@ function setResult(text) {
 
 function changeR() {
     if (rElement.val() !== "") {
-        const oldR = lastCorrectR;
         if (checkR()) {
             error.addClass("hidden");
-            graphDots.children().each(function (i, dot) {
-                const x = dot.getAttribute('cx');
-                const y = dot.getAttribute('cy');
-                dot.remove();
-                if (x >= 200 && y >= 200) drawPoint((x - 200) * oldR / r + 200, (y - 200) * oldR / r + 200);
-                else if (x < 200 && y > 200) drawPoint(200 - (200 - x) * oldR / r, (y - 200) * oldR / r + 200);
-                else if (x > 200 && y < 200) drawPoint((x - 200) * oldR / r + 200, 200 - (200 - y) * oldR / r);
-                else if (x < 200 && y < 200) drawPoint(200 - (200 - x) * oldR / r, 200 - (200 - y) * oldR / r);
-            });
+            recomputePoints(r);
         }
     }
 }
@@ -92,17 +83,22 @@ function changeY() {
     }
 }
 
-function drawPoint(x, y) {
+function drawPoint(x, y, isGreen) {
     const circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');
     circle.setAttributeNS(null, 'cx', x);
     circle.setAttributeNS(null, 'cy', y);
     circle.setAttributeNS(null, 'r', 3);
-    circle.setAttributeNS(null, 'style', 'fill: red; stroke: red; stroke-width: 1px;');
+    if (isGreen) circle.setAttributeNS(null, 'style', 'fill: green; stroke: green; stroke-width: 1px;');
+    else circle.setAttributeNS(null, 'style', 'fill: red; stroke: red; stroke-width: 1px;');
     graphDots.append(circle);
 }
 
+function drawPointR(x, y, r, isGreen) {
+    drawPoint(x / r * 160 + 200, -y / r * 160 + 200, isGreen);
+}
+
 function sendData(x, y, r, toSetResult) {
-    fetch(`hitCheck?x=${x}&y=${y}&r=${r}`, {method: "GET"})
+    return fetch(`hitCheck?x=${x}&y=${y}&r=${r}`, {method: "GET"})
         .then(response => response.text())
         .then(function (resultText) {
             resultTable.append("<tr>\n" +
@@ -114,6 +110,18 @@ function sendData(x, y, r, toSetResult) {
                 "</tr>");
             if (toSetResult) setResult(resultText.split(" ")[0]);
             else boxResult.addClass("hidden");
+            return resultText.split(" ")[0] === "True";
+        })
+}
+
+function recomputePoints(r) {
+    return fetch(`areaCheck/recompute?r=${r}`, {method: "GET"})
+        .then(response => response.json())
+        .then(function (results) {
+            graphDots.children().remove();
+            results.forEach((res) => {
+                drawPointR(res.x, res.y, r, res.res);
+            });
         })
 }
 
@@ -127,8 +135,8 @@ function doForm() {
         if (xChecked > 1) toSetResult = false;
         xs.each(function (i, x) {
             if (x.checked) {
-                drawPoint(x.value / r * 160 + 200, -y / r * 160 + 200);
-                sendData(x.value, y, r, toSetResult);
+                sendData(x.value, y, r, toSetResult)
+                    .then(result => drawPointR(x.value,y, r, result));
             }
         });
     }
@@ -136,8 +144,8 @@ function doForm() {
 
 function doGraph(e) {
     if (checkR()) {
-        drawPoint(e.pageX - graph.offset().left, e.pageY - graph.offset().top);
-        sendData((e.pageX - graph.offset().left - 200) * r / 160, -(e.pageY - graph.offset().top - 200) * r / 160, r, true);
+        sendData((e.pageX - graph.offset().left - 200) * r / 160, -(e.pageY - graph.offset().top - 200) * r / 160, r, true)
+            .then(result => drawPoint(e.pageX - graph.offset().left, e.pageY - graph.offset().top, result));
     }
 }
 
