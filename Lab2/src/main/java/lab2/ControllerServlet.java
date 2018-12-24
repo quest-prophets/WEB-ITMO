@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -44,7 +45,8 @@ public class ControllerServlet extends HttpServlet {
         } else {
 
             if (query.contains("clearHistory")) {
-                getServletContext().setAttribute("dotChecks", new LinkedList<Result>());
+                HttpSession session = request.getSession();
+                session.setAttribute("dotChecks", new LinkedList<Result>());
             } else {
 
                 if (query.contains("hitCheck")) {
