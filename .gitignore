@@ -7,3 +7,4 @@ gradlew.bat
 gradle/
 build/
 .gradle/
+lib/
