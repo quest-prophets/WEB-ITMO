@@ -1,0 +1,10 @@
+body {
+    background: url(images/BG.png) no-repeat center center fixed;
+    background-size: cover;
+    font-family: Calibri, serif;
+    font-size: 17px;
+}
+
+.graphSector:hover {
+    background: rgba(255, 255, 255, .4)
+}

@@ -1,0 +1,41 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<head>
+    <title>Second PAGE</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="styles.css"/>
+    <script type="text/javascript" src="jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="javascript.js"></script>
+</head>
+<h:body>
+    <svg id="sector_LT" class="graphSector" xmlns="http://www.w3.org/2000/svg" width="200" height="200">
+        <path fill="none" stroke="#000" stroke-width="1px" d="M 200 0 l -3 7"/>
+        <text x="180" y="40" font-size="16"> R</text>
+        <text x="170" y="120" font-size="16"> R/2</text>
+    </svg>
+    <svg id="sector_RT" class="graphSector" xmlns="http://www.w3.org/2000/svg" width="200" height="200">
+        <path fill="none" stroke="#000" stroke-width="1px" d="M 0 0 v 200"/>
+        <path fill="none" stroke="#000" stroke-width="1px" d="M 0 0 l 3 7"/>
+        <path fill="none" stroke="#000" stroke-width="1px" d="M 200 200 l -6 -3"/>
+        <text x="80" y="190" font-size="16"> R/2</text>
+        <text x="160" y="190" font-size="16"> R</text>
+    </svg>
+    <div> <!-- div to make bottom sectors appear under top ones -->
+        <svg id="sector_LB" class="graphSector" xmlns="http://www.w3.org/2000/svg" width="200" height="200">
+            <path fill="none" stroke="#000" stroke-width="1px" d="M 0 0 h 200"/>
+            <text x="40" y="20" font-size="16"> R</text>
+            <text x="120" y="20" font-size="16"> R/2</text>
+        </svg>
+        <svg id="sector_RB" class="graphSector" xmlns="http://www.w3.org/2000/svg" width="200" height="200">
+            <path fill="none" stroke="#000" stroke-width="1px" d="M 0 0 v 200"/>
+            <path fill="none" stroke="#000" stroke-width="1px" d="M 0 0 h 200"/>
+            <path fill="none" stroke="#000" stroke-width="1px" d="M 200 0 l -6 3"/>
+            <text x="10" y="80" font-size="16"> R/2</text>
+            <text x="10" y="160" font-size="16"> R</text>
+        </svg>
+    </div>
+
+</h:body>
+</html>
