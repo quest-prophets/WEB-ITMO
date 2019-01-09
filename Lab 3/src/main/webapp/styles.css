@@ -6,5 +6,21 @@ body {
 }
 
 .graphSector:hover {
-    background: rgba(255, 255, 255, .4)
+    background: rgba(255, 255, 255, .4);
+}
+
+.chooseGraphSector:not(:hover) {
+    background: rgb(255, 255, 255);
+}
+
+.chooseGraphSector:hover {
+    background: rgb(154, 255, 143);
+}
+
+.chooseGraphSector {
+    box-sizing: border-box;
+}
+
+.hidden {
+    display: none;
 }
