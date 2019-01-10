@@ -11,6 +11,13 @@ var sectorButton6;
 var sectorButton7;
 var sectorButton8;
 var sectorButton9;
+var sectorButtons;
+var sectorsTable;
+var chosenFigure;
+var dots_LT;
+var dots_RT;
+var dots_LB;
+var dots_RB;
 var body;
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -24,62 +31,134 @@ document.addEventListener("DOMContentLoaded", function () {
     sectorButton7 = $("#sectorButton7");
     sectorButton8 = $("#sectorButton8");
     sectorButton9 = $("#sectorButton9");
+    sectorButtons = [sectorButton1, sectorButton2, sectorButton3, sectorButton4, sectorButton5, sectorButton6, sectorButton7, sectorButton8, sectorButton9];
+    sectorsTable = $("#sectorsTable");
     sector_LT = $("#sector_LT");
     sector_RT = $("#sector_RT");
     sector_LB = $("#sector_LB");
     sector_RB = $("#sector_RB");
+    dots_LT = $("#dots_LT");
+    dots_RT = $("#dots_RT");
+    dots_LB = $("#dots_LB");
+    dots_RB = $("#dots_RB");
     sector_LT.contextmenu(false);
     sector_RT.contextmenu(false);
     sector_LB.contextmenu(false);
     sector_RB.contextmenu(false);
-    sector_LT.contextmenu(createSectorLTmenu); // когда придумаешь как объединить все функции в одну - объединишь ;-) пока не надо)
+    sector_LT.contextmenu(createSectorLTmenu);
     sector_RT.contextmenu(createSectorRTmenu);
     sector_LB.contextmenu(createSectorLBmenu);
     sector_RB.contextmenu(createSectorRBmenu);
+    sector_LT.click(doLT);
+    sector_RT.click(doRT);
+    sector_LB.click(doLB);
+    sector_RB.click(doRB);
+    sectorButtons.forEach(function (button) {
+        button.click(changeSector);
+    });
 });
 
 function createSectorLTmenu(event) {
-    sectorButton1.css({top: sector_LT.position().top +2, left: sector_LT.position().left +2, position: "absolute"});
-    sectorButton2.css({top: sector_LT.position().top +2, left: sector_LT.position().left +68, position: "absolute"});
-    sectorButton3.css({top: sector_LT.position().top +2, left: sector_LT.position().left +134, position: "absolute"});
-    sectorButton4.css({top: sector_LT.position().top +68, left: sector_LT.position().left +2, position: "absolute"});
-    sectorButton5.css({top: sector_LT.position().top +68, left: sector_LT.position().left +68, position: "absolute"});
-    sectorButton6.css({top: sector_LT.position().top +68, left: sector_LT.position().left +134, position: "absolute"});
-    sectorButton7.css({top: sector_LT.position().top +134, left: sector_LT.position().left +2, position: "absolute"});
-    sectorButton8.css({top: sector_LT.position().top +134, left: sector_LT.position().left +68, position: "absolute"});
-    sectorButton9.css({top: sector_LT.position().top +134, left: sector_LT.position().left +134, position: "absolute"});
-
-    sectorButton1.removeClass("hidden");
-    sectorButton2.removeClass("hidden");
-    sectorButton3.removeClass("hidden");
-    sectorButton4.removeClass("hidden");
-    sectorButton5.removeClass("hidden");
-    sectorButton6.removeClass("hidden");
-    sectorButton7.removeClass("hidden");
-    sectorButton8.removeClass("hidden");
-    sectorButton9.removeClass("hidden");
+    chosenFigure = $('#sector_LT_figure');
+    sectorsTable.css({top: sector_LT.position().top + 2, left: sector_LT.position().left + 2, position: "absolute"});
+    sectorButtons.forEach(function (button) {
+        button.css({transform: "rotate(0deg)"});
+    });
+    sectorsTable.removeClass("hidden");
 }
 
 function createSectorRTmenu(event) {
-    console.log(event.target.id);
-    let button1 = $("<img src='images/favicon.ico'>");
-    $("body").append(button1);
-    button1.css({top: sector_LT.position().top, left: sector_LT.position().left, position: "absolute"});
-    console.log(sector_LT.position().top);
+    chosenFigure = $('#sector_RT_figure');
+    sectorsTable.css({top: sector_RT.position().top + 2, left: sector_RT.position().left, position: "absolute"});
+    sectorButtons.forEach(function (button) {
+        button.css({transform: "rotate(90deg)"});
+    });
+    sectorsTable.removeClass("hidden");
 }
 
 function createSectorLBmenu(event) {
-    console.log(event.target.id);
-    let button1 = $("<img src='images/favicon.ico'>");
-    $("body").append(button1);
-    button1.css({top: sector_LT.position().top, left: sector_LT.position().left, position: "absolute"});
-    console.log(sector_LT.position().top);
+    chosenFigure = $('#sector_LB_figure');
+    sectorsTable.css({top: sector_LB.position().top, left: sector_LB.position().left + 2, position: "absolute"});
+    sectorButtons.forEach(function (button) {
+        button.css({transform: "rotate(-90deg)"});
+    });
+    sectorsTable.removeClass("hidden");
 }
 
 function createSectorRBmenu(event) {
-    console.log(event.target.id);
-    let button1 = $("<img src='images/favicon.ico'>");
-    $("body").append(button1);
-    button1.css({top: sector_LT.position().top, left: sector_LT.position().left, position: "absolute"});
-    console.log(sector_LT.position().top);
+    chosenFigure = $('#sector_RB_figure');
+    sectorsTable.css({top: sector_RB.position().top, left: sector_RB.position().left, position: "absolute"});
+    sectorButtons.forEach(function (button) {
+        button.css({transform: "rotate(180deg)"});
+    });
+    sectorsTable.removeClass("hidden");
+}
+
+function changeSector(event){
+    let target = $(event.target);
+    if (sectorButton1.parent().has(target).length){
+        chosenFigure.attr("d", "M 40 200 q 0 -160 160 -160 v 160 Z");
+    }
+    else if (sectorButton2.parent().has(target).length){
+        chosenFigure.attr("d", "M 120 200 q 0 -80 80 -80 v 80 Z");
+    }
+    else if (sectorButton3.parent().has(target).length){
+        chosenFigure.attr("d", "M 40 40 h 160 v 160 h -160 Z");
+    }
+    else if (sectorButton4.parent().has(target).length){
+        chosenFigure.attr("d", "M 120 120 h 80 v 80 h -80 Z");
+    }
+    else if (sectorButton5.parent().has(target).length){
+        chosenFigure.attr("d", "");
+    }
+    else if (sectorButton6.parent().has(target).length){
+        chosenFigure.attr("d", "M 120 40 h 80 v 160 h -80 Z");
+    }
+    else if (sectorButton7.parent().has(target).length){
+        chosenFigure.attr("d", "M 40 120 h 160 v 80 h -160 Z");
+    }
+    else if (sectorButton8.parent().has(target).length){
+        chosenFigure.attr("d", "M 40 200 h 160 v -160 Z");
+    }
+    else if (sectorButton9.parent().has(target).length){
+        chosenFigure.attr("d", "M 40 200 h 160 v -80 Z");
+    }
+    chosenFigure.attr("fill", "#3399ff");
+    sectorsTable.addClass("hidden");
+}
+
+function doLT(e) {
+    const circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');
+    circle.setAttributeNS(null, 'cx', e.pageX - $(e.target).offset().left);
+    circle.setAttributeNS(null, 'cy', e.pageY - $(e.target).offset().top);
+    circle.setAttributeNS(null, 'r', 3);
+    circle.setAttributeNS(null, 'style', 'fill: red; stroke: red; stroke-width: 1px;');
+    dots_LT.append(circle);
+}
+
+function doRT(e) {
+    const circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');
+    circle.setAttributeNS(null, 'cx', e.pageX - $(e.target).offset().left);
+    circle.setAttributeNS(null, 'cy', e.pageY - $(e.target).offset().top);
+    circle.setAttributeNS(null, 'r', 3);
+    circle.setAttributeNS(null, 'style', 'fill: red; stroke: red; stroke-width: 1px;');
+    dots_RT.append(circle);
+}
+
+function doLB(e) {
+    const circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');
+    circle.setAttributeNS(null, 'cx', e.pageX - $(e.target).offset().left);
+    circle.setAttributeNS(null, 'cy', e.pageY - $(e.target).offset().top);
+    circle.setAttributeNS(null, 'r', 3);
+    circle.setAttributeNS(null, 'style', 'fill: red; stroke: red; stroke-width: 1px;');
+    dots_LB.append(circle);
+}
+
+function doRB(e) {
+    const circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');
+    circle.setAttributeNS(null, 'cx', e.pageX - $(e.target).offset().left);
+    circle.setAttributeNS(null, 'cy', e.pageY - $(e.target).offset().top);
+    circle.setAttributeNS(null, 'r', 3);
+    circle.setAttributeNS(null, 'style', 'fill: red; stroke: red; stroke-width: 1px;');
+    dots_RB.append(circle);
 }
