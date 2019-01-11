@@ -1,6 +1,4 @@
 body {
-    background: url(images/BG_day.png) no-repeat center center fixed;;
-    background-size: cover;
     font-family: Calibri, serif;
     font-size: 17px;
 }
@@ -30,7 +28,6 @@ body {
 }
 
 #sectorsTable td{
-    border: 1px solid black;
     padding: 0;
 }
 

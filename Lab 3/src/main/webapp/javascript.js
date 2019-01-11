@@ -14,8 +14,6 @@ var sectorButton9;
 var sectorButtons;
 var sectorsTable;
 var chosenFigure;
-var dayButtons;
-var nightButtons;
 var dots_LT;
 var dots_RT;
 var dots_LB;
@@ -36,8 +34,6 @@ document.addEventListener("DOMContentLoaded", function () {
     sectorButton9 = $("#sectorButton9");
     sectorButtons = [sectorButton1, sectorButton2, sectorButton3, sectorButton4, sectorButton5, sectorButton6, sectorButton7, sectorButton8, sectorButton9];
     sectorsTable = $("#sectorsTable");
-    dayButtons = $('.chooseGraphSectorDay');
-    nightButtons = $('.chooseGraphSectorNight');
     sector_LT = $("#sector_LT");
     sector_RT = $("#sector_RT");
     sector_LB = $("#sector_LB");
@@ -47,26 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
     dots_LB = $("#dots_LB");
     dots_RB = $("#dots_RB");
     dayNightSwitch = $("#dayNightSwitch");
-    dayNightSwitch.change(function () {
-        if (this.checked) {
-            body.css("background-color", "#FFFFFF");
-            body.css('background-image', 'url(images/BG_day.png)');
-            $("svg text").attr("fill", "black");
-            $("svg path").attr("stroke", "black");
-            $("#sectorsTable td").css('border', '1px solid black');
-            nightButtons.addClass("chooseGraphSectorDay");
-            nightButtons.removeClass('chooseGraphSectorNight');
-        } else {
-            body.css("background-color", "#151515");
-            body.css('background-image', 'url(images/BG_night.png)');
-            $("svg text").attr("fill", "white");
-            $("svg path").attr("stroke", "white");
-            $("#sectorsTable td").css('border', '1px solid white');
-            dayButtons.addClass("chooseGraphSectorNight");
-            dayButtons.removeClass('chooseGraphSectorDay');
-        }
-        body.css("background-size", "cover");
-    });
+    dayNightSwitch.change(changeTheme);
     sector_LT.contextmenu(false);
     sector_RT.contextmenu(false);
     sector_LB.contextmenu(false);
@@ -82,6 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
     sectorButtons.forEach(function (button) {
         button.click(changeSector);
     });
+    changeTheme();
 });
 
 function createSectorLTmenu(event) {
@@ -179,4 +157,27 @@ function doRB(e) {
     circle.setAttributeNS(null, 'r', 3);
     circle.setAttributeNS(null, 'style', 'fill: red; stroke: red; stroke-width: 1px;');
     dots_RB.append(circle);
+}
+
+function changeTheme(){
+    let dayButtons = $('.chooseGraphSectorDay');
+    let nightButtons = $('.chooseGraphSectorNight');
+    if (document.getElementById("dayNightSwitch").checked) {
+        body.css("background-color", "#FFFFFF");
+        body.css('background-image', 'url(images/BG_day.png)');
+        $("svg text").attr("fill", "black");
+        $("svg path").attr("stroke", "black");
+        $("#sectorsTable td").css('border', '1px solid black');
+        nightButtons.addClass("chooseGraphSectorDay");
+        nightButtons.removeClass('chooseGraphSectorNight');
+    } else {
+        body.css("background-color", "#151515");
+        body.css('background-image', 'url(images/BG_night.png)');
+        $("svg text").attr("fill", "white");
+        $("svg path").attr("stroke", "white");
+        $("#sectorsTable td").css('border', '1px solid white');
+        dayButtons.addClass("chooseGraphSectorNight");
+        dayButtons.removeClass('chooseGraphSectorDay');
+    }
+    body.css("background-size", "cover");
 }
