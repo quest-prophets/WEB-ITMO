@@ -19,33 +19,34 @@
         </label>
     </div>
 
-    <div class="flexRow">
-        <div class="flexColumn">
-            <table style="border-collapse: collapse">
-                <tr>
-                    <td style="padding: 0">
-                        <h:outputText value="#{svgBean.svgLT}" escape="false"/>
-                    </td>
-                    <td style="padding: 0">
-                        <h:outputText value="#{svgBean.svgRT}" escape="false"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="padding: 0">
-                        <h:outputText value="#{svgBean.svgLB}" escape="false"/>
-                    </td>
-                    <td style="padding: 0">
-                        <h:outputText value="#{svgBean.svgRB}" escape="false"/>
-                    </td>
-                </tr>
-            </table>
-            <h:outputText value="#{svgBean.svgOverlay}" escape="false"/>
-        </div>
+    <div class="flexColumn">
+        <div class="flexRow">
+            <div class="flexColumn">
+                <table style="border-collapse: collapse">
+                    <tr>
+                        <td style="padding: 0">
+                            <h:outputText value="#{svgBean.svgLT}" escape="false"/>
+                        </td>
+                        <td style="padding: 0">
+                            <h:outputText value="#{svgBean.svgRT}" escape="false"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0">
+                            <h:outputText value="#{svgBean.svgLB}" escape="false"/>
+                        </td>
+                        <td style="padding: 0">
+                            <h:outputText value="#{svgBean.svgRB}" escape="false"/>
+                        </td>
+                    </tr>
+                </table>
+                <h:outputText value="#{svgBean.svgOverlay}" escape="false"/>
+            </div>
 
-        <div class="flexColumn">
-            <div class="box" style="margin-left: 50px; width: 240px;">
-                <input type="button" id="save" class="hidden" value="Save graph" style="width: 240px"/>
-                <span id="boxText">R: &#8195;<p:inputText id="r" value="2" width="200px" size="14"/>
+            <div class="flexColumn">
+                <div class="box" style="margin-left: 50px; width: 240px;">
+                    <input type="button" id="save" class="hidden" value="Save graph" style="width: 240px"/>
+                    <span id="boxText">R: &#8195;<p:inputText id="r" value="2" width="200px" size="14"/>
                 <p:slider for="r" id="rSlider" class="panelElement" minValue="2" maxValue="5" step="0.1" value="2"/>
                     <span class="panelElement"> X: &#8195;<p:spinner id="x" value="0" min="-2" max="2"
                                                                      size="13"/></span>
@@ -53,14 +54,28 @@
                 <input type="button" id="check" class="panelElement" value="Check for belonging"/>
                 <input type="button" id="clearAll" class="panelElement" value="Clear all dots"/>
                 <input type="button" id="edit" class="panelElement" value="Edit graph"/></span>
-            </div>
-            <div class="box boxError hidden" id="error" style="margin-top: 15px"></div>
-            <div class="box boxResult hidden" id="boxResult" style="margin-top: 15px">
-                Result: <span class="bold" id="resultValue"/>
+                </div>
+                <div class="box boxError hidden" id="error" style="margin-top: 15px"></div>
+                <div class="box boxResult hidden" id="boxResult" style="margin-top: 15px">
+                    Result: <span class="bold" id="resultValue"/>
+                </div>
             </div>
         </div>
-    </div>
 
+        <table style="margin-top: 25px" class="resultTable">
+            <thead>
+            <tr>
+                <td class="tdWithBorders">R</td>
+                <td class="tdWithBorders">X</td>
+                <td class="tdWithBorders">Y</td>
+                <td class="tdWithBorders">Result</td>
+                <td class="tdWithBorders">Time</td>
+            </tr>
+            </thead>
+            <tbody id="resultTable">
+            </tbody>
+        </table>
+    </div>
 
     <table id="sectorsTable" class="hidden">
         <tr>
