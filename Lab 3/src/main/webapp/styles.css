@@ -39,8 +39,10 @@ svg text{
     user-select: none;
 }
 
-
-
+.panelElement{
+    display: block;
+    margin-top: 10px;
+}
 
 .resultTable {
     background-color: #ffffff;

@@ -117,6 +117,7 @@ function changeTheme(){
 }
 
 function enterEditMode() {
+    $("#save").removeClass("hidden");
     $("#r").addClass("hidden");
     $("#rSlider").addClass("hidden");
     $("#x").addClass("hidden");
@@ -127,11 +128,11 @@ function enterEditMode() {
     $("#edit").addClass("hidden");
     $("#error").addClass("hidden");
     $("#boxResult").addClass("hidden");
-    $("#save").removeClass("hidden");
     $("#overlay").addClass("hidden");
 }
 
 function enterDotMode() {
+    $("#save").addClass("hidden");
     $("#r").removeClass("hidden");
     $("#rSlider").removeClass("hidden");
     $("#x").removeClass("hidden");
@@ -140,6 +141,5 @@ function enterDotMode() {
     $("#check").removeClass("hidden");
     $("#clearAll").removeClass("hidden");
     $("#edit").removeClass("hidden");
-    $("#save").addClass("hidden");
     $("#overlay").removeClass("hidden");
 }
