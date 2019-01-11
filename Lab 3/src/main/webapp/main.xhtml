@@ -21,21 +21,6 @@
 
     <div class="flexRow">
         <div class="flexColumn">
-            <div class="box" style="margin-right: 50px">
-                R: &#8195;<p:inputText id="r" value="2" width="200px" size="14"/>
-                <p:slider for="r" minValue="2" maxValue="5" step="0.1" value="2" style="margin-left: 10px"/> <br/>
-                X: &#8195;<p:spinner id="x" value="0" min="-2" max="2" size="13"/><br/>
-                Y: &#8195;<p:inputText id="y" placeholder="[-5 ... 5]" size="14"/>
-                <br/> <input type="button" id="check" value="Check for belonging"/>
-                <br/> <input type="button" id="clearAll" value="Clear all dots"/>
-            </div>
-            <div class="box boxError hidden" id="error" style="margin-top: 15px"></div>
-            <div class="box boxResult hidden" id="boxResult" style="margin-top: 15px">
-                Result: <span class="bold" id="resultValue"/>
-            </div>
-        </div>
-
-        <div class="flexColumn">
             <table style="border-collapse: collapse">
                 <tr>
                     <td style="padding: 0">
@@ -55,6 +40,23 @@
                 </tr>
             </table>
             <h:outputText value="#{svgBean.svgOverlay}" escape="false"/>
+        </div>
+
+        <div class="flexColumn">
+            <div class="box" style="margin-left: 50px">
+                <input type="button" id="save" class="hidden" value="Save graph"/>
+                <span id="boxText">R: &#8195;<p:inputText id="r" value="2" width="200px" size="14"/>
+                <p:slider for="r" id="rSlider" minValue="2" maxValue="5" step="0.1" value="2" style="margin-left: 10px"/> <br/>
+                X: &#8195;<p:spinner id="x" value="0" min="-2" max="2" size="13"/><br/>
+                Y: &#8195;<p:inputText id="y" placeholder="[-5 ... 5]" size="14"/>
+                <br/> <input type="button" id="check" value="Check for belonging"/>
+                <br/> <input type="button" id="clearAll" value="Clear all dots"/>
+                <br/> <input type="button" id="edit" value="Edit graph"/></span>
+            </div>
+            <div class="box boxError hidden" id="error" style="margin-top: 15px"></div>
+            <div class="box boxResult hidden" id="boxResult" style="margin-top: 15px">
+                Result: <span class="bold" id="resultValue"/>
+            </div>
         </div>
     </div>
 
