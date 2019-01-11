@@ -14,6 +14,8 @@ var sectorButton9;
 var sectorButtons;
 var sectorsTable;
 var chosenFigure;
+var dayButtons;
+var nightButtons;
 var dots_LT;
 var dots_RT;
 var dots_LB;
@@ -34,6 +36,8 @@ document.addEventListener("DOMContentLoaded", function () {
     sectorButton9 = $("#sectorButton9");
     sectorButtons = [sectorButton1, sectorButton2, sectorButton3, sectorButton4, sectorButton5, sectorButton6, sectorButton7, sectorButton8, sectorButton9];
     sectorsTable = $("#sectorsTable");
+    dayButtons = $('.chooseGraphSectorDay');
+    nightButtons = $('.chooseGraphSectorNight');
     sector_LT = $("#sector_LT");
     sector_RT = $("#sector_RT");
     sector_LB = $("#sector_LB");
@@ -43,18 +47,23 @@ document.addEventListener("DOMContentLoaded", function () {
     dots_LB = $("#dots_LB");
     dots_RB = $("#dots_RB");
     dayNightSwitch = $("#dayNightSwitch");
-    dayNightSwitch.change(function() {
-        if(this.checked) {
+    dayNightSwitch.change(function () {
+        if (this.checked) {
             body.css("background-color", "#FFFFFF");
             body.css('background-image', 'url(images/BG_day.png)');
             $("svg text").attr("fill", "black");
             $("svg path").attr("stroke", "black");
-        }
-        else {
+            $("#sectorsTable td").css('border', '1px solid black');
+            nightButtons.addClass("chooseGraphSectorDay");
+            nightButtons.removeClass('chooseGraphSectorNight');
+        } else {
             body.css("background-color", "#151515");
             body.css('background-image', 'url(images/BG_night.png)');
             $("svg text").attr("fill", "white");
             $("svg path").attr("stroke", "white");
+            $("#sectorsTable td").css('border', '1px solid white');
+            dayButtons.addClass("chooseGraphSectorNight");
+            dayButtons.removeClass('chooseGraphSectorDay');
         }
         body.css("background-size", "cover");
     });
@@ -111,33 +120,25 @@ function createSectorRBmenu(event) {
     sectorsTable.removeClass("hidden");
 }
 
-function changeSector(event){
+function changeSector(event) {
     let target = $(event.target);
-    if (sectorButton1.parent().has(target).length){
+    if (sectorButton1.parent().has(target).length) {
         chosenFigure.attr("d", "M 40 200 q 0 -160 160 -160 v 160 Z");
-    }
-    else if (sectorButton2.parent().has(target).length){
+    } else if (sectorButton2.parent().has(target).length) {
         chosenFigure.attr("d", "M 120 200 q 0 -80 80 -80 v 80 Z");
-    }
-    else if (sectorButton3.parent().has(target).length){
+    } else if (sectorButton3.parent().has(target).length) {
         chosenFigure.attr("d", "M 40 40 h 160 v 160 h -160 Z");
-    }
-    else if (sectorButton4.parent().has(target).length){
+    } else if (sectorButton4.parent().has(target).length) {
         chosenFigure.attr("d", "M 120 120 h 80 v 80 h -80 Z");
-    }
-    else if (sectorButton5.parent().has(target).length){
+    } else if (sectorButton5.parent().has(target).length) {
         chosenFigure.attr("d", "");
-    }
-    else if (sectorButton6.parent().has(target).length){
+    } else if (sectorButton6.parent().has(target).length) {
         chosenFigure.attr("d", "M 120 40 h 80 v 160 h -80 Z");
-    }
-    else if (sectorButton7.parent().has(target).length){
+    } else if (sectorButton7.parent().has(target).length) {
         chosenFigure.attr("d", "M 40 120 h 160 v 80 h -160 Z");
-    }
-    else if (sectorButton8.parent().has(target).length){
+    } else if (sectorButton8.parent().has(target).length) {
         chosenFigure.attr("d", "M 40 200 h 160 v -160 Z");
-    }
-    else if (sectorButton9.parent().has(target).length){
+    } else if (sectorButton9.parent().has(target).length) {
         chosenFigure.attr("d", "M 40 200 h 160 v -80 Z");
     }
     chosenFigure.attr("fill", "#3399ff");
@@ -146,8 +147,8 @@ function changeSector(event){
 
 function doLT(e) {
     const circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');
-    circle.setAttributeNS(null, 'cx', e.pageX - $(e.target).offset().left);
-    circle.setAttributeNS(null, 'cy', e.pageY - $(e.target).offset().top);
+    circle.setAttributeNS(null, 'cx', e.pageX - sector_LT.offset().left);
+    circle.setAttributeNS(null, 'cy', e.pageY - sector_LT.offset().top);
     circle.setAttributeNS(null, 'r', 3);
     circle.setAttributeNS(null, 'style', 'fill: red; stroke: red; stroke-width: 1px;');
     dots_LT.append(circle);
@@ -155,8 +156,8 @@ function doLT(e) {
 
 function doRT(e) {
     const circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');
-    circle.setAttributeNS(null, 'cx', e.pageX - $(e.target).offset().left);
-    circle.setAttributeNS(null, 'cy', e.pageY - $(e.target).offset().top);
+    circle.setAttributeNS(null, 'cx', e.pageX - sector_RT.offset().left);
+    circle.setAttributeNS(null, 'cy', e.pageY - sector_RT.offset().top);
     circle.setAttributeNS(null, 'r', 3);
     circle.setAttributeNS(null, 'style', 'fill: red; stroke: red; stroke-width: 1px;');
     dots_RT.append(circle);
@@ -164,8 +165,8 @@ function doRT(e) {
 
 function doLB(e) {
     const circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');
-    circle.setAttributeNS(null, 'cx', e.pageX - $(e.target).offset().left);
-    circle.setAttributeNS(null, 'cy', e.pageY - $(e.target).offset().top);
+    circle.setAttributeNS(null, 'cx', e.pageX - sector_LB.offset().left);
+    circle.setAttributeNS(null, 'cy', e.pageY - sector_LB.offset().top);
     circle.setAttributeNS(null, 'r', 3);
     circle.setAttributeNS(null, 'style', 'fill: red; stroke: red; stroke-width: 1px;');
     dots_LB.append(circle);
@@ -173,8 +174,8 @@ function doLB(e) {
 
 function doRB(e) {
     const circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');
-    circle.setAttributeNS(null, 'cx', e.pageX - $(e.target).offset().left);
-    circle.setAttributeNS(null, 'cy', e.pageY - $(e.target).offset().top);
+    circle.setAttributeNS(null, 'cx', e.pageX - sector_RB.offset().left);
+    circle.setAttributeNS(null, 'cy', e.pageY - sector_RB.offset().top);
     circle.setAttributeNS(null, 'r', 3);
     circle.setAttributeNS(null, 'style', 'fill: red; stroke: red; stroke-width: 1px;');
     dots_RB.append(circle);

@@ -5,16 +5,28 @@ body {
     font-size: 17px;
 }
 
+.graphOverlay {
+    position: absolute;
+}
+
 .graphSector:hover {
     background: rgba(255, 255, 255, .4);
 }
 
-.chooseGraphSector:not(:hover) {
+.chooseGraphSectorDay:not(:hover) {
     background: rgb(255, 255, 255);
 }
 
-.chooseGraphSector:hover {
+.chooseGraphSectorDay:hover {
     background: rgb(154, 255, 143);
+}
+
+.chooseGraphSectorNight:not(:hover) {
+    background: rgb(0, 0, 0);
+}
+
+.chooseGraphSectorNight:hover {
+    background: rgb(100, 55, 159);
 }
 
 #sectorsTable td{
@@ -68,10 +80,11 @@ thead {
     background-color: #97ff89;
 }
 
-
 .flexRow {
     display: flex;
     align-items: center;
+    justify-content: center;
+    height: 70%;
 }
 
 .flexColumn {
