@@ -1,74 +1,82 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-<head>
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
     <title>Second PAGE</title>
     <link rel="icon" type="image/x-icon" href="images/favicon.ico"/>
     <link rel="stylesheet" type="text/css" href="styles.css"/>
-    <script type="text/javascript" src="jquery-3.3.1.js"></script>
     <script type="text/javascript" src="javascript.js"></script>
-</head>
+    <h:outputScript library="primefaces" name="jquery/jquery.js"/>
+</h:head>
 <h:body>
     <div class="onoffswitch">
-        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="dayNightSwitch" checked="checked"/>
+        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="dayNightSwitch"/>
         <label class="onoffswitch-label" for="dayNightSwitch">
             <span class="onoffswitch-inner"/>
             <span class="onoffswitch-switch"/>
         </label>
     </div>
 
-    <svg id="sector_LT" class="graphSector" xmlns="http://www.w3.org/2000/svg" width="200" height="200">
-        <path id="sector_LT_figure" fill="3399ff" stroke='black' d=""/>
-        <path stroke='black' d="M 200 0 l -3 7"/>
-        <text x="180" y="40" font-size="16"> R</text>
-        <text x="170" y="120" font-size="16"> R/2</text>
-        <g id="dots_LT"/>
-    </svg>
-    <svg id="sector_RT" class="graphSector" xmlns="http://www.w3.org/2000/svg" width="200" height="200">
-        <path id="sector_RT_figure" style="transform: rotate(90deg); transform-origin: 100px 100px" fill="3399ff" stroke='black' d=""/>
-        <path stroke='black' d="M 0 0 v 200"/>
-        <path stroke='black' d="M 0 0 l 3 7"/>
-        <path stroke='black' d="M 200 200 l -6 -3"/>
-        <text x="80" y="190" font-size="16"> R/2</text>
-        <text x="160" y="190" font-size="16"> R</text>
-        <g id="dots_RT"/>
-    </svg>
-    <div> <!-- div to make bottom sectors appear under top ones -->
-        <svg id="sector_LB" class="graphSector" xmlns="http://www.w3.org/2000/svg" width="200" height="200">
-            <path id="sector_LB_figure" style="transform: rotate(-90deg); transform-origin: 100px 100px" fill="3399ff" stroke='black' d=""/>
-            <path stroke='black' d="M 0 0 h 200"/>
-            <text x="40" y="20" font-size="16"> R</text>
-            <text x="120" y="20" font-size="16"> R/2</text>
-            <g id="dots_LB"/>
-        </svg>
-        <svg id="sector_RB" class="graphSector" xmlns="http://www.w3.org/2000/svg" width="200" height="200">
-            <path id="sector_RB_figure" style="transform: rotate(180deg); transform-origin: 100px 100px" fill="3399ff" stroke='black' d=""/>
-            <path stroke='black' d="M 0 0 v 200"/>
-            <path stroke='black' d="M 0 0 h 200"/>
-            <path stroke='black' d="M 200 0 l -6 3"/>
-            <text x="10" y="80" font-size="16"> R/2</text>
-            <text x="10" y="160" font-size="16"> R</text>
-            <g id="dots_RB"/>
-        </svg>
+    <div class="flexRow">
+        <div class="flexColumn">
+            <table style="border-collapse: collapse">
+                <tr>
+                    <td style="padding: 0">
+                        <h:outputText value="#{svgBean.svgLT}" escape="false"/>
+                    </td>
+                    <td style="padding: 0">
+                        <h:outputText value="#{svgBean.svgRT}" escape="false"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding: 0">
+                        <h:outputText value="#{svgBean.svgLB}" escape="false"/>
+                    </td>
+                    <td style="padding: 0">
+                        <h:outputText value="#{svgBean.svgRB}" escape="false"/>
+                    </td>
+                </tr>
+            </table>
+            <h:outputText value="#{svgBean.svgOverlay}" escape="false"/>
+        </div>
+
+        <div class="flexColumn">
+            <div class="box" style="margin-left: 50px">
+                <input type="button" id="save" class="hidden" value="Save graph"/>
+                <span id="boxText">R: &#8195;<p:inputText id="r" value="2" width="200px" size="14"/>
+                <p:slider for="r" id="rSlider" minValue="2" maxValue="5" step="0.1" value="2" style="margin-left: 10px"/> <br/>
+                X: &#8195;<p:spinner id="x" value="0" min="-2" max="2" size="13"/><br/>
+                Y: &#8195;<p:inputText id="y" placeholder="[-5 ... 5]" size="14"/>
+                <br/> <input type="button" id="check" value="Check for belonging"/>
+                <br/> <input type="button" id="clearAll" value="Clear all dots"/>
+                <br/> <input type="button" id="edit" value="Edit graph"/></span>
+            </div>
+            <div class="box boxError hidden" id="error" style="margin-top: 15px"></div>
+            <div class="box boxResult hidden" id="boxResult" style="margin-top: 15px">
+                Result: <span class="bold" id="resultValue"/>
+            </div>
+        </div>
     </div>
+
 
     <table id="sectorsTable" class="hidden">
         <tr>
             <td>
-                <svg id='sectorButton1' class='chooseGraphSector' xmlns='http://www.w3.org/2000/svg' width='65'
+                <svg id='sectorButton1' class='chooseGraphSectorDay' xmlns='http://www.w3.org/2000/svg' width='65'
                      height='65'>
                     <path fill='#3399ff' stroke='black' d='M 10 60 q 0 -50 50 -50 v 50 Z'/>
                 </svg>
             </td>
             <td>
-                <svg id='sectorButton2' class='chooseGraphSector' xmlns='http://www.w3.org/2000/svg' width='65'
+                <svg id='sectorButton2' class='chooseGraphSectorDay' xmlns='http://www.w3.org/2000/svg' width='65'
                      height='65'>
                     <path fill='#3399ff' stroke='black' d='M 35 60 q 0 -25 25 -25 v 25 Z'/>
                 </svg>
             </td>
             <td>
-                <svg id='sectorButton3' class='chooseGraphSector' xmlns='http://www.w3.org/2000/svg' width='65'
+                <svg id='sectorButton3' class='chooseGraphSectorDay' xmlns='http://www.w3.org/2000/svg' width='65'
                      height='65'>
                     <path fill='#3399ff' stroke='black' d='M 10 10 v 50 h 50 v -50 Z'/>
                 </svg>
@@ -76,18 +84,18 @@
         </tr>
         <tr>
             <td>
-                <svg id='sectorButton4' class='chooseGraphSector' xmlns='http://www.w3.org/2000/svg' width='65'
+                <svg id='sectorButton4' class='chooseGraphSectorDay' xmlns='http://www.w3.org/2000/svg' width='65'
                      height='65'>
                     <path fill='#3399ff' stroke='black' d='M 35 35 v 25 h 25 v -25 Z'/>
                 </svg>
             </td>
             <td>
-                <svg id='sectorButton5' class='chooseGraphSector' xmlns='http://www.w3.org/2000/svg' width='65'
+                <svg id='sectorButton5' class='chooseGraphSectorDay' xmlns='http://www.w3.org/2000/svg' width='65'
                      height='65'>
                 </svg>
             </td>
             <td>
-                <svg id='sectorButton6' class='chooseGraphSector' xmlns='http://www.w3.org/2000/svg' width='65'
+                <svg id='sectorButton6' class='chooseGraphSectorDay' xmlns='http://www.w3.org/2000/svg' width='65'
                      height='65'>
                     <path fill='#3399ff' stroke='black' d='M 35 10 v 50 h 25 v -50 Z'/>
                 </svg>
@@ -95,19 +103,19 @@
         </tr>
         <tr>
             <td>
-                <svg id='sectorButton7' class='chooseGraphSector' xmlns='http://www.w3.org/2000/svg' width='65'
+                <svg id='sectorButton7' class='chooseGraphSectorDay' xmlns='http://www.w3.org/2000/svg' width='65'
                      height='65'>
                     <path fill='#3399ff' stroke='black' d='M 10 35 v 25 h 50 v -25 Z'/>
                 </svg>
             </td>
             <td>
-                <svg id='sectorButton8' class='chooseGraphSector' xmlns='http://www.w3.org/2000/svg' width='65'
+                <svg id='sectorButton8' class='chooseGraphSectorDay' xmlns='http://www.w3.org/2000/svg' width='65'
                      height='65'>
                     <path fill='#3399ff' stroke='black' d='M 10 60 h 50 v -50 Z'/>
                 </svg>
             </td>
             <td>
-                <svg id='sectorButton9' class='chooseGraphSector' xmlns='http://www.w3.org/2000/svg' width='65'
+                <svg id='sectorButton9' class='chooseGraphSectorDay' xmlns='http://www.w3.org/2000/svg' width='65'
                      height='65'>
                     <path fill='#3399ff' stroke='black' d='M 10 60 h 50 v -25 Z'/>
                 </svg>
