@@ -1,5 +1,5 @@
 body {
-    background: url(images/BG.png) no-repeat center center fixed;
+    background: url(images/BG_day.png) no-repeat center center fixed;;
     background-size: cover;
     font-family: Calibri, serif;
     font-size: 17px;
@@ -17,10 +17,6 @@ body {
     background: rgb(154, 255, 143);
 }
 
-.hidden {
-    display: none;
-}
-
 #sectorsTable td{
     border: 1px solid black;
     padding: 0;
@@ -33,6 +29,66 @@ body {
 svg text{
     user-select: none;
 }
+
+
+
+
+.resultTable {
+    background-color: #ffffff;
+    border-collapse: collapse;
+}
+
+.tdWithBorders {
+    padding: 4px;
+    border: 1px solid #000000;
+}
+
+thead {
+    background-color: #EEEEEE;
+}
+
+.box {
+    background-color: #e8e8e8;
+    border-radius: 15px;
+    display: inline-block;
+    padding: 10px;
+    line-height: 35px;
+}
+
+.boxHeader {
+    line-height: 20px;
+    color: #000000;
+}
+
+.boxError {
+    background-color: #ff7f7f;
+}
+
+.boxResult {
+    background-color: #97ff89;
+}
+
+
+.flexRow {
+    display: flex;
+    align-items: center;
+}
+
+.flexColumn {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+
+.hidden {
+    display: none;
+}
+
 
 
 

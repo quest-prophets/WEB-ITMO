@@ -18,6 +18,7 @@ var dots_LT;
 var dots_RT;
 var dots_LB;
 var dots_RB;
+var dayNightSwitch;
 var body;
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -41,6 +42,22 @@ document.addEventListener("DOMContentLoaded", function () {
     dots_RT = $("#dots_RT");
     dots_LB = $("#dots_LB");
     dots_RB = $("#dots_RB");
+    dayNightSwitch = $("#dayNightSwitch");
+    dayNightSwitch.change(function() {
+        if(this.checked) {
+            body.css("background-color", "#FFFFFF");
+            body.css('background-image', 'url(images/BG_day.png)');
+            $("svg text").attr("fill", "black");
+            $("svg path").attr("stroke", "black");
+        }
+        else {
+            body.css("background-color", "#151515");
+            body.css('background-image', 'url(images/BG_night.png)');
+            $("svg text").attr("fill", "white");
+            $("svg path").attr("stroke", "white");
+        }
+        body.css("background-size", "cover");
+    });
     sector_LT.contextmenu(false);
     sector_RT.contextmenu(false);
     sector_LB.contextmenu(false);
