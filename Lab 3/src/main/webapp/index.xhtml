@@ -1,16 +1,33 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 <head>
-    <title>FIRST PAGE</title>
+    <title>Welcome!</title>
     <link rel="icon" type="image/x-icon" href="images/favicon.ico"/>
     <link rel="stylesheet" type="text/css" href="styles.css"/>
 </head>
-<body>
+<h:body>
     <h:form>
         <h:commandButton action="main?faces-redirect=true" value="To the main page"/>
     </h:form>
-    <h:outputText value="JSF text"/>
-</body>
+    <div style="text-align: center">
+        <b>Kokov A.T.</b> &amp; <b>Nesterov D.K.</b> <br/>
+        Group No. P3202 <br/>
+        Variant No. 20256
+    </div>
+        
+    <div class="flexRow">
+        <div class="loginForm" style="margin-right: 150px">
+            <h:form style="margin-bottom: 0">
+                <h:inputText a:placeholder="Login" style="margin-bottom: 8px"/> <br/>
+                <h:inputText a:placeholder="Password" style="margin-bottom: 8px"/> <br/>
+                <h:button value="Log In" style="margin-right: 8px"/>
+                <h:button value="Register"/>
+            </h:form>
+        </div>
+        <div id="clock" class="clock"> 01:23:45</div>
+    </div>
+</h:body>
 </html>

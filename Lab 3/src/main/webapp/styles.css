@@ -64,11 +64,7 @@ thead {
     display: inline-block;
     padding: 10px;
     line-height: 35px;
-}
-
-.boxHeader {
-    line-height: 20px;
-    color: #000000;
+    box-shadow: 0 0 8px black;
 }
 
 .boxError {
@@ -101,8 +97,28 @@ thead {
     display: none;
 }
 
+.clock{
+    font-family: digital-7-mono, serif;
+    font-size: 120px;
+    color: #00FF00;
+    background-color: #000000;
+    border-radius: 20px;
+    padding: 8px 8px 38px;
+    user-select: none;
+}
+
+@font-face {
+    font-family: digital-7-mono;
+    src: url(digital-7.mono.ttf);
+}
 
 
+.loginForm{
+    background: #eeeeee;
+    box-shadow: 0 0 8px black;
+    padding: 15px;
+    border-radius: 8px;
+}
 
 
 .onoffswitch {

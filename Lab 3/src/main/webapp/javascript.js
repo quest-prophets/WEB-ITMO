@@ -142,4 +142,5 @@ function enterDotMode() {
     $("#clearAll").removeClass("hidden");
     $("#edit").removeClass("hidden");
     $("#overlay").removeClass("hidden");
+    $("#sectorsTable").addClass("hidden");
 }

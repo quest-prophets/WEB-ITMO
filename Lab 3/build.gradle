@@ -20,6 +20,6 @@ dependencies {
     compile group: 'com.sun.faces', name: 'jsf-impl', version: '2.2.18'
     compile group: 'org.primefaces', name: 'primefaces', version: '6.2'
     compile group: 'javax.el', name: 'el-api', version: '2.2.1-b04'
-    compile group: 'oracle', name: 'ojdbc6', version: '11.2.0.3'
+    //compile group: 'oracle', name: 'ojdbc6', version: '11.2.0.3'
     compile group: 'org.hibernate', name: 'hibernate-core', version: '5.3.7.Final'
 }
