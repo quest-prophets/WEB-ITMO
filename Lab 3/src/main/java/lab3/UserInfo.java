@@ -10,7 +10,7 @@ public class UserInfo implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "client_id")
-    private Integer id = null;
+    Integer id = null;
 
     String username = null;
     String password = null;

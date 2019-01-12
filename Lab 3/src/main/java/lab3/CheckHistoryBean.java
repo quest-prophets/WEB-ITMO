@@ -19,7 +19,7 @@ public class CheckHistoryBean implements Serializable {
                 .orElse(null);
     }
 
-    public List<Result> getResults () {
+    public List<Result> getResults() {
         return user.results;
     }
 
