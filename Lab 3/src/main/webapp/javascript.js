@@ -104,6 +104,8 @@ function changeTheme(){
         $("#sectorsTable td").css('border', '1px solid black');
         nightButtons.addClass("chooseGraphSectorDay");
         nightButtons.removeClass('chooseGraphSectorNight');
+        $(".box").css("background-color", "rgba(255, 255, 255, 0.7)");
+        $(".box").css("color", "#000000")
     } else {
         $("body").css("background-color", "#151515");
         $("body").css('background-image', 'url(images/BG_night.png)');
@@ -112,6 +114,8 @@ function changeTheme(){
         $("#sectorsTable td").css('border', '1px solid white');
         dayButtons.addClass("chooseGraphSectorNight");
         dayButtons.removeClass('chooseGraphSectorDay');
+        $(".box").css("background-color", "rgba(65, 65, 65, 0.7)");
+        $(".box").css("color", "#FFFFFF")
     }
     $("body").css("background-size", "cover");
 }
