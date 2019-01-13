@@ -47,6 +47,9 @@ public class AuthorizationBean {
         newUser.password = encPassword;
         newUser.results = new ArrayList<Result>();
 
+        newUser.groups = new ArrayList<Group>();
+        newUser.groups.add(new Group("user", newUser));
+
         UserInfoService service = new UserInfoService();
         List<UserInfo> userInfos = service.findAllUsers();
         UserInfo existingUser = userInfos.stream()
