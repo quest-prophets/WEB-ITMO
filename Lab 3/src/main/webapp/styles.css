@@ -78,7 +78,7 @@ thead {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 70%;
+    margin-top: 5%;
 }
 
 .flexColumn {
