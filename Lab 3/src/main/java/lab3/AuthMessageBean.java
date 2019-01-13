@@ -6,18 +6,26 @@ public class AuthMessageBean implements Serializable {
     private String msg = "";
 
     public void success() {
-        msg = "Успешно!";
+        msg = "Success!";
     }
 
     public void usernameError() {
-        msg = "Пользователь с таким именем уже существует. Попробуйте еще раз.";
+        msg = "User with such name already exists. Try again.";
     }
 
     public void loginError() {
-        msg = "Неправильный логин/пароль. Попробуйте еще раз.";
+        msg = "Incorrect login/password. Try again.";
     }
 
     public void databaseError() {
-        msg = "Проблема с подключением к базе данных.";
+        msg = "Database connection error.";
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 }

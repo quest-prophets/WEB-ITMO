@@ -4,11 +4,12 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:p="http://primefaces.org/ui">
-<head>
+<h:head>
     <title>Welcome!</title>
     <link rel="icon" type="image/x-icon" href="images/favicon.ico"/>
     <link rel="stylesheet" type="text/css" href="styles.css"/>
-</head>
+    <h:outputScript library="primefaces" name="jquery/jquery.js"/>
+</h:head>
 <h:body>
     <h:form>
         <h:commandButton action="main?faces-redirect=true" value="To the main page"/>
@@ -18,16 +19,18 @@
         Group No. P3202 <br/>
         Variant No. 20256
     </div>
-        
+
     <div class="flexRow" style="height: 70%">
         <div class="loginForm" style="margin-right: 150px">
             <h:form style="margin-bottom: 0">
                 <h:inputText id="username" value="#{authorizationBean.username}" a:placeholder="Login" style="margin-bottom: 8px"/> <br/>
-                <h:inputText id="password" value="#{authorizationBean.password}" a:placeholder="Password" style="margin-bottom: 8px"/> <br/>
-                <h:button value="Log In" action="#{authorizationBean.auth}" style="margin-right: 8px"/>
-                <h:button value="Register" action="#{authorizationBean.register}"/>
+                <h:inputSecret id="password" value="#{authorizationBean.password}" a:placeholder="Password" style="margin-bottom: 8px"/> <br/>
+                <h:commandButton value="Log In" action="#{authorizationBean.auth}" style="margin-right: 8px"/>
+                <h:commandButton value="Register" action="#{authorizationBean.register}"/> <br/>
+                <h:outputLabel value="#{authMessageBean.msg}" rendered="#{not empty authMessageBean.msg}" />
             </h:form>
         </div>
+        <p:slider/>
         <h:form id="timeForm">
             <p:poll interval="5" update="clock" />
             <h:outputText id="clock" value="На сервере сейчас: #{clockBean.time}" />
