@@ -18,7 +18,7 @@ public class Result implements Serializable {
     private LocalDateTime time;
 
     @ManyToOne
-    @JoinColumn(name = "client_id", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
     UserInfo user = null;
 
     public Result() {
