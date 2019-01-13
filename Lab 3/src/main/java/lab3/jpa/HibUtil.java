@@ -1,4 +1,5 @@
 package lab3.jpa;
+import lab3.Group;
 import lab3.Result;
 import lab3.UserInfo;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -19,6 +20,7 @@ public class HibUtil{
                 Configuration configuration = new Configuration().configure();
                 configuration.addAnnotatedClass(Result.class);
                 configuration.addAnnotatedClass(UserInfo.class);
+                configuration.addAnnotatedClass(Group.class);
                 StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
                 sessionFactory = configuration.buildSessionFactory(builder.build());
             } catch (Exception e) {
