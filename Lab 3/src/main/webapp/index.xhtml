@@ -2,7 +2,8 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui">
 <head>
     <title>Welcome!</title>
     <link rel="icon" type="image/x-icon" href="images/favicon.ico"/>
@@ -21,13 +22,16 @@
     <div class="flexRow">
         <div class="loginForm" style="margin-right: 150px">
             <h:form style="margin-bottom: 0">
-                <h:inputText a:placeholder="Login" style="margin-bottom: 8px"/> <br/>
-                <h:inputText a:placeholder="Password" style="margin-bottom: 8px"/> <br/>
-                <h:button value="Log In" style="margin-right: 8px"/>
-                <h:button value="Register"/>
+                <h:inputText id="username" value="#{authorizationBean.username}" a:placeholder="Login" style="margin-bottom: 8px"/> <br/>
+                <h:inputText id="password" value="#{authorizationBean.password}" a:placeholder="Password" style="margin-bottom: 8px"/> <br/>
+                <h:button value="Log In" action="#{authorizationBean.auth}" style="margin-right: 8px"/>
+                <h:button value="Register" action="#{authBean.register}"/>
             </h:form>
         </div>
-        <div id="clock" class="clock"> 01:23:45</div>
+        <h:form id="timeForm">
+            <p:poll interval="5" update="clock" />
+            <h:outputText id="clock" value="На сервере сейчас: #{serverTime.time}" />
+        </h:form>
     </div>
 </h:body>
 </html>

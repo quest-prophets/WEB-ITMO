@@ -13,16 +13,16 @@ import java.util.*;
 import static java.lang.Math.pow;
 
 public class AreaCheckBean implements Serializable {
-    CheckHistoryBean historyBean = null;
-    List<Dot> dots = new ArrayList<>();
-    double x = 0.0;
-    double y = 0.0;
-    double r = 2.0;
+    private CheckHistoryBean historyBean = null;
+    private List<Dot> dots = new ArrayList<>();
+    private double x = 0.0;
+    private double y = 0.0;
+    private double r = 2.0;
 
-    int area1 = 1;
-    int area2 = 1;
-    int area3 = 1;
-    int area4 = 1;
+    private int area1 = 1;
+    private int area2 = 1;
+    private int area3 = 1;
+    private int area4 = 1;
 
 
     private  boolean checkDataValidity() {
@@ -134,4 +134,67 @@ public class AreaCheckBean implements Serializable {
         dots.add(new Dot(x,y,isHit));
     }
 
+    public CheckHistoryBean getHistoryBean() {
+        return historyBean;
+    }
+
+    public void setHistoryBean(CheckHistoryBean historyBean) {
+        this.historyBean = historyBean;
+    }
+
+    public double getX() {
+        return x;
+    }
+
+    public void setX(double x) {
+        this.x = x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
+    public void setY(double y) {
+        this.y = y;
+    }
+
+    public double getR() {
+        return r;
+    }
+
+    public void setR(double r) {
+        this.r = r;
+    }
+
+    public int getArea1() {
+        return area1;
+    }
+
+    public void setArea1(int area1) {
+        this.area1 = area1;
+    }
+
+    public int getArea2() {
+        return area2;
+    }
+
+    public void setArea2(int area2) {
+        this.area2 = area2;
+    }
+
+    public int getArea3() {
+        return area3;
+    }
+
+    public void setArea3(int area3) {
+        this.area3 = area3;
+    }
+
+    public int getArea4() {
+        return area4;
+    }
+
+    public void setArea4(int area4) {
+        this.area4 = area4;
+    }
 }

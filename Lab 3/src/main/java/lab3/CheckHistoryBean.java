@@ -9,7 +9,7 @@ import javax.servlet.http.HttpSession;
 public class CheckHistoryBean implements Serializable {
     UserInfo user = null;
 
-    void init () {
+    public void init () {
         UserInfoService service = new UserInfoService();
         String username = (String) ((HttpSession)(FacesContext.getCurrentInstance().getExternalContext().getSession(false))).getAttribute("username");
         List<UserInfo> userInfos = service.findAllUsers();

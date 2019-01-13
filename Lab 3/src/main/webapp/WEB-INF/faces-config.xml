@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
+    http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+
+    <managed-bean>
+        <description>Page redirection controller bean</description>
+        <managed-bean-name>redirectionController</managed-bean-name>
+        <managed-bean-class>lab3.RedirectionController</managed-bean-class>
+        <managed-bean-scope>application</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <description>Server time fetch bean</description>
+        <managed-bean-name>clockBean</managed-bean-name>
+        <managed-bean-class>lab3.ServerTimeBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+
+
+    <managed-bean>
+        <description>Check history bean</description>
+        <managed-bean-name>checkHistoryBean</managed-bean-name>
+        <managed-bean-class>lab3.CheckHistoryBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <description>Area hit check bean</description>
+        <managed-bean-name>areaCheckBean</managed-bean-name>
+        <managed-bean-class>lab3.AreaCheckBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+        <managed-property>
+            <property-name>historyBean</property-name>
+            <value>#{checkHistoryBean}</value>
+        </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+        <description>Status messages bean</description>
+        <managed-bean-name>authMessageBean</managed-bean-name>
+        <managed-bean-class>lab3.AuthMessageBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <description>Authorization bean</description>
+        <managed-bean-name>authorizationBean</managed-bean-name>
+        <managed-bean-class>lab3.AuthorizationBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>controller</property-name>
+            <value>#{redirectionController}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>messageBean</property-name>
+            <value>#{authMessageBean}</value>
+        </managed-property>
+    </managed-bean>
+</faces-config>

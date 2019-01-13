@@ -88,4 +88,19 @@ public class AuthorizationBean {
         return new String(hexChars);
     }
 
+    public RedirectionController getController() {
+        return controller;
+    }
+
+    public void setController(RedirectionController controller) {
+        this.controller = controller;
+    }
+
+    public AuthMessageBean getMessageBean() {
+        return messageBean;
+    }
+
+    public void setMessageBean(AuthMessageBean messageBean) {
+        this.messageBean = messageBean;
+    }
 }
