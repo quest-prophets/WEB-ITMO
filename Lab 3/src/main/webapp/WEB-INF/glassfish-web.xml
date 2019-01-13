@@ -6,4 +6,6 @@
         <role-name>user</role-name>
         <group-name>user</group-name>
     </security-role-mapping>
+    <class-loader delegate="false"/>
 </glassfish-web-app>
+

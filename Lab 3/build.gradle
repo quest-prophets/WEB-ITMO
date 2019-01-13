@@ -23,4 +23,5 @@ dependencies {
     compile group: 'javax.el', name: 'el-api', version: '2.2.1-b04'
     compile group: 'oracle', name: 'ojdbc6', version: '11.2.0.3'
     compile group: 'org.hibernate', name: 'hibernate-core', version: '5.3.7.Final'
+    compile group: 'org.jboss.logging', name: 'jboss-logging', version: '3.3.2.Final'
 }
