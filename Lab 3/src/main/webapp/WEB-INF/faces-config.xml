@@ -58,4 +58,11 @@
             <value>#{authMessageBean}</value>
         </managed-property>
     </managed-bean>
+
+    <managed-bean>
+        <description>Svg display bean</description>
+        <managed-bean-name>svgBean</managed-bean-name>
+        <managed-bean-class>lab3.SvgBean</managed-bean-class>
+        <managed-bean-scope>application</managed-bean-scope>
+    </managed-bean>
 </faces-config>

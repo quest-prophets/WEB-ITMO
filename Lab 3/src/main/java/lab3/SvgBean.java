@@ -1,10 +1,5 @@
 package lab3;
 
-import javax.faces.bean.ApplicationScoped;
-import javax.faces.bean.ManagedBean;
-
-@ManagedBean(name = "svgBean")
-@ApplicationScoped
 public class SvgBean {
     public String getSvgOverlay() {
         return "<svg id=\"overlay\" class=\"graphOverlay hidden\" xmlns=\"http://www.w3.org/2000/svg\" width=\"400\" height=\"400\"></svg>";
