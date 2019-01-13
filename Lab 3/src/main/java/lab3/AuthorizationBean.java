@@ -103,4 +103,11 @@ public class AuthorizationBean {
     public void setMessageBean(AuthMessageBean messageBean) {
         this.messageBean = messageBean;
     }
+
+    public String getUsername(){
+        return username;
+    }
+    public String getPassword(){
+        return password;
+    }
 }
