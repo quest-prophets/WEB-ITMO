@@ -30,7 +30,7 @@
                 <h:outputLabel value="#{authMessageBean.msg}" rendered="#{not empty authMessageBean.msg}" />
             </h:form>
         </div>
-        <p:slider/>
+
         <h:form id="timeForm">
             <p:poll interval="5" update="clock" />
             <h:outputText id="clock" value="На сервере сейчас: #{clockBean.time}" />
