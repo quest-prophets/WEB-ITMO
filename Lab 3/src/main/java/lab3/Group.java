@@ -10,8 +10,8 @@ public class Group implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id = null;
 
-    String username = null;
-    String groupname = null;
+    private String username = null;
+    private String groupname = null;
 
     @ManyToOne
     @JoinColumn(name = "client_id", nullable = false)

@@ -33,6 +33,15 @@ public class Result implements Serializable {
         this.time = time;
     }
 
+    public Result(double x, double y, double r, boolean res, LocalDateTime time, UserInfo user) {
+        this.x = x;
+        this.y = y;
+        this.r = r;
+        this.res = res;
+        this.time = time;
+        this.user = user;
+    }
+
     public double getX() {
         return x;
     }
@@ -65,6 +74,19 @@ public class Result implements Serializable {
         // DateTimeFormatter df = DateTimeFormatter.ofPattern("HH:mm:ss");
         // this.time = curTime.format(df);
         this.time = curTime;
+    }
+
+    public UserInfo getUser() {
+        return user;
+    }
+
+    public void setUser(UserInfo user) {
+        this.user = user;
+    }
+
+
+    public void setRes(boolean res) {
+        this.res = res;
     }
 
     public LocalDateTime getTime() {
