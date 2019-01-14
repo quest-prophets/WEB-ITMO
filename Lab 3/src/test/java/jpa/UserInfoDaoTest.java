@@ -62,9 +62,8 @@ public class UserInfoDaoTest {
         user.setResults(history);
 
         UserInfoDao userDao = new UserInfoDao();
-        userDao.save(user);
 
-        UserInfo receivedUser = userDao.findById(1);
+        UserInfo receivedUser = userDao.findById(userDao.save(user));
         System.out.println(receivedUser);
 
         Assert.assertEquals(user.getUsername(), receivedUser.getUsername());

@@ -13,7 +13,7 @@
 <h:body>
 
     <f:metadata>
-        <f:viewAction action="#{checkHistoryBean.init}" />
+        <f:viewAction action="#{checkHistoryBean.init}"/>
     </f:metadata>
 
     <div class="onoffswitch">
@@ -51,15 +51,18 @@
             <div class="flexColumn">
                 <div class="box" style="margin-left: 50px; width: 240px;">
                     <input type="button" id="save" class="hidden" value="Save graph" style="width: 240px"/>
-                    <span id="boxText">R: &#8195;<p:inputText id="r" value="#{areaCheckBean.r}" width="200px" size="14"/>
+                    <span id="boxText">R: &#8195;<p:inputText id="r" value="#{areaCheckBean.r}" width="200px"
+                                                              size="14"/>
                 <p:slider for="r" id="rSlider" class="panelElement" minValue="2" maxValue="5" step="0.1" value="2"/>
                     <span class="panelElement"> X: &#8195;<p:spinner id="x" value="#{areaCheckBean.x}" min="-2" max="2"
                                                                      size="13"/></span>
-                    <span class="panelElement">Y: &#8195;<h:inputText id="y" value="#{areaCheckBean.y}" placeholder="[-5 ... 5]" size="14">
-                        <f:validator validatorId="coordValidator" />
+                    <span class="panelElement">Y: &#8195;<h:inputText id="y" value="#{areaCheckBean.y}"
+                                                                      placeholder="[-5 ... 5]" size="14">
+                        <f:validator validatorId="CoordinatesValidator"/>
                         </h:inputText>
                     </span>
-                <p:commandButton id="check" value="Check for belonging" action="#{areaCheckBean.dataCheck()}" update="resultTable graphPanel"/>
+                <p:commandButton id="check" value="Check for belonging" action="#{areaCheckBean.dataCheck()}"
+                                 update="resultTable"/>
                 <input type="button" id="clearAll" class="panelElement" value="Clear all dots"/>
                 <input type="button" id="edit" class="panelElement" value="Edit graph"/></span>
                 </div>
@@ -70,19 +73,27 @@
             </div>
         </div>
 
-        <table class="resultTable" style="margin-top: 30px">
-            <thead>
-            <tr>
-                <td class="tdWithBorders">R</td>
-                <td class="tdWithBorders">X</td>
-                <td class="tdWithBorders">Y</td>
-                <td class="tdWithBorders">Result</td>
-                <td class="tdWithBorders">Time</td>
-            </tr>
-            </thead>
-            <tbody id="resultTable">
-            </tbody>
-        </table>
+        <p:dataTable id="resultTable" class="tableResult" style="margin-top: 30px" value="#{checkHistoryBean.results}"
+                     var="elem" paginator="true" rows="10"
+                     paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                     rowsPerPageTemplate="5,10,15">
+            <p:column headerText="R">
+                <h:outputText value="#{elem.r}"/>
+            </p:column>
+            <p:column headerText="X">
+                <h:outputText value="#{elem.x}"/>
+            </p:column>
+            <p:column headerText="Y">
+                <h:outputText value="#{elem.y}"/>
+            </p:column>
+            <p:column headerText="Result">
+                <h:outputText value="#{elem.res}"/>
+            </p:column>
+            <p:column headerText="Time">
+                <h:outputText value="#{elem.time}"/>
+            </p:column>
+        </p:dataTable>
+
     </div>
 
     <table id="sectorsTable" class="hidden">
