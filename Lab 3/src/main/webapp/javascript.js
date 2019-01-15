@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function createSectorLTmenu(event) {
     chosenFigure = $('#sector_LT_figure');
-    chosenArea = $('#j_idt7\\:sectorBeanLT');
+    chosenArea = $('#mainForm\\:sectorBeanLT');
     $("#sectorsTable").css({top: $("#sector_LT").position().top + 2, left: $("#sector_LT").position().left + 2, position: "absolute"});
     sectorButtons.forEach(function (button) {
         button.css({transform: "rotate(0deg)"});
@@ -32,7 +32,7 @@ function createSectorLTmenu(event) {
 
 function createSectorRTmenu(event) {
     chosenFigure = $('#sector_RT_figure');
-    chosenArea = $('#j_idt7\\:sectorBeanRT');
+    chosenArea = $('#mainForm\\:sectorBeanRT');
     $("#sectorsTable").css({top: $("#sector_RT").position().top + 2, left: $("#sector_RT").position().left, position: "absolute"});
     sectorButtons.forEach(function (button) {
         button.css({transform: "rotate(90deg)"});
@@ -42,7 +42,7 @@ function createSectorRTmenu(event) {
 
 function createSectorLBmenu(event) {
     chosenFigure = $('#sector_LB_figure');
-    chosenArea = $('#j_idt7\\:sectorBeanLB');
+    chosenArea = $('#mainForm\\:sectorBeanLB');
     $("#sectorsTable").css({top: $("#sector_LB").position().top, left: $("#sector_LB").position().left + 2, position: "absolute"});
     sectorButtons.forEach(function (button) {
         button.css({transform: "rotate(-90deg)"});
@@ -52,7 +52,7 @@ function createSectorLBmenu(event) {
 
 function createSectorRBmenu(event) {
     chosenFigure = $('#sector_RB_figure');
-    chosenArea = $('#j_idt7\\:sectorBeanRB');
+    chosenArea = $('#mainForm\\:sectorBeanRB');
     $("#sectorsTable").css({top: $("#sector_RB").position().top, left: $("#sector_RB").position().left, position: "absolute"});
     sectorButtons.forEach(function (button) {
         button.css({transform: "rotate(180deg)"});
@@ -95,9 +95,9 @@ function changeSector(event) {
 }
 
 function drawPoint(e) {
-    $("#j_idt7\\:graphX").val((e.pageX - $("#overlay").offset().left)/160*$("#j_idt7\\:r"));
-    $("#j_idt7\\:graphY").val((e.pageY - $("#overlay").offset().top)/160*$("#j_idt7\\:r"));
-    $("#j_idt7\\:graphComputeButton").click();
+    $("#mainForm\\:x_input").val(Math.round((e.pageX - $("#overlay").offset().left-200)/160*$("#mainForm\\:r").val()*1000)/1000);
+    $("#mainForm\\:y").val(Math.round(-(e.pageY - $("#overlay").offset().top-200)/160*$("#mainForm\\:r").val()*1000)/1000);
+    $("#mainForm\\:check").click();
 }
 
 function changeTheme(){

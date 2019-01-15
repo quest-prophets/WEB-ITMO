@@ -30,44 +30,40 @@
         <div class="flexRow">
             <div class="flexColumn" style="margin-top: 5%">
                 <div class="flexRow">
-                    <table style="border-collapse: collapse">
-                        <tr>
-                            <td style="padding: 0">
-                                <h:outputText value="#{svgBean.svgLT}" escape="false"/>
-                                <h:inputHidden id="sectorBeanLT" value="#{areaCheckBean.area2}"/>
-                            </td>
-                            <td style="padding: 0">
-                                <h:outputText value="#{svgBean.svgRT}" escape="false"/>
-                                <h:inputHidden id="sectorBeanRT" value="#{areaCheckBean.area1}"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 0">
-                                <h:outputText value="#{svgBean.svgLB}" escape="false"/>
-                                <h:inputHidden id="sectorBeanLB" value="#{areaCheckBean.area3}"/>
-                            </td>
-                            <td style="padding: 0">
-                                <h:outputText value="#{svgBean.svgRB}" escape="false"/>
-                                <h:inputHidden id="sectorBeanRB" value="#{areaCheckBean.area4}"/>
-                            </td>
-                        </tr>
-                    </table>
-                    <svg id="overlay" class="graphOverlay hidden" xmlns="http://www.w3.org/2000/svg" width="400"
-                         height="400">
-                        <ui:repeat value="#{areaCheckBean.dots}" var="dot">
-                            <circle cx="#{dot.x*160/areaCheckBean.r + 200}"
-                                    cy="#{-dot.y*160/areaCheckBean.r + 200}"
-                                    fill="#{dot.res eq true ? 'green' : 'red'}"
-                                    stroke="#{dot.res eq true ? 'green' : 'red'}" r="3"/>
-                        </ui:repeat>
-                    </svg>
+                    <p:outputPanel id="graphPanel">
+                        <table style="border-collapse: collapse">
+                            <tr>
+                                <td style="padding: 0">
+                                    <h:outputText value="#{svgBean.svgLT}" escape="false"/>
+                                    <h:inputHidden id="sectorBeanLT" value="#{areaCheckBean.area2}"/>
+                                </td>
+                                <td style="padding: 0">
+                                    <h:outputText value="#{svgBean.svgRT}" escape="false"/>
+                                    <h:inputHidden id="sectorBeanRT" value="#{areaCheckBean.area1}"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0">
+                                    <h:outputText value="#{svgBean.svgLB}" escape="false"/>
+                                    <h:inputHidden id="sectorBeanLB" value="#{areaCheckBean.area3}"/>
+                                </td>
+                                <td style="padding: 0">
+                                    <h:outputText value="#{svgBean.svgRB}" escape="false"/>
+                                    <h:inputHidden id="sectorBeanRB" value="#{areaCheckBean.area4}"/>
+                                </td>
+                            </tr>
+                        </table>
+                        <svg id="overlay" class="graphOverlay hidden" xmlns="http://www.w3.org/2000/svg" width="400"
+                             height="400">
+                            <ui:repeat value="#{areaCheckBean.dots}" var="dot">
+                                <circle cx="#{dot.x*160/areaCheckBean.r + 200}"
+                                        cy="#{-dot.y*160/areaCheckBean.r + 200}"
+                                        fill="#{dot.res eq true ? 'green' : 'red'}"
+                                        stroke="#{dot.res eq true ? 'green' : 'red'}" r="3"/>
+                            </ui:repeat>
+                        </svg>
+                    </p:outputPanel>
                 </div>
-
-                <p:inputText type="hidden" id="graphX" value="#{areaCheckBean.graphX}"/>
-                <p:inputText type="hidden" id="graphY" value="#{areaCheckBean.graphY}"/>
-                <p:commandButton style="display: none" update="resultTable mainForm"
-                                 action="#{areaCheckBean.computeFromGraph}"
-                                 id="graphComputeButton" process="@form"/>
 
                 <div class="flexColumn">
                     <div class="box" style="margin-left: 50px; width: 240px;">
@@ -81,15 +77,16 @@
 
                     <span class="panelElement"> X: &#8195;<p:spinner id="x" value="#{areaCheckBean.x}"
                                                                      min="-2" max="2" size="13"/></span>
-                    <span class="panelElement">Y: &#8195;<h:inputText id="y" value="#{areaCheckBean.y}"
-                                                                      placeholder="[-5 ... 5]" size="14" required="true" >
+                    <span class="panelElement">Y: &#8195;<p:inputText id="y" value="#{areaCheckBean.y}"
+                                                                      placeholder="[-5 ... 5]" size="14"
+                                                                      required="true">
                         <f:validator validatorId="YValidator"/>
-                        </h:inputText>
-                        <h:message for = "y" style = "color:red; margin: 7px;" />
-                        <h:message for = "r" style = "color:red; margin: 7px;" />
+                        </p:inputText>
+                        <h:message for="y" style="color:red; margin: 7px;"/>
+                        <h:message for="r" style="color:red; margin: 7px;"/>
                     </span>
-                <p:commandButton id="check" value="Check for belonging" action="#{areaCheckBean.computeFromPanel}"
-                                 update="resultTable"/>
+                <p:commandButton id="check" value="Check for belonging" action="#{areaCheckBean.compute}"
+                                 update="resultTable graphPanel"/>
                 <p:commandButton id="clearAll" class="panelElement" value="Clear all dots"/>
                 <input type="button" id="edit" class="panelElement" value="Edit graph"/></span>
                     </div>

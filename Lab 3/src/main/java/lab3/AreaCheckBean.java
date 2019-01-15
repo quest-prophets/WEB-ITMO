@@ -14,8 +14,6 @@ public class AreaCheckBean implements Serializable {
     private double x = 1.0;
     private double y = 0.0;
     private double r = 2.0;
-    private double graphX = 0.0;
-    private double graphY = 0.0;
 
     private int area1 = 5;
     private int area2 = 5;
@@ -119,19 +117,11 @@ public class AreaCheckBean implements Serializable {
             return true;
     }
 
-    public void computeFromPanel() {
-        compute(x, y);
-    }
-
-    public void computeFromGraph() {
-        compute(graphX, graphY);
-    }
-
-    private void compute(double graphX, double graphY) {
+    public void compute() {
         if (!checkDataValidity()) return;
-        boolean isHit = checkAreaHit(graphX, graphY, r, area1, area2, area3, area4);
-        historyBean.addResult(new Result(graphX, graphY, r, isHit, LocalDateTime.now()));
-        dots.add(new Dot(graphX, graphY, isHit));
+        boolean isHit = checkAreaHit(x, y, r, area1, area2, area3, area4);
+        historyBean.addResult(new Result(x, y, r, isHit, LocalDateTime.now()));
+        dots.add(new Dot(x, y, isHit));
     }
 
     public CheckHistoryBean getHistoryBean() {
@@ -164,22 +154,6 @@ public class AreaCheckBean implements Serializable {
 
     public void setR(double r) {
         this.r = r;
-    }
-
-    public double getGraphX() {
-        return graphX;
-    }
-
-    public void setGraphX(double graphX) {
-        this.graphX = graphX;
-    }
-
-    public double getGraphY() {
-        return graphY;
-    }
-
-    public void setGraphY(double graphY) {
-        this.graphY = graphY;
     }
 
     public List<Dot> getDots() {
