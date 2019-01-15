@@ -1,7 +1,5 @@
 package lab3;
 
-import javax.faces.component.UIInput;
-import javax.faces.event.ValueChangeEvent;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -20,13 +18,23 @@ public class AreaCheckBean implements Serializable {
     private int area3 = 5;
     private int area4 = 5;
 
+    private boolean isDay = false;
 
-    private boolean checkDataValidity() {
+
+    public void init() {
+        area1 = historyBean.user.results.get(historyBean.user.results.size()-1).getArea1();
+        area2 = historyBean.user.results.get(historyBean.user.results.size()-1).getArea2();
+        area3 = historyBean.user.results.get(historyBean.user.results.size()-1).getArea3();
+        area4 = historyBean.user.results.get(historyBean.user.results.size()-1).getArea4();
+        this.isDay = historyBean.user.results.get(historyBean.user.results.size()-1).isDay();
+    }
+
+    public boolean checkDataValidity() {
         return ((x >= (-2.0) && x <= 2.0) && (y >= (-5.0) && y < 5.0) && (r >= 2.0 && r <= 5.0) &&
                 (area1 >= 1 && area1 <= 9) && (area2 >= 1 && area2 <= 9) && (area3 >= 1 && area3 <= 9) && (area4 >= 1 && area4 <= 9));
     }
 
-    private boolean checkAreaHit(double x, double y, double r, int area1, int area2, int area3, int area4) {
+    public boolean checkAreaHit(double x, double y, double r, int area1, int area2, int area3, int area4) {
         if ((x > 0) && (y > 0)) {
             switch (area1) {
                 case 1:
@@ -120,7 +128,7 @@ public class AreaCheckBean implements Serializable {
     public void compute() {
         if (!checkDataValidity()) return;
         boolean isHit = checkAreaHit(x, y, r, area1, area2, area3, area4);
-        historyBean.addResult(new Result(x, y, r, isHit, LocalDateTime.now()));
+        historyBean.addResult(new Result(x, y, r, isHit, LocalDateTime.now(), area1, area2, area3, area4, isDay));
         dots.add(new Dot(x, y, isHit));
     }
 

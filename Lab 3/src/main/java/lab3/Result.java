@@ -16,6 +16,11 @@ public class Result implements Serializable {
     private double r;
     private boolean res;
     private LocalDateTime time;
+    private int area1;
+    private int area2;
+    private int area3;
+    private int area4;
+    private boolean isDay;
 
     @ManyToOne
     @JoinColumn(name = "client_id", nullable = false)
@@ -40,6 +45,28 @@ public class Result implements Serializable {
         this.res = res;
         this.time = time;
         this.user = user;
+    }
+
+    public Result(double x, double y, double r, boolean res, LocalDateTime time, boolean isDay) {
+        this.x = x;
+        this.y = y;
+        this.r = r;
+        this.res = res;
+        this.time = time;
+        this.isDay = isDay;
+    }
+
+    public Result(double x, double y, double r, boolean res, LocalDateTime time, int area1, int area2, int area3, int area4, boolean isDay) {
+        this.x = x;
+        this.y = y;
+        this.r = r;
+        this.res = res;
+        this.time = time;
+        this.area1 = area1;
+        this.area2 = area2;
+        this.area3 = area3;
+        this.area4 = area4;
+        this.isDay = isDay;
     }
 
     public double getX() {
@@ -71,8 +98,6 @@ public class Result implements Serializable {
     }
 
     public void setTime(LocalDateTime curTime){
-        // DateTimeFormatter df = DateTimeFormatter.ofPattern("HH:mm:ss");
-        // this.time = curTime.format(df);
         this.time = curTime;
     }
 
@@ -93,11 +118,43 @@ public class Result implements Serializable {
         return time;
     }
 
-    public String getColor(){
-        if(res){
-            return "green";
-        } else {
-            return "red";
-        }
+    public int getArea1() {
+        return area1;
+    }
+
+    public void setArea1(int area1) {
+        this.area1 = area1;
+    }
+
+    public int getArea2() {
+        return area2;
+    }
+
+    public void setArea2(int area2) {
+        this.area2 = area2;
+    }
+
+    public int getArea3() {
+        return area3;
+    }
+
+    public void setArea3(int area3) {
+        this.area3 = area3;
+    }
+
+    public int getArea4() {
+        return area4;
+    }
+
+    public void setArea4(int area4) {
+        this.area4 = area4;
+    }
+
+    public boolean isDay() {
+        return isDay;
+    }
+
+    public void setDay(boolean day) {
+        isDay = day;
     }
 }
