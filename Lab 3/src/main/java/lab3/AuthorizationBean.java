@@ -1,15 +1,11 @@
 package lab3;
 
-import javassist.bytecode.ByteArray;
 import lab3.jpa.UserInfoService;
 
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.io.ByteArrayInputStream;
-import java.io.PrintWriter;
-import java.io.StringWriter;
 import java.nio.charset.Charset;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -71,10 +67,6 @@ public class AuthorizationBean {
             messageBean.success();
             return controller.gotoMain();
         } catch (Exception e) {
-            StringWriter sw = new StringWriter();
-            PrintWriter pw = new PrintWriter(sw);
-            e.printStackTrace(pw);
-            String sStackTrace = sw.toString();
             messageBean.databaseError();
             return null;
         }

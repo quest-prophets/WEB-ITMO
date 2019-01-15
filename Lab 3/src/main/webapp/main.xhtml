@@ -83,7 +83,8 @@
                                                                       placeholder="[-5 ... 5]" size="14" required="true" >
                         <f:validator validatorId="YValidator"/>
                         </h:inputText>
-                        <h:outputLabel value="#{checkMessageBean.msg}" rendered="#{not empty checkMessageBean.msg}" />
+                        <h:message for = "y" style = "color:red; margin: 7px;" />
+                        <h:message for = "r" style = "color:red; margin: 7px;" />
                     </span>
                 <p:commandButton id="check" value="Check for belonging" action="#{areaCheckBean.computeFromPanel}"
                                  update="resultTable"/>

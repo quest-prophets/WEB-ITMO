@@ -26,12 +26,6 @@
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
 
-    <managed-bean>
-        <description>Validation messages bean</description>
-        <managed-bean-name>checkMessageBean</managed-bean-name>
-        <managed-bean-class>lab3.CheckMessageBean</managed-bean-class>
-        <managed-bean-scope>request</managed-bean-scope>
-    </managed-bean>
 
     <managed-bean>
         <description>Area hit check bean</description>
@@ -73,4 +67,18 @@
         <managed-bean-class>lab3.SvgBean</managed-bean-class>
         <managed-bean-scope>application</managed-bean-scope>
     </managed-bean>
+
+    <validator>
+        <validator-id>RValidator</validator-id>
+        <validator-class>
+            lab3.RValidator
+        </validator-class>
+    </validator>
+
+    <validator>
+        <validator-id>YValidator</validator-id>
+        <validator-class>
+            lab3.YValidator
+        </validator-class>
+    </validator>
 </faces-config>
