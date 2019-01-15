@@ -27,26 +27,44 @@
     <div class="flexColumn">
         <div class="flexRow" style="margin-top: 5%">
             <div class="flexColumn">
-                <table style="border-collapse: collapse">
-                    <tr>
-                        <td style="padding: 0">
-                            <h:outputText value="#{svgBean.svgLT}" escape="false"/>
-                        </td>
-                        <td style="padding: 0">
-                            <h:outputText value="#{svgBean.svgRT}" escape="false"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="padding: 0">
-                            <h:outputText value="#{svgBean.svgLB}" escape="false"/>
-                        </td>
-                        <td style="padding: 0">
-                            <h:outputText value="#{svgBean.svgRB}" escape="false"/>
-                        </td>
-                    </tr>
-                </table>
-                <h:outputText value="#{svgBean.svgOverlay}" escape="false"/>
+                <h:form id="updateForm">
+                    <table style="border-collapse: collapse">
+                        <tr>
+                            <td style="padding: 0">
+                                <h:outputText value="#{svgBean.svgLT}" escape="false"/>
+                                <h:inputHidden id="sectorBeanLT" value="#{areaCheckBean.area2}"/>
+                            </td>
+                            <td style="padding: 0">
+                                <h:outputText value="#{svgBean.svgRT}" escape="false"/>
+                                <h:inputHidden id="sectorBeanRT" value="#{areaCheckBean.area1}"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 0">
+                                <h:outputText value="#{svgBean.svgLB}" escape="false"/>
+                                <h:inputHidden id="sectorBeanLB" value="#{areaCheckBean.area3}"/>
+                            </td>
+                            <td style="padding: 0">
+                                <h:outputText value="#{svgBean.svgRB}" escape="false"/>
+                                <h:inputHidden id="sectorBeanRB" value="#{areaCheckBean.area4}"/>
+                            </td>
+                        </tr>
+                    </table>
+                    <svg id="overlay" class="graphOverlay hidden" xmlns="http://www.w3.org/2000/svg" width="400" height="400">
+                        <ui:repeat value="#{areaCheckBean.dots}" var="dot">
+                            <circle cx="#{dot.x*160/areaCheckBean.r}"
+                                    cy="#{dot.y*160/areaCheckBean.r}"
+                                    fill="#{dot.res eq true ? 'green' : 'red'}"
+                                    stroke="#{dot.res eq true ? 'green' : 'red'}" r="3"/>
+                        </ui:repeat>
+                    </svg>
+                </h:form>
             </div>
+
+            <p:inputText type="hidden" id="graphX" value="#{areaCheckBean.graphX}"/>
+            <p:inputText type="hidden" id="graphY" value="#{areaCheckBean.graphY}"/>
+            <p:commandButton style="display: none" update="updateForm" actionListener="#{areaCheckBean.computeFromGraph }"
+                             id="graphComputeButton"/>
 
             <div class="flexColumn">
                 <div class="box" style="margin-left: 50px; width: 240px;">
@@ -61,7 +79,7 @@
                         <f:validator validatorId="CoordinatesValidator"/>
                         </h:inputText>
                     </span>
-                <p:commandButton id="check" value="Check for belonging" action="#{areaCheckBean.dataCheck()}"
+                <p:commandButton id="check" value="Check for belonging" action="#{areaCheckBean.computeFromPanel}"
                                  update="resultTable"/>
                 <input type="button" id="clearAll" class="panelElement" value="Clear all dots"/>
                 <input type="button" id="edit" class="panelElement" value="Edit graph"/></span>
@@ -73,10 +91,8 @@
             </div>
         </div>
 
-        <p:dataTable id="resultTable" class="tableResult" style="margin-top: 30px" value="#{checkHistoryBean.results}"
-                     var="elem" paginator="true" rows="10"
-                     paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
-                     rowsPerPageTemplate="5,10,15">
+        <p:dataTable id="resultTable" class="tableResult" style="margin-top: 30px; width: 500px"
+                     value="#{checkHistoryBean.results}" var="elem">
             <p:column headerText="R">
                 <h:outputText value="#{elem.r}"/>
             </p:column>

@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'war'
+    id 'idea'
 }
 
 group 'Lab3'
@@ -11,6 +12,12 @@ sourceCompatibility = 1.8
 repositories {
     mavenCentral()
     maven { url "http://www.datanucleus.org/downloads/maven2/" }
+}
+
+idea {
+    module {
+        downloadSources = true
+    }
 }
 
 dependencies {
@@ -24,4 +31,6 @@ dependencies {
     compile group: 'oracle', name: 'ojdbc6', version: '11.2.0.3'
     compile group: 'org.hibernate', name: 'hibernate-core', version: '5.3.7.Final'
     compile group: 'org.jboss.logging', name: 'jboss-logging', version: '3.3.2.Final'
+    compileOnly group: 'org.glassfish.main.web', name: 'web-core', version: '4.1.2'
+
 }

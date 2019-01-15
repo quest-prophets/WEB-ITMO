@@ -1,5 +1,6 @@
 var chosenFigure;
 var sectorButtons;
+var chosenArea;
 
 document.addEventListener("DOMContentLoaded", function () {
     sectorButtons = [$("#sectorButton1"), $("#sectorButton2"), $("#sectorButton3"), $("#sectorButton4"), $("#sectorButton5"), $("#sectorButton6"), $("#sectorButton7"), $("#sectorButton8"), $("#sectorButton9")];
@@ -21,6 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function createSectorLTmenu(event) {
     chosenFigure = $('#sector_LT_figure');
+    chosenArea = $('#sectorBeanLT');
     $("#sectorsTable").css({top: $("#sector_LT").position().top + 2, left: $("#sector_LT").position().left + 2, position: "absolute"});
     sectorButtons.forEach(function (button) {
         button.css({transform: "rotate(0deg)"});
@@ -30,6 +32,7 @@ function createSectorLTmenu(event) {
 
 function createSectorRTmenu(event) {
     chosenFigure = $('#sector_RT_figure');
+    chosenArea = $('#sectorBeanRT');
     $("#sectorsTable").css({top: $("#sector_RT").position().top + 2, left: $("#sector_RT").position().left, position: "absolute"});
     sectorButtons.forEach(function (button) {
         button.css({transform: "rotate(90deg)"});
@@ -39,6 +42,7 @@ function createSectorRTmenu(event) {
 
 function createSectorLBmenu(event) {
     chosenFigure = $('#sector_LB_figure');
+    chosenArea = $('#sectorBeanLB');
     $("#sectorsTable").css({top: $("#sector_LB").position().top, left: $("#sector_LB").position().left + 2, position: "absolute"});
     sectorButtons.forEach(function (button) {
         button.css({transform: "rotate(-90deg)"});
@@ -48,6 +52,7 @@ function createSectorLBmenu(event) {
 
 function createSectorRBmenu(event) {
     chosenFigure = $('#sector_RB_figure');
+    chosenArea = $('#sectorBeanRB');
     $("#sectorsTable").css({top: $("#sector_RB").position().top, left: $("#sector_RB").position().left, position: "absolute"});
     sectorButtons.forEach(function (button) {
         button.css({transform: "rotate(180deg)"});
@@ -59,34 +64,40 @@ function changeSector(event) {
     let target = $(event.target);
     if ($("#sectorButton1").parent().has(target).length) {
         chosenFigure.attr("d", "M 40 200 q 0 -160 160 -160 v 160 Z");
+        chosenArea.val("1");
     } else if ($("#sectorButton2").parent().has(target).length) {
         chosenFigure.attr("d", "M 120 200 q 0 -80 80 -80 v 80 Z");
+        chosenArea.val("2");
     } else if ($("#sectorButton3").parent().has(target).length) {
         chosenFigure.attr("d", "M 40 40 h 160 v 160 h -160 Z");
+        chosenArea.val("3");
     } else if ($("#sectorButton4").parent().has(target).length) {
         chosenFigure.attr("d", "M 120 120 h 80 v 80 h -80 Z");
+        chosenArea.val("4");
     } else if ($("#sectorButton5").parent().has(target).length) {
         chosenFigure.attr("d", "");
+        chosenArea.val("5");
     } else if ($("#sectorButton6").parent().has(target).length) {
         chosenFigure.attr("d", "M 120 40 h 80 v 160 h -80 Z");
+        chosenArea.val("6");
     } else if ($("#sectorButton7").parent().has(target).length) {
         chosenFigure.attr("d", "M 40 120 h 160 v 80 h -160 Z");
+        chosenArea.val("7");
     } else if ($("#sectorButton8").parent().has(target).length) {
         chosenFigure.attr("d", "M 40 200 h 160 v -160 Z");
+        chosenArea.val("8");
     } else if ($("#sectorButton9").parent().has(target).length) {
         chosenFigure.attr("d", "M 40 200 h 160 v -80 Z");
+        chosenArea.val("9");
     }
     chosenFigure.attr("fill", "#3399ff");
     $("#sectorsTable").addClass("hidden");
 }
 
 function drawPoint(e) {
-    const circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');
-    circle.setAttributeNS(null, 'cx', e.pageX - $("#overlay").offset().left);
-    circle.setAttributeNS(null, 'cy', e.pageY - $("#overlay").offset().top);
-    circle.setAttributeNS(null, 'r', 3);
-    circle.setAttributeNS(null, 'style', 'fill: red; stroke: red; stroke-width: 1px;');
-    $("#overlay").append(circle);
+    $("#graphX").val((e.pageX - $("#overlay").offset().left)/160*$("#r"));
+    $("#graphY").val((e.pageY - $("#overlay").offset().top)/160*$("#r"));
+    $("#graphComputeButton").click();
 }
 
 function clearDots() {
