@@ -17,8 +17,8 @@ public class AuthMessageBean implements Serializable {
         msg = "Incorrect login/password. Try again.";
     }
 
-    public void databaseError(String stacktrace) {
-        msg = stacktrace;
+    public void databaseError() {
+        msg = "Database connection error.";
     }
 
     public String getMsg() {

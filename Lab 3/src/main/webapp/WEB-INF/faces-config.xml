@@ -27,6 +27,13 @@
     </managed-bean>
 
     <managed-bean>
+        <description>Validation messages bean</description>
+        <managed-bean-name>checkMessageBean</managed-bean-name>
+        <managed-bean-class>lab3.CheckMessageBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
         <description>Area hit check bean</description>
         <managed-bean-name>areaCheckBean</managed-bean-name>
         <managed-bean-class>lab3.AreaCheckBean</managed-bean-class>
@@ -43,6 +50,7 @@
         <managed-bean-class>lab3.AuthMessageBean</managed-bean-class>
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
+
 
     <managed-bean>
         <description>Authorization bean</description>

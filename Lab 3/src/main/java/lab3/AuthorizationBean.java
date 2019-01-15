@@ -75,7 +75,7 @@ public class AuthorizationBean {
             PrintWriter pw = new PrintWriter(sw);
             e.printStackTrace(pw);
             String sStackTrace = sw.toString();
-            messageBean.databaseError(sStackTrace);
+            messageBean.databaseError();
             return null;
         }
     }
