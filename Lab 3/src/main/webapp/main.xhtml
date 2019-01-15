@@ -16,7 +16,7 @@
         <f:viewAction action="#{checkHistoryBean.init}"/>
     </f:metadata>
 
-    <h:form>
+    <h:form id="mainForm">
         <div class="onoffswitch">
             <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="dayNightSwitch"/>
             <label class="onoffswitch-label" for="dayNightSwitch">
@@ -55,8 +55,8 @@
                     <svg id="overlay" class="graphOverlay hidden" xmlns="http://www.w3.org/2000/svg" width="400"
                          height="400">
                         <ui:repeat value="#{areaCheckBean.dots}" var="dot">
-                            <circle cx="#{dot.x*160/areaCheckBean.r}"
-                                    cy="#{dot.y*160/areaCheckBean.r}"
+                            <circle cx="#{dot.x*160/areaCheckBean.r + 200}"
+                                    cy="#{-dot.y*160/areaCheckBean.r + 200}"
                                     fill="#{dot.res eq true ? 'green' : 'red'}"
                                     stroke="#{dot.res eq true ? 'green' : 'red'}" r="3"/>
                         </ui:repeat>
@@ -65,9 +65,9 @@
 
                 <p:inputText type="hidden" id="graphX" value="#{areaCheckBean.graphX}"/>
                 <p:inputText type="hidden" id="graphY" value="#{areaCheckBean.graphY}"/>
-                <p:commandButton style="display: none" update="resultTable"
+                <p:commandButton style="display: none" update="resultTable mainForm"
                                  action="#{areaCheckBean.computeFromGraph}"
-                                 id="graphComputeButton"/>
+                                 id="graphComputeButton" process="@form"/>
 
                 <div class="flexColumn">
                     <div class="box" style="margin-left: 50px; width: 240px;">
