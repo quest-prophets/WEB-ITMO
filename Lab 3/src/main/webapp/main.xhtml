@@ -24,6 +24,8 @@
         </label>
     </div>
 
+    <h:commandLink action="#{authorizationBean.logout}" value="Logout" ajax="false"/>
+
     <div class="flexColumn">
         <div class="flexRow" style="margin-top: 5%">
             <div class="flexColumn">
@@ -50,7 +52,8 @@
                             </td>
                         </tr>
                     </table>
-                    <svg id="overlay" class="graphOverlay hidden" xmlns="http://www.w3.org/2000/svg" width="400" height="400">
+                    <svg id="overlay" class="graphOverlay hidden" xmlns="http://www.w3.org/2000/svg" width="400"
+                         height="400">
                         <ui:repeat value="#{areaCheckBean.dots}" var="dot">
                             <circle cx="#{dot.x*160/areaCheckBean.r}"
                                     cy="#{dot.y*160/areaCheckBean.r}"
@@ -63,7 +66,8 @@
 
             <p:inputText type="hidden" id="graphX" value="#{areaCheckBean.graphX}"/>
             <p:inputText type="hidden" id="graphY" value="#{areaCheckBean.graphY}"/>
-            <p:commandButton style="display: none" update="updateForm" actionListener="#{areaCheckBean.computeFromGraph }"
+            <p:commandButton style="display: none" update="resultTable updateForm"
+                             action="#{areaCheckBean.computeFromGraph}"
                              id="graphComputeButton"/>
 
             <div class="flexColumn">
@@ -72,8 +76,8 @@
                     <span id="boxText">R: &#8195;<p:inputText id="r" value="#{areaCheckBean.r}" width="200px"
                                                               size="14"/>
                 <p:slider for="r" id="rSlider" class="panelElement" minValue="2" maxValue="5" step="0.1" value="2"/>
-                    <span class="panelElement"> X: &#8195;<p:spinner id="x" value="#{areaCheckBean.x}" min="-2" max="2"
-                                                                     size="13"/></span>
+                    <span class="panelElement"> X: &#8195;<p:spinner id="x" value="#{areaCheckBean.x}"
+                                                                     min="-2" max="2" size="13"/></span>
                     <span class="panelElement">Y: &#8195;<h:inputText id="y" value="#{areaCheckBean.y}"
                                                                       placeholder="[-5 ... 5]" size="14">
                         <f:validator validatorId="CoordinatesValidator"/>

@@ -10,15 +10,14 @@ import javax.faces.validator.ValidatorException;
 @FacesValidator("CoordinatesValidator")
 public class CoordinatesValidator implements Validator {
     @Override
-    public void validate (FacesContext context, UIComponent component, Object value) {
-        if (value == null)
-            throw new ValidatorException(new FacesMessage("Поле обязательно для ввода."));
-        else {
-            if (!(value instanceof Double))
-                throw new ValidatorException(new FacesMessage("Введите действительное число."));
-            else
-                if ((Double) value < -5.0 || (Double) value > 5.0)
-                    throw new ValidatorException(new FacesMessage("Введите число от -5 до 5."));
+    public void validate (FacesContext context, UIComponent component, Object o) {
+        if (o == null) throw new ValidatorException(new FacesMessage("Enter Y."));
+        try {
+            String strY = o.toString();
+            double y = Double.parseDouble(strY);
+            if (y < -5 || y > 5) throw new ValidatorException(new FacesMessage("Enter Y from -5 to 5."));
+        } catch (NumberFormatException e) {
+            throw new ValidatorException(new FacesMessage("Y is NaN!"));
         }
 
     }

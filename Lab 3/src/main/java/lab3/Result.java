@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Entity
-@Table
+@Table(name="results")
 public class Result implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

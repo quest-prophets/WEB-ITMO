@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
     $("#sector_RT").click(createSectorRTmenu);
     $("#sector_LB").click(createSectorLBmenu);
     $("#sector_RB").click(createSectorRBmenu);
+    $("#overlay").css({top: $("#sector_LT").position().top, left: $("#sector_LT").position().left, position: "absolute"});
     sectorButtons.forEach(function (button) {
         button.click(changeSector);
     });
