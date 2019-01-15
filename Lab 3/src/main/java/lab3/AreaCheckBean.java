@@ -1,5 +1,7 @@
 package lab3;
 
+import javax.faces.component.UIInput;
+import javax.faces.event.ValueChangeEvent;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -9,7 +11,7 @@ import static java.lang.Math.pow;
 public class AreaCheckBean implements Serializable {
     private CheckHistoryBean historyBean = null;
     private List<Dot> dots = new ArrayList<>();
-    private double x = 0.0;
+    private double x = 1.0;
     private double y = 0.0;
     private double r = 2.0;
     private double graphX = 0.0;
