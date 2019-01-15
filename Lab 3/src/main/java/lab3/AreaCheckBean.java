@@ -18,15 +18,17 @@ public class AreaCheckBean implements Serializable {
     private int area3 = 5;
     private int area4 = 5;
 
-    private boolean isDay = false;
+    private boolean day = false;
 
 
     public void init() {
-        area1 = historyBean.user.results.get(historyBean.user.results.size()-1).getArea1();
-        area2 = historyBean.user.results.get(historyBean.user.results.size()-1).getArea2();
-        area3 = historyBean.user.results.get(historyBean.user.results.size()-1).getArea3();
-        area4 = historyBean.user.results.get(historyBean.user.results.size()-1).getArea4();
-        this.isDay = historyBean.user.results.get(historyBean.user.results.size()-1).isDay();
+        if (historyBean.user.results.size() >= 1) {
+            area1 = historyBean.user.results.get(historyBean.user.results.size() - 1).getArea1();
+            area2 = historyBean.user.results.get(historyBean.user.results.size() - 1).getArea2();
+            area3 = historyBean.user.results.get(historyBean.user.results.size() - 1).getArea3();
+            area4 = historyBean.user.results.get(historyBean.user.results.size() - 1).getArea4();
+            this.day = historyBean.user.results.get(historyBean.user.results.size() - 1).isDay();
+        }
     }
 
     public boolean checkDataValidity() {
@@ -128,7 +130,7 @@ public class AreaCheckBean implements Serializable {
     public void compute() {
         if (!checkDataValidity()) return;
         boolean isHit = checkAreaHit(x, y, r, area1, area2, area3, area4);
-        historyBean.addResult(new Result(x, y, r, isHit, LocalDateTime.now(), area1, area2, area3, area4, isDay));
+        historyBean.addResult(new Result(x, y, r, isHit, LocalDateTime.now(), area1, area2, area3, area4, day));
         dots.add(new Dot(x, y, isHit));
     }
 
@@ -202,5 +204,13 @@ public class AreaCheckBean implements Serializable {
 
     public void setArea4(int area4) {
         this.area4 = area4;
+    }
+
+    public boolean isDay() {
+        return day;
+    }
+
+    public void setDay(boolean day) {
+        this.day = day;
     }
 }

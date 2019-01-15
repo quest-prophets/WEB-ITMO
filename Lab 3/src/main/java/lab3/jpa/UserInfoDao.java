@@ -20,7 +20,7 @@ public class UserInfoDao {
 
     public List<UserInfo> findAll() throws HibernateException {
         Session session = HibUtil.getInstance().getSessionFactory().openSession();
-        List<UserInfo> result = (List<UserInfo>) session.createQuery("FROM users").list();
+        List<UserInfo> result = (List<UserInfo>) session.createQuery("FROM UserInfo").list();
         session.close();
         if (result != null) {
             return result;

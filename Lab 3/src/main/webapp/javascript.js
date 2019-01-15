@@ -16,6 +16,9 @@ document.addEventListener("DOMContentLoaded", function () {
     $("#edit").click(enterEditMode);
     $("#save").click(enterDotMode);
     $("#overlay").click(drawPoint);
+    if ($("#mainform\\:jsfSwitch").attr("value") === "true"){
+        document.getElementById("dayNightSwitch").checked = true;
+    }
     changeTheme();
     enterEditMode();
 });
@@ -112,7 +115,8 @@ function changeTheme(){
         nightButtons.addClass("chooseGraphSectorDay");
         nightButtons.removeClass('chooseGraphSectorNight');
         $(".box").css("background-color", "rgba(255, 255, 255, 0.7)");
-        $(".box").css("color", "#000000")
+        $(".box").css("color", "#000000");
+        $("#mainform\\:jsfSwitch").val("true");
     } else {
         $("body").css("background-color", "#151515");
         $("body").css('background-image', 'url(images/BG_night.png)');
@@ -122,7 +126,8 @@ function changeTheme(){
         dayButtons.addClass("chooseGraphSectorNight");
         dayButtons.removeClass('chooseGraphSectorDay');
         $(".box").css("background-color", "rgba(65, 65, 65, 0.7)");
-        $(".box").css("color", "#FFFFFF")
+        $(".box").css("color", "#FFFFFF");
+        $("#mainform\\:jsfSwitch").val("false");
     }
     $("body").css("background-size", "cover");
 }
