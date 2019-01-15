@@ -27,9 +27,9 @@
 
         <h:commandLink action="#{authorizationBean.logout}" value="Logout" ajax="false"/>
 
-        <div class="flexColumn">
-            <div class="flexRow" style="margin-top: 5%">
-                <div class="flexColumn">
+        <div class="flexRow">
+            <div class="flexColumn" style="margin-top: 5%">
+                <div class="flexRow">
                     <table style="border-collapse: collapse">
                         <tr>
                             <td style="padding: 0">
@@ -73,10 +73,12 @@
                     <div class="box" style="margin-left: 50px; width: 240px;">
                         <input type="button" id="save" class="hidden" value="Save graph" style="width: 240px"/>
                         <span id="boxText">R: &#8195;<p:inputText id="r" value="#{areaCheckBean.r}" width="200px"
-                                                                  size="14"/>
+                                                                  size="14">
+                                <f:validator validatorId="RValidator"/>
+                        </p:inputText>
                 <p:slider for="r" id="rSlider" class="panelElement" minValue="2" maxValue="5" step="0.1"
                           value="#{areaCheckBean.r}"/>
-                            <f:validator validatorId="RValidator"/>
+
                     <span class="panelElement"> X: &#8195;<p:spinner id="x" value="#{areaCheckBean.x}"
                                                                      min="-2" max="2" size="13"/></span>
                     <span class="panelElement">Y: &#8195;<h:inputText id="y" value="#{areaCheckBean.y}"

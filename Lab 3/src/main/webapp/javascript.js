@@ -16,14 +16,13 @@ document.addEventListener("DOMContentLoaded", function () {
     $("#edit").click(enterEditMode);
     $("#save").click(enterDotMode);
     $("#overlay").click(drawPoint);
-    $("#clearAll").click(clearDots);
     changeTheme();
     enterEditMode();
 });
 
 function createSectorLTmenu(event) {
     chosenFigure = $('#sector_LT_figure');
-    chosenArea = $('#sectorBeanLT');
+    chosenArea = $('#j_idt7\\:sectorBeanLT');
     $("#sectorsTable").css({top: $("#sector_LT").position().top + 2, left: $("#sector_LT").position().left + 2, position: "absolute"});
     sectorButtons.forEach(function (button) {
         button.css({transform: "rotate(0deg)"});
@@ -33,7 +32,7 @@ function createSectorLTmenu(event) {
 
 function createSectorRTmenu(event) {
     chosenFigure = $('#sector_RT_figure');
-    chosenArea = $('#sectorBeanRT');
+    chosenArea = $('#j_idt7\\:sectorBeanRT');
     $("#sectorsTable").css({top: $("#sector_RT").position().top + 2, left: $("#sector_RT").position().left, position: "absolute"});
     sectorButtons.forEach(function (button) {
         button.css({transform: "rotate(90deg)"});
@@ -43,7 +42,7 @@ function createSectorRTmenu(event) {
 
 function createSectorLBmenu(event) {
     chosenFigure = $('#sector_LB_figure');
-    chosenArea = $('#sectorBeanLB');
+    chosenArea = $('#j_idt7\\:sectorBeanLB');
     $("#sectorsTable").css({top: $("#sector_LB").position().top, left: $("#sector_LB").position().left + 2, position: "absolute"});
     sectorButtons.forEach(function (button) {
         button.css({transform: "rotate(-90deg)"});
@@ -53,7 +52,7 @@ function createSectorLBmenu(event) {
 
 function createSectorRBmenu(event) {
     chosenFigure = $('#sector_RB_figure');
-    chosenArea = $('#sectorBeanRB');
+    chosenArea = $('#j_idt7\\:sectorBeanRB');
     $("#sectorsTable").css({top: $("#sector_RB").position().top, left: $("#sector_RB").position().left, position: "absolute"});
     sectorButtons.forEach(function (button) {
         button.css({transform: "rotate(180deg)"});
@@ -96,13 +95,9 @@ function changeSector(event) {
 }
 
 function drawPoint(e) {
-    $("#graphX").val((e.pageX - $("#overlay").offset().left)/160*$("#r"));
-    $("#graphY").val((e.pageY - $("#overlay").offset().top)/160*$("#r"));
-    $("#graphComputeButton").click();
-}
-
-function clearDots() {
-    $("#overlay").children().each((i, dot) => dot.remove());
+    $("#j_idt7\\:graphX").val((e.pageX - $("#overlay").offset().left)/160*$("#j_idt7\\:r"));
+    $("#j_idt7\\:graphY").val((e.pageY - $("#overlay").offset().top)/160*$("#j_idt7\\:r"));
+    $("#j_idt7\\:graphComputeButton").click();
 }
 
 function changeTheme(){
