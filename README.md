@@ -1,10 +1,10 @@
-## Internet Applications Development
+# Internet Applications Development
 
 This is a compilation of our solutions for laboratory tasks in discipline *'Internet Applications Development'*.
 
 They may not be the best. They do work, though.
 
-### Authors
+## Authors
 
 Frontend - [Nesterov Dali](https://github.com/sundalik "Dali's Github")
 
