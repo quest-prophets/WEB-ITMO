@@ -72,25 +72,31 @@
                     <div class="box" style="margin-left: 50px; width: 240px;">
                         <input type="button" id="save" class="hidden" value="Save graph" style="width: 240px"/>
                         <span id="boxText">R: &#8195;<p:inputText id="r" value="#{areaCheckBean.r}" width="200px"
-                                                                  size="14">
-                                <f:validator validatorId="RValidator"/>
+                                                                  size="14"
+                                                                  required="true"
+                                                                  requiredMessage="2 is required"
+                                                                  validatorMessage="R must be from 2 to 5."
+                                                                  converterMessage="R must be a number">
+                                <f:validateDoubleRange minimum="2.0" maximum="5.0" />
                         </p:inputText>
                 <p:slider for="r" id="rSlider" class="panelElement" minValue="2" maxValue="5" step="0.1"
-                          value="#{areaCheckBean.r}"/>
+                          value="#{areaCheckBean.r}" />
 
-                    <span class="panelElement"> X: &#8195;<p:spinner id="x" value="#{areaCheckBean.x}"
-                                                                     min="-2" max="2" size="13"/></span>
-                    <span class="panelElement">Y: &#8195;<p:inputText id="y" value="#{areaCheckBean.y}"
-                                                                      placeholder="[-5 ... 5]" size="14"
-                                                                      required="true"
-                                                                      validatorMessage="Y must be from -5 to 5.">
-                        <f:validateDoubleRange minimum="-5" maximum="5" />
-                        </p:inputText>
-                        <h:message for="y" style="color:red; margin: 7px;"/>
-                        <h:message for="r" style="color:red; margin: 7px;"/>
-                    </span>
+                <span class="panelElement"> X: &#8195;<p:spinner id="x" value="#{areaCheckBean.x}"
+                                                                 min="-2" max="2" size="13"/></span>
+                <span class="panelElement">Y: &#8195;<p:inputText id="y" value="#{areaCheckBean.y}"
+                                                                  placeholder="[-5 ... 5]" size="14"
+                                                                  required="true"
+                                                                  requiredMessage="Y is required"
+                                                                  validatorMessage="Y must be from -5 to 5."
+                                                                  converterMessage="Y must be a number">
+                    <f:validateDoubleRange minimum="-5.0" maximum="5.0" />
+                    </p:inputText>
+                </span>
+                <h:message  for="y" style="color:red; margin: 7px;display: block"/>
+                <h:message for="r" style="color:red; margin: 7px; display: block"/>
                 <p:commandButton id="check" value="Check for belonging" action="#{areaCheckBean.compute}"
-                                 update="resultTable graphPanel"/>
+                                 update="resultTable graphPanel mainForm"/>
                 <p:commandButton id="clearAll" class="panelElement" value="Clear all dots"/>
                 <input type="button" id="edit" class="panelElement" value="Edit graph"/></span>
                     </div>
