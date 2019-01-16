@@ -33,30 +33,30 @@
         <div class="flexRow">
             <div class="flexColumn" style="margin-top: 5%">
                 <div class="flexRow">
+                    <table style="border-collapse: collapse">
+                        <tr>
+                            <td style="padding: 0">
+                                <h:outputText value="#{svgBean.svgLT}" escape="false"/>
+                                <h:inputHidden id="sectorBeanLT" value="#{areaCheckBean.area2}"/>
+                            </td>
+                            <td style="padding: 0">
+                                <h:outputText value="#{svgBean.svgRT}" escape="false"/>
+                                <h:inputHidden id="sectorBeanRT" value="#{areaCheckBean.area1}"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 0">
+                                <h:outputText value="#{svgBean.svgLB}" escape="false"/>
+                                <h:inputHidden id="sectorBeanLB" value="#{areaCheckBean.area3}"/>
+                            </td>
+                            <td style="padding: 0">
+                                <h:outputText value="#{svgBean.svgRB}" escape="false"/>
+                                <h:inputHidden id="sectorBeanRB" value="#{areaCheckBean.area4}"/>
+                            </td>
+                        </tr>
+                    </table>
                     <p:outputPanel id="graphPanel">
-                        <table style="border-collapse: collapse">
-                            <tr>
-                                <td style="padding: 0">
-                                    <h:outputText value="#{svgBean.svgLT}" escape="false"/>
-                                    <h:inputHidden id="sectorBeanLT" value="#{areaCheckBean.area2}"/>
-                                </td>
-                                <td style="padding: 0">
-                                    <h:outputText value="#{svgBean.svgRT}" escape="false"/>
-                                    <h:inputHidden id="sectorBeanRT" value="#{areaCheckBean.area1}"/>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="padding: 0">
-                                    <h:outputText value="#{svgBean.svgLB}" escape="false"/>
-                                    <h:inputHidden id="sectorBeanLB" value="#{areaCheckBean.area3}"/>
-                                </td>
-                                <td style="padding: 0">
-                                    <h:outputText value="#{svgBean.svgRB}" escape="false"/>
-                                    <h:inputHidden id="sectorBeanRB" value="#{areaCheckBean.area4}"/>
-                                </td>
-                            </tr>
-                        </table>
-                        <svg id="overlay" class="graphOverlay hidden" xmlns="http://www.w3.org/2000/svg" width="400"
+                        <svg id="overlay" class="graphOverlay" xmlns="http://www.w3.org/2000/svg" width="400"
                              height="400">
                             <ui:repeat value="#{areaCheckBean.dots}" var="dot">
                                 <circle cx="#{dot.x*160/areaCheckBean.r + 200}"
@@ -77,10 +77,10 @@
                                                                   requiredMessage="2 is required"
                                                                   validatorMessage="R must be from 2 to 5."
                                                                   converterMessage="R must be a number">
-                                <f:validateDoubleRange minimum="2.0" maximum="5.0" />
+                                <f:validateDoubleRange minimum="2.0" maximum="5.0"/>
                         </p:inputText>
                 <p:slider for="r" id="rSlider" class="panelElement" minValue="2" maxValue="5" step="0.1"
-                          value="#{areaCheckBean.r}" />
+                          value="#{areaCheckBean.r}"/>
 
                 <span class="panelElement"> X: &#8195;<p:spinner id="x" value="#{areaCheckBean.x}"
                                                                  min="-2" max="2" size="13"/></span>
@@ -90,19 +90,15 @@
                                                                   requiredMessage="Y is required"
                                                                   validatorMessage="Y must be from -5 to 5."
                                                                   converterMessage="Y must be a number">
-                    <f:validateDoubleRange minimum="-5.0" maximum="5.0" />
+                    <f:validateDoubleRange minimum="-5.0" maximum="5.0"/>
                     </p:inputText>
                 </span>
-                <h:message  for="y" style="color:red; margin: 7px;display: block"/>
+                <h:message for="y" style="color:red; margin: 7px;display: block"/>
                 <h:message for="r" style="color:red; margin: 7px; display: block"/>
                 <p:commandButton id="check" value="Check for belonging" action="#{areaCheckBean.compute}"
                                  update="resultTable graphPanel mainForm"/>
                 <p:commandButton id="clearAll" class="panelElement" value="Clear all dots"/>
                 <input type="button" id="edit" class="panelElement" value="Edit graph"/></span>
-                    </div>
-                    <div class="box boxError hidden" id="error" style="margin-top: 15px"></div>
-                    <div class="box boxResult hidden" id="boxResult" style="margin-top: 15px">
-                        Result: <span class="bold" id="resultValue"/>
                     </div>
                 </div>
             </div>

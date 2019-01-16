@@ -2,10 +2,11 @@ package lab3;
 
 public class SvgBean {
     public String getSvgOverlay() {
-        return "<svg id=\"overlay\" class=\"graphOverlay hidden\" xmlns=\"http://www.w3.org/2000/svg\" width=\"400\" height=\"400\">\n" +
+        return "<svg id=\"overlay\" class=\"graphOverlay\" xmlns=\"http://www.w3.org/2000/svg\" width=\"400\"\n" +
+                "     height=\"400\">\n" +
                 "    <ui:repeat value=\"#{areaCheckBean.dots}\" var=\"dot\">\n" +
-                "        <circle cx=\"#{dot.x*160/areaCheckBean.r}\"\n" +
-                "                cy=\"#{dot.y*160/areaCheckBean.r}\"\n" +
+                "        <circle cx=\"#{dot.x*160/areaCheckBean.r + 200}\"\n" +
+                "                cy=\"#{-dot.y*160/areaCheckBean.r + 200}\"\n" +
                 "                fill=\"#{dot.res eq true ? 'green' : 'red'}\"\n" +
                 "                stroke=\"#{dot.res eq true ? 'green' : 'red'}\" r=\"3\"/>\n" +
                 "    </ui:repeat>\n" +
