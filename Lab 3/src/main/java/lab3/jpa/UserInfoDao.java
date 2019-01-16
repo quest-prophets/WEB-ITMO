@@ -101,7 +101,7 @@ public class UserInfoDao {
             session = HibUtil.getInstance().getSessionFactory().openSession();
             transaction = session.beginTransaction();
             String sql = String.format("DELETE FROM results WHERE client_id = %s", user.getId());
-            session.createSQLQuery(sql).executeUpdate();
+            session.createNativeQuery(sql).executeUpdate();
             transaction.commit();
         } catch (RollbackException exc) {
             transaction.rollback();
