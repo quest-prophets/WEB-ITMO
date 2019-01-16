@@ -13,16 +13,22 @@ public class RValidator implements Validator {
     @Override
     public void validate (FacesContext context, UIComponent component, Object o) {
         if (o == null) {
-            throw new ValidatorException(new FacesMessage("Enter R."));
+            FacesMessage msg = new FacesMessage("Enter R.");
+            msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+            throw new ValidatorException(msg);
         }
         try {
             String strR = o.toString();
             double r = Double.parseDouble(strR);
             if (r < 2 || r > 5) {
-                throw new ValidatorException(new FacesMessage("R must be from 2 to 5."));
+                FacesMessage msg = new FacesMessage("R must be from 2 to 5.");
+                msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+                throw new ValidatorException(msg);
             }
         } catch (NumberFormatException e) {
-            throw new ValidatorException(new FacesMessage("R is NaN!"));
+            FacesMessage msg = new FacesMessage("R is NaN!");
+            msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+            throw new ValidatorException(msg);
         }
 
     }

@@ -82,8 +82,9 @@
                                                                      min="-2" max="2" size="13"/></span>
                     <span class="panelElement">Y: &#8195;<p:inputText id="y" value="#{areaCheckBean.y}"
                                                                       placeholder="[-5 ... 5]" size="14"
-                                                                      required="true">
-                        <f:validator validatorId="YValidator"/>
+                                                                      required="true"
+                                                                      validatorMessage="Y must be from -5 to 5.">
+                        <f:validateDoubleRange minimum="-5" maximum="5" />
                         </p:inputText>
                         <h:message for="y" style="color:red; margin: 7px;"/>
                         <h:message for="r" style="color:red; margin: 7px;"/>

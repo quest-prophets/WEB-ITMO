@@ -9,19 +9,26 @@ import javax.faces.validator.ValidatorException;
 
 @FacesValidator("YValidator")
 public class YValidator implements Validator {
+
     @Override
     public void validate (FacesContext context, UIComponent component, Object o) {
         if (o == null) {
-            throw new ValidatorException(new FacesMessage("Enter Y."));
+            FacesMessage msg = new FacesMessage("Enter Y.");
+            msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+            throw new ValidatorException(msg);
         }
         try {
             String strY = o.toString();
             double y = Double.parseDouble(strY);
             if (y < -5 || y > 5) {
-                throw new ValidatorException(new FacesMessage("Enter Y from -5 to 5."));
+                FacesMessage msg = new FacesMessage("Y must be from -5 to 5.");
+                msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+                throw new ValidatorException(msg);
             }
         } catch (NumberFormatException e) {
-            throw new ValidatorException(new FacesMessage("Y is NaN!"));
+            FacesMessage msg = new FacesMessage("Y is NaN!");
+            msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+            throw new ValidatorException(msg);
         }
 
     }
