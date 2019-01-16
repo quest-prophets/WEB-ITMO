@@ -9,23 +9,31 @@ document.addEventListener("DOMContentLoaded", function () {
     $("#sector_RT").click(createSectorRTmenu);
     $("#sector_LB").click(createSectorLBmenu);
     $("#sector_RB").click(createSectorRBmenu);
-    $("#overlay").css({top: $("#sector_LT").position().top, left: $("#sector_LT").position().left, position: "absolute"});
+    $("#overlay").css({
+        top: $("#sector_LT").position().top,
+        left: $("#sector_LT").position().left,
+        position: "absolute"
+    });
     sectorButtons.forEach(function (button) {
         button.click(changeSector);
     });
-    $("#edit").click(enterEditMode);
     $("#save").click(enterDotMode);
-    if ($("#mainform\\:jsfSwitch").attr("value") === "true"){
+    if ($("#mainform\\:jsfSwitch").attr("value") === "true") {
         document.getElementById("dayNightSwitch").checked = true;
     }
     changeTheme();
     enterEditMode();
+    setAreasByBeanValue();
 });
 
 function createSectorLTmenu(event) {
     chosenFigure = $('#sector_LT_figure');
     chosenArea = $('#mainForm\\:sectorBeanLT');
-    $("#sectorsTable").css({top: $("#sector_LT").position().top + 2, left: $("#sector_LT").position().left + 2, position: "absolute"});
+    $("#sectorsTable").css({
+        top: $("#sector_LT").position().top + 2,
+        left: $("#sector_LT").position().left + 2,
+        position: "absolute"
+    });
     sectorButtons.forEach(function (button) {
         button.css({transform: "rotate(0deg)"});
     });
@@ -35,7 +43,11 @@ function createSectorLTmenu(event) {
 function createSectorRTmenu(event) {
     chosenFigure = $('#sector_RT_figure');
     chosenArea = $('#mainForm\\:sectorBeanRT');
-    $("#sectorsTable").css({top: $("#sector_RT").position().top + 2, left: $("#sector_RT").position().left, position: "absolute"});
+    $("#sectorsTable").css({
+        top: $("#sector_RT").position().top + 2,
+        left: $("#sector_RT").position().left,
+        position: "absolute"
+    });
     sectorButtons.forEach(function (button) {
         button.css({transform: "rotate(90deg)"});
     });
@@ -45,7 +57,11 @@ function createSectorRTmenu(event) {
 function createSectorLBmenu(event) {
     chosenFigure = $('#sector_LB_figure');
     chosenArea = $('#mainForm\\:sectorBeanLB');
-    $("#sectorsTable").css({top: $("#sector_LB").position().top, left: $("#sector_LB").position().left + 2, position: "absolute"});
+    $("#sectorsTable").css({
+        top: $("#sector_LB").position().top,
+        left: $("#sector_LB").position().left + 2,
+        position: "absolute"
+    });
     sectorButtons.forEach(function (button) {
         button.css({transform: "rotate(-90deg)"});
     });
@@ -55,7 +71,11 @@ function createSectorLBmenu(event) {
 function createSectorRBmenu(event) {
     chosenFigure = $('#sector_RB_figure');
     chosenArea = $('#mainForm\\:sectorBeanRB');
-    $("#sectorsTable").css({top: $("#sector_RB").position().top, left: $("#sector_RB").position().left, position: "absolute"});
+    $("#sectorsTable").css({
+        top: $("#sector_RB").position().top,
+        left: $("#sector_RB").position().left,
+        position: "absolute"
+    });
     sectorButtons.forEach(function (button) {
         button.css({transform: "rotate(180deg)"});
     });
@@ -96,13 +116,72 @@ function changeSector(event) {
     $("#sectorsTable").addClass("hidden");
 }
 
+function setAreasByBeanValue() {
+    changeTheme();
+    console.log("function called");
+    [$("#mainForm\\:sectorBeanLT"), $("#mainForm\\:sectorBeanRT"), $("#mainForm\\:sectorBeanLB"), $("#mainForm\\:sectorBeanRB")].forEach(function (sectorBean, index) {
+        switch (index) {
+            case 0:
+                chosenFigure = $("#sector_LT_figure");
+                break;
+            case 1:
+                chosenFigure = $("#sector_RT_figure");
+                break;
+            case 2:
+                chosenFigure = $("#sector_LB_figure");
+                break;
+            case 3:
+                chosenFigure = $("#sector_RB_figure");
+                break;
+        }
+        console.log(sectorBean.val());
+        switch (sectorBean.val()) {
+            case "1":
+                chosenFigure.attr("d", "M 40 200 q 0 -160 160 -160 v 160 Z");
+                chosenFigure.attr("fill", "#3399ff");
+                break;
+            case "2":
+                chosenFigure.attr("d", "M 120 200 q 0 -80 80 -80 v 80 Z");
+                chosenFigure.attr("fill", "#3399ff");
+                break;
+            case "3":
+                chosenFigure.attr("d", "M 40 40 h 160 v 160 h -160 Z");
+                chosenFigure.attr("fill", "#3399ff");
+                break;
+            case "4":
+                chosenFigure.attr("d", "M 120 120 h 80 v 80 h -80 Z");
+                chosenFigure.attr("fill", "#3399ff");
+                break;
+            case "5":
+                chosenFigure.attr("d", "");
+                break;
+            case "6":
+                chosenFigure.attr("d", "M 120 40 h 80 v 160 h -80 Z");
+                chosenFigure.attr("fill", "#3399ff");
+                break;
+            case "7":
+                chosenFigure.attr("d", "M 40 120 h 160 v 80 h -160 Z");
+                chosenFigure.attr("fill", "#3399ff");
+                break;
+            case "8":
+                chosenFigure.attr("d", "M 40 200 h 160 v -160 Z");
+                chosenFigure.attr("fill", "#3399ff");
+                break;
+            case "9":
+                chosenFigure.attr("d", "M 40 200 h 160 v -80 Z");
+                chosenFigure.attr("fill", "#3399ff");
+                break;
+        }
+    })
+}
+
 function drawPoint(e) {
-    $("#mainForm\\:x_input").val(Math.round((e.pageX - $("#overlay").offset().left-200)/160*$("#mainForm\\:r").val()*1000)/1000);
-    $("#mainForm\\:y").val(Math.round(-(e.pageY - $("#overlay").offset().top-200)/160*$("#mainForm\\:r").val()*1000)/1000);
+    $("#mainForm\\:x_input").val(Math.round((e.pageX - $("#overlay").offset().left - 200) / 160 * $("#mainForm\\:r").val() * 1000) / 1000);
+    $("#mainForm\\:y").val(Math.round(-(e.pageY - $("#overlay").offset().top - 200) / 160 * $("#mainForm\\:r").val() * 1000) / 1000);
     $("#mainForm\\:check").click();
 }
 
-function changeTheme(){
+function changeTheme() {
     let dayButtons = $('.chooseGraphSectorDay');
     let nightButtons = $('.chooseGraphSectorNight');
     if (document.getElementById("dayNightSwitch").checked) {

@@ -17,16 +17,16 @@
         <f:viewAction action="#{areaCheckBean.init}"/>
     </f:metadata>
 
+    <div class="onoffswitch">
+        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="dayNightSwitch"/>
+        <label class="onoffswitch-label" for="dayNightSwitch">
+            <span class="onoffswitch-inner"/>
+            <span class="onoffswitch-switch"/>
+        </label>
+    </div>
+
     <h:form id="mainForm">
         <h:inputHidden id="jsfSwitch" value="#{areaCheckBean.day}"/>
-
-        <div class="onoffswitch">
-            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="dayNightSwitch"/>
-            <label class="onoffswitch-label" for="dayNightSwitch">
-                <span class="onoffswitch-inner"/>
-                <span class="onoffswitch-switch"/>
-            </label>
-        </div>
 
         <h:commandLink action="#{authorizationBean.logout}" value="Logout" ajax="false"/>
 
@@ -97,10 +97,11 @@
                 <h:message for="y" style="color:red; margin: 7px;display: block"/>
                 <h:message for="r" style="color:red; margin: 7px; display: block"/>
                 <p:commandButton id="check" value="Check for belonging" action="#{areaCheckBean.compute}"
-                                 update="resultTable graphPanel mainForm"/>
+                                 update="resultTable graphPanel mainForm"
+                                 oncomplete="setAreasByBeanValue();"/>
                 <p:commandButton id="clearAll" class="panelElement" action="#{areaCheckBean.clearResults}"
                                  update="resultTable graphPanel" value="Clear all dots"/>
-                <input type="button" id="edit" class="panelElement" value="Edit graph"/></span>
+                <input type="button" id="edit" class="panelElement" value="Edit graph" onclick="enterEditMode()"/></span>
                     </div>
                 </div>
             </div>
@@ -125,6 +126,7 @@
             </p:dataTable>
 
         </div>
+    </h:form>
 
         <table id="sectorsTable" class="hidden">
             <tr>
@@ -187,6 +189,5 @@
                 </td>
             </tr>
         </table>
-    </h:form>
 </h:body>
 </html>
