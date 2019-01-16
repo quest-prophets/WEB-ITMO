@@ -56,18 +56,17 @@
                         </tr>
                     </table>
 
-                    <svg id="overlay" class="graphOverlay" xmlns="http://www.w3.org/2000/svg" width="400"
-                         height="400">
-                        <p:outputPanel id="graphPanel">
+                    <p:outputPanel id="graphPanel">
+                        <svg id="overlay" class="graphOverlay" xmlns="http://www.w3.org/2000/svg" width="400"
+                             height="400" onclick="drawPoint(event)">
                             <ui:repeat value="#{areaCheckBean.dots}" var="dot">
                                 <circle cx="#{dot.x*160/areaCheckBean.r + 200}"
                                         cy="#{-dot.y*160/areaCheckBean.r + 200}"
                                         fill="#{dot.res eq true ? 'green' : 'red'}"
                                         stroke="#{dot.res eq true ? 'green' : 'red'}" r="3"/>
                             </ui:repeat>
-                        </p:outputPanel>
-                    </svg>
-
+                        </svg>
+                    </p:outputPanel>
                 </div>
 
                 <div class="flexColumn">

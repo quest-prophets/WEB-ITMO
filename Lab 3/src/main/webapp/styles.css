@@ -54,24 +54,12 @@ svg text{
     border: 1px solid #000000;
 }
 
-thead {
-    background-color: #EEEEEE;
-}
-
 .box {
     border-radius: 15px;
     display: inline-block;
     padding: 10px;
     line-height: 35px;
     box-shadow: 0 0 8px black;
-}
-
-.boxError {
-    background-color: #ff7f7f;
-}
-
-.boxResult {
-    background-color: #97ff89;
 }
 
 .flexRow {
@@ -86,29 +74,9 @@ thead {
     flex-direction: column;
 }
 
-.bold {
-    font-weight: bold;
-}
-
 .hidden {
     display: none;
 }
-
-.clock{
-    font-family: digital-7-mono, serif;
-    font-size: 120px;
-    color: #00FF00;
-    background-color: #000000;
-    border-radius: 20px;
-    padding: 8px 8px 38px;
-    user-select: none;
-}
-
-@font-face {
-    font-family: digital-7-mono;
-    src: url(digital-7.mono.ttf);
-}
-
 
 .loginForm{
     background: #eeeeee;

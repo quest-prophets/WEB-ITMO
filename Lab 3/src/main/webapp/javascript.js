@@ -15,7 +15,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
     $("#edit").click(enterEditMode);
     $("#save").click(enterDotMode);
-    $("#overlay").click(drawPoint);
     if ($("#mainform\\:jsfSwitch").attr("value") === "true"){
         document.getElementById("dayNightSwitch").checked = true;
     }
