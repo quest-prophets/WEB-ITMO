@@ -5,10 +5,6 @@ var chosenArea;
 document.addEventListener("DOMContentLoaded", function () {
     sectorButtons = [$("#sectorButton1"), $("#sectorButton2"), $("#sectorButton3"), $("#sectorButton4"), $("#sectorButton5"), $("#sectorButton6"), $("#sectorButton7"), $("#sectorButton8"), $("#sectorButton9")];
     $("#dayNightSwitch").change(changeTheme);
-    $("#sector_LT").click(createSectorLTmenu);
-    $("#sector_RT").click(createSectorRTmenu);
-    $("#sector_LB").click(createSectorLBmenu);
-    $("#sector_RB").click(createSectorRBmenu);
     $("#overlay").css({
         top: $("#sector_LT").position().top,
         left: $("#sector_LT").position().left,
@@ -17,7 +13,6 @@ document.addEventListener("DOMContentLoaded", function () {
     sectorButtons.forEach(function (button) {
         button.click(changeSector);
     });
-    $("#save").click(enterDotMode);
     if ($("#mainform\\:jsfSwitch").attr("value") === "true") {
         document.getElementById("dayNightSwitch").checked = true;
     }
@@ -26,7 +21,8 @@ document.addEventListener("DOMContentLoaded", function () {
     setAreasByBeanValue();
 });
 
-function createSectorLTmenu(event) {
+function createSectorLTmenu() {
+    updateButtonsList();
     chosenFigure = $('#sector_LT_figure');
     chosenArea = $('#mainForm\\:sectorBeanLT');
     $("#sectorsTable").css({
@@ -34,13 +30,12 @@ function createSectorLTmenu(event) {
         left: $("#sector_LT").position().left + 2,
         position: "absolute"
     });
-    sectorButtons.forEach(function (button) {
-        button.css({transform: "rotate(0deg)"});
-    });
+    sectorButtons.forEach(button => button.css("transform", "rotate(0deg)"));
     $("#sectorsTable").removeClass("hidden");
 }
 
-function createSectorRTmenu(event) {
+function createSectorRTmenu() {
+    updateButtonsList();
     chosenFigure = $('#sector_RT_figure');
     chosenArea = $('#mainForm\\:sectorBeanRT');
     $("#sectorsTable").css({
@@ -48,13 +43,12 @@ function createSectorRTmenu(event) {
         left: $("#sector_RT").position().left,
         position: "absolute"
     });
-    sectorButtons.forEach(function (button) {
-        button.css({transform: "rotate(90deg)"});
-    });
+    sectorButtons.forEach(button => button.css("transform", "rotate(90deg)"));
     $("#sectorsTable").removeClass("hidden");
 }
 
-function createSectorLBmenu(event) {
+function createSectorLBmenu() {
+    updateButtonsList();
     chosenFigure = $('#sector_LB_figure');
     chosenArea = $('#mainForm\\:sectorBeanLB');
     $("#sectorsTable").css({
@@ -62,13 +56,11 @@ function createSectorLBmenu(event) {
         left: $("#sector_LB").position().left + 2,
         position: "absolute"
     });
-    sectorButtons.forEach(function (button) {
-        button.css({transform: "rotate(-90deg)"});
-    });
+    sectorButtons.forEach(button => button.css("transform", "rotate(-90deg)"));
     $("#sectorsTable").removeClass("hidden");
 }
 
-function createSectorRBmenu(event) {
+function createSectorRBmenu() {
     chosenFigure = $('#sector_RB_figure');
     chosenArea = $('#mainForm\\:sectorBeanRB');
     $("#sectorsTable").css({
@@ -76,10 +68,12 @@ function createSectorRBmenu(event) {
         left: $("#sector_RB").position().left,
         position: "absolute"
     });
-    sectorButtons.forEach(function (button) {
-        button.css({transform: "rotate(180deg)"});
-    });
+    sectorButtons.forEach(button => button.css("transform", "rotate(180deg)"));
     $("#sectorsTable").removeClass("hidden");
+}
+
+function updateButtonsList() {
+    sectorButtons = [$("#sectorButton1"), $("#sectorButton2"), $("#sectorButton3"), $("#sectorButton4"), $("#sectorButton5"), $("#sectorButton6"), $("#sectorButton7"), $("#sectorButton8"), $("#sectorButton9")];
 }
 
 function changeSector(event) {

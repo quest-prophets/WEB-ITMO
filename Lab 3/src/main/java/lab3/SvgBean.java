@@ -14,7 +14,7 @@ public class SvgBean {
     }
 
     public String getSvgLT() {
-        return "<svg id=\"sector_LT\" class=\"graphSector\" xmlns=\"http://www.w3.org/2000/svg\" width=\"200\" height=\"200\">\n" +
+        return "<svg id=\"sector_LT\" class=\"graphSector\" xmlns=\"http://www.w3.org/2000/svg\" width=\"200\" height=\"200\" onclick=\"createSectorLTmenu()\">\n" +
                 "    <path id=\"sector_LT_figure\" fill=\"3399ff\" stroke='black' d=\"\"/>\n" +
                 "    <path stroke='black' d=\"M 200 0 l -3 7\"/>\n" +
                 "    <text x=\"180\" y=\"40\" font-size=\"16\"> R</text>\n" +
@@ -23,7 +23,7 @@ public class SvgBean {
                 "</svg>";
     }
     public String getSvgLB() {
-        return "<svg id=\"sector_LB\" class=\"graphSector\" xmlns=\"http://www.w3.org/2000/svg\" width=\"200\" height=\"200\">\n" +
+        return "<svg id=\"sector_LB\" class=\"graphSector\" xmlns=\"http://www.w3.org/2000/svg\" width=\"200\" height=\"200\" onclick=\"createSectorLBmenu()\">\n" +
                 "    <path id=\"sector_LB_figure\" style=\"transform: rotate(-90deg); transform-origin: 100px 100px\"\n" +
                 "          fill=\"3399ff\"\n" +
                 "          stroke='black' d=\"\"/>\n" +
@@ -35,7 +35,7 @@ public class SvgBean {
     }
 
     public String getSvgRT() {
-        return  "<svg id=\"sector_RT\" class=\"graphSector\" xmlns=\"http://www.w3.org/2000/svg\" width=\"200\" height=\"200\">\n" +
+        return  "<svg id=\"sector_RT\" class=\"graphSector\" xmlns=\"http://www.w3.org/2000/svg\" width=\"200\" height=\"200\" onclick=\"createSectorRTmenu()\">\n" +
                 "    <path id=\"sector_RT_figure\" style=\"transform: rotate(90deg); transform-origin: 100px 100px\"\n" +
                 "          fill=\"3399ff\"\n" +
                 "          stroke='black' d=\"\"/>\n" +
@@ -49,7 +49,7 @@ public class SvgBean {
     }
 
     public String getSvgRB() {
-        return  "<svg id=\"sector_RB\" class=\"graphSector\" xmlns=\"http://www.w3.org/2000/svg\" width=\"200\" height=\"200\">\n" +
+        return  "<svg id=\"sector_RB\" class=\"graphSector\" xmlns=\"http://www.w3.org/2000/svg\" width=\"200\" height=\"200\" onclick=\"createSectorRBmenu()\">\n" +
                 "    <path id=\"sector_RB_figure\" style=\"transform: rotate(180deg); transform-origin: 100px 100px\"\n" +
                 "          fill=\"3399ff\"\n" +
                 "          stroke='black' d=\"\"/>\n" +
