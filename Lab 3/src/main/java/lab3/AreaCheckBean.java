@@ -99,9 +99,9 @@ public class AreaCheckBean implements Serializable {
                 case 7:
                     return (x >= -r / 2 && y >= -r);
                 case 8:
-                    return (y <= -(x + r));
+                    return (y >= -(x + r));
                 case 9:
-                    return (y <= -(2*x + r));
+                    return (y >= -(2*x + r));
                 default:
                     return false;
             }
@@ -120,9 +120,9 @@ public class AreaCheckBean implements Serializable {
                 case 7:
                     return (x <= r && y >= -r / 2);
                 case 8:
-                    return (y <= (x - r));
+                    return (y >= (x - r));
                 case 9:
-                    return (y <= (x - r) / 2);
+                    return (y >= (x - r) / 2);
                 default:
                     return false;
             }
