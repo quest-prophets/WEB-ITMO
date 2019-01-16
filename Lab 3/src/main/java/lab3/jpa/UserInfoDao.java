@@ -46,6 +46,22 @@ public class UserInfoDao {
         }
     }
 
+    public void saveOrUpdate (UserInfo res) throws HibernateException, RollbackException {
+        Session session = null;
+        Transaction transaction = null;
+        try {
+            session = HibUtil.getInstance().getSessionFactory().openSession();
+            transaction = session.beginTransaction();
+            session.saveOrUpdate(res);
+            transaction.commit();
+        } catch (RollbackException exc) {
+            transaction.rollback();
+            throw exc;
+        } finally {
+            session.close();
+        }
+    }
+
     public void update (UserInfo res) throws HibernateException, RollbackException {
         Session session = null;
         Transaction transaction = null;

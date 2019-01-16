@@ -20,7 +20,7 @@ public class UserInfoService {
     }
 
     public void updateUser(UserInfo user) {
-        userInfoDao.update(user);
+        userInfoDao.saveOrUpdate(user);
     }
 
     public List<UserInfo> findAllUsers() {
