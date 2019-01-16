@@ -37,7 +37,7 @@ public class AreaCheckBean implements Serializable {
     }
 
     public boolean checkAreaHit(double x, double y, double r, int area1, int area2, int area3, int area4) {
-        if ((x > 0) && (y > 0)) {
+        if ((x >= 0) && (y >= 0)) {
             switch (area1) {
                 case 1:
                     if ((pow(x, 2) + pow(y, 2)) <= pow(r, 2)) return true;
@@ -58,7 +58,7 @@ public class AreaCheckBean implements Serializable {
                 default:
                     return false;
             }
-        } else if ((x < 0) && (y > 0)) {
+        } else if ((x <= 0) && (y >= 0)) {
             switch (area2) {
                 case 1:
                     if ((pow(x, 2) + pow(y, 2)) <= pow(r, 2)) return true;
@@ -79,7 +79,7 @@ public class AreaCheckBean implements Serializable {
                 default:
                     return false;
             }
-        } else if ((x < 0) && (y < 0)) {
+        } else if ((x <= 0) && (y <= 0)) {
             switch (area3) {
                 case 1:
                     if ((pow(x, 2) + pow(y, 2)) <= pow(r, 2)) return true;
@@ -100,7 +100,7 @@ public class AreaCheckBean implements Serializable {
                 default:
                     return false;
             }
-        } else if ((x > 0) && (y < 0)) {
+        } else if ((x >= 0) && (y <= 0)) {
             switch (area4) {
                 case 1:
                     if ((pow(x, 2) + pow(y, 2)) <= pow(r, 2)) return true;
@@ -123,8 +123,7 @@ public class AreaCheckBean implements Serializable {
             }
         } else if (area1 == 5 && area2 == 5 && area3 == 5 && area4 == 5)
             return false;
-        else
-            return true;
+        return true;
     }
 
     public void compute() {
