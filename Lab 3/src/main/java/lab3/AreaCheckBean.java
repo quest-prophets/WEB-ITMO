@@ -22,11 +22,16 @@ public class AreaCheckBean implements Serializable {
 
 
     public void init() {
-        if (historyBean.user.results.size() >= 1) {
-            area1 = historyBean.user.results.get(historyBean.user.results.size() - 1).getArea1();
-            area2 = historyBean.user.results.get(historyBean.user.results.size() - 1).getArea2();
-            area3 = historyBean.user.results.get(historyBean.user.results.size() - 1).getArea3();
-            area4 = historyBean.user.results.get(historyBean.user.results.size() - 1).getArea4();
+        List<Result> results = historyBean.user.results;
+        if (results.size() >= 1) {
+            dots = new ArrayList<>();
+            area1 = results.get(results.size() - 1).getArea1();
+            area2 = results.get(results.size() - 1).getArea2();
+            area3 = results.get(results.size() - 1).getArea3();
+            area4 = results.get(results.size() - 1).getArea4();
+            for (int i = 1; i < results.size(); i++) {
+                dots.add(new Dot(results.get(i).getX(), results.get(i).getY(), results.get(i).getR(), results.get(i).isRes()));
+            }
             this.day = historyBean.user.results.get(historyBean.user.results.size() - 1).isDay();
         }
     }
@@ -40,84 +45,84 @@ public class AreaCheckBean implements Serializable {
         if ((x >= 0) && (y >= 0)) {
             switch (area1) {
                 case 1:
-                    if ((pow(x, 2) + pow(y, 2)) <= pow(r, 2)) return true;
+                    return ((pow(x, 2) + pow(y, 2)) <= pow(r, 2));
                 case 2:
-                    if ((pow(x, 2) + pow(y, 2)) <= pow(r / 2, 2)) return true;
+                    return ((pow(x, 2) + pow(y, 2)) <= pow(r / 2, 2));
                 case 3:
-                    if (x <= r && y <= r) return true;
+                    return (x <= r && y <= r);
                 case 4:
-                    if (x <= r / 2 && y <= r / 2) return true;
+                    return (x <= r / 2 && y <= r / 2);
                 case 6:
-                    if (x <= r / 2 && y <= r) return true;
+                    return (x <= r && y <= r / 2);
                 case 7:
-                    if (x <= r && y <= r / 2) return true;
+                    return (x <= r / 2 && y <= r);
                 case 8:
-                    if (y <= ((-1) * x + r)) return true;
+                    return (y <= ((-1) * x + r));
                 case 9:
-                    if (y <= (x / (-2) + r / 2)) return true;
+                    return (y <= (-2*x + r));
                 default:
                     return false;
             }
         } else if ((x <= 0) && (y >= 0)) {
             switch (area2) {
                 case 1:
-                    if ((pow(x, 2) + pow(y, 2)) <= pow(r, 2)) return true;
+                    return ((pow(x, 2) + pow(y, 2)) <= pow(r, 2));
                 case 2:
-                    if ((pow(x, 2) + pow(y, 2)) <= pow(r / 2, 2)) return true;
+                    return ((pow(x, 2) + pow(y, 2)) <= pow(r / 2, 2));
                 case 3:
-                    if (x >= -r && y <= r) return true;
+                    return (x >= -r && y <= r);
                 case 4:
-                    if (x >= -r / 2 && y <= r / 2) return true;
+                    return (x >= -r / 2 && y <= r / 2);
                 case 6:
-                    if (x >= -r / 2 && y <= r) return true;
+                    return (x >= -r / 2 && y <= r);
                 case 7:
-                    if (x >= -r && y <= r / 2) return true;
+                    return (x >= -r && y <= r / 2);
                 case 8:
-                    if (y <= (x + r)) return true;
+                    return (y <= (x + r));
                 case 9:
-                    if (y <= (x + r) / 2) return true;
+                    return (y <= (x + r) / 2);
                 default:
                     return false;
             }
         } else if ((x <= 0) && (y <= 0)) {
             switch (area3) {
                 case 1:
-                    if ((pow(x, 2) + pow(y, 2)) <= pow(r, 2)) return true;
+                    return ((pow(x, 2) + pow(y, 2)) <= pow(r, 2));
                 case 2:
-                    if ((pow(x, 2) + pow(y, 2)) <= pow(r / 2, 2)) return true;
+                    return ((pow(x, 2) + pow(y, 2)) <= pow(r / 2, 2));
                 case 3:
-                    if (x >= -r && y >= -r) return true;
+                    return (x >= -r && y >= -r);
                 case 4:
-                    if (x >= -r / 2 && y >= -r / 2) return true;
+                    return ((x >= -r / 2) && (y >= -r / 2));
                 case 6:
-                    if (x >= -r / 2 && y >= -r) return true;
+                    return ((x >= -r) && (y >= -r / 2));
                 case 7:
-                    if (x >= -r && y >= -r / 2) return true;
+                    return (x >= -r / 2 && y >= -r);
                 case 8:
-                    if (y <= -(x + r)) return true;
+                    return (y <= -(x + r));
                 case 9:
-                    if (y <= -(x + r) / 2) return true;
+                    return (y <= -(2*x + r));
                 default:
                     return false;
             }
         } else if ((x >= 0) && (y <= 0)) {
             switch (area4) {
                 case 1:
-                    if ((pow(x, 2) + pow(y, 2)) <= pow(r, 2)) return true;
+                    return ((pow(x, 2) + pow(y, 2)) <= pow(r, 2));
                 case 2:
-                    if ((pow(x, 2) + pow(y, 2)) <= pow(r / 2, 2)) return true;
+                    return ((pow(x, 2) + pow(y, 2)) <= pow(r / 2, 2));
                 case 3:
-                    if (x <= r && y >= -r) return true;
+                    return (x <= r && y >= -r);
                 case 4:
-                    if (x <= r / 2 && y >= -r / 2) return true;
+                    return (x <= r / 2 && y >= -r / 2);
                 case 6:
-                    if (x <= r / 2 && y >= -r) return true;
+                    return (x <= r / 2 && y >= -r);
                 case 7:
-                    if (x <= r && y >= -r / 2) return true;
+                    return (x <= r && y >= -r / 2);
                 case 8:
-                    if (y <= (x - r)) return true;
+                    return (y <= (x - r));
                 case 9:
-                    if (y <= (x - r) / 2) return true;
+                    return (y <= (x - r) / 2);
                 default:
                     return false;
             }
@@ -130,12 +135,13 @@ public class AreaCheckBean implements Serializable {
         if (!checkDataValidity()) return;
         boolean isHit = checkAreaHit(x, y, r, area1, area2, area3, area4);
         historyBean.addResult(new Result(x, y, r, isHit, LocalDateTime.now(), area1, area2, area3, area4, day));
-        dots.add(new Dot(x, y, isHit));
+        dots.add(new Dot(x, y, r, isHit));
     }
 
     public void newDataCompute() {
-        for (Dot dot: dots) {
-            dot.setRes(checkAreaHit(dot.getX(), dot.getY(), r, area1, area2, area3, area4));
+        List<Result> results = historyBean.user.results;
+        for (int i = 1; i < results.size(); i++) {
+            dots.add(new Dot(results.get(i).getX(), results.get(i).getY(), results.get(i).getR(), results.get(i).isRes()));
         }
     }
 

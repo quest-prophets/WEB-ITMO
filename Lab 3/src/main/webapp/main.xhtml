@@ -71,17 +71,24 @@
 
                 <div class="flexColumn">
                     <div class="box" style="margin-left: 50px; width: 240px;">
-                        <input type="button" id="save" class="hidden" value="Save graph" style="width: 240px" onclick="enterDotMode()"/>
+                        <input type="button" id="save" class="hidden" value="Save graph" style="width: 240px"
+                               onclick="enterDotMode()"/>
                         <span id="boxText">R: &#8195;<p:inputText id="r" value="#{areaCheckBean.r}" width="200px"
                                                                   size="14"
                                                                   required="true"
                                                                   requiredMessage="R is required"
                                                                   validatorMessage="R must be from 2 to 5."
-                                                                  converterMessage="R must be a number">
+                                                                  converterMessage="R must be a number"
+                                                                  valueChangeListener="#{areaCheckBean.newDataCompute}"
+                                                                  onkeyup="document.getElementById('mainForm:hiddenBtn').click()">
                                 <f:validateDoubleRange minimum="2.0" maximum="5.0"/>
                         </p:inputText>
+                            <p:commandButton style="display:none" update="graphPanel"
+                                             action="#{areaCheckBean.newDataCompute}"
+                                             id="hiddenBtn" oncomplete="setAreasByBeanValue();"/>
                 <p:slider for="r" id="rSlider" class="panelElement" minValue="2" maxValue="5" step="0.1"
-                          value="#{areaCheckBean.r}"/>
+                          value="#{areaCheckBean.r}"
+                          onSlideEnd="document.getElementById('mainForm:hiddenBtn').click()"/>
 
                 <span class="panelElement"> X: &#8195;<p:spinner id="x" value="#{areaCheckBean.x}"
                                                                  min="-2" max="2" size="13"/></span>
@@ -101,7 +108,8 @@
                                  oncomplete="setAreasByBeanValue();"/>
                 <p:commandButton id="clearAll" class="panelElement" action="#{areaCheckBean.clearResults}"
                                  update="resultTable graphPanel" value="Clear all dots"/>
-                <input type="button" id="edit" class="panelElement" value="Edit graph" onclick="enterEditMode()"/></span>
+                <input type="button" id="edit" class="panelElement" value="Edit graph"
+                       onclick="enterEditMode()"/></span>
                     </div>
                 </div>
             </div>
@@ -128,66 +136,66 @@
         </div>
     </h:form>
 
-        <table id="sectorsTable" class="hidden">
-            <tr>
-                <td>
-                    <svg id='sectorButton1' class='chooseGraphSectorDay' xmlns='http://www.w3.org/2000/svg' width='65'
-                         height='65'>
-                        <path fill='#3399ff' stroke='black' d='M 10 60 q 0 -50 50 -50 v 50 Z'/>
-                    </svg>
-                </td>
-                <td>
-                    <svg id='sectorButton2' class='chooseGraphSectorDay' xmlns='http://www.w3.org/2000/svg' width='65'
-                         height='65'>
-                        <path fill='#3399ff' stroke='black' d='M 35 60 q 0 -25 25 -25 v 25 Z'/>
-                    </svg>
-                </td>
-                <td>
-                    <svg id='sectorButton3' class='chooseGraphSectorDay' xmlns='http://www.w3.org/2000/svg' width='65'
-                         height='65'>
-                        <path fill='#3399ff' stroke='black' d='M 10 10 v 50 h 50 v -50 Z'/>
-                    </svg>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <svg id='sectorButton4' class='chooseGraphSectorDay' xmlns='http://www.w3.org/2000/svg' width='65'
-                         height='65'>
-                        <path fill='#3399ff' stroke='black' d='M 35 35 v 25 h 25 v -25 Z'/>
-                    </svg>
-                </td>
-                <td>
-                    <svg id='sectorButton5' class='chooseGraphSectorDay' xmlns='http://www.w3.org/2000/svg' width='65'
-                         height='65'>
-                    </svg>
-                </td>
-                <td>
-                    <svg id='sectorButton6' class='chooseGraphSectorDay' xmlns='http://www.w3.org/2000/svg' width='65'
-                         height='65'>
-                        <path fill='#3399ff' stroke='black' d='M 35 10 v 50 h 25 v -50 Z'/>
-                    </svg>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <svg id='sectorButton7' class='chooseGraphSectorDay' xmlns='http://www.w3.org/2000/svg' width='65'
-                         height='65'>
-                        <path fill='#3399ff' stroke='black' d='M 10 35 v 25 h 50 v -25 Z'/>
-                    </svg>
-                </td>
-                <td>
-                    <svg id='sectorButton8' class='chooseGraphSectorDay' xmlns='http://www.w3.org/2000/svg' width='65'
-                         height='65'>
-                        <path fill='#3399ff' stroke='black' d='M 10 60 h 50 v -50 Z'/>
-                    </svg>
-                </td>
-                <td>
-                    <svg id='sectorButton9' class='chooseGraphSectorDay' xmlns='http://www.w3.org/2000/svg' width='65'
-                         height='65'>
-                        <path fill='#3399ff' stroke='black' d='M 10 60 h 50 v -25 Z'/>
-                    </svg>
-                </td>
-            </tr>
-        </table>
+    <table id="sectorsTable" class="hidden">
+        <tr>
+            <td>
+                <svg id='sectorButton1' class='chooseGraphSectorDay' xmlns='http://www.w3.org/2000/svg' width='65'
+                     height='65'>
+                    <path fill='#3399ff' stroke='black' d='M 10 60 q 0 -50 50 -50 v 50 Z'/>
+                </svg>
+            </td>
+            <td>
+                <svg id='sectorButton2' class='chooseGraphSectorDay' xmlns='http://www.w3.org/2000/svg' width='65'
+                     height='65'>
+                    <path fill='#3399ff' stroke='black' d='M 35 60 q 0 -25 25 -25 v 25 Z'/>
+                </svg>
+            </td>
+            <td>
+                <svg id='sectorButton3' class='chooseGraphSectorDay' xmlns='http://www.w3.org/2000/svg' width='65'
+                     height='65'>
+                    <path fill='#3399ff' stroke='black' d='M 10 10 v 50 h 50 v -50 Z'/>
+                </svg>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <svg id='sectorButton4' class='chooseGraphSectorDay' xmlns='http://www.w3.org/2000/svg' width='65'
+                     height='65'>
+                    <path fill='#3399ff' stroke='black' d='M 35 35 v 25 h 25 v -25 Z'/>
+                </svg>
+            </td>
+            <td>
+                <svg id='sectorButton5' class='chooseGraphSectorDay' xmlns='http://www.w3.org/2000/svg' width='65'
+                     height='65'>
+                </svg>
+            </td>
+            <td>
+                <svg id='sectorButton6' class='chooseGraphSectorDay' xmlns='http://www.w3.org/2000/svg' width='65'
+                     height='65'>
+                    <path fill='#3399ff' stroke='black' d='M 35 10 v 50 h 25 v -50 Z'/>
+                </svg>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <svg id='sectorButton7' class='chooseGraphSectorDay' xmlns='http://www.w3.org/2000/svg' width='65'
+                     height='65'>
+                    <path fill='#3399ff' stroke='black' d='M 10 35 v 25 h 50 v -25 Z'/>
+                </svg>
+            </td>
+            <td>
+                <svg id='sectorButton8' class='chooseGraphSectorDay' xmlns='http://www.w3.org/2000/svg' width='65'
+                     height='65'>
+                    <path fill='#3399ff' stroke='black' d='M 10 60 h 50 v -50 Z'/>
+                </svg>
+            </td>
+            <td>
+                <svg id='sectorButton9' class='chooseGraphSectorDay' xmlns='http://www.w3.org/2000/svg' width='65'
+                     height='65'>
+                    <path fill='#3399ff' stroke='black' d='M 10 60 h 50 v -25 Z'/>
+                </svg>
+            </td>
+        </tr>
+    </table>
 </h:body>
 </html>

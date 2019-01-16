@@ -3,15 +3,12 @@ var sectorButtons;
 var chosenArea;
 
 document.addEventListener("DOMContentLoaded", function () {
-    sectorButtons = [$("#sectorButton1"), $("#sectorButton2"), $("#sectorButton3"), $("#sectorButton4"), $("#sectorButton5"), $("#sectorButton6"), $("#sectorButton7"), $("#sectorButton8"), $("#sectorButton9")];
+    updateButtonsList();
     $("#dayNightSwitch").change(changeTheme);
     $("#overlay").css({
         top: $("#sector_LT").position().top,
         left: $("#sector_LT").position().left,
         position: "absolute"
-    });
-    sectorButtons.forEach(function (button) {
-        button.click(changeSector);
     });
     if ($("#mainform\\:jsfSwitch").attr("value") === "true") {
         document.getElementById("dayNightSwitch").checked = true;
@@ -74,6 +71,7 @@ function createSectorRBmenu() {
 
 function updateButtonsList() {
     sectorButtons = [$("#sectorButton1"), $("#sectorButton2"), $("#sectorButton3"), $("#sectorButton4"), $("#sectorButton5"), $("#sectorButton6"), $("#sectorButton7"), $("#sectorButton8"), $("#sectorButton9")];
+    sectorButtons.forEach(button => button.click(changeSector));
 }
 
 function changeSector(event) {
@@ -111,8 +109,12 @@ function changeSector(event) {
 }
 
 function setAreasByBeanValue() {
+    $("#overlay").css({
+        top: $("#sector_LT").position().top,
+        left: $("#sector_LT").position().left,
+        position: "absolute"
+    });
     changeTheme();
-    console.log("function called");
     [$("#mainForm\\:sectorBeanLT"), $("#mainForm\\:sectorBeanRT"), $("#mainForm\\:sectorBeanLB"), $("#mainForm\\:sectorBeanRB")].forEach(function (sectorBean, index) {
         switch (index) {
             case 0:
