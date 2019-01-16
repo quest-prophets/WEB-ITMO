@@ -55,17 +55,19 @@
                             </td>
                         </tr>
                     </table>
-                    <p:outputPanel id="graphPanel">
-                        <svg id="overlay" class="graphOverlay" xmlns="http://www.w3.org/2000/svg" width="400"
-                             height="400">
+
+                    <svg id="overlay" class="graphOverlay" xmlns="http://www.w3.org/2000/svg" width="400"
+                         height="400">
+                        <p:outputPanel id="graphPanel">
                             <ui:repeat value="#{areaCheckBean.dots}" var="dot">
                                 <circle cx="#{dot.x*160/areaCheckBean.r + 200}"
                                         cy="#{-dot.y*160/areaCheckBean.r + 200}"
                                         fill="#{dot.res eq true ? 'green' : 'red'}"
                                         stroke="#{dot.res eq true ? 'green' : 'red'}" r="3"/>
                             </ui:repeat>
-                        </svg>
-                    </p:outputPanel>
+                        </p:outputPanel>
+                    </svg>
+
                 </div>
 
                 <div class="flexColumn">
@@ -74,7 +76,7 @@
                         <span id="boxText">R: &#8195;<p:inputText id="r" value="#{areaCheckBean.r}" width="200px"
                                                                   size="14"
                                                                   required="true"
-                                                                  requiredMessage="2 is required"
+                                                                  requiredMessage="R is required"
                                                                   validatorMessage="R must be from 2 to 5."
                                                                   converterMessage="R must be a number">
                                 <f:validateDoubleRange minimum="2.0" maximum="5.0"/>
@@ -97,7 +99,8 @@
                 <h:message for="r" style="color:red; margin: 7px; display: block"/>
                 <p:commandButton id="check" value="Check for belonging" action="#{areaCheckBean.compute}"
                                  update="resultTable graphPanel mainForm"/>
-                <p:commandButton id="clearAll" class="panelElement" value="Clear all dots"/>
+                <p:commandButton id="clearAll" class="panelElement" action="#{areaCheckBean.clearResults}"
+                                 update="resultTable graphPanel" value="Clear all dots"/>
                 <input type="button" id="edit" class="panelElement" value="Edit graph"/></span>
                     </div>
                 </div>
