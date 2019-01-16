@@ -134,6 +134,11 @@ public class AreaCheckBean implements Serializable {
         dots.add(new Dot(x, y, isHit));
     }
 
+    public void clearResults() {
+        historyBean.clearResults();
+        dots.clear();
+    }
+
     public CheckHistoryBean getHistoryBean() {
         return historyBean;
     }
