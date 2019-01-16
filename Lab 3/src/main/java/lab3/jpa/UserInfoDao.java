@@ -93,4 +93,13 @@ public class UserInfoDao {
             session.close();
         }
     }
+
+    public void deleteAllUserResults (UserInfo user) throws HibernateException, RollbackException{
+        Session session = HibUtil.getInstance().getSessionFactory().openSession();
+        session.beginTransaction();
+        String sql = String.format("DELETE FROM results WHERE id = %s", user.getId());
+        session.createSQLQuery(sql).executeUpdate();
+        session.getTransaction().commit();
+        session.close();
+    }
 }

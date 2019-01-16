@@ -23,6 +23,10 @@ public class UserInfoService {
         userInfoDao.saveOrUpdate(user);
     }
 
+    public void deleteAllUserResults (UserInfo user) {
+        userInfoDao.deleteAllUserResults(user);
+    }
+
     public List<UserInfo> findAllUsers() {
         return userInfoDao.findAll();
     }

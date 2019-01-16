@@ -1,6 +1,10 @@
 package lab3;
 
+import lab3.jpa.HibUtil;
+import lab3.jpa.UserInfoDao;
 import lab3.jpa.UserInfoService;
+import org.hibernate.Session;
+
 import java.io.Serializable;
 import java.util.List;
 import javax.faces.context.FacesContext;
@@ -30,4 +34,12 @@ public class CheckHistoryBean implements Serializable {
         new UserInfoService().updateUser(user);
     }
 
+    public void clearResults() {
+        if (user == null && user.results == null) return;
+        user.results.clear();
+
+        UserInfoService userInfoService = new UserInfoService();
+        userInfoService.deleteAllUserResults(user);
+        userInfoService.updateUser(user);
+    }
 }
