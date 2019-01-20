@@ -1,10 +1,11 @@
-## You can see the labs via helios server :)
+# Internet Applications Development
 
-Lab1:
-https://se.ifmo.ru/~s243864/index.php
+This is a compilation of our solutions for laboratory tasks in discipline *'Internet Applications Development'*.
 
-Lab2: 
-Sorry you can not
+They may not be the best. They do work, though.
 
-Lab3:
-Nope you can't
+## Authors
+
+Frontend - [Nesterov Dali](https://github.com/sundalik "Dali's Github")
+
+Backend - [Kokov Alexey](https://github.com/nailstorms "Alexey's Github")
