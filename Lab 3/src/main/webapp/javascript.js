@@ -14,7 +14,10 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("dayNightSwitch").checked = true;
     }
     changeTheme();
-    enterEditMode();
+    if ($("#mainForm\\:sectorBeanRB").val() == "5" && $("#mainForm\\:sectorBeanLB").val() == "5" && $("#mainForm\\:sectorBeanLT").val() == "5"  && $("#mainForm\\:sectorBeanRT").val() == "5" ){
+        enterEditMode()
+    } else
+        enterDotMode();
     setAreasByBeanValue();
 });
 

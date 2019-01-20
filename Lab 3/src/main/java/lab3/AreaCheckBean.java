@@ -32,7 +32,7 @@ public class AreaCheckBean implements Serializable {
             area2 = results.get(results.size() - 1).getArea2();
             area3 = results.get(results.size() - 1).getArea3();
             area4 = results.get(results.size() - 1).getArea4();
-            for (int i = 1; i < results.size(); i++) {
+            for (int i = 0; i < results.size(); i++) {
                 dots.add(new Dot(results.get(i).getX(), results.get(i).getY(), results.get(i).getR(), false));
             }
             for (Dot dot: dots) {
