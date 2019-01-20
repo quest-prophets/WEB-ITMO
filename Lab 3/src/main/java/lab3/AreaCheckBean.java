@@ -30,7 +30,10 @@ public class AreaCheckBean implements Serializable {
             area3 = results.get(results.size() - 1).getArea3();
             area4 = results.get(results.size() - 1).getArea4();
             for (int i = 1; i < results.size(); i++) {
-                dots.add(new Dot(results.get(i).getX(), results.get(i).getY(), results.get(i).getR(), results.get(i).isRes()));
+                dots.add(new Dot(results.get(i).getX(), results.get(i).getY(), results.get(i).getR(), false));
+            }
+            for (Dot dot: dots) {
+                dot.setRes(checkAreaHit(dot.getX(), dot.getY(), r, area1, area2, area3, area4));
             }
             this.day = historyBean.user.results.get(historyBean.user.results.size() - 1).isDay();
         }

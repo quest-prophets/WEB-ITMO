@@ -62,8 +62,8 @@
                             <ui:repeat value="#{areaCheckBean.dots}" var="dot">
                                 <circle cx="#{dot.x*160/areaCheckBean.r + 200}"
                                         cy="#{-dot.y*160/areaCheckBean.r + 200}"
-                                        fill="#{dot.res eq true ? 'green' : 'red'}"
-                                        stroke="#{dot.res eq true ? 'green' : 'red'}" r="3"/>
+                                        fill="#{dot.res eq true ? 'lime' : 'red'}"
+                                        stroke="#{dot.res eq true ? 'lime' : 'red'}" r="3"/>
                             </ui:repeat>
                         </svg>
                     </p:outputPanel>
