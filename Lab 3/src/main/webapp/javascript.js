@@ -58,6 +58,7 @@ function createSectorLBmenu() {
 }
 
 function createSectorRBmenu() {
+    updateButtonsList();
     chosenFigure = $('#sector_RB_figure');
     chosenArea = $('#mainForm\\:sectorBeanRB');
     $("#sectorsTable").css({
@@ -173,9 +174,9 @@ function setAreasByBeanValue() {
 }
 
 function drawPoint(e) {
-    $("#mainForm\\:x_input").val(Math.round((e.pageX - $("#overlay").offset().left - 200) / 160 * $("#mainForm\\:r").val() * 1000) / 1000);
-    $("#mainForm\\:y").val(Math.round(-(e.pageY - $("#overlay").offset().top - 200) / 160 * $("#mainForm\\:r").val() * 1000) / 1000);
-    $("#mainForm\\:check").click();
+    $("#mainForm\\:hiddenX").val(Math.round((e.pageX - $("#overlay").offset().left - 200) / 160 * $("#mainForm\\:r").val() * 1000) / 1000);
+    $("#mainForm\\:hiddenY").val(Math.round(-(e.pageY - $("#overlay").offset().top - 200) / 160 * $("#mainForm\\:r").val() * 1000) / 1000);
+    $("#mainForm\\:hiddenCheck").click();
 }
 
 function changeTheme() {

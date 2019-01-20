@@ -20,6 +20,9 @@ public class AreaCheckBean implements Serializable {
 
     private boolean day = false;
 
+    private double hiddenX;
+    private double hiddenY;
+
 
     public void init() {
         List<Result> results = historyBean.user.results;
@@ -134,11 +137,19 @@ public class AreaCheckBean implements Serializable {
         return true;
     }
 
-    public void compute() {
+    public void computeFromPanel() {
+        compute(x, y);
+    }
+
+    public void computeFromGraph(){
+        compute(hiddenX, hiddenY);
+    }
+
+    private void compute(double hiddenX, double hiddenY) {
         if (!checkDataValidity()) return;
-        boolean isHit = checkAreaHit(x, y, r, area1, area2, area3, area4);
-        historyBean.addResult(new Result(x, y, r, isHit, LocalDateTime.now(), area1, area2, area3, area4, day));
-        dots.add(new Dot(x, y, r, isHit));
+        boolean isHit = checkAreaHit(hiddenX, hiddenY, r, area1, area2, area3, area4);
+        historyBean.addResult(new Result(hiddenX, hiddenY, r, isHit, LocalDateTime.now(), area1, area2, area3, area4, day));
+        dots.add(new Dot(hiddenX, hiddenY, r, isHit));
     }
 
     public void newRCompute() {
@@ -230,5 +241,21 @@ public class AreaCheckBean implements Serializable {
 
     public void setDay(boolean day) {
         this.day = day;
+    }
+
+    public double getHiddenX() {
+        return hiddenX;
+    }
+
+    public double getHiddenY() {
+        return hiddenY;
+    }
+
+    public void setHiddenX(double hiddenX) {
+        this.hiddenX = hiddenX;
+    }
+
+    public void setHiddenY(double hiddenY) {
+        this.hiddenY = hiddenY;
     }
 }

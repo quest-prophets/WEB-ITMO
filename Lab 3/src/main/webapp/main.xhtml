@@ -106,7 +106,7 @@
                 <h:message for="y" style="color:red; margin: 7px;display: block"/>
                 <h:message for="r" style="color:red; margin: 7px; display: block"/>
                 <p:commandButton id="check" class="panelElement" value="Check for belonging"
-                                 action="#{areaCheckBean.compute}"
+                                 action="#{areaCheckBean.computeFromPanel}"
                                  update="resultTable graphPanel mainForm"
                                  oncomplete="setAreasByBeanValue();"/>
                 <p:commandButton id="clearAll" class="panelElement" action="#{areaCheckBean.clearResults}"
@@ -114,6 +114,12 @@
                                  oncomplete="setAreasByBeanValue();"/>
                 <p:commandButton id="edit" class="panelElement" value="Edit graph"
                                  onclick="enterEditMode()"/></span>
+
+                        <p:inputText type="hidden" id="hiddenX" value="#{areaCheckBean.hiddenX}"/>
+                        <p:inputText type="hidden" id="hiddenY" value="#{areaCheckBean.hiddenY}"/>
+                        <p:commandButton style="display:none" action="#{areaCheckBean.computeFromGraph}" id="hiddenCheck"
+                                         update="resultTable graphPanel mainForm"
+                                         oncomplete="setAreasByBeanValue();"/>
                     </div>
                 </div>
             </div>
