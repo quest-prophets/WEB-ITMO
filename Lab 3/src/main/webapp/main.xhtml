@@ -118,7 +118,7 @@
                 </div>
             </div>
 
-            <p:dataTable id="resultTable" class="tableResult" style="margin-top: 30px; width: 500px"
+            <p:dataTable id="resultTable" class="tableResult" style="margin-top: 30px; width: 710px"
                          value="#{checkHistoryBean.results}" var="elem">
                 <p:column headerText="R">
                     <h:outputText value="#{elem.r}"/>
@@ -132,8 +132,20 @@
                 <p:column headerText="Result">
                     <h:outputText value="#{elem.res}"/>
                 </p:column>
-                <p:column headerText="Time">
-                    <h:outputText value="#{elem.time}"/>
+                <p:column headerText="Time" style="width: 85px">
+                    <h:outputText value="#{elem.formattedLDT}"/>
+                </p:column>
+                <p:column headerText="Area I">
+                    <h:outputText value="#{elem.area1}"/>
+                </p:column>
+                <p:column headerText="Area II">
+                    <h:outputText value="#{elem.area2}"/>
+                </p:column>
+                <p:column headerText="Area III">
+                    <h:outputText value="#{elem.area3}"/>
+                </p:column>
+                <p:column headerText="Area IV">
+                    <h:outputText value="#{elem.area4}"/>
                 </p:column>
             </p:dataTable>
 

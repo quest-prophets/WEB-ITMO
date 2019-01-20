@@ -108,6 +108,7 @@ function changeSector(event) {
     $("#sectorsTable").addClass("hidden");
 }
 
+//magic method
 function setAreasByBeanValue() {
     $("#overlay").css({
         top: $("#sector_LT").position().top,

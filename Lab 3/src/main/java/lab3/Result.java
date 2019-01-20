@@ -3,6 +3,7 @@ package lab3;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Table(name="results")
@@ -22,6 +23,9 @@ public class Result implements Serializable {
     private int area4;
     private boolean isDay;
 
+    @Transient
+    private String formattedLDT;
+
     @ManyToOne
     @JoinColumn(name = "client_id", nullable = false)
     UserInfo user = null;
@@ -36,6 +40,7 @@ public class Result implements Serializable {
         this.r = r;
         this.res = res;
         this.time = time;
+        formattedLDT = DateTimeFormatter.ofPattern("dd-MM-yyyy'\n'HH:mm:ss").format(time);
     }
 
     public Result(double x, double y, double r, boolean res, LocalDateTime time, UserInfo user) {
@@ -45,6 +50,7 @@ public class Result implements Serializable {
         this.res = res;
         this.time = time;
         this.user = user;
+        formattedLDT = DateTimeFormatter.ofPattern("dd-MM-yyyy'\n'HH:mm:ss").format(time);
     }
 
     public Result(double x, double y, double r, boolean res, LocalDateTime time, boolean isDay) {
@@ -54,6 +60,7 @@ public class Result implements Serializable {
         this.res = res;
         this.time = time;
         this.isDay = isDay;
+        formattedLDT = DateTimeFormatter.ofPattern("dd-MM-yyyy'\n'HH:mm:ss").format(time);
     }
 
     public Result(double x, double y, double r, boolean res, LocalDateTime time, int area1, int area2, int area3, int area4, boolean isDay) {
@@ -67,6 +74,7 @@ public class Result implements Serializable {
         this.area3 = area3;
         this.area4 = area4;
         this.isDay = isDay;
+        formattedLDT = DateTimeFormatter.ofPattern("dd-MM-yyyy'\n'HH:mm:ss").format(time);
     }
 
     public double getX() {
@@ -156,5 +164,13 @@ public class Result implements Serializable {
 
     public void setDay(boolean day) {
         isDay = day;
+    }
+
+    public String getFormattedLDT() {
+        return formattedLDT;
+    }
+
+    public void setFormattedLDT(String formattedLDT) {
+        this.formattedLDT = formattedLDT;
     }
 }
