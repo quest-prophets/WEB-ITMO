@@ -147,10 +147,6 @@ public class AreaCheckBean implements Serializable {
         }
     }
 
-    public void newAreaCompute() {
-
-    }
-
     public void clearResults() {
         historyBean.clearResults();
         dots.clear();

@@ -130,7 +130,7 @@ function setAreasByBeanValue() {
                 chosenFigure = $("#sector_RB_figure");
                 break;
         }
-        console.log(sectorBean.val());
+
         switch (sectorBean.val()) {
             case "1":
                 chosenFigure.attr("d", "M 40 200 q 0 -160 160 -160 v 160 Z");
@@ -207,7 +207,7 @@ function changeTheme() {
 }
 
 function enterEditMode() {
-    $("#save").removeClass("hidden");
+    $("#mainForm\\:save").removeClass("hidden");
     $("#r").addClass("hidden");
     $("#rSlider").addClass("hidden");
     $("#x").addClass("hidden");
@@ -215,14 +215,14 @@ function enterEditMode() {
     $("#boxText").addClass("hidden");
     $("#check").addClass("hidden");
     $("#clearAll").addClass("hidden");
-    $("#edit").addClass("hidden");
+    $("#mainForm\\:edit").addClass("hidden");
     $("#error").addClass("hidden");
     $("#boxResult").addClass("hidden");
     $("#overlay").addClass("hidden");
 }
 
 function enterDotMode() {
-    $("#save").addClass("hidden");
+    $("#mainForm\\:save").addClass("hidden");
     $("#r").removeClass("hidden");
     $("#rSlider").removeClass("hidden");
     $("#x").removeClass("hidden");
@@ -230,7 +230,7 @@ function enterDotMode() {
     $("#boxText").removeClass("hidden");
     $("#check").removeClass("hidden");
     $("#clearAll").removeClass("hidden");
-    $("#edit").removeClass("hidden");
+    $("#mainForm\\:edit").removeClass("hidden");
     $("#overlay").removeClass("hidden");
     $("#sectorsTable").addClass("hidden");
 }

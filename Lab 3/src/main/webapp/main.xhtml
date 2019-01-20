@@ -71,8 +71,10 @@
 
                 <div class="flexColumn">
                     <div class="box" style="margin-left: 50px; width: 240px;">
-                        <input type="button" id="save" class="hidden" value="Save graph" style="width: 240px"
-                               onclick="enterDotMode()"/>
+                        <p:commandButton id="save" class="hidden" value="Save graph" update="graphPanel"
+                                         style="width: 240px"
+                                         onclick="enterDotMode()" action="#{areaCheckBean.newRCompute}"
+                                         oncomplete="setAreasByBeanValue();"/>
                         <span id="boxText">R: &#8195;<p:inputText id="r" value="#{areaCheckBean.r}" width="200px"
                                                                   size="14"
                                                                   required="true"
@@ -87,7 +89,7 @@
                                              action="#{areaCheckBean.newRCompute}"
                                              id="hiddenBtn" oncomplete="setAreasByBeanValue();"/>
                 <p:slider for="r" id="rSlider" class="panelElement" minValue="2" maxValue="5" step="0.1"
-                          value="#{areaCheckBean.r}"
+                          value="#{areaCheckBean.r}" onSlide="document.getElementById('mainForm:hiddenBtn').click()"
                           onSlideEnd="document.getElementById('mainForm:hiddenBtn').click()"/>
 
                 <span class="panelElement"> X: &#8195;<p:spinner id="x" value="#{areaCheckBean.x}"
@@ -103,13 +105,15 @@
                 </span>
                 <h:message for="y" style="color:red; margin: 7px;display: block"/>
                 <h:message for="r" style="color:red; margin: 7px; display: block"/>
-                <p:commandButton id="check" value="Check for belonging" action="#{areaCheckBean.compute}"
+                <p:commandButton id="check" class="panelElement" value="Check for belonging"
+                                 action="#{areaCheckBean.compute}"
                                  update="resultTable graphPanel mainForm"
                                  oncomplete="setAreasByBeanValue();"/>
                 <p:commandButton id="clearAll" class="panelElement" action="#{areaCheckBean.clearResults}"
-                                 update="resultTable graphPanel" value="Clear all dots" oncomplete="setAreasByBeanValue();"/>
-                <input type="button" id="edit" class="panelElement" value="Edit graph"
-                       onclick="enterEditMode()"/></span>
+                                 update="resultTable graphPanel" value="Clear all dots"
+                                 oncomplete="setAreasByBeanValue();"/>
+                <p:commandButton id="edit" class="panelElement" value="Edit graph"
+                                 onclick="enterEditMode()"/></span>
                     </div>
                 </div>
             </div>
