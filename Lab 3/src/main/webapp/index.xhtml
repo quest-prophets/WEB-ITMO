@@ -22,10 +22,14 @@
             <h:form style="margin-bottom: 0">
                 <h:inputText id="username" value="#{authorizationBean.username}" a:placeholder="Login"
                              style="margin-bottom: 8px" required="true"
-                             requiredMessage="Username is empty"/> <br/>
+                             requiredMessage="Username is empty" validatorMessage="Username: Only latin letters and numbers are supported">
+                    <f:validateRegex pattern="[a-zA-Z0-9]+"/>
+                </h:inputText><br/>
                 <h:inputSecret id="password" value="#{authorizationBean.password}" required="true"
                                requiredMessage="Password is empty" a:placeholder="Password"
-                               style="margin-bottom: 8px"/> <br/>
+                               style="margin-bottom: 8px" validatorMessage="Password: Only latin letters and numbers are supported">
+                    <f:validateRegex pattern="[a-zA-Z0-9]+"/>
+                </h:inputSecret><br/>
                 <h:commandButton value="Log In" action="#{authorizationBean.auth}" style="margin-right: 8px"/>
                 <h:commandButton value="Register" action="#{authorizationBean.register}"/> <br/>
                 <h:outputLabel value="#{authMessageBean.msg}" rendered="#{not empty authMessageBean.msg}"/>
