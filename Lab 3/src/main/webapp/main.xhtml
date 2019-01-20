@@ -28,7 +28,7 @@
     <h:form id="mainForm">
         <h:inputHidden id="jsfSwitch" value="#{areaCheckBean.day}"/>
 
-        <h:commandLink action="#{authorizationBean.logout}" value="Logout" ajax="false"/>
+        <h:commandButton action="#{authorizationBean.logout}" value="Logout" ajax="false"/>
 
         <div class="flexRow">
             <div class="flexColumn" style="margin-top: 5%">
@@ -79,12 +79,12 @@
                                                                   requiredMessage="R is required"
                                                                   validatorMessage="R must be from 2 to 5."
                                                                   converterMessage="R must be a number"
-                                                                  valueChangeListener="#{areaCheckBean.newDataCompute}"
+                                                                  valueChangeListener="#{areaCheckBean.newRCompute}"
                                                                   onkeyup="document.getElementById('mainForm:hiddenBtn').click()">
                                 <f:validateDoubleRange minimum="2.0" maximum="5.0"/>
                         </p:inputText>
                             <p:commandButton style="display:none" update="graphPanel"
-                                             action="#{areaCheckBean.newDataCompute}"
+                                             action="#{areaCheckBean.newRCompute}"
                                              id="hiddenBtn" oncomplete="setAreasByBeanValue();"/>
                 <p:slider for="r" id="rSlider" class="panelElement" minValue="2" maxValue="5" step="0.1"
                           value="#{areaCheckBean.r}"
@@ -107,7 +107,7 @@
                                  update="resultTable graphPanel mainForm"
                                  oncomplete="setAreasByBeanValue();"/>
                 <p:commandButton id="clearAll" class="panelElement" action="#{areaCheckBean.clearResults}"
-                                 update="resultTable graphPanel" value="Clear all dots"/>
+                                 update="resultTable graphPanel" value="Clear all dots" oncomplete="setAreasByBeanValue();"/>
                 <input type="button" id="edit" class="panelElement" value="Edit graph"
                        onclick="enterEditMode()"/></span>
                     </div>

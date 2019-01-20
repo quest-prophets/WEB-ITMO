@@ -138,11 +138,14 @@ public class AreaCheckBean implements Serializable {
         dots.add(new Dot(x, y, r, isHit));
     }
 
-    public void newDataCompute() {
-        List<Result> results = historyBean.user.results;
-        for (int i = 1; i < results.size(); i++) {
-            dots.add(new Dot(results.get(i).getX(), results.get(i).getY(), results.get(i).getR(), results.get(i).isRes()));
+    public void newRCompute() {
+        for (Dot dot: dots) {
+            dot.setRes(checkAreaHit(dot.getX(), dot.getY(), r, area1, area2, area3, area4));
         }
+    }
+
+    public void newAreaCompute() {
+
     }
 
     public void clearResults() {
