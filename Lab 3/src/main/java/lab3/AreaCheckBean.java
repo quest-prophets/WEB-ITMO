@@ -9,7 +9,7 @@ import static java.lang.Math.pow;
 public class AreaCheckBean implements Serializable {
     private CheckHistoryBean historyBean = null;
     private List<Dot> dots = new ArrayList<>();
-    private double x = 1.0;
+    private double x = 0.0;
     private double y = 0.0;
     private double r = 2.0;
 

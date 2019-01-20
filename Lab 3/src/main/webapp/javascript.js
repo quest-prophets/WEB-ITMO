@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("dayNightSwitch").checked = true;
     }
     changeTheme();
-    if ($("#mainForm\\:sectorBeanRB").val() == "5" && $("#mainForm\\:sectorBeanLB").val() == "5" && $("#mainForm\\:sectorBeanLT").val() == "5"  && $("#mainForm\\:sectorBeanRT").val() == "5" ){
+    if ($("#mainForm\\:sectorBeanRB").val() == "5" && $("#mainForm\\:sectorBeanLB").val() == "5" && $("#mainForm\\:sectorBeanLT").val() == "5" && $("#mainForm\\:sectorBeanRT").val() == "5") {
         enterEditMode()
     } else
         enterDotMode();
@@ -238,4 +238,10 @@ function enterDotMode() {
     $("#mainForm\\:edit").removeClass("hidden");
     $("#overlay").removeClass("hidden");
     $("#sectorsTable").addClass("hidden");
+}
+
+function resetY() {
+    if ($("#mainForm\\:y").val() < -5 || $("#mainForm\\:y").val() > 5 || isNaN($("#mainForm\\:y").val())) {
+        $("#mainForm\\:y").val(0.0);
+    }
 }

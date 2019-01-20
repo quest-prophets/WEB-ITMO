@@ -82,7 +82,8 @@
                                                                   validatorMessage="R must be from 2 to 5."
                                                                   converterMessage="R must be a number"
                                                                   valueChangeListener="#{areaCheckBean.newRCompute}"
-                                                                  onkeyup="document.getElementById('mainForm:hiddenBtn').click()">
+                                                                  onkeyup="document.getElementById('mainForm:hiddenBtn').click()"
+                                                                  onfocus="resetY()">
                                 <f:validateDoubleRange minimum="2.0" maximum="5.0"/>
                         </p:inputText>
                             <p:commandButton style="display:none" update="graphPanel"
@@ -90,7 +91,7 @@
                                              id="hiddenBtn" oncomplete="setAreasByBeanValue();"/>
                 <p:slider for="r" id="rSlider" class="panelElement" minValue="2" maxValue="5" step="0.1"
                           value="#{areaCheckBean.r}" onSlide="document.getElementById('mainForm:hiddenBtn').click()"
-                          onSlideEnd="document.getElementById('mainForm:hiddenBtn').click()"/>
+                          onSlideEnd="document.getElementById('mainForm:hiddenBtn').click()" onSlideStart="resetY()"/>
 
                 <span class="panelElement"> X: &#8195;<p:spinner id="x" value="#{areaCheckBean.x}"
                                                                  min="-2" max="2" size="13"/></span>
@@ -111,15 +112,16 @@
                                  oncomplete="setAreasByBeanValue();"/>
                 <p:commandButton id="clearAll" class="panelElement" action="#{areaCheckBean.clearResults}"
                                  update="resultTable graphPanel" value="Clear all dots"
-                                 oncomplete="setAreasByBeanValue();"/>
+                                 oncomplete="setAreasByBeanValue();" immediate="true"/>
                 <p:commandButton id="edit" class="panelElement" value="Edit graph"
                                  onclick="enterEditMode()"/></span>
 
                         <p:inputText type="hidden" id="hiddenX" value="#{areaCheckBean.hiddenX}"/>
                         <p:inputText type="hidden" id="hiddenY" value="#{areaCheckBean.hiddenY}"/>
-                        <p:commandButton style="display:none" action="#{areaCheckBean.computeFromGraph}" id="hiddenCheck"
+                        <p:commandButton style="display:none" action="#{areaCheckBean.computeFromGraph}"
+                                         id="hiddenCheck"
                                          update="resultTable graphPanel mainForm"
-                                         oncomplete="setAreasByBeanValue();"/>
+                                         oncomplete="setAreasByBeanValue();" onclick="resetY()"/>
                     </div>
                 </div>
             </div>
