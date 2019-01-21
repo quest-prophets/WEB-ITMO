@@ -1,18 +1,6 @@
 package lab3;
 
 public class SvgBean {
-    public String getSvgOverlay() {
-        return "<svg id=\"overlay\" class=\"graphOverlay\" xmlns=\"http://www.w3.org/2000/svg\" width=\"400\"\n" +
-                "     height=\"400\">\n" +
-                "    <ui:repeat value=\"#{areaCheckBean.dots}\" var=\"dot\">\n" +
-                "        <circle cx=\"#{dot.x*160/areaCheckBean.r + 200}\"\n" +
-                "                cy=\"#{-dot.y*160/areaCheckBean.r + 200}\"\n" +
-                "                fill=\"#{dot.res eq true ? 'green' : 'red'}\"\n" +
-                "                stroke=\"#{dot.res eq true ? 'green' : 'red'}\" r=\"3\"/>\n" +
-                "    </ui:repeat>\n" +
-                "</svg>";
-    }
-
     public String getSvgLT() {
         return "<svg id=\"sector_LT\" class=\"graphSector\" xmlns=\"http://www.w3.org/2000/svg\" width=\"200\" height=\"200\" onclick=\"createSectorLTmenu()\">\n" +
                 "    <path id=\"sector_LT_figure\" fill=\"3399ff\" stroke='black' d=\"\"/>\n" +
@@ -22,6 +10,7 @@ public class SvgBean {
                 "    <g id=\"dots_LT\"/>\n" +
                 "</svg>";
     }
+
     public String getSvgLB() {
         return "<svg id=\"sector_LB\" class=\"graphSector\" xmlns=\"http://www.w3.org/2000/svg\" width=\"200\" height=\"200\" onclick=\"createSectorLBmenu()\">\n" +
                 "    <path id=\"sector_LB_figure\" style=\"transform: rotate(-90deg); transform-origin: 100px 100px\"\n" +
@@ -35,7 +24,7 @@ public class SvgBean {
     }
 
     public String getSvgRT() {
-        return  "<svg id=\"sector_RT\" class=\"graphSector\" xmlns=\"http://www.w3.org/2000/svg\" width=\"200\" height=\"200\" onclick=\"createSectorRTmenu()\">\n" +
+        return "<svg id=\"sector_RT\" class=\"graphSector\" xmlns=\"http://www.w3.org/2000/svg\" width=\"200\" height=\"200\" onclick=\"createSectorRTmenu()\">\n" +
                 "    <path id=\"sector_RT_figure\" style=\"transform: rotate(90deg); transform-origin: 100px 100px\"\n" +
                 "          fill=\"3399ff\"\n" +
                 "          stroke='black' d=\"\"/>\n" +
@@ -49,7 +38,7 @@ public class SvgBean {
     }
 
     public String getSvgRB() {
-        return  "<svg id=\"sector_RB\" class=\"graphSector\" xmlns=\"http://www.w3.org/2000/svg\" width=\"200\" height=\"200\" onclick=\"createSectorRBmenu()\">\n" +
+        return "<svg id=\"sector_RB\" class=\"graphSector\" xmlns=\"http://www.w3.org/2000/svg\" width=\"200\" height=\"200\" onclick=\"createSectorRBmenu()\">\n" +
                 "    <path id=\"sector_RB_figure\" style=\"transform: rotate(180deg); transform-origin: 100px 100px\"\n" +
                 "          fill=\"3399ff\"\n" +
                 "          stroke='black' d=\"\"/>\n" +

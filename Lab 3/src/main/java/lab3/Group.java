@@ -17,7 +17,7 @@ public class Group implements Serializable {
     @JoinColumn(name = "client_id", nullable = false)
     UserInfo user = null;
 
-    public Group(){
+    public Group() {
 
     }
 

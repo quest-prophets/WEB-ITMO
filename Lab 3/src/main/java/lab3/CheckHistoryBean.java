@@ -1,9 +1,6 @@
 package lab3;
 
-import lab3.jpa.HibUtil;
-import lab3.jpa.UserInfoDao;
 import lab3.jpa.UserInfoService;
-import org.hibernate.Session;
 
 import java.io.Serializable;
 import java.util.List;
@@ -13,9 +10,9 @@ import javax.servlet.http.HttpSession;
 public class CheckHistoryBean implements Serializable {
     UserInfo user = null;
 
-    public void init () {
+    public void init() {
         UserInfoService service = new UserInfoService();
-        String username = (String) ((HttpSession)(FacesContext.getCurrentInstance().getExternalContext().getSession(false))).getAttribute("username");
+        String username = (String) ((HttpSession) (FacesContext.getCurrentInstance().getExternalContext().getSession(false))).getAttribute("username");
         List<UserInfo> userInfos = service.findAllUsers();
         user = userInfos.stream()
                 .filter(userInfo -> username.equals(userInfo.username))
@@ -27,7 +24,7 @@ public class CheckHistoryBean implements Serializable {
         return user.results;
     }
 
-    public void addResult (Result res) {
+    public void addResult(Result res) {
         if (user == null && user.results == null) return;
         user.results.add(res);
         res.user = user;

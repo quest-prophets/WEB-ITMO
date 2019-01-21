@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 @Entity
-@Table(name="results")
+@Table(name = "results")
 public class Result implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

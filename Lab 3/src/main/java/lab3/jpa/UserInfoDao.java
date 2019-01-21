@@ -1,6 +1,5 @@
 package lab3.jpa;
 
-import lab3.Result;
 import lab3.UserInfo;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;

@@ -32,10 +32,10 @@ public class AreaCheckBean implements Serializable {
             area2 = results.get(results.size() - 1).getArea2();
             area3 = results.get(results.size() - 1).getArea3();
             area4 = results.get(results.size() - 1).getArea4();
-            for (int i = 0; i < results.size(); i++) {
-                dots.add(new Dot(results.get(i).getX(), results.get(i).getY(), results.get(i).getR(), false));
+            for (Result result : results) {
+                dots.add(new Dot(result.getX(), result.getY(), result.getR(), false));
             }
-            for (Dot dot: dots) {
+            for (Dot dot : dots) {
                 dot.setRes(checkAreaHit(dot.getX(), dot.getY(), r, area1, area2, area3, area4));
             }
             this.day = historyBean.user.results.get(historyBean.user.results.size() - 1).isDay();
@@ -65,7 +65,7 @@ public class AreaCheckBean implements Serializable {
                 case 8:
                     return (y <= ((-1) * x + r));
                 case 9:
-                    return (y <= (-2*x + r));
+                    return (y <= (-2 * x + r));
                 default:
                     return false;
             }
@@ -107,7 +107,7 @@ public class AreaCheckBean implements Serializable {
                 case 8:
                     return (y >= -(x + r));
                 case 9:
-                    return (y >= -(2*x + r));
+                    return (y >= -(2 * x + r));
                 default:
                     return false;
             }
@@ -132,16 +132,15 @@ public class AreaCheckBean implements Serializable {
                 default:
                     return false;
             }
-        } else if (area1 == 5 && area2 == 5 && area3 == 5 && area4 == 5)
-            return false;
-        return true;
+        }
+        return false;
     }
 
     public void computeFromPanel() {
         compute(x, y);
     }
 
-    public void computeFromGraph(){
+    public void computeFromGraph() {
         compute(hiddenX, hiddenY);
     }
 
@@ -153,7 +152,7 @@ public class AreaCheckBean implements Serializable {
     }
 
     public void newRCompute() {
-        for (Dot dot: dots) {
+        for (Dot dot : dots) {
             dot.setRes(checkAreaHit(dot.getX(), dot.getY(), r, area1, area2, area3, area4));
         }
     }
