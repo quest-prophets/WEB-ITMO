@@ -1,0 +1,27 @@
+body{
+    overflow: hidden;
+}
+
+.mainMenuButton:hover path{
+    fill: white;
+    stroke: white;
+}
+
+.mainMenuButton:hover text{
+    fill: black;
+    stroke: black;
+}
+
+.mainMenuButton:hover{
+    cursor: pointer;
+}
+
+.mainMenu {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.hidden {
+    display: none;
+}
