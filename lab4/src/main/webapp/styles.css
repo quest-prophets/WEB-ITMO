@@ -1,19 +1,105 @@
-body{
+body {
     overflow: hidden;
+    background: black;
 }
 
-.mainMenuButton:hover path{
+.loginPage {
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 980">\
+        <path stroke="black" fill="rgba(0,0,0,0.94)" d="M 0 0 L 1920 0 L 1920 980 L 0 980 Z"></path>\
+        <path stroke="white" stroke-width="5" d="M 0 100 L 1920 900"></path>\
+        <path stroke="white" stroke-width="5" d="M 0 800 L 1920 250"></path>\
+        <path stroke="white" stroke-width="5" d="M 1500 0 L 800 980"></path>\
+        <path stroke="white" stroke-width="5" d="M 0 300 L 1920 150"></path>\
+        <path stroke="white" stroke-width="5" d="M 700 0 L 900 980"></path>\
+        <path stroke="white" stroke-width="5" d="M 300 980 L 1920 550"></path>\
+        <path stroke="white" stroke-width="5" d="M 250 0 L 550 980"></path>\
+        <path stroke="white" stroke-width="5" d="M 1700 980 L 1000 0"></path>\
+        <path stroke="white" stroke-width="5" d="M 0 500 L 1200 980"></path>\
+        <path stroke="white" stroke-width="5" d="M 1800 0 L 1500 980"></path>\
+        <path stroke="white" stroke-width="5" d="M 600 0 L 200 980"></path>\
+        <path stroke="white" stroke-width="5" d="M 1200 0 L 1920 500"></path>\
+        <path stroke="white" stroke-width="5" d="M 600 0 L 1200 980"></path>\
+        <path stroke="white" stroke-width="5" d="M 1200 0 L 1500 980"></path>\
+        <path stroke="white" stroke-width="5" d="M 0 700 L 500 0"></path>\
+        <path stroke="white" stroke-width="5" d="M 900 0 L 500 980"></path>\
+        <path stroke="white" stroke-width="5" d="M 0 300 L 400 980"></path>\
+        <path stroke="white" stroke-width="5" d="M 950 0 L 1300 980"></path>\
+        <path stroke="white" stroke-width="5" d="M 1350 980 L 1920 500"></path>\
+    </svg>') no-repeat fixed center center;
+    background-size: cover;
+}
+
+.loginInput{
+    color: white;
+    width: 200px;
+    height: 20px;
+    background-color: black;
+    font-weight: bold;
+    margin-top: 8px;
+}
+
+.loginButton{
+    width: 100px;
+    height: 25px;
+    cursor: pointer;
+}
+
+.flexColumn{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.mainMenuButton:hover path {
     fill: white;
     stroke: white;
 }
 
-.mainMenuButton:hover text{
+.mainMenuButton:hover text {
     fill: black;
     stroke: black;
 }
 
-.mainMenuButton:hover{
+.mainMenuButton:hover {
     cursor: pointer;
+}
+
+.mainMenuButton1 {
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 980">\
+    <path stroke="black" fill="black" d="M 0 245 v -245 h 1920 v 122.5 Z"></path>\
+    </svg>');
+}
+
+.mainMenuButton2 {
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 980">\
+        <path stroke="black" fill="black" d="M 0 367.5 v -122.5 L 1920 122.5 v 490 Z"></path>\
+    </svg>');
+}
+
+.mainMenuButton3 {
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 980">\
+        <path stroke="black" fill="black" d="M 0 857.5 v -490 L 1920 612.5 v 122.5 Z"></path>\
+    </svg>');
+}
+
+.mainMenuButton4 {
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 980">\
+        <path stroke="black" fill="black" d="M 0 857.5 v 122.5 h 1920 v -245 Z"></path>\
+    <path stroke="white" stroke-width="5px" d="M 0 245 L 1920 122.5"></path>\
+    <path stroke="white" stroke-width="5px" d="M 0 367.5 L 1920 612.5"></path>\
+    <path stroke="white" stroke-width="5px" d="M 0 857.5 L 1920 735"></path>\
+    </svg>');
+}
+
+.mainMenuButtonTextRotate {
+    transform: rotate(-3.9deg);
+}
+
+.mainMenuButtonText {
+    color: white;
+    font-size: 110px;
+    font-family: arial;
 }
 
 .mainMenu {
