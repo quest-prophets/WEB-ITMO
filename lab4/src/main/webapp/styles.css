@@ -5,12 +5,11 @@ body {
 
 .loginPage {
     background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 980">\
-        <path stroke="black" fill="rgba(0,0,0,0.94)" d="M 0 0 L 1920 0 L 1920 980 L 0 980 Z"></path>\
+        <rect x="0" y="0" fill="rgba(0,0,0,0.94)" width="1920" height="980"></rect>\
         <style>\
             .loginLine{\
                 opacity:0;\
             }\
-\
             @keyframes logLine {\
                 0% {\
                     opacity: 0;\
@@ -23,32 +22,60 @@ body {
                 }\
             }\
         </style>\
-        <path class="loginLine" style="animation: logLine 2s 0.00s infinite" stroke="rgba(255,255,255,0.6)" stroke-width="5" d="M 0 100 L 1920 900"></path>\
-        <path class="loginLine" style="animation: logLine 2s 0.20s infinite" stroke="rgba(255,255,255,0.6)" stroke-width="5" d="M 1920 250 L 0 800"></path>\
-        <path class="loginLine" style="animation: logLine 2s 0.40s infinite" stroke="rgba(255,255,255,0.6)" stroke-width="5" d="M 1500 0 L 800 980"></path>\
-        <path class="loginLine" style="animation: logLine 2s 0.60s infinite" stroke="rgba(255,255,255,0.6)" stroke-width="5" d="M 0 300 L 1920 150"></path>\
-        <path class="loginLine" style="animation: logLine 2s 0.80s infinite" stroke="rgba(255,255,255,0.6)" stroke-width="5" d="M 700 0 L 900 980"></path>\
-        <path class="loginLine" style="animation: logLine 2s 1.00s infinite" stroke="rgba(255,255,255,0.6)" stroke-width="5" d="M 1920 550 L 300 980"></path>\
-        <path class="loginLine" style="animation: logLine 2s 1.20s infinite" stroke="rgba(255,255,255,0.6)" stroke-width="5" d="M 250 0 L 550 980"></path>\
-        <path class="loginLine" style="animation: logLine 2s 1.40s infinite" stroke="rgba(255,255,255,0.6)" stroke-width="5" d="M 1200 980 L 0 500"></path>\
-        <path class="loginLine" style="animation: logLine 2s 1.60s infinite" stroke="rgba(255,255,255,0.6)" stroke-width="5" d="M 1700 980 L 1000 0"></path>\
-        <path class="loginLine" style="animation: logLine 2s 1.80s infinite" stroke="rgba(255,255,255,0.6)" stroke-width="5" d="M 1800 0 L 1500 980"></path>\
-        <path class="loginLine" style="animation: logLine 2s 2.00s infinite" stroke="rgba(255,255,255,0.6)" stroke-width="5" d="M 200 980 0 L 1650 0"></path>\
-        <path class="loginLine" style="animation: logLine 2s 2.20s infinite" stroke="rgba(255,255,255,0.6)" stroke-width="5" d="M 450 0 L 700 980"></path>\
-        <path class="loginLine" style="animation: logLine 2s 2.40s infinite" stroke="rgba(255,255,255,0.6)" stroke-width="5" d="M 600 0 L 1200 980"></path>\
-        <path class="loginLine" style="animation: logLine 2s 2.60s infinite" stroke="rgba(255,255,255,0.6)" stroke-width="5" d="M 500 980 L 950 0"></path>\
-        <path class="loginLine" style="animation: logLine 2s 2.80s infinite" stroke="rgba(255,255,255,0.6)" stroke-width="5" d="M 1550 980 L 1300 0"></path>\
-        <path class="loginLine" style="animation: logLine 2s 3.00s infinite" stroke="rgba(255,255,255,0.6)" stroke-width="5" d="M 1200 0 L 1920 700"></path>\
-        <path class="loginLine" style="animation: logLine 2s 3.20s infinite" stroke="rgba(255,255,255,0.6)" stroke-width="5" d="M 0 700 L 500 0"></path>\
-        <path class="loginLine" style="animation: logLine 2s 3.40s infinite" stroke="rgba(255,255,255,0.6)" stroke-width="5" d="M 0 300 L 400 980"></path>\
-        <path class="loginLine" style="animation: logLine 2s 3.60s infinite" stroke="rgba(255,255,255,0.6)" stroke-width="5" d="M 850 0 L 1300 980"></path>\
-        <path class="loginLine" style="animation: logLine 2s 3.80s infinite" stroke="rgba(255,255,255,0.6)" stroke-width="5" d="M 1300 980 L 1920 400"></path>\
+        <path class="loginLine" style="animation: logLine 3.80s 0.00s infinite" stroke="#AAAAAA" stroke-width="5" d="M 0 100 L 1920 900"></path>\
+        <path class="loginLine" style="animation: logLine 3.80s 0.20s infinite" stroke="#AAAAAA" stroke-width="5" d="M 1920 250 L 0 800"></path>\
+        <path class="loginLine" style="animation: logLine 3.80s 0.40s infinite" stroke="#AAAAAA" stroke-width="5" d="M 1500 0 L 800 980"></path>\
+        <path class="loginLine" style="animation: logLine 3.80s 0.60s infinite" stroke="#AAAAAA" stroke-width="5" d="M 0 300 L 1920 150"></path>\
+        <path class="loginLine" style="animation: logLine 3.80s 0.80s infinite" stroke="#AAAAAA" stroke-width="5" d="M 700 0 L 900 980"></path>\
+        <path class="loginLine" style="animation: logLine 3.80s 1.00s infinite" stroke="#AAAAAA" stroke-width="5" d="M 1920 550 L 300 980"></path>\
+        <path class="loginLine" style="animation: logLine 3.80s 1.20s infinite" stroke="#AAAAAA" stroke-width="5" d="M 250 0 L 550 980"></path>\
+        <path class="loginLine" style="animation: logLine 3.80s 1.40s infinite" stroke="#AAAAAA" stroke-width="5" d="M 1200 980 L 0 500"></path>\
+        <path class="loginLine" style="animation: logLine 3.80s 1.60s infinite" stroke="#AAAAAA" stroke-width="5" d="M 1700 980 L 1000 0"></path>\
+        <path class="loginLine" style="animation: logLine 3.80s 1.80s infinite" stroke="#AAAAAA" stroke-width="5" d="M 1800 0 L 1500 980"></path>\
+        <path class="loginLine" style="animation: logLine 3.80s 2.00s infinite" stroke="#AAAAAA" stroke-width="5" d="M 200 980 0 L 1650 0"></path>\
+        <path class="loginLine" style="animation: logLine 3.80s 2.20s infinite" stroke="#AAAAAA" stroke-width="5" d="M 450 0 L 700 980"></path>\
+        <path class="loginLine" style="animation: logLine 3.80s 2.40s infinite" stroke="#AAAAAA" stroke-width="5" d="M 600 0 L 1200 980"></path>\
+        <path class="loginLine" style="animation: logLine 3.80s 2.60s infinite" stroke="#AAAAAA" stroke-width="5" d="M 500 980 L 950 0"></path>\
+        <path class="loginLine" style="animation: logLine 3.80s 2.80s infinite" stroke="#AAAAAA" stroke-width="5" d="M 1550 980 L 1300 0"></path>\
+        <path class="loginLine" style="animation: logLine 3.80s 3.00s infinite" stroke="#AAAAAA" stroke-width="5" d="M 1200 0 L 1920 700"></path>\
+        <path class="loginLine" style="animation: logLine 3.80s 3.20s infinite" stroke="#AAAAAA" stroke-width="5" d="M 0 700 L 500 0"></path>\
+        <path class="loginLine" style="animation: logLine 3.80s 3.40s infinite" stroke="#AAAAAA" stroke-width="5" d="M 0 300 L 400 980"></path>\
+        <path class="loginLine" style="animation: logLine 3.80s 3.60s infinite" stroke="#AAAAAA" stroke-width="5" d="M 850 0 L 1300 980"></path>\
+        <path class="loginLine" style="animation: logLine 3.80s 3.80s infinite" stroke="#AAAAAA" stroke-width="5" d="M 1300 980 L 1920 400"></path>\
+    </svg>') no-repeat fixed center center;
+    background-size: cover;
+}
+
+.menuPage{
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 980">\
+        <rect x="0" y="0" fill="rgba(0,0,0,0.94)" width="1920" height="980"></rect>\
+        <style>\
+            .chess{\
+                transform: rotate(45deg);\
+                animation: rotate 60s linear infinite;\
+            }\
+            @keyframes rotate {\
+                0% {\
+                    transform: rotate(45deg);\
+                }\
+                100%{\
+                transform: rotate(405deg);\
+                }\
+            }\
+        </style>\
+        <defs>\
+            <pattern width="200" height="200" patternUnits="userSpaceOnUse" id="pattern">\
+                <rect x="100" y="0" fill="rgba(255,255,255,0.3)" width="100" height="100"></rect>\
+                <rect x="0" y="100" fill="rgba(255,255,255,0.3)" width="100" height="100"></rect>\
+            </pattern>\
+        </defs>\
+        <rect class="chess" x="-10000" y="-5000" fill="url(#pattern)" width="20000" height="10000"></rect>\
     </svg>') no-repeat fixed center center;
     background-size: cover;
 }
 
 .loginShadow {
-    animation: logShadow 0.55s forwards ;
+    animation: logShadow 0.55s forwards;
 }
 
 @keyframes logShadow {
@@ -87,61 +114,34 @@ body {
     align-items: center;
 }
 
-.mainMenuButton:hover path {
-    fill: white;
-    stroke: white;
-}
-
-.mainMenuButton:hover text {
-    fill: black;
-    stroke: black;
-}
-
 .mainMenuButton:hover {
+    background: black;
+    border: 5px solid white;
     cursor: pointer;
+    margin-left: 13%;
 }
 
-.mainMenuButton1 {
-    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 980">\
-    <path stroke="black" fill="black" d="M 0 245 v -245 h 1920 v 122.5 Z"></path>\
-    </svg>');
+.mainMenuButton:hover w{
+    color: black;
+    background: white;
 }
 
-.mainMenuButton2 {
-    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 980">\
-        <path stroke="black" fill="black" d="M 0 367.5 v -122.5 L 1920 122.5 v 490 Z"></path>\
-    </svg>');
-}
-
-.mainMenuButton3 {
-    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 980">\
-        <path stroke="black" fill="black" d="M 0 857.5 v -490 L 1920 612.5 v 122.5 Z"></path>\
-    </svg>');
-}
-
-.mainMenuButton4 {
-    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 980">\
-        <path stroke="black" fill="black" d="M 0 857.5 v 122.5 h 1920 v -245 Z"></path>\
-    <path stroke="white" stroke-width="5px" d="M 0 245 L 1920 122.5"></path>\
-    <path stroke="white" stroke-width="5px" d="M 0 367.5 L 1920 612.5"></path>\
-    <path stroke="white" stroke-width="5px" d="M 0 857.5 L 1920 735"></path>\
-    </svg>');
-}
-
-.mainMenuButtonTextRotate {
-    transform: rotate(-3.9deg);
-}
-
-.mainMenuButtonText {
+.mainMenuButton {
+    -webkit-text-stroke: 1px black;
+    font-weight: bold;
     color: white;
-    font-size: 110px;
-    font-family: arial;
+    font-size: 80px;
+    margin-left: 10%;
+    font-family: "Courier new", monospace;
+    transition: margin-left 0.13s linear;
 }
 
-.mainMenu {
-    position: absolute;
-    top: 0;
-    left: 0;
+.mainMenuButtonDiv {
+    margin-top: 15px;
+}
+
+.mainMenuButtonDiv:first-child{
+    margin-top: 3%;
 }
 
 .hidden {
