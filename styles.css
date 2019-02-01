@@ -12,62 +12,71 @@ body {
             }\
 \
             @keyframes logLine {\
-                from {\
+                0% {\
                     opacity: 0;\
                 }\
-                to {\
+                10%, 60% {\
                     opacity: 1;\
+                }\
+                100%{\
+                    opacity: 0;\
                 }\
             }\
         </style>\
-        <path class="loginLine" style="animation: logLine 0.08s 0.0s forwards" stroke="white" stroke-width="5" d="M 0 100 L 1920 900"></path>\
-        <path class="loginLine" style="animation: logLine 0.08s 0.08s forwards" stroke="white" stroke-width="5" d="M 0 800 L 1920 250"></path>\
-        <path class="loginLine" style="animation: logLine 0.08s 0.16s forwards" stroke="white" stroke-width="5" d="M 1500 0 L 800 980"></path>\
-        <path class="loginLine" style="animation: logLine 0.08s 0.24s forwards" stroke="white" stroke-width="5" d="M 0 300 L 1920 150"></path>\
-        <path class="loginLine" style="animation: logLine 0.08s 0.32s forwards" stroke="white" stroke-width="5" d="M 700 0 L 900 980"></path>\
-        <path class="loginLine" style="animation: logLine 0.08s 0.40s forwards" stroke="white" stroke-width="5" d="M 300 980 L 1920 550"></path>\
-        <path class="loginLine" style="animation: logLine 0.08s 0.48s forwards" stroke="white" stroke-width="5" d="M 250 0 L 550 980"></path>\
-        <path class="loginLine" style="animation: logLine 0.08s 0.56s forwards" stroke="white" stroke-width="5" d="M 1700 980 L 1000 0"></path>\
-        <path class="loginLine" style="animation: logLine 0.08s 0.64s forwards" stroke="white" stroke-width="5" d="M 0 500 L 1200 980"></path>\
-        <path class="loginLine" style="animation: logLine 0.08s 0.72s forwards" stroke="white" stroke-width="5" d="M 1800 0 L 1500 980"></path>\
-        <path class="loginLine" style="animation: logLine 0.08s 0.80s forwards" stroke="white" stroke-width="5" d="M 600 0 L 200 980"></path>\
-        <path class="loginLine" style="animation: logLine 0.08s 0.88s forwards" stroke="white" stroke-width="5" d="M 1200 0 L 1920 500"></path>\
-        <path class="loginLine" style="animation: logLine 0.08s 0.96s forwards" stroke="white" stroke-width="5" d="M 600 0 L 1200 980"></path>\
-        <path class="loginLine" style="animation: logLine 0.08s 1.04s forwards" stroke="white" stroke-width="5" d="M 1200 0 L 1500 980"></path>\
-        <path class="loginLine" style="animation: logLine 0.08s 1.12s forwards" stroke="white" stroke-width="5" d="M 0 700 L 500 0"></path>\
-        <path class="loginLine" style="animation: logLine 0.08s 1.20s forwards" stroke="white" stroke-width="5" d="M 900 0 L 500 980"></path>\
-        <path class="loginLine" style="animation: logLine 0.08s 1.28s forwards" stroke="white" stroke-width="5" d="M 0 300 L 400 980"></path>\
-        <path class="loginLine" style="animation: logLine 0.08s 1.36s forwards" stroke="white" stroke-width="5" d="M 950 0 L 1300 980"></path>\
-        <path class="loginLine" style="animation: logLine 0.08s 1.44s forwards" stroke="white" stroke-width="5" d="M 1350 980 L 1920 500"></path>\
+        <path class="loginLine" style="animation: logLine 2s 0.00s infinite" stroke="rgba(255,255,255,0.6)" stroke-width="5" d="M 0 100 L 1920 900"></path>\
+        <path class="loginLine" style="animation: logLine 2s 0.20s infinite" stroke="rgba(255,255,255,0.6)" stroke-width="5" d="M 1920 250 L 0 800"></path>\
+        <path class="loginLine" style="animation: logLine 2s 0.40s infinite" stroke="rgba(255,255,255,0.6)" stroke-width="5" d="M 1500 0 L 800 980"></path>\
+        <path class="loginLine" style="animation: logLine 2s 0.60s infinite" stroke="rgba(255,255,255,0.6)" stroke-width="5" d="M 0 300 L 1920 150"></path>\
+        <path class="loginLine" style="animation: logLine 2s 0.80s infinite" stroke="rgba(255,255,255,0.6)" stroke-width="5" d="M 700 0 L 900 980"></path>\
+        <path class="loginLine" style="animation: logLine 2s 1.00s infinite" stroke="rgba(255,255,255,0.6)" stroke-width="5" d="M 1920 550 L 300 980"></path>\
+        <path class="loginLine" style="animation: logLine 2s 1.20s infinite" stroke="rgba(255,255,255,0.6)" stroke-width="5" d="M 250 0 L 550 980"></path>\
+        <path class="loginLine" style="animation: logLine 2s 1.40s infinite" stroke="rgba(255,255,255,0.6)" stroke-width="5" d="M 1200 980 L 0 500"></path>\
+        <path class="loginLine" style="animation: logLine 2s 1.60s infinite" stroke="rgba(255,255,255,0.6)" stroke-width="5" d="M 1700 980 L 1000 0"></path>\
+        <path class="loginLine" style="animation: logLine 2s 1.80s infinite" stroke="rgba(255,255,255,0.6)" stroke-width="5" d="M 1800 0 L 1500 980"></path>\
+        <path class="loginLine" style="animation: logLine 2s 2.00s infinite" stroke="rgba(255,255,255,0.6)" stroke-width="5" d="M 200 980 0 L 1650 0"></path>\
+        <path class="loginLine" style="animation: logLine 2s 2.20s infinite" stroke="rgba(255,255,255,0.6)" stroke-width="5" d="M 450 0 L 700 980"></path>\
+        <path class="loginLine" style="animation: logLine 2s 2.40s infinite" stroke="rgba(255,255,255,0.6)" stroke-width="5" d="M 600 0 L 1200 980"></path>\
+        <path class="loginLine" style="animation: logLine 2s 2.60s infinite" stroke="rgba(255,255,255,0.6)" stroke-width="5" d="M 500 980 L 950 0"></path>\
+        <path class="loginLine" style="animation: logLine 2s 2.80s infinite" stroke="rgba(255,255,255,0.6)" stroke-width="5" d="M 1550 980 L 1300 0"></path>\
+        <path class="loginLine" style="animation: logLine 2s 3.00s infinite" stroke="rgba(255,255,255,0.6)" stroke-width="5" d="M 1200 0 L 1920 700"></path>\
+        <path class="loginLine" style="animation: logLine 2s 3.20s infinite" stroke="rgba(255,255,255,0.6)" stroke-width="5" d="M 0 700 L 500 0"></path>\
+        <path class="loginLine" style="animation: logLine 2s 3.40s infinite" stroke="rgba(255,255,255,0.6)" stroke-width="5" d="M 0 300 L 400 980"></path>\
+        <path class="loginLine" style="animation: logLine 2s 3.60s infinite" stroke="rgba(255,255,255,0.6)" stroke-width="5" d="M 850 0 L 1300 980"></path>\
+        <path class="loginLine" style="animation: logLine 2s 3.80s infinite" stroke="rgba(255,255,255,0.6)" stroke-width="5" d="M 1300 980 L 1920 400"></path>\
     </svg>') no-repeat fixed center center;
     background-size: cover;
 }
 
 .loginShadow {
-    animation: logShadow 0.5s forwards ;
+    animation: logShadow 0.55s forwards ;
 }
 
 @keyframes logShadow {
     from {
-        box-shadow: 0 0 10px 1px white;
+        box-shadow: 0 0 22px 10px white;
     }
     to {
-        box-shadow: 0 0 10px 10px white;
+        box-shadow: 0 0 22px 30px white;
     }
 }
 
 .loginInput {
     color: white;
-    width: 200px;
-    height: 20px;
     background-color: black;
+    padding: 8px 12px;
     font-weight: bold;
-    margin-top: 8px;
+    margin-top: 10px;
+    border-radius: 6px;
+    border: none;
 }
 
 .loginButton {
     width: 100px;
-    height: 25px;
+    padding: 7px 12px;
+    color: white;
+    background-color: black;
+    font-weight: bold;
+    margin-top: 10px;
     cursor: pointer;
 }
 
