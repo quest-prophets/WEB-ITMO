@@ -9,7 +9,7 @@
 </head>
 <body>
 <div class="practiceGrid">
-    <div class="exitButton">
+    <div class="exitButton" onclick="location.href = 'mainMenu.html';">
         <button>Exit</button>
     </div>
     <div class="graph flexColumn">
@@ -41,9 +41,13 @@
         </svg>
     </div>
     <div class="graphPanel flexColumn">
-        <div> R: &nbsp;<input type="number" step="0.1" min="" placeholder="1..5" class="graphInput"></div>
-        <div>X: &nbsp;<input type="number" placeholder="-5..3" class="graphInput"></div>
-        <div>Y: &nbsp;<input type="number" placeholder="-3..3" class="graphInput"></div>
+        <div class="flexColumn" style="border: 2px solid white; padding: 20px 30px; border-radius: 15px">
+            <div> R: &nbsp;<input type="number" step="0.1" min="" placeholder="1..5" class="graphInput"></div>
+            <div>X: &nbsp;<input type="number" placeholder="-5..3" class="graphInput"></div>
+            <div>Y: &nbsp;<input type="number" placeholder="-3..3" class="graphInput"></div>
+            <button class="graphButton">Focus</button>
+            <button class="graphButton">Erase</button>
+        </div>
     </div>
     <br>
     <div class="paper">
