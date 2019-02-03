@@ -137,6 +137,7 @@ body {
 }
 
 .logo{
+    text-shadow: 3px 3px 10px white;
     font-size: 100px;
     font-weight: bold;
     margin-top: -25vh;
