@@ -146,7 +146,29 @@ body {
     margin-top: 3%;
 }
 
+.practiceGrid{
+    display: grid;
+    padding: 10px 20px;
+    height: 100vh;
+    grid-row-gap: 40px;
+    grid: [row1-start] "exit nothing1 nothing2 nothing3" auto [row1-end]
+    [row2-start] "nothing0 graph graphPanel nothing3" calc(30vh + 100px)[row2-end]
+    [row3-start] "nothing0 graphTable graphTable nothing3" auto [row3-end];
+    grid-template-columns: 6fr 10fr 10fr 6fr;
+}
+
+.exitButton{
+    grid-area: exit;
+}
+
+.graph{
+    grid-area: graph;
+    stroke: white;
+
+}
+
 .graphPanel {
+    grid-area: graphPanel;
     color: white;
 }
 
@@ -181,6 +203,7 @@ td:last-child{
 }
 
 .paper {
+    grid-area: graphTable;
     background: #fff;
     box-shadow: 0 0 10px rgba(0,0,0,0.3);
     margin: 26px auto 0;
