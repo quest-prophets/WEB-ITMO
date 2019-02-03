@@ -9,7 +9,9 @@
 </head>
 <body class="gamePage">
 <div class="practiceGrid">
-    <span class="exitButton" onclick="location.href = 'mainMenu.html';">Main Menu</span>
+    <div class="grid--exit">
+        <span class="exitButton" onclick="location.href = 'mainMenu.html';">Main Menu</span>
+    </div>
     <div class="grid--graph flexColumn">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
             <g stroke="white" stroke-width="2px">
@@ -36,6 +38,12 @@
             <path stroke="black" stroke-width="2px" d="M 200 200 h 80"></path>
             <path stroke="black" stroke-width="2px" d="M 200 200 v 80"></path>
             <path stroke="black" stroke-width="2px" d="M 200 200 v -80"></path>
+
+            <text stroke="white" fill="white" font-size="22px" x="32" y="225">R</text>
+            <text stroke="white" fill="white" font-size="22px" x="265" y="225">R/2</text>
+            <text stroke="white" fill="white" font-size="22px" x="150" y="110">R/2</text>
+            <text stroke="white" fill="white" font-size="22px" x="210" y="285">R/2</text>
+
         </svg>
     </div>
     <div class="grid--graphPanel flexColumn">

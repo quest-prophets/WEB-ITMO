@@ -187,8 +187,11 @@ body {
     margin-top: 3%;
 }
 
-.exitButton {
+.grid--exit{
     grid-area: exit;
+}
+
+.exitButton {
     color: white;
     font-size: 20px;
 }
