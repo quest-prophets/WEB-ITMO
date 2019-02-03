@@ -79,9 +79,19 @@ body {
 .gamePage {
     background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 980">\
         <rect x="0" y="0" fill="black" width="1920" height="980"></rect>\
-        <path stroke="%23777777" stroke-width="5" d="M 0 600 L 1920 800"></path>\
-        <path stroke="%23777777" stroke-width="5" d="M 950 980 L 1650 0"></path>\
-        <path stroke="%23777777" stroke-width="5" d="M 1800 980 L 1350 0"></path>\
+         <style>\
+            @keyframes line {\
+                2%, 98% {\
+                    opacity: 1;\
+                }\
+                100%{\
+                    opacity: 0;\
+                }\
+            }\
+        </style>\
+        <path style="opacity: 0; animation: line 10s 0s infinite" stroke="%23777777" stroke-width="5" d="M 0 600 L 1920 800"></path>\
+        <path style="opacity: 0; animation: line 10s 0.3s infinite" stroke="%23777777" stroke-width="5" d="M 950 980 L 1650 0"></path>\
+        <path style="opacity: 0; animation: line 10s 0.6s infinite" stroke="%23777777" stroke-width="5" d="M 1800 980 L 1350 0"></path>\
     </svg>') no-repeat fixed center center;
     background-size: cover;
 }
