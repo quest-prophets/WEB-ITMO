@@ -76,6 +76,16 @@ body {
     background-size: cover;
 }
 
+.gamePage {
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 980">\
+        <rect x="0" y="0" fill="black" width="1920" height="980"></rect>\
+        <path stroke="%23777777" stroke-width="5" d="M 0 600 L 1920 800"></path>\
+        <path stroke="%23777777" stroke-width="5" d="M 950 980 L 1650 0"></path>\
+        <path stroke="%23777777" stroke-width="5" d="M 1800 980 L 1350 0"></path>\
+    </svg>') no-repeat fixed center center;
+    background-size: cover;
+}
+
 .loginShadow {
     animation: logShadow 0.55s forwards;
 }
@@ -167,15 +177,21 @@ body {
     text-decoration: underline;
 }
 
-.graph {
+.grid--graph {
     grid-area: graph;
-    stroke: white;
+}
 
+.grid--graphPanel {
+    grid-area: graphPanel;
 }
 
 .graphPanel {
-    grid-area: graphPanel;
     color: white;
+    border: 2px solid white;
+    padding: 20px 30px;
+    border-radius: 15px;
+    background: rgba(0, 0, 0, 0.6);
+    box-shadow: 0 0 10px 10px rgba(0,0,0,0.6);
 }
 
 .graphInput {

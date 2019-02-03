@@ -7,10 +7,10 @@
     <link href="https://fonts.googleapis.com/css?family=Handlee" rel="stylesheet">
     <title>Practice</title>
 </head>
-<body>
+<body class="gamePage">
 <div class="practiceGrid">
     <span class="exitButton" onclick="location.href = 'mainMenu.html';">Main Menu</span>
-    <div class="graph flexColumn">
+    <div class="grid--graph flexColumn">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
             <g stroke="white" stroke-width="2px">
                 <path d="M 0 200 h 400"></path>
@@ -38,8 +38,8 @@
             <path stroke="black" stroke-width="2px" d="M 200 200 v -80"></path>
         </svg>
     </div>
-    <div class="graphPanel flexColumn">
-        <div class="flexColumn" style="border: 2px solid white; padding: 20px 30px; border-radius: 15px">
+    <div class="grid--graphPanel flexColumn">
+        <div class="flexColumn graphPanel">
             <div>R: &nbsp;<input type="number" step="0.1" min="1" max="5" placeholder="1..5" class="graphInput"></div>
             <div>X: &nbsp;<input type="number" step="0.1" min="-5" max="3" placeholder="-5..3" class="graphInput"></div>
             <div>Y: &nbsp;<input type="number" step="0.1" min="-3" max="3" placeholder="-3..3" class="graphInput"></div>
