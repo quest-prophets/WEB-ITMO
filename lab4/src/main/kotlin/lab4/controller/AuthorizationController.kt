@@ -26,7 +26,6 @@ class AuthorizationController {
     @PostMapping("/register")
     @ResponseBody
     fun addUser(@RequestBody user: UserInfo): AuthResponse {
-        println("=== POST registration called with parameters \"${user.username}:${user.password}\" ===")
         val existingUser = userInfoRepository?.findByUsername(user.username)
         val authResponse = AuthResponse(user.username, AuthType.REGISTER)
         return if (existingUser != null) {
