@@ -5,11 +5,11 @@ import javax.persistence.*
 @Entity
 @Table(name = "users")
 data class UserInfo(@Column(nullable = false, unique = true) var username: String = "",
-                var password: String = "") {
+                    var password: String = "") {
 
     @Id
     @GeneratedValue
-    var id: Long? = null
+    var id: Int? = null
 
     var active: Boolean = true
 
@@ -19,6 +19,6 @@ data class UserInfo(@Column(nullable = false, unique = true) var username: Strin
     var roles: Set<Role>? = null
 
     @OneToMany(fetch = FetchType.LAZY, cascade = [CascadeType.ALL], mappedBy = "user")
-    var history: MutableList<Result>? = null
+    var results: MutableList<Result>? = null
 
 }
