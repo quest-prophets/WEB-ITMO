@@ -9,9 +9,7 @@
 </head>
 <body>
 <div class="practiceGrid">
-    <div class="exitButton" onclick="location.href = 'mainMenu.html';">
-        <button>Exit</button>
-    </div>
+    <span class="exitButton" onclick="location.href = 'mainMenu.html';">Main Menu</span>
     <div class="graph flexColumn">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
             <g stroke="white" stroke-width="2px">
@@ -42,9 +40,9 @@
     </div>
     <div class="graphPanel flexColumn">
         <div class="flexColumn" style="border: 2px solid white; padding: 20px 30px; border-radius: 15px">
-            <div> R: &nbsp;<input type="number" step="0.1" min="" placeholder="1..5" class="graphInput"></div>
-            <div>X: &nbsp;<input type="number" placeholder="-5..3" class="graphInput"></div>
-            <div>Y: &nbsp;<input type="number" placeholder="-3..3" class="graphInput"></div>
+            <div>R: &nbsp;<input type="number" step="0.1" min="1" max="5" placeholder="1..5" class="graphInput"></div>
+            <div>X: &nbsp;<input type="number" step="0.1" min="-5" max="3" placeholder="-5..3" class="graphInput"></div>
+            <div>Y: &nbsp;<input type="number" step="0.1" min="-3" max="3" placeholder="-3..3" class="graphInput"></div>
             <button class="graphButton">Focus</button>
             <button class="graphButton">Erase</button>
         </div>
@@ -53,21 +51,23 @@
     <div class="paper">
         <table>
             <thead>
-            <td>
-                R
-            </td>
-            <td>
-                X
-            </td>
-            <td>
-                Y
-            </td>
-            <td>
-                FIGURA
-            </td>
-            <td>
-                TIME
-            </td>
+            <tr>
+                <td>
+                    R
+                </td>
+                <td>
+                    X
+                </td>
+                <td>
+                    Y
+                </td>
+                <td>
+                    FIGURA
+                </td>
+                <td>
+                    TIME
+                </td>
+            </tr>
             </thead>
             <tbody>
             <tr>
