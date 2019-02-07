@@ -2,7 +2,7 @@
     <div class="gamePage">
         <div class="practiceGrid">
             <div class="grid--exit">
-                <span class="exitButton" onclick="location.href = 'mainMenu.html';">Main Menu</span>
+                <router-link to="MainMenu" class="exitButton">Main Menu</router-link>
             </div>
             <div class="grid--graph flexColumn">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">

@@ -6,10 +6,8 @@
                  style="background: white; padding: 10px 20px; box-shadow: 0 0 22px 30px white">
                 <input type="text" class="loginInput" placeholder="Login">
                 <input type="password" class="loginInput" placeholder="Password">
-                <button onclick="location.href = 'mainMenu.html';" class="bwButton bwButton-whiteBackground">Log in
-                </button>
-                <button onclick="location.href = 'mainMenu.html';" class="bwButton bwButton-whiteBackground">Register
-                </button>
+                <router-link to="MainMenu" class="bwButton bwButton-whiteBackground">Log in</router-link>
+                <router-link to="MainMenu" class="bwButton bwButton-whiteBackground">Register</router-link>
             </div>
         </div>
     </div>
@@ -22,11 +20,6 @@
 </script>
 
 <style>
-    body {
-        background: black;
-        font-family: "Courier new", monospace;
-    }
-
     .loginPage {
         overflow: hidden;
         background: url('../assets/loginPage.svg') no-repeat fixed center center;
@@ -57,6 +50,9 @@
     }
 
     .bwButton {
+        font-family: "Arial", monospace;
+        text-align: center;
+        text-decoration: none;
         width: 100px;
         padding: 7px 12px;
         color: white;

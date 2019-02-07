@@ -11,12 +11,12 @@ export default new Router({
     routes: [
         {
             path: '/',
-            name: 'Who are you?',
+            name: 'Login',
             component: Index
         },
         {
             path: '/mainmenu',
-            name: 'Main menu',
+            name: 'MainMenu',
             component: MainMenu
         },
         {

@@ -1,29 +1,29 @@
 <template>
     <div class="menuPage">
         <div class="mainMenuButtonDiv">
-<span class="mainMenuButton">
-    S<w>T</w>O<w>R</w>Y<w> </w>M<w>O</w>D<w>E</w>
-</span>
+            <router-link to="Practice" class="mainMenuButton">
+                S<w>T</w>O<w>R</w>Y<w> </w>M<w>O</w>D<w>E</w>
+            </router-link>
         </div>
         <div class="mainMenuButtonDiv">
-<span class="mainMenuButton" onclick="location.href = 'practice.html';">
-    P<w>R</w>A<w>C</w>T<w>I</w>C<w>E</w>
-</span>
+            <router-link to="Practice" class="mainMenuButton">
+                P<w>R</w>A<w>C</w>T<w>I</w>C<w>E</w>
+            </router-link>
         </div>
         <div class="mainMenuButtonDiv">
-    <span class="mainMenuButton">
-    S<w>O</w>L<w>V</w>E<w> </w>A<w> </w>C<w>A</w>S<w>E</w>
-</span>
+            <router-link to="Practice" class="mainMenuButton">
+                S<w>O</w>L<w>V</w>E<w> </w>A<w> </w>C<w>A</w>S<w>E</w>
+            </router-link>
         </div>
         <div class="mainMenuButtonDiv">
-<span class="mainMenuButton">
-    T<w>I</w>M<w>E</w> <w>A</w>T<w>T</w>A<w>C</w>K
-</span>
+            <router-link to="Practice" class="mainMenuButton">
+                T<w>I</w>M<w>E</w> <w>A</w>T<w>T</w>A<w>C</w>K
+            </router-link>
         </div>
         <div class="mainMenuButtonDiv">
-<span class="mainMenuButton" onclick="location.href = 'index.html';">
-    L<w>O</w>G<w> </w>O<w>U</w>T
-</span>
+            <router-link to="/" class="mainMenuButton">
+                L<w>O</w>G<w> </w>O<w>U</w>T
+            </router-link>
         </div>
     </div>
 </template>
@@ -47,6 +47,7 @@
     }
 
     .mainMenuButton {
+        text-decoration: none;
         user-select: none;
         -webkit-text-stroke: 1px black;
         font-weight: bold;
@@ -68,7 +69,7 @@
         background: white;
     }
 
-    .mainMenuButtonDiv {
+    .mainMenuButtonDiv{
         margin-top: 15px;
     }
 
