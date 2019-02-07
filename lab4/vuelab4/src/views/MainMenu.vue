@@ -25,6 +25,7 @@
                 L<w>O</w>G<w> </w>O<w>U</w>T
             </router-link>
         </div>
+        <br>
     </div>
 </template>
 
@@ -35,11 +36,6 @@
 </script>
 
 <style>
-    body {
-        background: black;
-        font-family: "Courier new", monospace;
-    }
-
     .menuPage {
         overflow: hidden;
         background: url('../assets/menuPage.svg') no-repeat fixed center center;

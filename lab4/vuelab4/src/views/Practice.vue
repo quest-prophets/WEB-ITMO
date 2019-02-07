@@ -68,11 +68,6 @@
 </script>
 
 <style>
-    body {
-        background: black;
-        font-family: "Courier new", monospace;
-    }
-
     .gamePage {
         font-family: 'Exo', monospace;
         background: url('../assets/gamePage.svg') no-repeat fixed center center;
