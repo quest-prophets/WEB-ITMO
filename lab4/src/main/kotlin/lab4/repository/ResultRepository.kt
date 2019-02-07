@@ -7,7 +7,7 @@ import lab4.model.UserInfo
 
 interface ResultRepository : JpaRepository<Result, Long> {
     @Transactional
-    fun deleteAllByUserEntry(user: UserInfo)
+    fun deleteAllByUserInfo(user: UserInfo)
 
-    fun findAllByUserEntry(user: UserInfo): List<Result>
+    fun findAllByUserInfo(user: UserInfo): List<Result>
 }

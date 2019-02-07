@@ -49,7 +49,7 @@ class PracticeController {
     fun addDot(@RequestBody p: DotCheckRequest, principal: Principal): Dot? {
         val dot = compute(p.x, p.y, p.r) ?: return null
         val user = getUserByName(principal.name)
-        user.results?.add(Result(p.x, p.y, p.r, dot.isHit).apply { this.user = user }) ?: ArrayList<Result>()
+        user.results?.add(Result(p.x, p.y, p.r, dot.isHit).apply { this.userInfo = user }) ?: ArrayList<Result>()
         userInfoRepository?.save(user)
         return dot
     }
@@ -57,15 +57,15 @@ class PracticeController {
     @PostMapping("/clear")
     fun clearResults(principal: Principal, response: HttpServletResponse) {
         val user = getUserByName(principal.name)
-        resultRepository?.deleteAllByUserEntry(user)
-        response.sendRedirect("/graph")
+        resultRepository?.deleteAllByUserInfo(user)
+        response.sendRedirect("/practice")
     }
 
     @GetMapping("/update/{r}")
     fun recomputeDotChecks(@PathVariable r: Double, principal: Principal): List<Dot> {
         val user = userInfoRepository?.findByUsername(principal.name)
             ?: throw Exception("User with name \"${principal.name}\" does not exist.")
-        val results = resultRepository?.findAllByUserEntry(user)
+        val results = resultRepository?.findAllByUserInfo(user)
         val dots = ArrayList<Dot>()
         results?.forEach { dots.add(Dot(it.x, it.y, checkAreaHit(it.x, it.y, r))) }
         return dots
@@ -77,7 +77,7 @@ class PracticeController {
     @GetMapping("/fetchResults")
     fun fetchResultsByUser(principal: Principal): List<ResultsEntry> {
         val user = getUserByName(principal.name)
-        val results = resultRepository?.findAllByUserEntry(user) ?: emptyList()
+        val results = resultRepository?.findAllByUserInfo(user) ?: emptyList()
         val resultsList = ArrayList<ResultsEntry>()
         results.forEach { resultsList.add(ResultsEntry(it.x, it.y, it.r, it.isHit)) }
         return resultsList

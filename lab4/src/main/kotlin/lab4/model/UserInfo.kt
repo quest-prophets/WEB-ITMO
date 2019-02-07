@@ -9,7 +9,7 @@ data class UserInfo(@Column(nullable = false, unique = true) var username: Strin
 
     @Id
     @GeneratedValue
-    var id: Int? = null
+    var id: Long? = null
 
     var active: Boolean = true
 
@@ -18,7 +18,7 @@ data class UserInfo(@Column(nullable = false, unique = true) var username: Strin
     @Enumerated(EnumType.STRING)
     var roles: Set<Role>? = null
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = [CascadeType.ALL], mappedBy = "user")
+    @OneToMany(fetch = FetchType.LAZY, cascade = [CascadeType.ALL], mappedBy = "userInfo")
     var results: MutableList<Result>? = null
 
 }

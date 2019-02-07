@@ -7,6 +7,9 @@ import lab4.model.Role
 import lab4.model.UserInfo
 import lab4.repository.UserInfoRepository
 import java.util.*
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
+
+
 
 @Controller
 @RequestMapping("/auth")
@@ -26,6 +29,10 @@ class AuthorizationController {
     @PostMapping("/register")
     @ResponseBody
     fun addUser(@RequestBody user: UserInfo): AuthResponse {
+        val passwordEncoder = BCryptPasswordEncoder()
+        val encodedPassword = passwordEncoder.encode(user.password)
+        user.password = encodedPassword
+
         val existingUser = userInfoRepository?.findByUsername(user.username)
         val authResponse = AuthResponse(user.username, AuthType.REGISTER)
         return if (existingUser != null) {

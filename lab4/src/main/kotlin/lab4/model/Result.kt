@@ -11,10 +11,10 @@ data class Result(var x: Double = 0.0,
 
     @Id
     @GeneratedValue
-    var id: Int? = null
+    var id: Long? = null
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
-    var user: UserInfo? = null
+    var userInfo: UserInfo? = null
 
 }
