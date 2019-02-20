@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ResponseBody
 import java.security.Principal
 
 @Controller
-class PageController {
+class   PageController {
 
     @GetMapping("/username")
     @ResponseBody
