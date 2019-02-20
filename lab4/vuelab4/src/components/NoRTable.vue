@@ -4,9 +4,6 @@
             <thead>
             <tr>
                 <td>
-                    R
-                </td>
-                <td>
                     X
                 </td>
                 <td>
@@ -22,9 +19,6 @@
             </thead>
             <tbody>
             <tr v-for="result in results">
-                <td>
-                    {{result.r}}
-                </td>
                 <td>
                     {{result.x}}
                 </td>
@@ -46,7 +40,7 @@
 
 <script>
     export default {
-        name: "PaperTable",
+        name: "NoRTable",
         props: ["results"]
     }
 </script>

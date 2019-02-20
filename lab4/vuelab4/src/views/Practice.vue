@@ -37,7 +37,7 @@
                     <text stroke="white" fill="white" font-size="22px" x="210" y="285">R/2</text>
                 </svg>
             </div>
-            <GraphPanel @add-data="resultsAdd"/>
+            <GraphPanel @add-data="resultsAdd" @erase-data="resultsRemove"/>
             <PaperTable :results="results"/>
         </div>
     </div>
@@ -62,6 +62,9 @@
         methods: {
             resultsAdd: function ({ r, x, y }) {
                 this.results.push({ r, x, y, figura: true, time: 'h' });
+            },
+            resultsRemove: function () {
+                this.results = [];
             }
         }
     }
@@ -86,6 +89,7 @@
     }
 
     .exitButton {
+        text-decoration: none;
         color: white;
         font-size: 20px;
     }
@@ -96,8 +100,11 @@
         height: 100vh;
         grid-row-gap: 40px;
         grid-column-gap: 20px;
-        grid: [row1-start] "exit nothing1 nothing2 nothing3" auto [row1-end] [row2-start] "nothing0 graph graphPanel nothing3" calc(30vh + 100px) [row2-end] [row3-start] "nothing0 graphTable graphTable nothing3" auto [row3-end];
+        grid: [row1-start] "exit nothing1 nothing2 nothing3" auto [row1-end]
+        [row2-start] "nothing0 graph graphPanel nothing3" calc(30vh + 100px) [row2-end]
+        [row3-start] "nothing0 graphTable graphTable nothing3" auto [row3-end];
         grid-template-columns: 6fr 10fr 10fr 6fr;
+        box-sizing: border-box;
     }
 
     .exitButton:hover {

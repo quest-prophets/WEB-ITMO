@@ -2,27 +2,22 @@
     <div class="menuPage">
         <div class="mainMenuButtonDiv">
             <router-link to="Practice" class="mainMenuButton">
-                S<w>T</w>O<w>R</w>Y<w> </w>M<w>O</w>D<w>E</w>
+                P<a>R</a>A<a>C</a>T<a>I</a>C<a>E</a>
+            </router-link>
+        </div>
+        <div class="mainMenuButtonDiv">
+            <router-link to="Detective" class="mainMenuButton">
+                D<a>E</a>T<a>E</a>C<a>T</a>I<a>V</a>E
             </router-link>
         </div>
         <div class="mainMenuButtonDiv">
             <router-link to="Practice" class="mainMenuButton">
-                P<w>R</w>A<w>C</w>T<w>I</w>C<w>E</w>
-            </router-link>
-        </div>
-        <div class="mainMenuButtonDiv">
-            <router-link to="Practice" class="mainMenuButton">
-                S<w>O</w>L<w>V</w>E<w> </w>A<w> </w>C<w>A</w>S<w>E</w>
-            </router-link>
-        </div>
-        <div class="mainMenuButtonDiv">
-            <router-link to="Practice" class="mainMenuButton">
-                T<w>I</w>M<w>E</w> <w>A</w>T<w>T</w>A<w>C</w>K
+                T<a>I</a>M<a>E</a>&nbsp;<a>A</a>T<a>T</a>A<a>C</a>K
             </router-link>
         </div>
         <div class="mainMenuButtonDiv">
             <router-link to="/" class="mainMenuButton">
-                L<w>O</w>G<w> </w>O<w>U</w>T
+                R<a>E</a>S<a>I</a>G<a>N</a>
             </router-link>
         </div>
         <br>
@@ -57,10 +52,10 @@
         background: black;
         border: 5px solid white;
         cursor: pointer;
-        margin-left: 7%;
+        margin-left: calc(10% - 15px);
     }
 
-    .mainMenuButton:hover w {
+    .mainMenuButton:hover a {
         color: black;
         background: white;
     }

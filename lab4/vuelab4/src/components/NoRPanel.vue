@@ -1,8 +1,6 @@
 <template>
     <div class="grid--graphPanel flexColumn">
         <div class="flexColumn graphPanel">
-            <div>R: &emsp;<input v-model="r" type="number" step="0.1" min="1" max="5" placeholder="1..5"
-                                 class="graphInput"></div>
             <div>X: &emsp;<input v-model="x" type="number" step="0.1" min="-5" max="3" placeholder="-5..3"
                                  class="graphInput"></div>
             <div>Y: &emsp;<input v-model="y" type="number" step="0.1" min="-3" max="3" placeholder="-3..3"
@@ -15,7 +13,7 @@
 
 <script>
     export default {
-        name: "GraphPanel",
+        name: "NoRPanel",
         data: function () {
             return {r: null, x: null, y: null}
         },
