@@ -1,12 +1,15 @@
 <template>
     <div class="grid--graphPanel flexColumn">
         <div class="flexColumn graphPanel">
-            <div>X: &emsp;<input v-model="x" type="number" step="0.1" min="-5" max="3" placeholder="-5..3"
-                                 class="graphInput"></div>
-            <div>Y: &emsp;<input v-model="y" type="number" step="0.1" min="-3" max="3" placeholder="-3..3"
-                                 class="graphInput"></div>
-            <button @click="focus" class="bwButton bwButton-blackBackground">Focus</button>
-            <button @click="erase" class="bwButton bwButton-blackBackground">Erase</button>
+            <button @click="start" id="startButton" class="bwButton-blackBackground startButton">Start!</button>
+            <div class="hidden">X: &emsp;<input v-model="x" type="number" step="0.1" min="-5" max="3"
+                                                placeholder="-5..3"
+                                                class="graphInput hidden"></div>
+            <div class="hidden">Y: &emsp;<input v-model="y" type="number" step="0.1" min="-3" max="3"
+                                                placeholder="-3..3"
+                                                class="graphInput hidden"></div>
+            <button @click="focus" class="bwButton-blackBackground hidden">Focus</button>
+            <button @click="erase" class="bwButton-blackBackground hidden">Erase</button>
         </div>
     </div>
 </template>
@@ -23,13 +26,21 @@
             },
             erase: function () {
                 this.$emit("erase-data")
+            },
+            start: function () {
+                let hiddens = document.querySelectorAll(".hidden");
+                for (var i = 0; i < hiddens.length; i++) {
+                    hiddens[i].classList.remove("hidden");
+                }
+                document.getElementById("startButton").classList.add("hidden");
+                this.$emit("start-game")
             }
         }
     }
 </script>
 
 <style>
-    .bwButton {
+    .bwButton-blackBackground {
         width: 100px;
         padding: 7px 12px;
         color: white;
@@ -38,15 +49,16 @@
         margin-top: 10px;
         cursor: pointer;
         outline: none;
-    }
-
-    .bwButton-blackBackground {
         border: 2px solid white;
     }
 
     .bwButton-blackBackground:hover {
         background: white;
         color: black;
+    }
+
+    .startButton{
+        margin-top: 0;
     }
 
     .flexColumn {
@@ -78,5 +90,9 @@
         border-radius: 6px;
         border: 2px solid white;
         width: 7vw;
+    }
+
+    .hidden {
+        display: none;
     }
 </style>

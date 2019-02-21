@@ -7,17 +7,17 @@
             <div class="grid--suspects">
                 <div class="suspectsGrid">
                     <Suspect style="grid-area: suspect1"
-                            :ids="{path1id: 'suspect1--path1', path2id: 'suspect1--path2',path3id: 'suspect1--path3',path4id: 'suspect1--path4'}"/>
+                             :ids="{path1id: 'suspect1--path1', path2id: 'suspect1--path2',path3id: 'suspect1--path3',path4id: 'suspect1--path4'}"/>
                     <Suspect style="grid-area: suspect2"
-                            :ids="{path1id: 'suspect2--path1', path2id: 'suspect2--path2',path3id: 'suspect2--path3',path4id: 'suspect2--path4'}"/>
+                             :ids="{path1id: 'suspect2--path1', path2id: 'suspect2--path2',path3id: 'suspect2--path3',path4id: 'suspect2--path4'}"/>
                     <Suspect style="grid-area: suspect3"
-                            :ids="{path1id: 'suspect3--path1', path2id: 'suspect3--path2',path3id: 'suspect3--path3',path4id: 'suspect3--path4'}"/>
+                             :ids="{path1id: 'suspect3--path1', path2id: 'suspect3--path2',path3id: 'suspect3--path3',path4id: 'suspect3--path4'}"/>
                     <Suspect style="grid-area: suspect4"
-                            :ids="{path1id: 'suspect4--path1', path2id: 'suspect4--path2',path3id: 'suspect4--path3',path4id: 'suspect4--path4'}"/>
+                             :ids="{path1id: 'suspect4--path1', path2id: 'suspect4--path2',path3id: 'suspect4--path3',path4id: 'suspect4--path4'}"/>
                     <Suspect style="grid-area: suspect5"
-                            :ids="{path1id: 'suspect5--path1', path2id: 'suspect5--path2',path3id: 'suspect5--path3',path4id: 'suspect5--path4'}"/>
+                             :ids="{path1id: 'suspect5--path1', path2id: 'suspect5--path2',path3id: 'suspect5--path3',path4id: 'suspect5--path4'}"/>
                     <Suspect style="grid-area: suspect6"
-                            :ids="{path1id: 'suspect6--path1', path2id: 'suspect6--path2',path3id: 'suspect6--path3',path4id: 'suspect6--path4'}"/>
+                             :ids="{path1id: 'suspect6--path1', path2id: 'suspect6--path2',path3id: 'suspect6--path3',path4id: 'suspect6--path4'}"/>
                 </div>
             </div>
             <div class="grid--leaderboard">
@@ -40,7 +40,7 @@
                 </table>
             </div>
             <div class="grid--graph flexColumn">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" @mousemove="svgHover" @mouseleave="svgUnhover">
                     <g stroke="white" stroke-width="2px">
                         <path d="M 0 200 h 400"></path>
                         <path d="M 200 0 v 400"></path>
@@ -57,11 +57,14 @@
                         <path d="M 400 400 h -50"></path>
                         <path d="M 400 400 v -50"></path>
                     </g>
-
-
+                    <g stroke="white" stroke-width="1px" stroke-dasharray="10">
+                        <path id="xRuler" d=""></path>
+                        <path id="yRuler" d=""></path>
+                    </g>
+                    <g id="graphDots"></g>
                 </svg>
             </div>
-            <NoRPanel @add-data="resultsAdd" @erase-data="resultsRemove"/>
+            <NoRPanel @start-game="startGame" @add-data="resultsAdd" @erase-data="resultsRemove"/>
             <NoRTable :results="results"/>
         </div>
     </div>
@@ -90,6 +93,25 @@
             },
             resultsRemove: function () {
                 this.results = [];
+            },
+            startGame: function () {
+
+            },
+            svgHover: function (e) {
+                let svgCanvas = e.target.getBoundingClientRect();
+                const width = svgCanvas.right - svgCanvas.left;
+                console.log("right: " + svgCanvas.right + "; left: " + svgCanvas.left + "; top: " + svgCanvas.top + "; bottom: " + svgCanvas.bottom);
+                const height = svgCanvas.bottom - svgCanvas.top;
+                console.log("width: " + width + "; height: " + height);
+                let x = (e.clientX - svgCanvas.left + window.scrollX)/width*400;
+                let y = (e.clientY - svgCanvas.top + window.scrollY)/height*400;
+                console.log("x: " +x + "; y: " + y);
+                document.getElementById("xRuler").setAttribute("d","M " + x + " 200 v " + (y-200));
+                document.getElementById("yRuler").setAttribute("d","M 200 " + y + " h " + (x-200));
+            },
+            svgUnhover: function () {
+                document.getElementById("xRuler").setAttribute("d","");
+                document.getElementById("yRuler").setAttribute("d","");
             }
         }
     }
@@ -113,17 +135,16 @@
         grid-area: exit;
     }
 
-    .grid--leaderboard{
+    .grid--leaderboard {
         grid-area: leaderboard;
-
         border-radius: 10px;
-        background: rgba(255,255,255,0.96);
-        width: 80%;
+        background: rgba(255, 255, 255, 0.96);
+        width: 90%;
         margin: 0 auto;
         height: 90%;
     }
 
-    .leaderboardTable{
+    .leaderboardTable {
         width: 100%;
     }
 
@@ -139,7 +160,7 @@
 
     .suspectsGrid {
         display: grid;
-        grid: [row1-start] "suspect1 suspect2"[row1-end] [row2-start] "suspect3 suspect4" [row2-end] [row3-start] "suspect5 suspect6" [row3-end];
+        grid: [row1-start] "suspect1 suspect2" [row1-end] [row2-start] "suspect3 suspect4" [row2-end] [row3-start] "suspect5 suspect6" [row3-end];
         height: 100%;
         grid-column-gap: 10px;
         grid-row-gap: 10px;
@@ -152,7 +173,7 @@
         grid-row-gap: 40px;
         grid-column-gap: 20px;
         grid: [row1-start] "exit nothing1 nothing2 nothing3" auto [row1-end] [row2-start] "suspects graph graphPanel leaderboard" calc(30vh + 100px) [row2-end] [row3-start] "suspects graphTable graphTable leaderboard" auto [row3-end] [row3-start] "nothing0 graphTable graphTable nothing4" auto [row3-end];
-        grid-template-columns: 10fr 10fr 8fr 10fr;
+        grid-template-columns: 9fr 10fr 7fr 11fr;
         box-sizing: border-box;
     }
 
