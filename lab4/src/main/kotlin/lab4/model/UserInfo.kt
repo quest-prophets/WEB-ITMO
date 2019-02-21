@@ -21,4 +21,7 @@ data class UserInfo(@Column(nullable = false, unique = true) var username: Strin
     @OneToMany(fetch = FetchType.LAZY, cascade = [CascadeType.ALL], mappedBy = "userInfo")
     var results: MutableList<Result>? = null
 
+    var leastDots: Long? = null
+    var elapsedTime: Long? = null
+
 }
