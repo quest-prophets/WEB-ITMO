@@ -1,11 +1,9 @@
 package lab4.controller
 
 import lab4.model.Dot
-import lab4.model.OngoingGame
 import lab4.model.Suspect
 import lab4.repository.OngoingGameRepository
 import lab4.repository.OngoingGameResultRepository
-import lab4.repository.UserInfoRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -155,7 +153,7 @@ class DetectiveController {
         return false
     }
 
-    private fun compute(x: Double, y: Double, r: Double): Dot? {
+    private fun compute(x: Double, y: Double): Dot? {
         val hit = checkAreaHit(x, y, trueGraph?.area1!!, trueGraph?.area2!!, trueGraph?.area3!!, trueGraph?.area4!!)
         return Dot(x, y, hit)
     }
