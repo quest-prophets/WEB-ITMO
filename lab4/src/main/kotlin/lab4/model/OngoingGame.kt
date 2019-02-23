@@ -6,7 +6,7 @@ import javax.persistence.*
 @Table(name = "ongoing_games",
         uniqueConstraints = [UniqueConstraint(columnNames = arrayOf("user_id" , "game_type"))]
 )
-class OngoingGame {
+data class OngoingGame (@Column(nullable = false) var gameType: String = ""){
 
     @Id
     @GeneratedValue
@@ -16,7 +16,8 @@ class OngoingGame {
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
     var userInfo: UserInfo? = null
 
-    var gameType: String? = null
+    @OneToMany(fetch = FetchType.LAZY, cascade = [CascadeType.ALL], mappedBy = "ongoingGame")
+    var gameResults: MutableList<OngoingGameResult>? = null
 
     var graphType: Int? = null
     var suspectsTypes: Array<Int>? = null
