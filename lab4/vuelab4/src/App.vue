@@ -23,4 +23,8 @@
     grid-column-gap: 10px;
     grid-row-gap: 10px;
   }
+
+  .grid--exit {
+    grid-area: exit;
+  }
 </style>

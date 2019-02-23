@@ -47,6 +47,7 @@
 
 <style>
     .paper {
+        text-align: center;
         box-sizing: border-box;
         grid-area: graphTable;
         background: #fff;

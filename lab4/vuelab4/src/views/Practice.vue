@@ -2,7 +2,7 @@
     <div class="gamePage">
         <div class="practiceGrid">
             <div class="grid--exit">
-                <router-link to="MainMenu" class="exitButton">Main Menu</router-link>
+                <router-link to="MainMenu" class="exitButtonPractice">Main Menu</router-link>
             </div>
             <div class="grid--graph flexColumn">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" class="mainPracticeGraph">
@@ -60,8 +60,8 @@
             }
         },
         methods: {
-            resultsAdd: function ({ r, x, y }) {
-                this.results.push({ r, x, y, figura: true, time: 'h' });
+            resultsAdd: function ({r, x, y}) {
+                this.results.push({r, x, y, figura: true, time: 'h'});
             },
             resultsRemove: function () {
                 this.results = [];
@@ -84,30 +84,24 @@
         align-items: center;
     }
 
-    .grid--exit {
-        grid-area: exit;
-    }
-
-    .exitButton {
-        text-decoration: none;
-        color: white;
-        font-size: 20px;
-    }
-
     .practiceGrid {
         display: grid;
         padding: 10px 20px;
         height: 100vh;
         grid-row-gap: 40px;
         grid-column-gap: 20px;
-        grid: [row1-start] "exit nothing1 nothing2 nothing3" auto [row1-end]
-        [row2-start] "nothing0 graph graphPanel nothing3" calc(30vh + 100px) [row2-end]
-        [row3-start] "nothing0 graphTable graphTable nothing3" auto [row3-end];
+        grid: [row1-start] "exit nothing1 nothing2 nothing3" auto [row1-end] [row2-start] "nothing0 graph graphPanel nothing3" calc(30vh + 100px) [row2-end] [row3-start] "graphTable graphTable graphTable graphTable" auto [row3-end];
         grid-template-columns: 6fr 10fr 10fr 6fr;
         box-sizing: border-box;
     }
 
-    .exitButton:hover {
+    .exitButtonPractice {
+        text-decoration: none;
+        color: white;
+        font-size: 20px;
+    }
+
+    .exitButtonPractice:hover {
         cursor: pointer;
         text-decoration: underline;
     }
@@ -117,7 +111,59 @@
         user-select: none;
     }
 
-    .mainPracticeGraph{
+    .mainPracticeGraph {
         cursor: pointer;
+    }
+
+    @media (max-width: 1200px) {
+        .practiceGrid {
+            grid: [row1-start] "exit exit nothing2 nothing3" auto [row1-end] [row2-start] "nothing0 graph graphPanel nothing3" calc(30vh + 100px) [row2-end] [row3-start] "graphTable graphTable graphTable graphTable" auto [row3-end];
+            grid-template-columns: 2fr 7fr 7fr 1fr;
+            grid-column-gap: 15px;
+            grid-row-gap: 30px;
+        }
+
+        .grid--exit {
+            text-align: left;
+            margin-top: 10px;
+        }
+
+        .exitButtonPractice{
+            font-size: 25px;
+        }
+    }
+
+    @media (max-width: 1055px) {
+        .practiceGrid {
+            grid: [row1-start] "exit exit nothing2 nothing3" auto [row1-end] [row2-start] "nothing0 graph graphPanel nothing3" calc(30vh + 100px) [row2-end] [row3-start] "graphTable graphTable graphTable graphTable" auto [row3-end];
+            grid-template-columns: 0.5fr 7fr 4fr 0.5fr;
+            grid-column-gap: 30px;
+            grid-row-gap: 30px;
+        }
+
+        .grid--exit {
+            text-align: left;
+            margin-top: 10px;
+        }
+
+        .exitButtonPractice{
+            font-size: 25px;
+        }
+    }
+
+    @media (max-width: 850px) {
+        .practiceGrid {
+            grid-template-rows: 50px calc(35vh + 100px) auto;
+            grid-column-gap: 20px;
+            grid-row-gap: 20px;
+            grid-template-columns: 0 10fr 7fr 0;
+        }
+    }
+
+    @media (max-width: 700px) {
+        .practiceGrid{
+            grid: [row1-start] "exit exit nothing2 nothing3" auto [row1-end] [row2-start] "graph graph graph graph" calc(30vh + 100px) [row2-end] [row3-start] "graphPanel graphPanel graphPanel graphPanel" auto [row3-end] [row4-start] "graphTable graphTable graphTable graphTable" auto [row4-end];
+            grid-row-gap: 15px;
+        }
     }
 </style>

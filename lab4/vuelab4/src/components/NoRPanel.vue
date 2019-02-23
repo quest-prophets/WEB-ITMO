@@ -8,8 +8,8 @@
             <div class="hidden">Y: &emsp;<input v-model="y" type="number" step="0.1" min="-3" max="3"
                                                 placeholder="-3..3"
                                                 class="graphInput hidden"></div>
-            <button @click="focus" class="bwButton-blackBackground hidden">Focus</button>
-            <button @click="erase" class="bwButton-blackBackground hidden">Erase</button>
+            <button @click="focus" class="bwButton hidden">Focus</button>
+            <button @click="erase" class="bwButton hidden">Erase</button>
         </div>
     </div>
 </template>
@@ -39,8 +39,8 @@
     }
 </script>
 
-<style>
-    .bwButton-blackBackground {
+<style scoped>
+    .bwButton {
         width: 100px;
         padding: 7px 12px;
         color: white;
@@ -52,7 +52,7 @@
         border: 2px solid white;
     }
 
-    .bwButton-blackBackground:hover {
+    .bwButton:hover {
         background: white;
         color: black;
     }
