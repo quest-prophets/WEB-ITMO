@@ -99,4 +99,10 @@
             opacity: 1;
         }
     }
+
+    @media (max-width: 1000px) {
+        .logo{
+            font-size: 13vw;
+        }
+    }
 </style>
