@@ -26,6 +26,13 @@
         background-size: cover;
     }
 
+    .flexColumn {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
     .loginShadow {
         animation: logShadow 0.55s forwards;
     }
@@ -72,16 +79,9 @@
         color: black;
     }
 
-    .flexColumn {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-
     .logo {
         text-shadow: 3px 3px 10px white;
-        font-size: 100px;
+        font-size: 120px;
         font-weight: bold;
         margin-top: -25vh;
         margin-bottom: 10vh;

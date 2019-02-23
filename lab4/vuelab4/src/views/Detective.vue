@@ -4,8 +4,7 @@
             <div class="grid--exit">
                 <router-link to="MainMenu" class="exitButton">Main Menu</router-link>
             </div>
-            <div class="grid--suspects">
-                <div class="suspectsGrid">
+            <div class="grid--suspects suspectsGrid">
                     <Suspect style="grid-area: suspect1"
                              :ids="{path1id: 'suspect1--path1', path2id: 'suspect1--path2',path3id: 'suspect1--path3',path4id: 'suspect1--path4'}"/>
                     <Suspect style="grid-area: suspect2"
@@ -18,7 +17,6 @@
                              :ids="{path1id: 'suspect5--path1', path2id: 'suspect5--path2',path3id: 'suspect5--path3',path4id: 'suspect5--path4'}"/>
                     <Suspect style="grid-area: suspect6"
                              :ids="{path1id: 'suspect6--path1', path2id: 'suspect6--path2',path3id: 'suspect6--path3',path4id: 'suspect6--path4'}"/>
-                </div>
             </div>
             <div class="grid--leaderboard">
                 <table class="leaderboardTable">
@@ -40,7 +38,7 @@
                 </table>
             </div>
             <div class="grid--graph flexColumn">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" id="svgEmpty">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" class="graphMain">
                     <g stroke="white" stroke-width="2px">
                         <path d="M 0 200 h 400"></path>
                         <path d="M 200 0 v 400"></path>
@@ -142,14 +140,6 @@
         grid-area: suspects;
     }
 
-    .suspectsGrid {
-        display: grid;
-        grid: [row1-start] "suspect1 suspect2" [row1-end] [row2-start] "suspect3 suspect4" [row2-end] [row3-start] "suspect5 suspect6" [row3-end];
-        height: 100%;
-        grid-column-gap: 10px;
-        grid-row-gap: 10px;
-    }
-
     .detectiveGrid {
         display: grid;
         padding: 10px 20px;
@@ -171,7 +161,20 @@
         user-select: none;
     }
 
-    #svgEmpty:hover{;
+    .graphMain:hover{
         cursor: url("../assets/aim.svg") 16 16, pointer;
+    }
+
+    @media (max-width: 1000px) {
+        .detectiveGrid {
+            grid: [row1-start] "exit nothing1 nothing2 nothing3" auto [row1-end] [row2-start] "suspects graph graphPanel leaderboard" calc(30vh + 100px) [row2-end] [row3-start] "suspects graphTable graphTable leaderboard" auto [row3-end] [row3-start] "suspects graphTable graphTable nothing4" auto [row3-end];
+        }
+
+        .suspectsGrid {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
     }
 </style>

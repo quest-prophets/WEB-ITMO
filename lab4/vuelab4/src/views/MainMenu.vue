@@ -1,26 +1,30 @@
 <template>
-    <div class="menuPage">
-        <div class="mainMenuButtonDiv">
-            <router-link to="practice" class="mainMenuButton">
+    <div class="menuPage flexColumnMainMenu">
+        <router-link to="practice" class="mainMenuButtonDiv">
+            <span class="mainMenuButton">
                 P<a>R</a>A<a>C</a>T<a>I</a>C<a>E</a>
-            </router-link>
-        </div>
-        <div class="mainMenuButtonDiv">
-            <router-link to="detective" class="mainMenuButton">
+            </span>
+        </router-link>
+        <router-link to="detective" class="mainMenuButtonDiv">
+            <span class="mainMenuButton">
                 D<a>E</a>T<a>E</a>C<a>T</a>I<a>V</a>E
-            </router-link>
-        </div>
-        <div class="mainMenuButtonDiv">
-            <router-link to="timeattack" class="mainMenuButton">
-                T<a>I</a>M<a>E</a>&nbsp;<a>A</a>T<a>T</a>A<a>C</a>K
-            </router-link>
-        </div>
-        <div class="mainMenuButtonDiv">
-            <router-link to="/" class="mainMenuButton">
+            </span>
+        </router-link>
+        <router-link to="timeattack" class="mainMenuButtonDiv">
+            <span class="mainMenuButton">
+                <span id="normalTimeAttack">
+                    T<a>I</a>M<a>E</a>&nbsp;<a>A</a>T<a>T</a>A<a>C</a>K
+                </span>
+                <span id="hiddenTimeAttack">
+                    T<a>I</a>M<a>E</a>&nbsp;<a>A</a>T<a>K</a>
+                </span>
+            </span>
+        </router-link>
+        <router-link to="/" class="mainMenuButtonDiv">
+            <span class="mainMenuButton">
                 R<a>E</a>S<a>I</a>G<a>N</a>
-            </router-link>
-        </div>
-        <br>
+            </span>
+        </router-link>
     </div>
 </template>
 
@@ -31,6 +35,12 @@
 </script>
 
 <style>
+    .flexColumnMainMenu {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
     .menuPage {
         overflow: hidden;
         background: url('../assets/menuPage.svg') no-repeat fixed center center;
@@ -38,33 +48,99 @@
     }
 
     .mainMenuButton {
-        text-decoration: none;
         user-select: none;
         -webkit-text-stroke: 1px black;
         font-weight: bold;
         color: white;
-        font-size: 80px;
-        margin-left: 10%;
-        transition: margin-left 0.13s linear;
+        font-size: 90px;
     }
 
-    .mainMenuButton:hover {
-        background: black;
+    .mainMenuButtonDiv:hover .mainMenuButton {
         border: 5px solid white;
-        cursor: pointer;
-        margin-left: calc(10% - 15px);
+        color: white;
+        background: black;
+        transform: scale(1.2);
     }
 
-    .mainMenuButton:hover a {
+    .mainMenuButtonDiv:hover a {
         color: black;
         background: white;
     }
 
-    .mainMenuButtonDiv{
-        margin-top: 15px;
+    .mainMenuButtonDiv:hover {
+        cursor: pointer;
+        margin-left: -3%;
+    }
+
+    .mainMenuButtonDiv {
+        display: block;
+        text-decoration: none;
+        margin-top: 10px;
+        transition: margin-left 0.2s;
+    }
+
+    .mainMenuButtonDiv:nth-child(odd) {
+        animation: slideFromLeft 0.4s forwards;
+    }
+
+    .mainMenuButtonDiv:nth-child(even) {
+        animation: slideFromRight 0.4s forwards;
+    }
+
+    @keyframes slideFromLeft {
+        from {
+            transform: translateX(-100%);
+        }
+        to {
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes slideFromRight {
+        from {
+            transform: translateX(100%);
+        }
+        to {
+            transform: translateX(0);
+        }
     }
 
     .mainMenuButtonDiv:first-child {
-        margin-top: 3%;
+        margin-top: 50px;
+    }
+
+    #hiddenTimeAttack {
+        display: none;
+    }
+
+    @media (max-width: 1055px) {
+        .mainMenuButtonDiv:first-child {
+            margin-top: 15vh;
+        }
+
+        .menuPage{
+            background: url('../assets/menuPageStatic.svg') no-repeat fixed center center;
+            background-size: cover;
+        }
+    }
+
+    @media (max-width: 650px) {
+        #hiddenTimeAttack {
+            display: inline;
+        }
+
+        #normalTimeAttack {
+            display: none;
+        }
+
+        .mainMenuButtonDiv:first-child {
+            margin-top: 20vh;
+        }
+    }
+
+    @media (max-width: 550px) {
+        .mainMenuButton {
+            font-size: 17vw;
+        }
     }
 </style>

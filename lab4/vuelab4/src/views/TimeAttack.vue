@@ -40,7 +40,7 @@
                 </table>
             </div>
             <div class="grid--graph flexColumn">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" class="graphMain">
                     <g stroke="white" stroke-width="2px">
                         <path d="M 0 200 h 400"></path>
                         <path d="M 200 0 v 400"></path>
@@ -142,14 +142,6 @@
         grid-area: suspects;
     }
 
-    .suspectsGrid {
-        display: grid;
-        grid: [row1-start] "suspect1 suspect2" [row1-end] [row2-start] "suspect3 suspect4" [row2-end] [row3-start] "suspect5 suspect6" [row3-end];
-        height: 100%;
-        grid-column-gap: 10px;
-        grid-row-gap: 10px;
-    }
-
     .detectiveGrid {
         display: grid;
         padding: 10px 20px;
@@ -169,5 +161,9 @@
     .grid--graph {
         grid-area: graph;
         user-select: none;
+    }
+
+    .graphMain:hover{
+        cursor: url("../assets/aim.svg") 16 16, pointer;
     }
 </style>

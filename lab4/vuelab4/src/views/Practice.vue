@@ -5,7 +5,7 @@
                 <router-link to="MainMenu" class="exitButton">Main Menu</router-link>
             </div>
             <div class="grid--graph flexColumn">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" class="mainPracticeGraph">
                     <g stroke="white" stroke-width="2px">
                         <path d="M 0 200 h 400"></path>
                         <path d="M 200 0 v 400"></path>
@@ -115,5 +115,9 @@
     .grid--graph {
         grid-area: graph;
         user-select: none;
+    }
+
+    .mainPracticeGraph{
+        cursor: pointer;
     }
 </style>
