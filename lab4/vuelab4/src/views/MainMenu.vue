@@ -1,5 +1,5 @@
 <template>
-    <div class="menuPage flexColumnMainMenu">
+    <div class="menuPage">
         <router-link to="practice" class="mainMenuButtonDiv">
             <span class="mainMenuButton">
                 P<a>R</a>A<a>C</a>T<a>I</a>C<a>E</a>
@@ -35,14 +35,9 @@
 </script>
 
 <style>
-    .flexColumnMainMenu {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
     .menuPage {
         overflow: hidden;
+        text-align: center;
         background: url('../assets/menuPage.svg') no-repeat fixed center center;
         background-size: cover;
     }
