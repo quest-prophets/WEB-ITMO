@@ -4,6 +4,7 @@ import Index from './views/Index.vue'
 import MainMenu from './views/MainMenu.vue'
 import Practice from './views/Practice.vue'
 import Detective from './views/Detective.vue'
+import TimeAttack from './views/TimeAttack.vue'
 
 
 Vue.use(Router);
@@ -29,6 +30,11 @@ export default new Router({
             path: '/detective',
             name: 'Detective',
             component: Detective
+        },
+        {
+            path: '/timeattack',
+            name: 'Time Attack',
+            component: TimeAttack
         }
     ]
 })

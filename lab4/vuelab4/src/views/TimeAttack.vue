@@ -31,7 +31,7 @@
                             Name
                         </td>
                         <td>
-                            Shots
+                            Time
                         </td>
                     </tr>
                     </thead>
@@ -40,7 +40,7 @@
                 </table>
             </div>
             <div class="grid--graph flexColumn">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" id="svgEmpty">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
                     <g stroke="white" stroke-width="2px">
                         <path d="M 0 200 h 400"></path>
                         <path d="M 200 0 v 400"></path>
@@ -64,7 +64,7 @@
                     <g id="graphDots"></g>
                 </svg>
             </div>
-            <NoRPanel @start-game="startGame" @add-data="resultsAdd" @erase-data="resultsRemove"/>
+            <ClockPanel @start-game="startGame"/>
             <NoRTable :results="results"/>
         </div>
     </div>
@@ -72,12 +72,12 @@
 
 <script>
     import NoRTable from "../components/NoRTable";
-    import NoRPanel from "../components/NoRPanel";
+    import ClockPanel from "../components/ClockPanel";
     import Suspect from "../components/Suspect";
 
     export default {
-        name: "Detective",
-        components: {Suspect, NoRPanel, NoRTable},
+        name: "TimeAttack",
+        components: {Suspect, ClockPanel, NoRTable},
         data: function () {
             return {
                 results: [
@@ -169,9 +169,5 @@
     .grid--graph {
         grid-area: graph;
         user-select: none;
-    }
-
-    #svgEmpty:hover{;
-        cursor: url("../assets/aim.svg") 16 16, pointer;
     }
 </style>

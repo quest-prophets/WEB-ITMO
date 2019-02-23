@@ -1,17 +1,17 @@
 <template>
     <div class="menuPage">
         <div class="mainMenuButtonDiv">
-            <router-link to="Practice" class="mainMenuButton">
+            <router-link to="practice" class="mainMenuButton">
                 P<a>R</a>A<a>C</a>T<a>I</a>C<a>E</a>
             </router-link>
         </div>
         <div class="mainMenuButtonDiv">
-            <router-link to="Detective" class="mainMenuButton">
+            <router-link to="detective" class="mainMenuButton">
                 D<a>E</a>T<a>E</a>C<a>T</a>I<a>V</a>E
             </router-link>
         </div>
         <div class="mainMenuButtonDiv">
-            <router-link to="Practice" class="mainMenuButton">
+            <router-link to="timeattack" class="mainMenuButton">
                 T<a>I</a>M<a>E</a>&nbsp;<a>A</a>T<a>T</a>A<a>C</a>K
             </router-link>
         </div>
