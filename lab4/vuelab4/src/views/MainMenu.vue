@@ -34,7 +34,7 @@
     }
 </script>
 
-<style>
+<style scoped>
     .menuPage {
         overflow: hidden;
         text-align: center;

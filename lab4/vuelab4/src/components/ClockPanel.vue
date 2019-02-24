@@ -1,7 +1,7 @@
 <template>
     <div class="grid--graphPanel flexColumn">
         <div class="flexColumn graphPanel">
-            <button @click="start" id="startButton" class="bwButton startButton">Start!</button>
+            <button @click="start" id="startButton" class="bwButton bwButton-blackBackground startButton">Start!</button>
             <div class="hidden clock">
                 00:00:00
             </div>
@@ -28,24 +28,7 @@
     }
 </script>
 
-<style>
-    .bwButton {
-        width: 100px;
-        padding: 7px 12px;
-        color: white;
-        background-color: black;
-        font-weight: bold;
-        margin-top: 10px;
-        cursor: pointer;
-        outline: none;
-        border: 2px solid white;
-    }
-
-    .bwButton:hover {
-        background: white;
-        color: black;
-    }
-
+<style scoped>
     .startButton {
         margin-top: 0;
     }

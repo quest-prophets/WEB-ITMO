@@ -1,15 +1,15 @@
 <template>
     <div class="grid--graphPanel flexColumn">
         <div class="flexColumn graphPanel">
-            <button @click="start" id="startButton" class="bwButton-blackBackground startButton">Start!</button>
+            <button @click="start" id="startButton" class="bwButton bwButton-blackBackground startButton">Start!</button>
             <div class="hidden">X: &emsp;<input v-model="x" type="number" step="0.1" min="-5" max="3"
                                                 placeholder="-5..3"
                                                 class="graphInput hidden"></div>
             <div class="hidden">Y: &emsp;<input v-model="y" type="number" step="0.1" min="-3" max="3"
                                                 placeholder="-3..3"
                                                 class="graphInput hidden"></div>
-            <button @click="focus" class="bwButton hidden">Focus</button>
-            <button @click="erase" class="bwButton hidden">Erase</button>
+            <button @click="focus" class="bwButton bwButton-blackBackground hidden">Focus</button>
+            <button @click="erase" class="bwButton bwButton-blackBackground hidden">Erase</button>
         </div>
     </div>
 </template>
@@ -40,32 +40,8 @@
 </script>
 
 <style scoped>
-    .bwButton {
-        width: 100px;
-        padding: 7px 12px;
-        color: white;
-        background-color: black;
-        font-weight: bold;
-        margin-top: 10px;
-        cursor: pointer;
-        outline: none;
-        border: 2px solid white;
-    }
-
-    .bwButton:hover {
-        background: white;
-        color: black;
-    }
-
     .startButton{
         margin-top: 0;
-    }
-
-    .flexColumn {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
     }
 
     .grid--graphPanel {
@@ -90,9 +66,5 @@
         border-radius: 6px;
         border: 2px solid white;
         width: 7vw;
-    }
-
-    .hidden {
-        display: none;
     }
 </style>

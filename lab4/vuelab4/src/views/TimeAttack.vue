@@ -1,6 +1,6 @@
 <template>
     <div class="gamePage">
-        <div class="detectiveGrid">
+        <div class="timeGrid">
             <div class="grid--exit">
                 <router-link to="MainMenu" class="exitButton">Main Menu</router-link>
             </div>
@@ -101,20 +101,7 @@
     }
 </script>
 
-<style>
-    .gamePage {
-        font-family: 'Exo', monospace;
-        background: url('../assets/gamePage.svg') no-repeat fixed center center;
-        background-size: cover;
-    }
-
-    .flexColumn {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-
+<style scoped>
     .grid--exit {
         grid-area: exit;
     }
@@ -128,8 +115,26 @@
         height: 90%;
     }
 
-    .leaderboardTable {
+    .leaderboardTable{
         width: 100%;
+    }
+
+    table {
+        margin: 0 auto;
+        border-collapse: collapse;
+    }
+
+    thead {
+        border-bottom: 2px solid black;
+    }
+
+    td {
+        padding: 4px 7px;
+        border-right: 2px solid black;
+    }
+
+    td:last-child {
+        border: none;
     }
 
     .exitButton {
@@ -142,7 +147,15 @@
         grid-area: suspects;
     }
 
-    .detectiveGrid {
+    .suspectsGrid {
+        display: grid;
+        grid: [row1-start] "suspect1 suspect2" [row1-end] [row2-start] "suspect3 suspect4" [row2-end] [row3-start] "suspect5 suspect6" [row3-end];
+        height: 100%;
+        grid-column-gap: 10px;
+        grid-row-gap: 10px;
+    }
+
+    .timeGrid {
         display: grid;
         padding: 10px 20px;
         height: 100vh;

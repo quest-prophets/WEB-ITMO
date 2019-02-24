@@ -19,18 +19,11 @@
     }
 </script>
 
-<style>
+<style scoped>
     .loginPage {
         overflow: hidden;
         background: url('../assets/loginPage.svg') no-repeat fixed center center;
         background-size: cover;
-    }
-
-    .flexColumn {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
     }
 
     .loginShadow {
@@ -56,31 +49,9 @@
         border: none;
     }
 
-    .bwButton {
-        font-family: "Arial", monospace;
-        text-align: center;
-        text-decoration: none;
-        width: 100px;
-        padding: 7px 12px;
-        color: white;
-        background-color: black;
-        font-weight: bold;
-        margin-top: 10px;
-        cursor: pointer;
-        outline: none;
-    }
-
-    .bwButton-whiteBackground {
-        border: 2px solid black;
-    }
-
-    .bwButton-whiteBackground:hover {
-        background: white;
-        color: black;
-    }
 
     .logo {
-        text-shadow: 3px 3px 10px white;
+        text-shadow: 3px 3px 1px white;
         font-size: 120px;
         font-weight: bold;
         margin-top: -25vh;
@@ -103,6 +74,13 @@
     @media (max-width: 1000px) {
         .logo{
             font-size: 13vw;
+        }
+    }
+
+    @media (max-width: 700px) {
+        .logo{
+            text-shadow: 2px 2px 1px white;
+            -webkit-text-stroke: 1px white;
         }
     }
 </style>

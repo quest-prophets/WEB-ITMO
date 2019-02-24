@@ -16,15 +16,53 @@
     min-width: 100vw;
   }
 
-  .suspectsGrid {
-    display: grid;
-    grid: [row1-start] "suspect1 suspect2" [row1-end] [row2-start] "suspect3 suspect4" [row2-end] [row3-start] "suspect5 suspect6" [row3-end];
-    height: 100%;
-    grid-column-gap: 10px;
-    grid-row-gap: 10px;
+  .flexColumn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
-  .grid--exit {
-    grid-area: exit;
+  .gamePage {
+    font-family: 'Exo', monospace;
+    background: url('assets/gamePage.svg') no-repeat fixed center center;
+    background-size: cover;
+  }
+
+  .bwButton {
+    font-family: "Arial", monospace;
+    text-align: center;
+    text-decoration: none;
+    width: 100px;
+    padding: 7px 12px;
+    color: white;
+    background-color: black;
+    font-weight: bold;
+    margin-top: 10px;
+    cursor: pointer;
+    outline: none;
+  }
+
+  .bwButton-blackBackground {
+    border: 2px solid white;
+  }
+
+  .bwButton-blackBackground:hover {
+    background: white;
+    color: black;
+  }
+
+  .bwButton-whiteBackground {
+    border: 2px solid black;
+  }
+
+  .bwButton-whiteBackground:hover {
+    background: white;
+    color: black;
+  }
+
+
+  .hidden {
+    display: none;
   }
 </style>

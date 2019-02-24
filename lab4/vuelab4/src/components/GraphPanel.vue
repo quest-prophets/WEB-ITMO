@@ -1,7 +1,7 @@
 <template>
-    <div class="grid--graphPanel flexColumnGraphPanel">
-        <div class="flexColumnGraphPanel graphPanelPractice">
-            <div class="flexColumnGraphPanel2">
+    <div class="grid--graphPanel flexColumn">
+        <div class="flexColumn graphPanel">
+            <div class="flexColumn2">
                 <div>
                     <span class="graphInputLabel1">R: &emsp;</span>
                     <span class="graphInputLabel2">R: </span>
@@ -20,9 +20,9 @@
                            class="graphInput">
                 </div>
             </div>
-            <div class="flexColumnGraphPanel2">
-                <button @click="focus" class="bwButtonGP bwButton-blackBackground">Focus</button>
-                <button @click="erase" class="bwButtonGP bwButton-blackBackground">Erase</button>
+            <div class="flexColumn2">
+                <button @click="focus" class="bwButton bwButton-blackBackground">Focus</button>
+                <button @click="erase" class="bwButton bwButton-blackBackground">Erase</button>
             </div>
         </div>
     </div>
@@ -45,35 +45,8 @@
     }
 </script>
 
-<style>
-    .bwButtonGP {
-        width: 100px;
-        padding: 7px 12px;
-        color: white;
-        background-color: black;
-        font-weight: bold;
-        margin-top: 10px;
-        cursor: pointer;
-        outline: none;
-    }
-
-    .bwButton-blackBackground {
-        border: 2px solid white;
-    }
-
-    .bwButton-blackBackground:hover {
-        background: white;
-        color: black;
-    }
-
-    .flexColumnGraphPanel {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .flexColumnGraphPanel2 {
+<style scoped>
+    .flexColumn2 {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -84,7 +57,7 @@
         grid-area: graphPanel;
     }
 
-    .graphPanelPractice {
+    .graphPanel {
         color: white;
         border: 2px solid white;
         padding: 20px 30px;
@@ -113,7 +86,7 @@
             width: 9vw;
         }
 
-        .bwButtonGP{
+        .bwButton{
             width: 115px;
             height: 40px;
         }
@@ -138,18 +111,18 @@
             align-items: center;
         }
 
-        .bwButtonGP{
+        .bwButton{
             width: 120px;
             height: 45px;
         }
 
-        .graphPanelPractice {
+        .graphPanel {
             padding: 15px 25px;
         }
     }
 
     @media (max-width: 700px) {
-        .flexColumnGraphPanel2 {
+        .flexColumn2 {
             flex-direction: row;
         }
 
@@ -159,11 +132,11 @@
             margin-right: 30px;
         }
 
-        .graphPanelPractice{
+        .graphPanel{
             border: none;
         }
 
-        .bwButtonGP {
+        .bwButton {
             margin-top: 20px;
             margin-right: 30px;
         }

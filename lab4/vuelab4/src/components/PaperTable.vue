@@ -51,7 +51,7 @@
     }
 </script>
 
-<style>
+<style scoped>
     .paper {
         text-align: center;
         box-sizing: border-box;

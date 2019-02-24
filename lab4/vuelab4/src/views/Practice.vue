@@ -70,20 +70,7 @@
     }
 </script>
 
-<style>
-    .gamePage {
-        font-family: 'Exo', monospace;
-        background: url('../assets/gamePage.svg') no-repeat fixed center center;
-        background-size: cover;
-    }
-
-    .flexColumn {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-
+<style scoped>
     .practiceGrid {
         display: grid;
         padding: 10px 20px;
@@ -109,6 +96,10 @@
     .grid--graph {
         grid-area: graph;
         user-select: none;
+    }
+
+    .grid--exit {
+        grid-area: exit;
     }
 
     .mainPracticeGraph {
