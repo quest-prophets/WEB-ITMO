@@ -107,8 +107,15 @@
     
     @media (max-width: 800px) {
         .paper{
-            min-width: 70vw;
-            height: 70vh;
+            min-width: 500px;
+            height: 550px;
+        }
+    }
+
+    @media (max-width: 550px) {
+        .paper{
+            min-width: 300px;
+            height: 350px;
         }
     }
 </style>
