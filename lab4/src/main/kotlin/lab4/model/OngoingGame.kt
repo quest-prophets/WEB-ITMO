@@ -17,9 +17,9 @@ data class OngoingGame (@Column(nullable = false) var gameType: String = ""){
     var userInfo: UserInfo? = null
 
     @OneToMany(fetch = FetchType.LAZY, cascade = [CascadeType.ALL], mappedBy = "ongoingGame")
-    var gameResults: MutableList<OngoingGameResult>? = null
+    var gameCheckEntries: MutableList<OngoingGameCheckEntry>? = null
 
     var graphType: Int? = null
-    var suspectsTypes: Array<Int>? = null
+    var suspectsTypes: ArrayList<Int>? = null
 
 }

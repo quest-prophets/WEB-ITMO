@@ -3,10 +3,10 @@ package lab4.model
 import javax.persistence.*
 
 @Entity
-@Table(name = "game_result_entries")
-data class OngoingGameResult (var x: Double = 0.0,
-                              var y: Double = 0.0,
-                              var isHit: Boolean = false) {
+@Table(name = "game_check_entries")
+data class OngoingGameCheckEntry (var x: Double = 0.0,
+                                  var y: Double = 0.0,
+                                  var isHit: Boolean = false) {
     @Id
     @GeneratedValue
     var id: Long? = null
