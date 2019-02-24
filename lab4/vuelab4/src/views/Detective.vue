@@ -334,4 +334,18 @@
             display: inline;
         }
     }
+
+    @media (max-width: 400px) {
+        .exitButton {
+            border: 2px solid white;
+            padding: 5px;
+            font-size: 22px;
+        }
+
+        .mobileButtonLeft, .mobileButtonRight {
+            display: inline;
+            font-size: 22px;
+            padding: 5px;
+        }
+    }
 </style>
