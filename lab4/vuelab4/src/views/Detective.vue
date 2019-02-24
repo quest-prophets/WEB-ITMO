@@ -277,7 +277,7 @@
         .detectiveGrid {
             grid: "exit exit exit exit" 40px "nothing8 graphPanel graphAndSuspects leaderboard" auto "graphTable graphTable graphTable graphTable" auto;
             grid-row-gap: 0;
-            grid-template-columns: 0 4fr 5fr 4fr;
+            grid-template-columns: 0 4fr 4.5fr 4fr;
         }
 
         .grid--graph {
