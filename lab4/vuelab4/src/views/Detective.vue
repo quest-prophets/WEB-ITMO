@@ -1,22 +1,15 @@
 <template>
     <div class="gamePage">
-        <div class="detectiveGrid">
+        <div class="detectiveGrid" id="mainGrid">
             <div class="grid--exit">
-                <router-link to="MainMenu" class="exitButton">Main Menu</router-link>
-            </div>
-            <div class="grid--suspects suspectsGrid">
-                    <Suspect style="grid-area: suspect1"
-                             :ids="{path1id: 'suspect1--path1', path2id: 'suspect1--path2',path3id: 'suspect1--path3',path4id: 'suspect1--path4'}"/>
-                    <Suspect style="grid-area: suspect2"
-                             :ids="{path1id: 'suspect2--path1', path2id: 'suspect2--path2',path3id: 'suspect2--path3',path4id: 'suspect2--path4'}"/>
-                    <Suspect style="grid-area: suspect3"
-                             :ids="{path1id: 'suspect3--path1', path2id: 'suspect3--path2',path3id: 'suspect3--path3',path4id: 'suspect3--path4'}"/>
-                    <Suspect style="grid-area: suspect4"
-                             :ids="{path1id: 'suspect4--path1', path2id: 'suspect4--path2',path3id: 'suspect4--path3',path4id: 'suspect4--path4'}"/>
-                    <Suspect style="grid-area: suspect5"
-                             :ids="{path1id: 'suspect5--path1', path2id: 'suspect5--path2',path3id: 'suspect5--path3',path4id: 'suspect5--path4'}"/>
-                    <Suspect style="grid-area: suspect6"
-                             :ids="{path1id: 'suspect6--path1', path2id: 'suspect6--path2',path3id: 'suspect6--path3',path4id: 'suspect6--path4'}"/>
+                <router-link to="MainMenu" class="exitButton">
+                    <span class="exitLabel1">
+                        Main Menu
+                    </span>
+                    <span class="exitLabel2">
+                        Menu
+                    </span>
+                </router-link>
             </div>
             <div class="grid--leaderboard">
                 <table class="leaderboardTable">
@@ -37,33 +30,69 @@
                     </tbody>
                 </table>
             </div>
-            <div class="grid--graph flexColumn">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" class="graphMain">
-                    <g stroke="white" stroke-width="2px">
-                        <path d="M 0 200 h 400"></path>
-                        <path d="M 200 0 v 400"></path>
-                        <path d="M 200 0 l -4 7"></path>
-                        <path d="M 200 0 l 4 7"></path>
-                        <path d="M 400 200 l -7 -4"></path>
-                        <path d="M 400 200 l -7 4"></path>
-                        <path d="M 0 0 h 50"></path>
-                        <path d="M 0 0 v 50"></path>
-                        <path d="M 400 0 h -50"></path>
-                        <path d="M 400 0 v 50"></path>
-                        <path d="M 0 400 h 50"></path>
-                        <path d="M 0 400 v -50"></path>
-                        <path d="M 400 400 h -50"></path>
-                        <path d="M 400 400 v -50"></path>
-                    </g>
-                    <g stroke="white" stroke-width="1px" stroke-dasharray="10">
-                        <path id="xRuler" d=""></path>
-                        <path id="yRuler" d=""></path>
-                    </g>
-                    <g id="graphDots"></g>
-                </svg>
+            <div class="grid--graph">
+                <div class="flexColumn grid--graphMain">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" class="graphMain">
+                        <g stroke="white" stroke-width="2px">
+                            <path d="M 0 200 h 400"></path>
+                            <path d="M 200 0 v 400"></path>
+                            <path d="M 200 0 l -4 7"></path>
+                            <path d="M 200 0 l 4 7"></path>
+                            <path d="M 400 200 l -7 -4"></path>
+                            <path d="M 400 200 l -7 4"></path>
+                            <path d="M 0 0 h 50"></path>
+                            <path d="M 0 0 v 50"></path>
+                            <path d="M 400 0 h -50"></path>
+                            <path d="M 400 0 v 50"></path>
+                            <path d="M 0 400 h 50"></path>
+                            <path d="M 0 400 v -50"></path>
+                            <path d="M 400 400 h -50"></path>
+                            <path d="M 400 400 v -50"></path>
+                        </g>
+                        <g stroke="white" stroke-width="1px" stroke-dasharray="10">
+                            <path id="xRuler" d=""></path>
+                            <path id="yRuler" d=""></path>
+                        </g>
+                        <g id="graphDots"></g>
+                    </svg>
+                </div>
+                <div class="flexColumn">
+                    <Suspect style="grid-area: suspect1"
+                             :ids="{path1id: 'suspect1--path1', path2id: 'suspect1--path2',path3id: 'suspect1--path3',path4id: 'suspect1--path4'}"/>
+                </div>
+                <div class="flexColumn">
+                    <Suspect style="grid-area: suspect2"
+                             :ids="{path1id: 'suspect2--path1', path2id: 'suspect2--path2',path3id: 'suspect2--path3',path4id: 'suspect2--path4'}"/>
+                </div>
+                <div class="flexColumn">
+                    <Suspect style="grid-area: suspect3"
+                             :ids="{path1id: 'suspect3--path1', path2id: 'suspect3--path2',path3id: 'suspect3--path3',path4id: 'suspect3--path4'}"/>
+                </div>
+                <div class="flexColumn">
+                    <Suspect style="grid-area: suspect4"
+                             :ids="{path1id: 'suspect4--path1', path2id: 'suspect4--path2',path3id: 'suspect4--path3',path4id: 'suspect4--path4'}"/>
+                </div>
+                <div class="flexColumn">
+                    <Suspect style="grid-area: suspect5"
+                             :ids="{path1id: 'suspect5--path1', path2id: 'suspect5--path2',path3id: 'suspect5--path3',path4id: 'suspect5--path4'}"/>
+                </div>
+                <div class="flexColumn">
+                    <Suspect style="grid-area: suspect6"
+                             :ids="{path1id: 'suspect6--path1', path2id: 'suspect6--path2',path3id: 'suspect6--path3',path4id: 'suspect6--path4'}"/>
+                </div>
             </div>
-            <NoRPanel @start-game="startGame" @add-data="resultsAdd" @erase-data="resultsRemove"/>
-            <NoRTable :results="results"/>
+            <NoRPanel id="graphPanel" @start-game="startGame" @add-data="resultsAdd" @erase-data="resultsRemove"/>
+            <NoRTable id="paperTable" :results="results"/>
+            <div class="grid--mobileButtonLeft" @click="leftButtonChange">
+            <span class="mobileButtonLeft">
+                History
+            </span>
+            </div>
+            <div class="grid--mobileButtonRight" @click="rightButtonChange">
+            <span class="mobileButtonRight">
+                Leaderboard
+            </span>
+            </div>
         </div>
     </div>
 </template>
@@ -94,6 +123,40 @@
             },
             startGame: function () {
 
+            },
+            leftButtonChange: function (e) {
+                if (document.getElementById("paperTable").style.display === "none" || document.getElementById("paperTable").style.display === "") {
+                    document.getElementsByClassName("grid--graph")[0].style.display = "none";
+                    document.getElementById("graphPanel").style.display = "none";
+                    document.getElementsByClassName("grid--leaderboard")[0].style.display = "none";
+                    document.getElementById("paperTable").style.display = "block";
+                    document.getElementById("mainGrid").style.grid = "'buttonLeft exit buttonRight' 40px 'graphTable graphTable graphTable' auto";
+                    e.target.innerHTML = "Figura";
+                    document.getElementsByClassName("mobileButtonRight")[0].innerHTML = "Leaderboard"
+                } else {
+                    document.getElementsByClassName("grid--graph")[0].style.display = "grid";
+                    document.getElementById("graphPanel").style.display = "block";
+                    document.getElementById("paperTable").style.display = "none";
+                    document.getElementById("mainGrid").style.grid = "'buttonLeft exit buttonRight' 40px 'graphAndSuspects graphAndSuspects graphAndSuspects' auto 'graphPanel graphPanel graphPanel' auto";
+                    e.target.innerHTML = "History"
+                }
+            },
+            rightButtonChange: function (e) {
+                if (document.getElementsByClassName("grid--leaderboard")[0].style.display === "none" || document.getElementsByClassName("grid--leaderboard")[0].style.display === "") {
+                    document.getElementsByClassName("grid--graph")[0].style.display = "none";
+                    document.getElementById("graphPanel").style.display = "none";
+                    document.getElementById("paperTable").style.display = "none";
+                    document.getElementsByClassName("grid--leaderboard")[0].style.display = "block";
+                    document.getElementById("mainGrid").style.grid = "'buttonLeft exit buttonRight' 40px 'leaderboard leaderboard leaderboard' auto";
+                    e.target.innerHTML = "Figura";
+                    document.getElementsByClassName("mobileButtonLeft")[0].innerHTML = "History"
+                } else {
+                    document.getElementsByClassName("grid--graph")[0].style.display = "grid";
+                    document.getElementById("graphPanel").style.display = "block";
+                    document.getElementsByClassName("grid--leaderboard")[0].style.display = "none";
+                    document.getElementById("mainGrid").style.grid = "'buttonLeft exit buttonRight' 40px 'graphAndSuspects graphAndSuspects graphAndSuspects' auto 'graphPanel graphPanel graphPanel' auto";
+                    e.target.innerHTML = "Leaderboard"
+                }
             }
         }
     }
@@ -113,7 +176,7 @@
         height: 90%;
     }
 
-    .leaderboardTable{
+    .leaderboardTable {
         width: 100%;
     }
 
@@ -141,16 +204,8 @@
         font-size: 20px;
     }
 
-    .grid--suspects {
-        grid-area: suspects;
-    }
-
-    .suspectsGrid {
-        display: grid;
-        grid: [row1-start] "suspect1 suspect2" [row1-end] [row2-start] "suspect3 suspect4" [row2-end] [row3-start] "suspect5 suspect6" [row3-end];
-        height: 100%;
-        grid-column-gap: 10px;
-        grid-row-gap: 10px;
+    .exitLabel2 {
+        display: none;
     }
 
     .detectiveGrid {
@@ -159,8 +214,8 @@
         height: 100vh;
         grid-row-gap: 40px;
         grid-column-gap: 20px;
-        grid: [row1-start] "exit nothing1 nothing2 nothing3" auto [row1-end] [row2-start] "suspects graph graphPanel leaderboard" calc(30vh + 100px) [row2-end] [row3-start] "suspects graphTable graphTable leaderboard" auto [row3-end] [row3-start] "nothing0 graphTable graphTable nothing4" auto [row3-end];
-        grid-template-columns: 9fr 10fr 7fr 11fr;
+        grid: "exit exit exit exit" 50px "nothing8 graphAndSuspects graphPanel leaderboard" auto "graphTable graphTable graphTable graphTable" auto;
+        grid-template-columns: 3fr 10fr 5fr 6fr;
         box-sizing: border-box;
     }
 
@@ -170,24 +225,113 @@
     }
 
     .grid--graph {
-        grid-area: graph;
+        display: grid;
+        grid-area: graphAndSuspects;
         user-select: none;
+        grid: "suspect1 graphMain suspect2" "suspect3 graphMain suspect4" "suspect5 graphMain suspect6";
+        grid-row-gap: 20px;
+        grid-column-gap: 20px;
+        grid-template-columns: 10fr 35fr 10fr;
     }
 
-    .graphMain:hover{
+    .grid--graphMain {
+        grid-area: graphMain;
+    }
+
+    .graphMain:hover {
         cursor: url("../assets/aim.svg") 16 16, pointer;
     }
 
-    @media (max-width: 1000px) {
+    .mobileButtonLeft, .mobileButtonRight {
+        display: none;
+        color: white;
+        font-size: 25px;
+        border: 2px solid white;
+        border-radius: 5px;
+        padding: 8px;
+        cursor: pointer;
+        user-select: none;
+    }
+
+    .mobileButtonLeft:hover, .mobileButtonRight:hover {
+        text-decoration: underline;
+    }
+
+    .grid--mobileButtonLeft {
+        grid-area: buttonLeft;
+        text-align: center;
+    }
+
+    .grid--mobileButtonRight {
+        grid-area: buttonRight;
+        text-align: center;
+    }
+
+    @media (max-width: 1300px) {
         .detectiveGrid {
-            grid: [row1-start] "exit nothing1 nothing2 nothing3" auto [row1-end] [row2-start] "suspects graph graphPanel leaderboard" calc(30vh + 100px) [row2-end] [row3-start] "suspects graphTable graphTable leaderboard" auto [row3-end] [row3-start] "suspects graphTable graphTable nothing4" auto [row3-end];
+            grid-template-columns: 1fr 10fr 5fr 6fr;
+        }
+    }
+
+    @media (max-width: 1100px) {
+        .detectiveGrid {
+            grid: "exit exit exit exit" 40px "nothing8 graphPanel graphAndSuspects leaderboard" auto "graphTable graphTable graphTable graphTable" auto;
+            grid-row-gap: 0;
+            grid-template-columns: 0 4fr 5fr 4fr;
         }
 
-        .suspectsGrid {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+        .grid--graph {
+            grid: "suspect1 suspect2 suspect3" "graphMain graphMain graphMain" "suspect4 suspect5 suspect6";
+            grid-template-columns: 10fr 10fr 10fr;
+            grid-template-rows: 10fr 35fr 10fr;
+        }
+    }
+
+    @media (max-width: 800px) {
+        .detectiveGrid {
+            grid: "buttonLeft exit buttonRight" 40px "graphAndSuspects graphAndSuspects graphAndSuspects" auto "graphPanel graphPanel graphPanel" auto;
+            grid-row-gap: 20px;
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        .grid--exit {
+            text-align: center;
+            user-select: none;
+        }
+
+        .exitButton {
+            border: 2px solid white;
+            border-radius: 5px;
+            padding: 8px;
+            font-size: 25px;
+        }
+
+        #paperTable {
+            display: none;
+        }
+
+        .grid--leaderboard {
+            display: none;
+        }
+
+        .grid--graph {
+            grid: "suspect1 graphMain suspect2" "suspect3 graphMain suspect4" "suspect5 graphMain suspect6";
+            grid-template-columns: 5fr 14fr 5fr;
+            grid-template-rows: 10fr 10fr 10fr;
+        }
+
+        .mobileButtonLeft, .mobileButtonRight {
+            display: inline;
+        }
+    }
+
+    @media (max-width: 530px) {
+        .exitLabel1 {
+            display: none;
+        }
+
+        .exitLabel2 {
+            display: inline;
         }
     }
 </style>

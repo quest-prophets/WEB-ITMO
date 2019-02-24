@@ -6,7 +6,8 @@
                     <span class="graphInputLabel1">R: &emsp;</span>
                     <span class="graphInputLabel2">R: </span>
                     <input v-model="r" type="number" step="0.1" min="1" max="5" placeholder="1..5"
-                           class="graphInput"></div>
+                           class="graphInput">
+                </div>
                 <div>
                     <span class="graphInputLabel1">X: &emsp;</span>
                     <span class="graphInputLabel2">X: </span>
@@ -86,7 +87,7 @@
             width: 9vw;
         }
 
-        .bwButton{
+        .bwButton {
             width: 115px;
             height: 40px;
         }
@@ -111,7 +112,7 @@
             align-items: center;
         }
 
-        .bwButton{
+        .bwButton {
             width: 120px;
             height: 45px;
         }
@@ -132,7 +133,7 @@
             margin-right: 30px;
         }
 
-        .graphPanel{
+        .graphPanel {
             border: none;
         }
 

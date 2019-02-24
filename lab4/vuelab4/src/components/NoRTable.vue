@@ -104,4 +104,11 @@
     td:last-child {
         border: none;
     }
+    
+    @media (max-width: 800px) {
+        .paper{
+            min-width: 500px;
+            height: 700px;
+        }
+    }
 </style>

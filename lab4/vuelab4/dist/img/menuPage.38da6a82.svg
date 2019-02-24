@@ -20,5 +20,5 @@
             <rect x="0" y="1" fill="rgba(255,255,255,0.3)" width="1" height="1"/>
         </pattern>
     </defs>
-    <circle class="chess" x="-10" y="-10" r="25" fill="url(#pattern)"/>
+    <circle class="chess" r="25" fill="url(#pattern)"/>
 </svg>
