@@ -81,7 +81,7 @@
                              :ids="{path1id: 'suspect6--path1', path2id: 'suspect6--path2',path3id: 'suspect6--path3',path4id: 'suspect6--path4'}"/>
                 </div>
             </div>
-            <NoRPanel id="graphPanel" @start-game="startGame" @add-data="resultsAdd" @erase-data="resultsRemove"/>
+            <DetectivePanel id="graphPanel" @start-game="startGame" @add-data="resultsAdd"/>
             <NoRTable id="paperTable" :results="results"/>
             <div class="grid--mobileButtonLeft" @click="leftButtonChange">
             <span class="mobileButtonLeft">
@@ -99,12 +99,12 @@
 
 <script>
     import NoRTable from "../components/NoRTable";
-    import NoRPanel from "../components/NoRPanel";
+    import DetectivePanel from "../components/DetectivePanel";
     import Suspect from "../components/Suspect";
 
     export default {
         name: "Detective",
-        components: {Suspect, NoRPanel, NoRTable},
+        components: {Suspect, DetectivePanel, NoRTable},
         data: function () {
             return {
                 results: [

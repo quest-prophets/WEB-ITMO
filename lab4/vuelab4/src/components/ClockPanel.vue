@@ -11,10 +11,7 @@
 
 <script>
     export default {
-        name: "NoRPanel",
-        data: function () {
-            return {r: null, x: null, y: null}
-        },
+        name: "ClockPanel",
         methods: {
             start: function () {
                 let hiddens = document.querySelectorAll(".hidden");
@@ -31,13 +28,6 @@
 <style scoped>
     .startButton {
         margin-top: 0;
-    }
-
-    .flexColumn {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
     }
 
     .grid--graphPanel {
@@ -59,7 +49,20 @@
         margin-bottom: 15px;
     }
 
-    .hidden {
-        display: none;
+    @media (max-width: 800px) {
+        .graphPanel{
+            border: none;
+        }
+
+        .clock{
+            font-size: 30px;
+        }
+
+        .bwButton {
+            font-size: 16px;
+            width: 120px;
+            height: 45px;
+            user-select: none;
+        }
     }
 </style>

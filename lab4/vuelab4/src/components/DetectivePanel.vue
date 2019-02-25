@@ -1,23 +1,21 @@
 <template>
     <div class="grid--graphPanel flexColumn">
         <div class="flexColumn graphPanel">
+            <button @click="start" id="startButton" class="bwButton bwButton-blackBackground startButton">Start!</button>
             <div class="flexColumn2">
-                <div>
-                    <span class="graphInputLabel1">X: &emsp;</span>
-                    <span class="graphInputLabel2">X: </span>
+                <div class="hidden">
+                    X: &nbsp;
                     <input v-model="x" type="number" step="0.1" min="-5" max="3" placeholder="-5..3"
                            class="graphInput">
                 </div>
-                <div>
-                    <span class="graphInputLabel1">Y: &emsp;</span>
-                    <span class="graphInputLabel2">Y: </span>
+                <div class="hidden">
+                    Y: &nbsp;
                     <input v-model="y" type="number" step="0.1" min="-3" max="3" placeholder="-3..3"
                            class="graphInput">
                 </div>
             </div>
             <div class="flexColumn2">
-                <button @click="focus" class="bwButton bwButton-blackBackground">Focus</button>
-                <button @click="erase" class="bwButton bwButton-blackBackground">Erase</button>
+                <button @click="focus" class="hidden bwButton bwButton-blackBackground">Focus</button>
             </div>
         </div>
     </div>
@@ -33,8 +31,13 @@
             focus: function () {
                 this.$emit("add-data", {r: this.r, x: this.x, y: this.y})
             },
-            erase: function () {
-                this.$emit("erase-data")
+            start: function () {
+                let hiddens = document.querySelectorAll(".hidden");
+                for (var i = 0; i < hiddens.length; i++) {
+                    hiddens[i].classList.remove("hidden");
+                }
+                document.getElementById("startButton").classList.add("hidden");
+                this.$emit("start-game")
             }
         }
     }
@@ -46,6 +49,10 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+    }
+
+    .startButton{
+        margin-top: 0;
     }
 
     .grid--graphPanel {
@@ -72,10 +79,6 @@
         width: 7vw;
     }
 
-    .graphInputLabel2 {
-        display: none;
-    }
-
     @media (max-width: 800px) {
         .flexColumn2 {
             flex-direction: row;
@@ -99,18 +102,6 @@
         .bwButton {
             margin-top: 20px;
             margin-right: 30px;
-        }
-
-        .graphInputLabel1 {
-            display: none;
-        }
-
-        .graphInputLabel2 {
-            font-size: 20px;
-            display: inline;
-        }
-
-        .bwButton {
             font-size: 16px;
             width: 120px;
             height: 45px;
