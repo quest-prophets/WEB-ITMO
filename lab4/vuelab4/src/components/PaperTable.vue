@@ -110,4 +110,12 @@
     td:last-child {
         border: none;
     }
+
+    @media (max-width: 420px) {
+        .paper{
+            font-size: 13px;
+            max-width: 250px;
+            min-height: 250px;
+        }
+    }
 </style>

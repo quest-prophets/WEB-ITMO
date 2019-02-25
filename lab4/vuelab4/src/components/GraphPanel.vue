@@ -128,7 +128,7 @@
         }
 
         .graphInput {
-            width: 12vw;
+            width: 12.5vw;
             margin-top: 0;
             margin-right: 30px;
         }

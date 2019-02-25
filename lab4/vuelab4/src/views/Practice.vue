@@ -58,60 +58,18 @@
                              :ids="{path1id: 'suspect6--path1', path2id: 'suspect6--path2',path3id: 'suspect6--path3',path4id: 'suspect6--path4'}"/>
                 </div>
             </div>
-            <DetectivePanel id="graphPanel" @start-game="startGame" @add-data="resultsAdd"/>
-            <NoRTable id="paperTable" :results="results"/>
-            <div class="grid--historyButton" @click="leftButtonChange">
-            <span class="historyButton">
-                History
-            </span>
-            </div>
+            <HelpPanel id="graphPanel"/>
         </div>
     </div>
 </template>
 
 <script>
-    import NoRTable from "../components/NoRTable";
-    import DetectivePanel from "../components/DetectivePanel";
+    import HelpPanel from "../components/HelpPanel";
     import Suspect from "../components/Suspect";
 
     export default {
         name: "Practice",
-        components: {Suspect, DetectivePanel, NoRTable},
-        data: function () {
-            return {
-                results: [
-                    {x: 2, y: 11, figura: true, time: "11:22:33"},
-                    {x: 21, y: 64, figura: false, time: "20:00:00"},
-                    {x: 8, y: 81, figura: true, time: "88:22:33"}
-                ]
-            }
-        },
-        methods: {
-            resultsAdd: function ({r, x, y}) {
-                this.results.push({r, x, y, figura: true, time: 'h'});
-            },
-            resultsRemove: function () {
-                this.results = [];
-            },
-            startGame: function () {
-
-            },
-            leftButtonChange: function (e) {
-                if (document.getElementById("paperTable").style.display === "none" || document.getElementById("paperTable").style.display === "") {
-                    document.getElementsByClassName("grid--graph")[0].style.display = "none";
-                    document.getElementById("graphPanel").style.display = "none";
-                    document.getElementById("paperTable").style.display = "block";
-                    document.getElementById("mainGrid").style.grid = "'historyButton exit nothing0' 40px 'graphTable graphTable graphTable' auto";
-                    e.target.innerHTML = "Figura";
-                } else {
-                    document.getElementsByClassName("grid--graph")[0].style.display = "grid";
-                    document.getElementById("graphPanel").style.display = "block";
-                    document.getElementById("paperTable").style.display = "none";
-                    document.getElementById("mainGrid").style.grid = "'historyButton exit nothing0' 40px 'graphAndSuspects graphAndSuspects graphAndSuspects' auto 'graphPanel graphPanel graphPanel' auto";
-                    e.target.innerHTML = "History"
-                }
-            }
-        }
+        components: {Suspect, HelpPanel}
     }
 </script>
 
@@ -179,26 +137,6 @@
         cursor: url("../assets/aim.svg") 16 16, pointer;
     }
 
-    .historyButton {
-        display: none;
-        color: white;
-        font-size: 25px;
-        border: 2px solid white;
-        border-radius: 5px;
-        padding: 8px;
-        cursor: pointer;
-        user-select: none;
-    }
-
-    .historyButton:hover:hover {
-        text-decoration: underline;
-    }
-
-    .grid--historyButton {
-        grid-area: historyButton;
-        text-align: center;
-    }
-
     @media (max-width: 1300px) {
         .detectiveGrid {
             grid-template-columns: 1fr 10fr 5fr 6fr;
@@ -238,18 +176,10 @@
             font-size: 25px;
         }
 
-        #paperTable {
-            display: none;
-        }
-
         .grid--graph {
             grid: "suspect1 graphMain suspect2" "suspect3 graphMain suspect4" "suspect5 graphMain suspect6";
             grid-template-columns: 5fr 14fr 5fr;
             grid-template-rows: 10fr 10fr 10fr;
-        }
-
-        .historyButton {
-            display: inline;
         }
     }
 
@@ -258,12 +188,6 @@
             border: 2px solid white;
             padding: 5px;
             font-size: 22px;
-        }
-
-        .historyButton {
-            display: inline;
-            font-size: 22px;
-            padding: 5px;
         }
     }
 </style>

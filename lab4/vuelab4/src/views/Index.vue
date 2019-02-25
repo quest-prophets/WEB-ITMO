@@ -2,8 +2,7 @@
     <div class="loginPage">
         <div class="flexColumn" style="height: 100vh">
             <div class="logo">F I G U R A</div>
-            <div class="flexColumn loginShadow"
-                 style="background: white; padding: 10px 20px; box-shadow: 0 0 22px 30px white">
+            <div class="flexColumn loginShadow loginBox">
                 <input type="text" class="loginInput" placeholder="Login">
                 <input type="password" class="loginInput" placeholder="Password">
                 <router-link to="MainMenu" class="bwButton bwButton-whiteBackground">Log in</router-link>
@@ -62,6 +61,12 @@
         animation: logoAppearance 1.5s 2s forwards;
     }
 
+    .loginBox {
+        background: white;
+        padding: 10px 20px;
+        box-shadow: 0 0 22px 30px white
+    }
+
     @keyframes logoAppearance {
         from {
             opacity: 0;
@@ -72,15 +77,21 @@
     }
 
     @media (max-width: 1000px) {
-        .logo{
+        .logo {
             font-size: 13vw;
         }
     }
 
     @media (max-width: 700px) {
-        .logo{
+        .logo {
             text-shadow: 2px 2px 1px white;
             -webkit-text-stroke: 1px white;
+        }
+    }
+
+    @media (max-width: 500px) {
+        .loginBox{
+            padding: 5px 10px;
         }
     }
 </style>

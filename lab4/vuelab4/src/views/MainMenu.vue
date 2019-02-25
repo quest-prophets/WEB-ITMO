@@ -104,13 +104,9 @@
         margin-top: 50px;
     }
 
-    #hiddenTimeAttack {
-        display: none;
-    }
-
     @media (max-width: 1055px) {
         .mainMenuButtonDiv:first-child {
-            margin-top: 15vh;
+            margin-top: 12vh;
         }
 
         .menuPage{
@@ -120,22 +116,12 @@
     }
 
     @media (max-width: 650px) {
-        #hiddenTimeAttack {
-            display: inline;
-        }
-
-        #normalTimeAttack {
-            display: none;
-        }
-
         .mainMenuButtonDiv:first-child {
-            margin-top: 20vh;
+            margin-top: 16vh;
         }
-    }
 
-    @media (max-width: 550px) {
-        .mainMenuButton {
-            font-size: 17vw;
+        .mainMenuButton{
+            font-size: 14vw;
         }
     }
 </style>

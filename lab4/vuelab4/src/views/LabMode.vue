@@ -153,8 +153,23 @@
 
     @media (max-width: 700px) {
         .practiceGrid{
-            grid: [row1-start] "exit exit nothing2 nothing3" auto [row1-end] [row2-start] "graph graph graph graph" calc(30vh + 100px) [row2-end] [row3-start] "graphPanel graphPanel graphPanel graphPanel" auto [row3-end] [row4-start] "graphTable graphTable graphTable graphTable" auto [row4-end];
+            grid: "exit" auto "graph" calc(30vh + 100px) "graphPanel" auto "graphTable" auto;
             grid-row-gap: 15px;
+            grid-column-gap: 0;
+            padding: 0;
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media (max-width: 420px) {
+        .practiceGrid{
+            grid: "exit" auto "graph" calc(25vh + 100px) "graphPanel" auto "graphTable" auto;
+        }
+    }
+
+    @media (max-width: 380px) {
+        .practiceGrid{
+            grid: "exit" auto "graph" calc(25vh) "graphPanel" auto "graphTable" auto;
         }
     }
 </style>

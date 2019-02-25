@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import Index from './views/Index.vue'
 import MainMenu from './views/MainMenu.vue'
 import LabMode from './views/LabMode.vue'
-import Practice from './views/Detective.vue'
+import Practice from './views/Practice.vue'
 import competitive from './views/Competitive.vue'
 import Leaderboard from "./views/Leaderboard";
 
