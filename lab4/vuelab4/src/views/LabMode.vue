@@ -48,7 +48,7 @@
     import GraphPanel from "../components/GraphPanel";
 
     export default {
-        name: "Practice",
+        name: "LabMode",
         components: {GraphPanel, PaperTable},
         data: function () {
             return {

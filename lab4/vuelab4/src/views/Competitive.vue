@@ -82,11 +82,6 @@
                 </div>
             </div>
             <ClockPanel id="graphPanel" @start-game="startGame"/>
-            <div class="grid--mobileButtonRight" @click="rightButtonChange">
-            <span class="mobileButtonRight">
-                Leaderboard
-            </span>
-            </div>
         </div>
     </div>
 </template>
@@ -96,7 +91,7 @@
     import Suspect from "../components/Suspect";
 
     export default {
-        name: "timeattack",
+        name: "competitive",
         components: {Suspect, ClockPanel},
         methods: {
             startGame: function () {
@@ -201,22 +196,6 @@
         cursor: url("../assets/aim.svg") 16 16, pointer;
     }
 
-    .grid--mobileButtonRight {
-        grid-area: buttonRight;
-        text-align: center;
-    }
-
-    .mobileButtonRight {
-        display: none;
-        color: white;
-        font-size: 25px;
-        border: 2px solid white;
-        border-radius: 5px;
-        padding: 8px;
-        cursor: pointer;
-        user-select: none;
-    }
-
     @media (max-width: 1300px) {
         .detectiveGrid {
             grid-template-columns: 1fr 10fr 5fr 6fr;
@@ -265,10 +244,6 @@
             grid-template-columns: 5fr 14fr 5fr;
             grid-template-rows: 10fr 10fr 10fr;
         }
-
-        .mobileButtonRight {
-            display: inline;
-        }
     }
 
     @media (max-width: 530px) {
@@ -286,12 +261,6 @@
             border: 2px solid white;
             padding: 5px;
             font-size: 22px;
-        }
-
-        .mobileButtonRight {
-            display: inline;
-            font-size: 22px;
-            padding: 5px;
         }
     }
 </style>

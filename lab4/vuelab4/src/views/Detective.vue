@@ -3,33 +3,10 @@
         <div class="detectiveGrid" id="mainGrid">
             <div class="grid--exit">
                 <router-link to="MainMenu" class="exitButton">
-                    <span class="exitLabel1">
-                        Main Menu
-                    </span>
-                    <span class="exitLabel2">
-                        Menu
-                    </span>
+                    Main Menu
                 </router-link>
             </div>
-            <div class="grid--leaderboard">
-                <table class="leaderboardTable">
-                    <thead>
-                    <tr>
-                        <td>
-                            Position
-                        </td>
-                        <td>
-                            Name
-                        </td>
-                        <td>
-                            Shots
-                        </td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
-            </div>
+
             <div class="grid--graph">
                 <div class="flexColumn grid--graphMain">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" class="graphMain">
@@ -83,14 +60,9 @@
             </div>
             <DetectivePanel id="graphPanel" @start-game="startGame" @add-data="resultsAdd"/>
             <NoRTable id="paperTable" :results="results"/>
-            <div class="grid--mobileButtonLeft" @click="leftButtonChange">
-            <span class="mobileButtonLeft">
+            <div class="grid--historyButton" @click="leftButtonChange">
+            <span class="historyButton">
                 History
-            </span>
-            </div>
-            <div class="grid--mobileButtonRight" @click="rightButtonChange">
-            <span class="mobileButtonRight">
-                Leaderboard
             </span>
             </div>
         </div>
@@ -103,7 +75,7 @@
     import Suspect from "../components/Suspect";
 
     export default {
-        name: "Detective",
+        name: "Practice",
         components: {Suspect, DetectivePanel, NoRTable},
         data: function () {
             return {
@@ -128,34 +100,15 @@
                 if (document.getElementById("paperTable").style.display === "none" || document.getElementById("paperTable").style.display === "") {
                     document.getElementsByClassName("grid--graph")[0].style.display = "none";
                     document.getElementById("graphPanel").style.display = "none";
-                    document.getElementsByClassName("grid--leaderboard")[0].style.display = "none";
                     document.getElementById("paperTable").style.display = "block";
-                    document.getElementById("mainGrid").style.grid = "'buttonLeft exit buttonRight' 40px 'graphTable graphTable graphTable' auto";
+                    document.getElementById("mainGrid").style.grid = "'historyButton exit nothing0' 40px 'graphTable graphTable graphTable' auto";
                     e.target.innerHTML = "Figura";
-                    document.getElementsByClassName("mobileButtonRight")[0].innerHTML = "Leaderboard"
                 } else {
                     document.getElementsByClassName("grid--graph")[0].style.display = "grid";
                     document.getElementById("graphPanel").style.display = "block";
                     document.getElementById("paperTable").style.display = "none";
-                    document.getElementById("mainGrid").style.grid = "'buttonLeft exit buttonRight' 40px 'graphAndSuspects graphAndSuspects graphAndSuspects' auto 'graphPanel graphPanel graphPanel' auto";
+                    document.getElementById("mainGrid").style.grid = "'historyButton exit nothing0' 40px 'graphAndSuspects graphAndSuspects graphAndSuspects' auto 'graphPanel graphPanel graphPanel' auto";
                     e.target.innerHTML = "History"
-                }
-            },
-            rightButtonChange: function (e) {
-                if (document.getElementsByClassName("grid--leaderboard")[0].style.display === "none" || document.getElementsByClassName("grid--leaderboard")[0].style.display === "") {
-                    document.getElementsByClassName("grid--graph")[0].style.display = "none";
-                    document.getElementById("graphPanel").style.display = "none";
-                    document.getElementById("paperTable").style.display = "none";
-                    document.getElementsByClassName("grid--leaderboard")[0].style.display = "block";
-                    document.getElementById("mainGrid").style.grid = "'buttonLeft exit buttonRight' 40px 'leaderboard leaderboard leaderboard' auto";
-                    e.target.innerHTML = "Figura";
-                    document.getElementsByClassName("mobileButtonLeft")[0].innerHTML = "History"
-                } else {
-                    document.getElementsByClassName("grid--graph")[0].style.display = "grid";
-                    document.getElementById("graphPanel").style.display = "block";
-                    document.getElementsByClassName("grid--leaderboard")[0].style.display = "none";
-                    document.getElementById("mainGrid").style.grid = "'buttonLeft exit buttonRight' 40px 'graphAndSuspects graphAndSuspects graphAndSuspects' auto 'graphPanel graphPanel graphPanel' auto";
-                    e.target.innerHTML = "Leaderboard"
                 }
             }
         }
@@ -167,18 +120,6 @@
         grid-area: exit;
     }
 
-    .grid--leaderboard {
-        grid-area: leaderboard;
-        border-radius: 10px;
-        background: rgba(255, 255, 255, 0.96);
-        width: 90%;
-        margin: 0 auto;
-        height: 90%;
-    }
-
-    .leaderboardTable {
-        width: 100%;
-    }
 
     table {
         margin: 0 auto;
@@ -202,10 +143,6 @@
         text-decoration: none;
         color: white;
         font-size: 20px;
-    }
-
-    .exitLabel2 {
-        display: none;
     }
 
     .detectiveGrid {
@@ -242,7 +179,7 @@
         cursor: url("../assets/aim.svg") 16 16, pointer;
     }
 
-    .mobileButtonLeft, .mobileButtonRight {
+    .historyButton {
         display: none;
         color: white;
         font-size: 25px;
@@ -253,17 +190,12 @@
         user-select: none;
     }
 
-    .mobileButtonLeft:hover, .mobileButtonRight:hover {
+    .historyButton:hover:hover {
         text-decoration: underline;
     }
 
-    .grid--mobileButtonLeft {
-        grid-area: buttonLeft;
-        text-align: center;
-    }
-
-    .grid--mobileButtonRight {
-        grid-area: buttonRight;
+    .grid--historyButton {
+        grid-area: historyButton;
         text-align: center;
     }
 
@@ -275,7 +207,7 @@
 
     @media (max-width: 1100px) {
         .detectiveGrid {
-            grid: "exit exit exit exit" 40px "nothing8 graphPanel graphAndSuspects leaderboard" auto "graphTable graphTable graphTable graphTable" auto;
+            grid: "exit exit exit exit" 40px "nothing graphPanel graphAndSuspects nothing1" auto "graphTable graphTable graphTable graphTable" auto;
             grid-row-gap: 0;
             grid-template-columns: 0 4fr 4.5fr 4fr;
         }
@@ -289,7 +221,7 @@
 
     @media (max-width: 800px) {
         .detectiveGrid {
-            grid: "buttonLeft exit buttonRight" 40px "graphAndSuspects graphAndSuspects graphAndSuspects" auto "graphPanel graphPanel graphPanel" auto;
+            grid: "historyButton exit nothing" 40px "graphAndSuspects graphAndSuspects graphAndSuspects" auto "graphPanel graphPanel graphPanel" auto;
             grid-row-gap: 20px;
             grid-template-columns: 1fr 1fr 1fr;
         }
@@ -310,27 +242,13 @@
             display: none;
         }
 
-        .grid--leaderboard {
-            display: none;
-        }
-
         .grid--graph {
             grid: "suspect1 graphMain suspect2" "suspect3 graphMain suspect4" "suspect5 graphMain suspect6";
             grid-template-columns: 5fr 14fr 5fr;
             grid-template-rows: 10fr 10fr 10fr;
         }
 
-        .mobileButtonLeft, .mobileButtonRight {
-            display: inline;
-        }
-    }
-
-    @media (max-width: 530px) {
-        .exitLabel1 {
-            display: none;
-        }
-
-        .exitLabel2 {
+        .historyButton {
             display: inline;
         }
     }
@@ -342,7 +260,7 @@
             font-size: 22px;
         }
 
-        .mobileButtonLeft, .mobileButtonRight {
+        .historyButton {
             display: inline;
             font-size: 22px;
             padding: 5px;

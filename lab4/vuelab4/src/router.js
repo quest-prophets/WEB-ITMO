@@ -2,9 +2,10 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Index from './views/Index.vue'
 import MainMenu from './views/MainMenu.vue'
-import Practice from './views/Practice.vue'
-import Detective from './views/Detective.vue'
-import TimeAttack from './views/TimeAttack.vue'
+import LabMode from './views/LabMode.vue'
+import Practice from './views/Detective.vue'
+import competitive from './views/Competitive.vue'
+import Leaderboard from "./views/Leaderboard";
 
 
 Vue.use(Router);
@@ -22,19 +23,25 @@ export default new Router({
             component: MainMenu
         },
         {
+            path: '/labmode',
+            name: 'LabMode',
+            component: LabMode
+        },
+        {
             path: '/practice',
             name: 'Practice',
             component: Practice
         },
         {
-            path: '/detective',
-            name: 'Detective',
-            component: Detective
-        },
+            path: '/competitive',
+            name: 'Competitive',
+            component: competitive
+        }
+        ,
         {
-            path: '/timeattack',
-            name: 'Time Attack',
-            component: TimeAttack
+            path: '/leaderboard',
+            name: 'Leaderboard',
+            component: Leaderboard
         }
     ]
 })

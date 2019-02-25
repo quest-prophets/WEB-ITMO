@@ -1,28 +1,28 @@
 <template>
     <div class="menuPage">
+        <router-link to="labmode" class="mainMenuButtonDiv">
+            <span class="mainMenuButton">
+                <a>L</a>A<a>B</a>&nbsp;<a>M</a>O<a>D</a>E
+            </span>
+        </router-link>
         <router-link to="practice" class="mainMenuButtonDiv">
             <span class="mainMenuButton">
                 P<a>R</a>A<a>C</a>T<a>I</a>C<a>E</a>
             </span>
         </router-link>
-        <router-link to="detective" class="mainMenuButtonDiv">
+        <router-link to="competitive" class="mainMenuButtonDiv">
             <span class="mainMenuButton">
-                D<a>E</a>T<a>E</a>C<a>T</a>I<a>V</a>E
+                <a>C</a>O<a>M</a>P<a>E</a>T<a>I</a>T<a>I</a>V<a>E</a>
             </span>
         </router-link>
-        <router-link to="timeattack" class="mainMenuButtonDiv">
+        <router-link to="leaderboard" class="mainMenuButtonDiv">
             <span class="mainMenuButton">
-                <span id="normalTimeAttack">
-                    T<a>I</a>M<a>E</a>&nbsp;<a>A</a>T<a>T</a>A<a>C</a>K
-                </span>
-                <span id="hiddenTimeAttack">
-                    T<a>I</a>M<a>E</a>&nbsp;<a>A</a>T<a>K</a>
-                </span>
+                L<a>E</a>A<a>D</a>E<a>R</a>B<a>O</a>A<a>R</a>D
             </span>
         </router-link>
         <router-link to="/" class="mainMenuButtonDiv">
             <span class="mainMenuButton">
-                R<a>E</a>S<a>I</a>G<a>N</a>
+                <a>L</a>O<a>G</a>&nbsp;<a>O</a>U<a>T</a>
             </span>
         </router-link>
     </div>
