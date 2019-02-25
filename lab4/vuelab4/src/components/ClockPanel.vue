@@ -1,8 +1,9 @@
 <template>
     <div class="grid--graphPanel flexColumn">
         <div class="flexColumn graphPanel">
-            <button @click="start" id="startButton" class="bwButton bwButton-blackBackground startButton">Start!</button>
-            <div class="hidden clock">
+            <button @click="start" id="startButton" class="bwButton bwButton-blackBackground startButton">Start!
+            </button>
+            <div id="clock" class="hidden clock">
                 00:00:00
             </div>
         </div>
@@ -14,10 +15,7 @@
         name: "ClockPanel",
         methods: {
             start: function () {
-                let hiddens = document.querySelectorAll(".hidden");
-                for (var i = 0; i < hiddens.length; i++) {
-                    hiddens[i].classList.remove("hidden");
-                }
+                document.getElementById("clock").classList.remove("hidden");
                 document.getElementById("startButton").classList.add("hidden");
                 this.$emit("start-game")
             }
@@ -43,18 +41,18 @@
         box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.6);
     }
 
-    .clock{
-        font-size: 24px;
+    .clock {
+        font-size: 28px;
         margin-top: 15px;
         margin-bottom: 15px;
     }
 
     @media (max-width: 800px) {
-        .graphPanel{
+        .graphPanel {
             border: none;
         }
 
-        .clock{
+        .clock {
             font-size: 30px;
         }
 
@@ -63,6 +61,10 @@
             width: 120px;
             height: 45px;
             user-select: none;
+        }
+
+        .flexColumn {
+            justify-content: flex-start;
         }
     }
 </style>
