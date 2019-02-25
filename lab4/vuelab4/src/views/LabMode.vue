@@ -158,7 +158,7 @@
             padding: 3px 15px;
         }
 
-        .exitButton:hover{
+        .exitButton:hover {
             text-decoration: none;
             color: black;
             background: white;

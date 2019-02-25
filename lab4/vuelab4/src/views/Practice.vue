@@ -102,6 +102,8 @@
         grid: "suspect1 graphMain suspect2" "suspect3 graphMain suspect4" "suspect5 graphMain suspect6";
         grid-column-gap: 20px;
         grid-template-columns: 10fr 35fr 10fr;
+        background: rgba(0, 0, 0, 0.6);
+        box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.6);
     }
 
     .grid--graphMain {
@@ -137,7 +139,7 @@
             padding: 3px 15px;
         }
 
-        .exitButton:hover{
+        .exitButton:hover {
             text-decoration: none;
             color: black;
             background: white;
@@ -152,7 +154,7 @@
     }
 
     @media (max-width: 500px) {
-        .grid--graph{
+        .grid--graph {
             width: 90%;
             margin: 0 auto;
         }

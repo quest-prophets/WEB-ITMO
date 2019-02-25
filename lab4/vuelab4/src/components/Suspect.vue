@@ -22,20 +22,21 @@
 </script>
 
 <style scoped>
-    .suspect{
+    .suspect {
         box-shadow: white 0 0 4px 1px;
     }
 
-    .suspect:hover{
+    .suspect:hover {
         cursor: pointer;
         box-shadow: black 0 0 4px 1px;
     }
 
-    .suspectBase:hover path{
+    .suspectBase:hover path {
         fill: white;
         stroke: black;
     }
-    .suspectSectors:hover path{
+
+    .suspectSectors:hover path {
         fill: white;
         stroke: black;
     }

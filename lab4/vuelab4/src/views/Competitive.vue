@@ -115,6 +115,8 @@
         grid-template-columns: 5fr 14fr 5fr;
         grid-template-rows: 1fr 1fr 1fr;
         grid-column-gap: 20px;
+        background: rgba(0, 0, 0, 0.6);
+        box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.6);
     }
 
     .grid--graphMain {

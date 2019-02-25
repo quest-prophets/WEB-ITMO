@@ -90,7 +90,7 @@
     }
 
     @media (max-width: 500px) {
-        .loginBox{
+        .loginBox {
             padding: 5px 10px;
         }
     }

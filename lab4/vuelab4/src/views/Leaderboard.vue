@@ -56,7 +56,7 @@
         margin: 0 auto;
     }
 
-    .stats{
+    .stats {
         font-size: 18px;
         padding: 10px;
         color: white;
@@ -86,7 +86,7 @@
         height: 90%;
     }
 
-    .leaderboardTable{
+    .leaderboardTable {
         width: 100%;
     }
 
@@ -109,7 +109,7 @@
     }
 
     @media (max-width: 800px) {
-        .grid--leaderboard{
+        .grid--leaderboard {
             width: 85%;
         }
 
@@ -119,19 +119,19 @@
             padding: 3px 15px;
         }
 
-        .exitButton:hover{
+        .exitButton:hover {
             text-decoration: none;
             color: black;
             background: white;
         }
 
-        .leaderboardGrid{
+        .leaderboardGrid {
             grid: "exit" 50px "stats" 130px "leaderboard" 70vh;
         }
     }
 
     @media (max-width: 600px) {
-        .grid--leaderboard{
+        .grid--leaderboard {
             width: 100%;
         }
 
