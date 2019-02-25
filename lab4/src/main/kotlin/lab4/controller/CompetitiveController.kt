@@ -10,7 +10,7 @@ import kotlin.random.Random
 
 @RestController
 @RequestMapping("/timeAttackCheck")
-class TimeAttackController {
+class CompetitiveController {
     @Autowired
     var userInfoRepository: UserInfoRepository? = null
 
@@ -226,6 +226,7 @@ class TimeAttackController {
 
         val gameScore = if (result) (10+100/(clicks+1)+100000/elapsedTime) else (-50)
         user.score += gameScore
+        user.performance = (user.overallWins/(user.overallDots+0.001*user.overallElapsedTime))*100
 
         userInfoRepository?.save(user)
 

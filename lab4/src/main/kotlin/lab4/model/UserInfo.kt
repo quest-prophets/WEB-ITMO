@@ -26,5 +26,5 @@ data class UserInfo(@Column(nullable = false, unique = true) var username: Strin
     var overallGames: Long = 0
     var overallWins: Long = 0
     var score: Long = 0
-
+    var performance: Double = 0.0
 }
