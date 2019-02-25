@@ -53,6 +53,7 @@
 
     .grid--stats {
         grid-area: stats;
+        margin: 0 auto;
     }
 
     .stats{
@@ -115,12 +116,17 @@
         .exitButton {
             font-size: 25px;
             border: 2px solid white;
-            border-radius: 6px;
             padding: 3px 15px;
         }
 
+        .exitButton:hover{
+            text-decoration: none;
+            color: black;
+            background: white;
+        }
+
         .leaderboardGrid{
-            grid: "exit" 60px "stats" 140px "leaderboard" 70vh;
+            grid: "exit" 50px "stats" 130px "leaderboard" 70vh;
         }
     }
 

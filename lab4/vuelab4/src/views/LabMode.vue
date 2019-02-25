@@ -155,8 +155,13 @@
         .exitButton {
             font-size: 25px;
             border: 2px solid white;
-            border-radius: 6px;
             padding: 3px 15px;
+        }
+
+        .exitButton:hover{
+            text-decoration: none;
+            color: black;
+            background: white;
         }
     }
 

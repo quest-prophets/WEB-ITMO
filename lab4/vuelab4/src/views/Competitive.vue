@@ -90,12 +90,12 @@
 
     .competitiveGrid {
         display: grid;
-        padding: 10px 20px;
         height: 100vh;
-        grid-row-gap: 40px;
         grid-column-gap: 20px;
-        grid: "exit exit exit exit" 50px "nothing8 graphAndSuspects graphPanel leaderboard" auto "graphTable graphTable graphTable graphTable" auto;
-        grid-template-columns: 3fr 10fr 5fr 6fr;
+        padding: 10px 20px;
+        grid: "exit" 40px "graphAndSuspects" auto "graphPanel" auto;
+        grid-row-gap: 30px;
+        grid-template-columns: 1fr;
         box-sizing: border-box;
     }
 
@@ -105,13 +105,16 @@
     }
 
     .grid--graph {
+        width: 50%;
+        margin: 0 auto;
         display: grid;
         grid-area: graphAndSuspects;
         user-select: none;
         grid: "suspect1 graphMain suspect2" "suspect3 graphMain suspect4" "suspect5 graphMain suspect6";
         grid-row-gap: 20px;
+        grid-template-columns: 5fr 14fr 5fr;
+        grid-template-rows: 1fr 1fr 1fr;
         grid-column-gap: 20px;
-        grid-template-columns: 10fr 35fr 10fr;
     }
 
     .grid--graphMain {
@@ -122,44 +125,61 @@
         cursor: url("../assets/aim.svg") 16 16, pointer;
     }
 
-    @media (max-width: 1300px) {
-        .competitiveGrid {
-            grid-template-columns: 1fr 10fr 5fr 6fr;
+    @media (max-width: 1400px) {
+        .grid--graph {
+            width: 70%;
         }
     }
 
-    @media (max-width: 1100px) {
-        .competitiveGrid {
-            grid: "exit exit exit exit" 40px "nothing8 graphPanel graphAndSuspects leaderboard" auto "graphTable graphTable graphTable graphTable" auto;
-            grid-row-gap: 0;
-            grid-template-columns: 0 4fr 4.5fr 4fr;
-        }
-
+    @media (max-width: 1400px) {
         .grid--graph {
-            grid: "suspect1 suspect2 suspect3" "graphMain graphMain graphMain" "suspect4 suspect5 suspect6";
-            grid-template-columns: 10fr 10fr 10fr;
-            grid-template-rows: 10fr 35fr 10fr;
+            width: 70%;
         }
     }
 
     @media (max-width: 800px) {
-        .competitiveGrid {
-            grid: "exit" 40px "graphAndSuspects" auto "graphPanel" auto;
-            grid-row-gap: 20px;
-            grid-template-columns: 1fr;
+        .grid--graph {
+            width: 90%;
+            grid-template-columns: 5fr 16fr 5fr;
         }
 
         .exitButton {
             font-size: 25px;
             border: 2px solid white;
-            border-radius: 6px;
-            padding: 4px 15px;
+            padding: 3px 15px;
+        }
+
+        .exitButton:hover {
+            text-decoration: none;
+            color: black;
+            background: white;
+        }
+    }
+
+    @media (max-width: 700px) {
+        .grid--graph {
+            width: 95%;
+        }
+    }
+
+    @media (max-width: 590px) {
+        .grid--graph {
+            width: 85%;
+        }
+
+        .competitiveGrid {
+            grid-row-gap: 10px;
+            padding: 10px 10px;
         }
 
         .grid--graph {
-            grid: "suspect1 graphMain suspect2" "suspect3 graphMain suspect4" "suspect5 graphMain suspect6";
-            grid-template-columns: 5fr 14fr 5fr;
-            grid-template-rows: 1fr 1fr 1fr;
+            grid: "suspect1 suspect2 suspect3" "graphMain graphMain graphMain" "suspect4 suspect5 suspect6";
+        }
+    }
+
+    @media (max-width: 500px) {
+        .grid--graph {
+            width: 90%;
         }
     }
 </style>

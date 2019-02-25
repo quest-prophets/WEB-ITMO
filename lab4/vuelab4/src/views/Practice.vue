@@ -82,12 +82,11 @@
 
     .practiceGrid {
         display: grid;
-        padding: 10px 20px;
+        padding: 10px 20px 30vh;
         height: 100vh;
-        grid-row-gap: 40px;
         grid-column-gap: 20px;
-        grid: "exit exit exit exit" 50px "nothing8 graphAndSuspects graphPanel nothing99" auto "graphTable graphTable graphTable graphTable" auto;
-        grid-template-columns: 3fr 10fr 5fr 6fr;
+        grid: "exit exit exit exit" 50px "nothingL graphAndSuspects graphPanel nothingR" auto;
+        grid-template-columns: 3fr 10fr 5fr 3fr;
         box-sizing: border-box;
     }
 
@@ -101,7 +100,6 @@
         grid-area: graphAndSuspects;
         user-select: none;
         grid: "suspect1 graphMain suspect2" "suspect3 graphMain suspect4" "suspect5 graphMain suspect6";
-        grid-row-gap: 20px;
         grid-column-gap: 20px;
         grid-template-columns: 10fr 35fr 10fr;
     }
@@ -114,44 +112,58 @@
         cursor: url("../assets/aim.svg") 16 16, pointer;
     }
 
-    @media (max-width: 1300px) {
+    @media (max-width: 1400px) {
         .practiceGrid {
-            grid-template-columns: 1fr 10fr 5fr 6fr;
+            grid-template-columns: 1fr 10fr 5fr 1fr;
         }
     }
 
-    @media (max-width: 1100px) {
+    @media (max-width: 1000px) {
         .practiceGrid {
-            grid: "exit exit exit exit" 40px "nothing graphPanel graphAndSuspects nothing1" auto;
-            grid-row-gap: 0;
-            grid-template-columns: 0 4fr 4.5fr 4fr;
-        }
-
-        .grid--graph {
-            grid: "suspect1 suspect2 suspect3" "graphMain graphMain graphMain" "suspect4 suspect5 suspect6";
-            grid-template-columns: 10fr 10fr 10fr;
-            grid-template-rows: 10fr 35fr 10fr;
+            grid-template-columns: 0 10fr 5fr 0;
         }
     }
 
     @media (max-width: 800px) {
         .practiceGrid {
             grid: "exit" 40px "graphAndSuspects" auto "graphPanel" auto;
-            grid-row-gap: 20px;
+            grid-row-gap: 30px;
             grid-template-columns: 1fr;
         }
 
         .exitButton {
             font-size: 25px;
             border: 2px solid white;
-            border-radius: 6px;
             padding: 3px 15px;
+        }
+
+        .exitButton:hover{
+            text-decoration: none;
+            color: black;
+            background: white;
         }
 
         .grid--graph {
             grid: "suspect1 graphMain suspect2" "suspect3 graphMain suspect4" "suspect5 graphMain suspect6";
+            grid-row-gap: 20px;
             grid-template-columns: 5fr 14fr 5fr;
             grid-template-rows: 1fr 1fr 1fr;
+        }
+    }
+
+    @media (max-width: 500px) {
+        .grid--graph{
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        .practiceGrid {
+            grid-row-gap: 10px;
+            padding: 10px 10px;
+        }
+
+        .grid--graph {
+            grid: "suspect1 suspect2 suspect3" "graphMain graphMain graphMain" "suspect4 suspect5 suspect6";
         }
     }
 </style>
