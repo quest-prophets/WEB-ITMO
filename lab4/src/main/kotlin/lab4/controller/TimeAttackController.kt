@@ -223,10 +223,11 @@ class TimeAttackController {
         user.overallElapsedTime += elapsedTime
         user.overallGames++
         user.overallWins += if (result) 1 else 0
-        userInfoRepository?.save(user)
 
         val gameScore = if (result) (10+100/(clicks+1)+100000/elapsedTime) else (-50)
         user.score += gameScore
+
+        userInfoRepository?.save(user)
 
         ongoingGameCheckEntryRepository?.deleteAllByOngoingGame(currentGame)
         ongoingGameRepository?.delete(currentGame)
