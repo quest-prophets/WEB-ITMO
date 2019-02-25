@@ -1,6 +1,6 @@
 <template>
     <div class="gamePage">
-        <div class="detectiveGrid" id="mainGrid">
+        <div class="practiceGrid">
             <div class="grid--exit">
                 <router-link to="MainMenu" class="exitButton">
                     Main Menu
@@ -25,10 +25,6 @@
                             <path d="M 0 400 v -50"></path>
                             <path d="M 400 400 h -50"></path>
                             <path d="M 400 400 v -50"></path>
-                        </g>
-                        <g stroke="white" stroke-width="1px" stroke-dasharray="10">
-                            <path id="xRuler" d=""></path>
-                            <path id="yRuler" d=""></path>
                         </g>
                         <g id="graphDots"></g>
                     </svg>
@@ -78,38 +74,19 @@
         grid-area: exit;
     }
 
-
-    table {
-        margin: 0 auto;
-        border-collapse: collapse;
-    }
-
-    thead {
-        border-bottom: 2px solid black;
-    }
-
-    td {
-        padding: 4px 7px;
-        border-right: 2px solid black;
-    }
-
-    td:last-child {
-        border: none;
-    }
-
     .exitButton {
         text-decoration: none;
         color: white;
         font-size: 20px;
     }
 
-    .detectiveGrid {
+    .practiceGrid {
         display: grid;
         padding: 10px 20px;
         height: 100vh;
         grid-row-gap: 40px;
         grid-column-gap: 20px;
-        grid: "exit exit exit exit" 50px "nothing8 graphAndSuspects graphPanel leaderboard" auto "graphTable graphTable graphTable graphTable" auto;
+        grid: "exit exit exit exit" 50px "nothing8 graphAndSuspects graphPanel nothing99" auto "graphTable graphTable graphTable graphTable" auto;
         grid-template-columns: 3fr 10fr 5fr 6fr;
         box-sizing: border-box;
     }
@@ -138,14 +115,14 @@
     }
 
     @media (max-width: 1300px) {
-        .detectiveGrid {
+        .practiceGrid {
             grid-template-columns: 1fr 10fr 5fr 6fr;
         }
     }
 
     @media (max-width: 1100px) {
-        .detectiveGrid {
-            grid: "exit exit exit exit" 40px "nothing graphPanel graphAndSuspects nothing1" auto "graphTable graphTable graphTable graphTable" auto;
+        .practiceGrid {
+            grid: "exit exit exit exit" 40px "nothing graphPanel graphAndSuspects nothing1" auto;
             grid-row-gap: 0;
             grid-template-columns: 0 4fr 4.5fr 4fr;
         }
@@ -158,36 +135,23 @@
     }
 
     @media (max-width: 800px) {
-        .detectiveGrid {
-            grid: "historyButton exit nothing" 40px "graphAndSuspects graphAndSuspects graphAndSuspects" auto "graphPanel graphPanel graphPanel" auto;
+        .practiceGrid {
+            grid: "exit" 40px "graphAndSuspects" auto "graphPanel" auto;
             grid-row-gap: 20px;
-            grid-template-columns: 1fr 1fr 1fr;
-        }
-
-        .grid--exit {
-            text-align: center;
-            user-select: none;
+            grid-template-columns: 1fr;
         }
 
         .exitButton {
-            border: 2px solid white;
-            border-radius: 5px;
-            padding: 8px;
             font-size: 25px;
+            border: 2px solid white;
+            border-radius: 6px;
+            padding: 3px 15px;
         }
 
         .grid--graph {
             grid: "suspect1 graphMain suspect2" "suspect3 graphMain suspect4" "suspect5 graphMain suspect6";
             grid-template-columns: 5fr 14fr 5fr;
-            grid-template-rows: 10fr 10fr 10fr;
-        }
-    }
-
-    @media (max-width: 400px) {
-        .exitButton {
-            border: 2px solid white;
-            padding: 5px;
-            font-size: 22px;
+            grid-template-rows: 1fr 1fr 1fr;
         }
     }
 </style>

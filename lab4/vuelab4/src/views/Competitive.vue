@@ -1,34 +1,10 @@
 <template>
     <div class="gamePage">
-        <div class="detectiveGrid" id="mainGrid">
+        <div class="competitiveGrid">
             <div class="grid--exit">
                 <router-link to="MainMenu" class="exitButton">
-                    <span class="exitLabel1">
-                        Main Menu
-                    </span>
-                    <span class="exitLabel2">
-                        Menu
-                    </span>
+                    Main Menu
                 </router-link>
-            </div>
-            <div class="grid--leaderboard">
-                <table class="leaderboardTable">
-                    <thead>
-                    <tr>
-                        <td>
-                            Position
-                        </td>
-                        <td>
-                            Name
-                        </td>
-                        <td>
-                            Time
-                        </td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
             </div>
             <div class="grid--graph">
                 <div class="flexColumn grid--graphMain">
@@ -96,21 +72,6 @@
         methods: {
             startGame: function () {
 
-            },
-            rightButtonChange: function (e) {
-                if (document.getElementsByClassName("grid--leaderboard")[0].style.display === "none" || document.getElementsByClassName("grid--leaderboard")[0].style.display === "") {
-                    document.getElementsByClassName("grid--graph")[0].style.display = "none";
-                    document.getElementById("graphPanel").style.display = "none";
-                    document.getElementsByClassName("grid--leaderboard")[0].style.display = "block";
-                    document.getElementById("mainGrid").style.grid = "'nothing0 exit buttonRight' 40px 'leaderboard leaderboard leaderboard' auto";
-                    e.target.innerHTML = "Figura";
-                } else {
-                    document.getElementsByClassName("grid--graph")[0].style.display = "grid";
-                    document.getElementById("graphPanel").style.display = "block";
-                    document.getElementsByClassName("grid--leaderboard")[0].style.display = "none";
-                    document.getElementById("mainGrid").style.grid = "'nothing0 exit buttonRight' 40px 'graphAndSuspects graphAndSuspects graphAndSuspects' auto 'graphPanel graphPanel graphPanel' auto";
-                    e.target.innerHTML = "Leaderboard"
-                }
             }
         }
     }
@@ -121,48 +82,13 @@
         grid-area: exit;
     }
 
-    .grid--leaderboard {
-        grid-area: leaderboard;
-        border-radius: 10px;
-        background: rgba(255, 255, 255, 0.96);
-        width: 90%;
-        margin: 0 auto;
-        height: 90%;
-    }
-
-    .leaderboardTable {
-        width: 100%;
-    }
-
-    table {
-        margin: 0 auto;
-        border-collapse: collapse;
-    }
-
-    thead {
-        border-bottom: 2px solid black;
-    }
-
-    td {
-        padding: 4px 7px;
-        border-right: 2px solid black;
-    }
-
-    td:last-child {
-        border: none;
-    }
-
     .exitButton {
         text-decoration: none;
         color: white;
         font-size: 20px;
     }
 
-    .exitLabel2 {
-        display: none;
-    }
-
-    .detectiveGrid {
+    .competitiveGrid {
         display: grid;
         padding: 10px 20px;
         height: 100vh;
@@ -197,13 +123,13 @@
     }
 
     @media (max-width: 1300px) {
-        .detectiveGrid {
+        .competitiveGrid {
             grid-template-columns: 1fr 10fr 5fr 6fr;
         }
     }
 
     @media (max-width: 1100px) {
-        .detectiveGrid {
+        .competitiveGrid {
             grid: "exit exit exit exit" 40px "nothing8 graphPanel graphAndSuspects leaderboard" auto "graphTable graphTable graphTable graphTable" auto;
             grid-row-gap: 0;
             grid-template-columns: 0 4fr 4.5fr 4fr;
@@ -217,50 +143,23 @@
     }
 
     @media (max-width: 800px) {
-        .detectiveGrid {
-            grid: "nothing0 exit buttonRight" 40px "graphAndSuspects graphAndSuspects graphAndSuspects" auto "graphPanel graphPanel graphPanel" auto;
+        .competitiveGrid {
+            grid: "exit" 40px "graphAndSuspects" auto "graphPanel" auto;
             grid-row-gap: 20px;
-            grid-template-columns: 1fr 1fr 1fr;
-        }
-
-        .grid--exit {
-            text-align: center;
-            user-select: none;
+            grid-template-columns: 1fr;
         }
 
         .exitButton {
-            border: 2px solid white;
-            border-radius: 5px;
-            padding: 8px;
             font-size: 25px;
-        }
-
-        .grid--leaderboard {
-            display: none;
+            border: 2px solid white;
+            border-radius: 6px;
+            padding: 4px 15px;
         }
 
         .grid--graph {
             grid: "suspect1 graphMain suspect2" "suspect3 graphMain suspect4" "suspect5 graphMain suspect6";
             grid-template-columns: 5fr 14fr 5fr;
-            grid-template-rows: 10fr 10fr 10fr;
-        }
-    }
-
-    @media (max-width: 530px) {
-        .exitLabel1 {
-            display: none;
-        }
-
-        .exitLabel2 {
-            display: inline;
-        }
-    }
-
-    @media (max-width: 400px) {
-        .exitButton {
-            border: 2px solid white;
-            padding: 5px;
-            font-size: 22px;
+            grid-template-rows: 1fr 1fr 1fr;
         }
     }
 </style>

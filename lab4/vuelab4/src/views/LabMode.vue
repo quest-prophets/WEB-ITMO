@@ -1,8 +1,10 @@
 <template>
     <div class="gamePage">
-        <div class="practiceGrid">
+        <div class="labGrid">
             <div class="grid--exit">
-                <router-link to="MainMenu" class="exitButtonPractice">Main Menu</router-link>
+                <router-link to="MainMenu" class="exitButton">
+                    Main Menu
+                </router-link>
             </div>
             <div class="grid--graph flexColumn">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" class="mainPracticeGraph">
@@ -71,24 +73,24 @@
 </script>
 
 <style scoped>
-    .practiceGrid {
+    .labGrid {
         display: grid;
         padding: 10px 20px;
         height: 100vh;
         grid-row-gap: 40px;
         grid-column-gap: 20px;
-        grid: [row1-start] "exit nothing1 nothing2 nothing3" auto [row1-end] [row2-start] "nothing0 graph graphPanel nothing3" calc(30vh + 100px) [row2-end] [row3-start] "graphTable graphTable graphTable graphTable" auto [row3-end];
+        grid: "exit nothing1 nothing2 nothing3" auto "nothing0 graph graphPanel nothing3" calc(30vh + 100px) "graphTable graphTable graphTable graphTable" auto;
         grid-template-columns: 6fr 10fr 10fr 6fr;
         box-sizing: border-box;
     }
 
-    .exitButtonPractice {
+    .exitButton {
         text-decoration: none;
         color: white;
         font-size: 20px;
     }
 
-    .exitButtonPractice:hover {
+    .exitButton:hover {
         cursor: pointer;
         text-decoration: underline;
     }
@@ -107,8 +109,8 @@
     }
 
     @media (max-width: 1200px) {
-        .practiceGrid {
-            grid: [row1-start] "exit exit nothing2 nothing3" auto [row1-end] [row2-start] "nothing0 graph graphPanel nothing3" calc(30vh + 100px) [row2-end] [row3-start] "graphTable graphTable graphTable graphTable" auto [row3-end];
+        .labGrid {
+            grid: "exit exit nothing2 nothing3" auto "nothing0 graph graphPanel nothing3" calc(30vh + 100px) "graphTable graphTable graphTable graphTable" auto;
             grid-template-columns: 2fr 7fr 7fr 1fr;
             grid-column-gap: 15px;
             grid-row-gap: 30px;
@@ -119,14 +121,14 @@
             margin-top: 10px;
         }
 
-        .exitButtonPractice{
+        .exitButton {
             font-size: 25px;
         }
     }
 
     @media (max-width: 1055px) {
-        .practiceGrid {
-            grid: [row1-start] "exit exit nothing2 nothing3" auto [row1-end] [row2-start] "nothing0 graph graphPanel nothing3" calc(30vh + 100px) [row2-end] [row3-start] "graphTable graphTable graphTable graphTable" auto [row3-end];
+        .labGrid {
+            grid: "exit exit nothing2 nothing3" auto "nothing0 graph graphPanel nothing3" calc(30vh + 100px) "graphTable graphTable graphTable graphTable" auto;
             grid-template-columns: 0.5fr 7fr 4fr 0.5fr;
             grid-column-gap: 30px;
             grid-row-gap: 30px;
@@ -137,22 +139,29 @@
             margin-top: 10px;
         }
 
-        .exitButtonPractice{
+        .exitButton {
             font-size: 25px;
         }
     }
 
     @media (max-width: 850px) {
-        .practiceGrid {
+        .labGrid {
             grid-template-rows: 50px calc(35vh + 100px) auto;
             grid-column-gap: 20px;
             grid-row-gap: 20px;
             grid-template-columns: 0 10fr 7fr 0;
         }
+
+        .exitButton {
+            font-size: 25px;
+            border: 2px solid white;
+            border-radius: 6px;
+            padding: 3px 15px;
+        }
     }
 
     @media (max-width: 700px) {
-        .practiceGrid{
+        .labGrid {
             grid: "exit" auto "graph" calc(30vh + 100px) "graphPanel" auto "graphTable" auto;
             grid-row-gap: 15px;
             grid-column-gap: 0;
@@ -162,13 +171,13 @@
     }
 
     @media (max-width: 420px) {
-        .practiceGrid{
+        .labGrid {
             grid: "exit" auto "graph" calc(25vh + 100px) "graphPanel" auto "graphTable" auto;
         }
     }
 
     @media (max-width: 380px) {
-        .practiceGrid{
+        .labGrid {
             grid: "exit" auto "graph" calc(25vh) "graphPanel" auto "graphTable" auto;
         }
     }
