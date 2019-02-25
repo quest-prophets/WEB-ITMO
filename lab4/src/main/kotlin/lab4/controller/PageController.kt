@@ -21,6 +21,12 @@ class   PageController {
     fun menu() = "mainMenu.html"
 
     @GetMapping("/practice")
-    fun graph() = "practice.html"
+    fun practice() = "practice.html"
+
+    @GetMapping("/detective")
+    fun detective() = "detective.html"
+
+    @GetMapping("/time")
+    fun time() = "time.html"
 
 }
