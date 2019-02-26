@@ -11,7 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import javax.sql.DataSource
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.config.annotation.web.builders.WebSecurity
-
+import org.springframework.web.cors.CorsConfiguration
 
 @Configuration
 @EnableWebSecurity
@@ -24,7 +24,6 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
     fun passwordEncoder(): PasswordEncoder {
         return BCryptPasswordEncoder()
     }
-
 
     override fun configure(web: WebSecurity) {
         web
@@ -39,9 +38,9 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
                 .antMatchers("/index*", "/auth/login", "/auth/register", "/", "/*.ico").permitAll()
                 .anyRequest().authenticated()
             .and()
-            .formLogin()
+                .formLogin()
                 .loginPage("/auth/login")
-                .successHandler { request, response, authentication -> response.status = 200  }
+                .successHandler { request, response, authentication -> response.status = 200 }
                 .failureHandler { request, response, exception -> response.status = 401 }
                 .usernameParameter("username")
                 .passwordParameter("password")
@@ -49,7 +48,9 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
             .and()
                 .logout().logoutSuccessHandler { request, response, authentication -> response.status = 200 }.permitAll()
             .and()
-            .exceptionHandling().authenticationEntryPoint { request, response, authException -> response.status = 401 }
+                .exceptionHandling().authenticationEntryPoint { request, response, authException -> response.status = 401 }
+            .and()
+                .cors().configurationSource { request -> CorsConfiguration().applyPermitDefaultValues() }
     }
 
 

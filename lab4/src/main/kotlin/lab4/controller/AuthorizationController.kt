@@ -9,8 +9,6 @@ import lab4.repository.UserInfoRepository
 import java.util.*
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 
-
-
 @Controller
 @RequestMapping("/auth")
 class AuthorizationController {
@@ -29,24 +27,34 @@ class AuthorizationController {
     @PostMapping("/register")
     @ResponseBody
     fun addUser(@RequestBody user: UserInfo): AuthResponse {
-        val passwordEncoder = BCryptPasswordEncoder()
-        val encodedPassword = passwordEncoder.encode(user.password)
-        user.password = encodedPassword
-
         val existingUser = userInfoRepository?.findByUsername(user.username)
         val authResponse = AuthResponse(user.username, AuthType.REGISTER)
-        return if (existingUser != null) {
+        val regex = """[a-zA-Z0-9_]+""".toRegex()
+
+        return if (!regex.matches(user.username) || !regex.matches(user.password)) {
             authResponse.success = false
-            authResponse.message = "Username '${user.username}' is already taken. Please try again."
+            authResponse.message = "Only latin letters, numbers and underscore are supported."
             authResponse
         } else {
-            user.active = true
-            user.roles = Collections.singleton(Role.USER)
-            userInfoRepository?.save(user)
 
-            authResponse.success = true
-            authResponse.message = "Successfully registered. You can sign in with your username and password."
-            authResponse
+            val passwordEncoder = BCryptPasswordEncoder()
+            val encodedPassword = passwordEncoder.encode(user.password)
+            user.password = encodedPassword
+
+            return if (existingUser != null) {
+                authResponse.success = false
+                authResponse.message = "Username '${user.username}' is already taken. Please try again."
+                authResponse
+            } else {
+
+                user.active = true
+                user.roles = Collections.singleton(Role.USER)
+                userInfoRepository?.save(user)
+
+                authResponse.success = true
+                authResponse.message = "Successfully registered. You can sign in with your username and password."
+                authResponse
+            }
         }
     }
 
