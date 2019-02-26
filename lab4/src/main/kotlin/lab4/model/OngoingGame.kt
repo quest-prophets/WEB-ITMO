@@ -7,7 +7,7 @@ import javax.persistence.*
 @Table(name = "ongoing_games",
         uniqueConstraints = [UniqueConstraint(columnNames = arrayOf("user_id" , "game_type"))]
 )
-data class OngoingGame (@Column(nullable = false) var gameType: String = "",
+data class OngoingGame (@Column(name = "game_type", nullable = false) var gameType: String = "",
                         @Column var startTime: LocalDateTime? = null){
 
     @Id

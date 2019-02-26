@@ -41,12 +41,15 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
             .and()
             .formLogin()
                 .loginPage("/auth/login")
-                .defaultSuccessUrl("/mainMenu", true)
+                .successHandler { request, response, authentication -> response.status = 200  }
+                .failureHandler { request, response, exception -> response.status = 401 }
                 .usernameParameter("username")
                 .passwordParameter("password")
                 .permitAll()
             .and()
-                .logout().permitAll()
+                .logout().logoutSuccessHandler { request, response, authentication -> response.status = 200 }.permitAll()
+            .and()
+            .exceptionHandling().authenticationEntryPoint { request, response, authException -> response.status = 401 }
     }
 
 
