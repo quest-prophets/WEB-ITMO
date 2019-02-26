@@ -7,7 +7,7 @@
 <style>
   body {
     background: black;
-    font-family: "Courier new", monospace;
+    font-family: "Exo", monospace;
     margin: 0;
   }
 
@@ -24,13 +24,12 @@
   }
 
   .gamePage {
-    font-family: 'Exo', monospace;
     background: url('assets/gamePage.svg') no-repeat fixed center center;
     background-size: cover;
   }
 
   .bwButton {
-    font-family: "Arial", monospace;
+    font-family: "Exo", monospace;
     text-align: center;
     text-decoration: none;
     width: 100px;

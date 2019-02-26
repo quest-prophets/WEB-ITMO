@@ -3,18 +3,35 @@
         <div class="flexColumn" style="height: 100vh">
             <div class="logo">F I G U R A</div>
             <div class="flexColumn loginShadow loginBox">
-                <input type="text" class="loginInput" placeholder="Login">
-                <input type="password" class="loginInput" placeholder="Password">
-                <router-link to="MainMenu" class="bwButton bwButton-whiteBackground">Log in</router-link>
-                <router-link to="MainMenu" class="bwButton bwButton-whiteBackground">Register</router-link>
+                <input v-model="name" type="text" class="loginInput" placeholder="Login">
+                <input v-model="password" type="password" class="loginInput" placeholder="Password">
+                <button class="bwButton bwButton-whiteBackground">Log in</button>
+                <button class="bwButton bwButton-whiteBackground">Register</button>
+                <span id="message"></span>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+    import {postRegister} from "../api";
+
     export default {
-        name: "index"
+        name: "index",
+        data: () => ({
+            name: '',
+            password: '',
+            status: ''
+        }),
+        components: {},
+        methods: {
+            async login() {
+
+            },
+            async register() {
+                this.status = await postRegister({username: this.name, password: this.password });
+            }
+        }
     }
 </script>
 

@@ -43,6 +43,7 @@
     }
 
     .mainMenuButton {
+        font-family: "Courier new", monospace;
         user-select: none;
         -webkit-text-stroke: 1px black;
         font-weight: bold;

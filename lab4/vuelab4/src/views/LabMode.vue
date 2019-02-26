@@ -62,7 +62,7 @@
             }
         },
         methods: {
-            resultsAdd: function ({r, x, y}) {
+            async resultsAdd({r, x, y}) {
                 this.results.push({r, x, y, figura: true, time: 'h'});
             },
             resultsRemove: function () {
