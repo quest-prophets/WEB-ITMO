@@ -27,6 +27,7 @@
             async login() {
                 this.status = await postLogin(this.name, this.password);
                 if (this.status === '200'){
+                    this.$router.push("mainmenu");
                 }
             },
             async register() {

@@ -22,10 +22,14 @@ export async function postRegister(credentials) {
     return json.message;
 }
 
+import vue from  "./main"
+
 export async function postLogin(username, password) {
     const response = await post('/auth/login?username=' + encodeURIComponent(username) + "&password=" + encodeURIComponent(password));
+    const json = await response.json();
     if (response.status === 200) {
-        return '200'
+        vue.update(json.username);
+        return '200';
     }
     else if (response.status === 401) {
         return 'Incorrect username/password';
@@ -46,11 +50,4 @@ export async function postFinishGame() {
 
 export async function getLeaderboard() {
 
-}
-
-export async function getAuth() {
-    const response = await get('/username');
-    if (response.status === 401) {
-        return null
-    } else return await response.text();
 }
