@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ResponseBody
 import java.security.Principal
 
 @Controller
-class   PageController {
+class PageController {
 
     @GetMapping("/username")
     @ResponseBody
@@ -16,17 +16,5 @@ class   PageController {
 
     @GetMapping("/")
     fun home() = "index.html"
-
-    @GetMapping("/mainMenu")
-    fun menu() = "mainMenu.html"
-
-    @GetMapping("/practice")
-    fun practice() = "practice.html"
-
-    @GetMapping("/detective")
-    fun detective() = "detective.html"
-
-    @GetMapping("/time")
-    fun time() = "time.html"
 
 }
