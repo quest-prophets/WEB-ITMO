@@ -5,16 +5,16 @@
             <div class="flexColumn loginShadow loginBox">
                 <input v-model="name" type="text" class="loginInput" placeholder="Login">
                 <input v-model="password" type="password" class="loginInput" placeholder="Password">
-                <button class="bwButton bwButton-whiteBackground">Log in</button>
-                <button class="bwButton bwButton-whiteBackground">Register</button>
-                <span id="message"></span>
+                <button class="bwButton bwButton-whiteBackground" @click.prevent="login">Log in</button>
+                <button class="bwButton bwButton-whiteBackground" @click.prevent="register">Register</button>
+                <span style="margin-top: 30px" id="message">{{status}}</span>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-    import {postRegister} from "../api";
+    import {postRegister, postLogin} from "../api";
 
     export default {
         name: "index",
@@ -23,13 +23,14 @@
             password: '',
             status: ''
         }),
-        components: {},
         methods: {
             async login() {
-
+                this.status = await postLogin(this.name, this.password);
+                if (this.status === '200'){
+                }
             },
             async register() {
-                this.status = await postRegister({username: this.name, password: this.password });
+                this.status = await postRegister({username: this.name, password: this.password});
             }
         }
     }

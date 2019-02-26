@@ -10,7 +10,7 @@ import Leaderboard from "./views/Leaderboard";
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
     routes: [
         {
             path: '/',
@@ -44,4 +44,17 @@ export default new Router({
             component: Leaderboard
         }
     ]
-})
+});
+
+router.beforeEach((to, from, next) => {
+    if (router.app.username != null && to.path === "/") {
+        next('/mainmenu');
+    }
+    else if (router.app.username == null && to.path !== "/") {
+        next('/');
+    }
+    else next();
+});
+
+
+export default router;

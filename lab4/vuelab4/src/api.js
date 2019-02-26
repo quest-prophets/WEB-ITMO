@@ -1,5 +1,5 @@
-function post(url, body) {
-    return fetch(url, {
+function post(url, body = '{}') {
+    return fetch('http://localhost:8029' + url, {
         method: 'POST',
         credentials: 'same-origin',
         headers: {
@@ -9,8 +9,48 @@ function post(url, body) {
     });
 }
 
+function get(url) {
+    return fetch('http://localhost:8029' + url, {
+        method: 'GET',
+        credentials: 'same-origin'
+    });
+}
+
 export async function postRegister(credentials) {
-    const response = await post('/auth/signin', credentials);
+    const response = await post('/auth/register', credentials);
     const json = await response.json();
     return json.message;
+}
+
+export async function postLogin(username, password) {
+    const response = await post('/auth/login?username=' + encodeURIComponent(username) + "&password=" + encodeURIComponent(password));
+    if (response.status === 200) {
+        return '200'
+    }
+    else if (response.status === 401) {
+        return 'Incorrect username/password';
+    }
+}
+
+export async function postSetDot(x, y, r) {
+
+}
+
+export async function postStartGame() {
+
+}
+
+export async function postFinishGame() {
+
+}
+
+export async function getLeaderboard() {
+
+}
+
+export async function getAuth() {
+    const response = await get('/username');
+    if (response.status === 401) {
+        return null
+    } else return await response.text();
 }
