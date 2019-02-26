@@ -7,11 +7,14 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
+import org.springframework.http.MediaType
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import javax.sql.DataSource
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.config.annotation.web.builders.WebSecurity
 import org.springframework.web.cors.CorsConfiguration
+import org.springframework.web.context.request.RequestContextListener
+
 
 @Configuration
 @EnableWebSecurity
@@ -23,6 +26,11 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
     @Bean
     fun passwordEncoder(): PasswordEncoder {
         return BCryptPasswordEncoder()
+    }
+
+    @Bean
+    fun requestContextListener(): RequestContextListener {
+        return RequestContextListener()
     }
 
     override fun configure(web: WebSecurity) {
@@ -40,7 +48,12 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
             .and()
                 .formLogin()
                 .loginPage("/auth/login")
-                .successHandler { request, response, authentication -> response.status = 200 }
+                .successHandler { request, response, authentication -> run {
+                    response.status = 200
+                    response.contentType = MediaType.APPLICATION_JSON_VALUE
+                    response.outputStream.print(
+                        "{\"username\":\"" + request.getParameter("username") + "\"}")
+                }}
                 .failureHandler { request, response, exception -> response.status = 401 }
                 .usernameParameter("username")
                 .passwordParameter("password")
