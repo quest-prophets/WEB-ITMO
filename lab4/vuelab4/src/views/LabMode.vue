@@ -69,29 +69,29 @@
                     addDot(dot.r, dot.x, dot.y, dot.figura, dot.time);
                 });
             },
-            setR(r) {
+            setR({r}) {
                 this.r = r;
                 let graphDots = document.getElementById("graphDots");
                 while (graphDots.firstChild) {
                     graphDots.removeChild(graphDots.firstChild);
                 }
-                results.forEach(function (dot) {
+                this.results.forEach(function (dot) {
                     addDot(dot.r, dot.x, dot.y, dot.figura, dot.time, false);
                 })
             },
             async addDotFromPanel({x, y}) {
-                const response = await postSetDot(x, y, r);
-                await addDot(r, x, y, response.figura, response.time);
+                const response = await postSetDot(parseFloat(x), parseFloat(y), parseFloat(this.r));
+                await addDot(this.r, x, y, response.figura, response.time);
             },
             async addDotFromGraph(e) {
                 const x = (e.clientX - document.getElementById("mainGraph").getBoundingClientRect().left - 200) / 160 * r;
                 const y = -(e.clientY - document.getElementById("mainGraph").getBoundingClientRect().top - 200) / 160 * r;
-                const response = await postSetDot(x, y, r);
-                await addDot(r, x, y, response.figura, response.time);
+                const response = await postSetDot(parseFloat(x), parseFloat(y), parseFloat(this.r));
+                await addDot(this.r, x, y, response.figura, response.time);
             },
-            async addDot(r = r, x, y, figura, time, ifAddToTable = true) {
+            async addDot(r = this.r, x, y, figura, time, ifAddToTable = true) {
                 const graphX = x * 160 / r;
-                const graphy = -y * 160 / r;
+                const graphY = -y * 160 / r;
                 const circle = document.createElementNS(svgns, 'circle');
                 circle.setAttributeNS(null, 'cx', graphX);
                 circle.setAttributeNS(null, 'cy', graphY);

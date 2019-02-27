@@ -26,8 +26,8 @@ import vue from "./main"
 
 export async function postLogin(username, password) {
     const response = await post('/auth/login?username=' + encodeURIComponent(username) + "&password=" + encodeURIComponent(password));
-    const json = await response.json();
     if (response.status === 200) {
+        const json = await response.json();
         vue.update(json.username);
         return '200';
     } else if (response.status === 401) {
@@ -37,6 +37,7 @@ export async function postLogin(username, password) {
 
 export async function postSetDot(x, y, r) {
     const response = await post("/dotCheck", {x: x, y: y, r: r});
+    console.log(response);
     const json = await response.json();
     return {figura: json.isHit, time: json.time}
 }

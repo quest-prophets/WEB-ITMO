@@ -6,7 +6,7 @@
                     <span class="graphInputLabel1">R: &emsp;</span>
                     <span class="graphInputLabel2">R: </span>
                     <input v-model="r" type="number" step="0.1" min="1" max="5" placeholder="1..5"
-                           class="graphInput" @change="setR">
+                           class="graphInput" @input="setR">
                 </div>
                 <div>
                     <span class="graphInputLabel1">X: &emsp;</span>

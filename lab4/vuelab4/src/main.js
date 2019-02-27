@@ -5,7 +5,7 @@ import router from './router'
 Vue.config.productionTip = false;
 
 var vue;
-export  default vue = new Vue({
+export default vue = new Vue({
     router,
     data: function () {
         return {username: null};
@@ -13,7 +13,6 @@ export  default vue = new Vue({
     methods: {
         update(name) {
             this.username = name;
-            console.log(name);
         }
     },
     render: h => h(App)
