@@ -7,7 +7,8 @@
                 </router-link>
             </div>
             <div class="grid--graph flexColumn">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" class="mainPracticeGraph">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" class="mainPracticeGraph"
+                     @click="addDotFromGraph" id="mainGraph">
                     <g stroke="white" stroke-width="2px">
                         <path d="M 0 200 h 400"></path>
                         <path d="M 200 0 v 400"></path>
@@ -37,9 +38,10 @@
                     <text stroke="white" fill="white" font-size="22px" x="265" y="225">R/2</text>
                     <text stroke="white" fill="white" font-size="22px" x="150" y="110">R/2</text>
                     <text stroke="white" fill="white" font-size="22px" x="210" y="285">R/2</text>
+                    <g id="graphDots"></g>
                 </svg>
             </div>
-            <GraphPanel @add-data="resultsAdd" @erase-data="resultsRemove"/>
+            <GraphPanel id="panel" @change-r="setR" @add-data="addDotFromPanel" @erase-data="removeAllDots"/>
             <PaperTable :results="results"/>
         </div>
     </div>
@@ -48,25 +50,68 @@
 <script>
     import PaperTable from "../components/PaperTable";
     import GraphPanel from "../components/GraphPanel";
+    import {postSetDot, getLabDots, postEraseDots} from "../api";
 
     export default {
         name: "LabMode",
         components: {GraphPanel, PaperTable},
         data: function () {
             return {
-                results: [
-                    {r: 1, x: 2, y: 11, figura: true, time: "11:22:33"},
-                    {r: 4, x: 21, y: 64, figura: false, time: "20:00:00"},
-                    {r: 8, x: 8, y: 81, figura: true, time: "88:22:33"}
-                ]
+                r: null,
+                results: []
             }
         },
         methods: {
-            async resultsAdd({r, x, y}) {
-                this.results.push({r, x, y, figura: true, time: 'h'});
+            async mount() {
+                console.log("penis");
+                const response = await getLabDots();
+                response.forEach(function (dot) {
+                    addDot(dot.r, dot.x, dot.y, dot.figura, dot.time);
+                });
             },
-            async resultsRemove() {
-                this.results = [];
+            setR(r) {
+                this.r = r;
+                let graphDots = document.getElementById("graphDots");
+                while (graphDots.firstChild) {
+                    graphDots.removeChild(graphDots.firstChild);
+                }
+                results.forEach(function (dot) {
+                    addDot(dot.r, dot.x, dot.y, dot.figura, dot.time, false);
+                })
+            },
+            async addDotFromPanel({x, y}) {
+                const response = await postSetDot(x, y, r);
+                await addDot(r, x, y, response.figura, response.time);
+            },
+            async addDotFromGraph(e) {
+                const x = (e.clientX - document.getElementById("mainGraph").getBoundingClientRect().left - 200) / 160 * r;
+                const y = -(e.clientY - document.getElementById("mainGraph").getBoundingClientRect().top - 200) / 160 * r;
+                const response = await postSetDot(x, y, r);
+                await addDot(r, x, y, response.figura, response.time);
+            },
+            async addDot(r = r, x, y, figura, time, ifAddToTable = true) {
+                const graphX = x * 160 / r;
+                const graphy = -y * 160 / r;
+                const circle = document.createElementNS(svgns, 'circle');
+                circle.setAttributeNS(null, 'cx', graphX);
+                circle.setAttributeNS(null, 'cy', graphY);
+                circle.setAttributeNS(null, 'r', '3');
+                if (figura) {
+                    circle.setAttributeNS(null, 'style', 'fill: black; stroke: white; stroke-width: 1px;');
+                } else {
+                    circle.setAttributeNS(null, 'style', 'fill: white; stroke: black; stroke-width: 1px;');
+                }
+                document.getElementById("graphDots").appendChild(circle);
+                if (ifAddToTable) this.results.push({r: r, x: x, y: y, figura: figura, time: time});
+            },
+            async removeAllDots() {
+                if (await postEraseDots()) {
+                    this.results = [];
+                    let graphDots = document.getElementById("graphDots");
+                    while (graphDots.firstChild) {
+                        graphDots.removeChild(graphDots.firstChild);
+                    }
+                }
             }
         }
     }

@@ -6,7 +6,7 @@
                     <span class="graphInputLabel1">R: &emsp;</span>
                     <span class="graphInputLabel2">R: </span>
                     <input v-model="r" type="number" step="0.1" min="1" max="5" placeholder="1..5"
-                           class="graphInput">
+                           class="graphInput" @change="setR">
                 </div>
                 <div>
                     <span class="graphInputLabel1">X: &emsp;</span>
@@ -36,10 +36,13 @@
             return {r: null, x: null, y: null}
         },
         methods: {
-            focus: function () {
-                this.$emit("add-data", {r: this.r, x: this.x, y: this.y})
+            setR() {
+                this.$emit("change-r", {r: this.r})
             },
-            erase: function () {
+            focus() {
+                this.$emit("add-data", {x: this.x, y: this.y})
+            },
+            erase() {
                 this.$emit("erase-data")
             }
         }

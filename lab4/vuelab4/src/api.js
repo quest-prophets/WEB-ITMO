@@ -22,7 +22,7 @@ export async function postRegister(credentials) {
     return json.message;
 }
 
-import vue from  "./main"
+import vue from "./main"
 
 export async function postLogin(username, password) {
     const response = await post('/auth/login?username=' + encodeURIComponent(username) + "&password=" + encodeURIComponent(password));
@@ -30,14 +30,24 @@ export async function postLogin(username, password) {
     if (response.status === 200) {
         vue.update(json.username);
         return '200';
-    }
-    else if (response.status === 401) {
+    } else if (response.status === 401) {
         return 'Incorrect username/password';
     }
 }
 
 export async function postSetDot(x, y, r) {
+    const response = await post("/dotCheck", {x: x, y: y, r: r});
+    const json = await response.json();
+    return {figura: json.isHit, time: json.time}
+}
 
+export async function getLabDots() {
+    const response = await get("/fetchResults");
+    return response.json;
+}
+
+export async function postEraseDots() {
+    return await post("/clear");
 }
 
 export async function postStartGame() {
