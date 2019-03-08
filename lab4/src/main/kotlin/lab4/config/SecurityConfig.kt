@@ -63,12 +63,20 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
         http
             .csrf().disable()
             .authorizeRequests()
-                .antMatchers( "/auth/login", "/auth/register", "/", "/*.ico").permitAll()
+                .antMatchers( "/auth/login", "/auth/register", "/", "/*.ico", "/assets/**").permitAll()
                 .anyRequest().authenticated()
             .and()
                 .formLogin()
                 .loginPage("/auth/login")
                 .successHandler { request, response, authentication -> run {
+                    val cookies = request.cookies
+                    if (cookies != null)
+                        for (i in 0..cookies.size) {
+                            if (cookies[i].name == "JSESSIONID")
+                                response.setHeader("Set-Cookie", "JSESSIONID=${cookies[i].value}")
+
+                        }
+
                     response.status = 200
                     response.contentType = MediaType.APPLICATION_JSON_VALUE
                     response.outputStream.print("{\"username\":\"" + request.getParameter("username") + "\"}")
