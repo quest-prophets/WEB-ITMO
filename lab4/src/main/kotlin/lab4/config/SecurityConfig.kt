@@ -12,8 +12,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import javax.sql.DataSource
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.config.annotation.web.builders.WebSecurity
+import org.springframework.security.core.Authentication
+import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.web.cors.CorsConfiguration
 import org.springframework.web.context.request.RequestContextListener
+import org.springframework.web.cors.CorsConfigurationSource
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource
+import org.springframework.web.servlet.config.annotation.CorsRegistry
 
 
 @Configuration
@@ -33,6 +38,21 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
         return RequestContextListener()
     }
 
+    @Bean
+    fun corsConfigurationSource(): CorsConfigurationSource {
+        val configuration = CorsConfiguration()
+        configuration.allowedOrigins = listOf("*")
+        configuration.allowedMethods = listOf("HEAD", "GET", "POST", "PUT", "DELETE", "PATCH")
+        configuration.allowCredentials = true
+        configuration.allowedHeaders = listOf("*")
+        configuration.exposedHeaders = listOf("Access-Control-Allow-Origin", "Access-Control-Allow-Methods",
+            "Access-Control-Allow-Headers", "Access-Control-Max-Age",
+            "Access-Control-Request-Headers", "Access-Control-Request-Method")
+        val source = UrlBasedCorsConfigurationSource()
+        source.registerCorsConfiguration("/**", configuration)
+        return source
+    }
+
     override fun configure(web: WebSecurity) {
         web
             .ignoring()
@@ -43,7 +63,7 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
         http
             .csrf().disable()
             .authorizeRequests()
-                .antMatchers("/index*", "/auth/login", "/auth/register", "/", "/*.ico").permitAll()
+                .antMatchers( "/auth/login", "/auth/register", "/", "/*.ico").permitAll()
                 .anyRequest().authenticated()
             .and()
                 .formLogin()
@@ -51,8 +71,7 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
                 .successHandler { request, response, authentication -> run {
                     response.status = 200
                     response.contentType = MediaType.APPLICATION_JSON_VALUE
-                    response.outputStream.print(
-                        "{\"username\":\"" + request.getParameter("username") + "\"}")
+                    response.outputStream.print("{\"username\":\"" + request.getParameter("username") + "\"}")
                 }}
                 .failureHandler { request, response, exception -> response.status = 401 }
                 .usernameParameter("username")
@@ -61,9 +80,12 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
             .and()
                 .logout().logoutSuccessHandler { request, response, authentication -> response.status = 200 }.permitAll()
             .and()
-                .exceptionHandling().authenticationEntryPoint { request, response, authException -> response.status = 401 }
+                .exceptionHandling().authenticationEntryPoint { request, response, authException -> run {
+                response.outputStream.print("Not authorized")
+                response.status = 401
+            }}
             .and()
-                .cors().configurationSource { request -> CorsConfiguration().applyPermitDefaultValues() }
+                .cors()
     }
 
 
@@ -79,3 +101,4 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
 
 
 }
+

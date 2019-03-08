@@ -9,7 +9,7 @@ import java.time.*
 import kotlin.random.Random
 
 @RestController
-@RequestMapping("/timeAttackCheck")
+@RequestMapping("/compCheck")
 class CompetitiveController {
     @Autowired
     var userInfoRepository: UserInfoRepository? = null
@@ -168,7 +168,7 @@ class CompetitiveController {
     @PostMapping
     fun createGame (principal: Principal) : OngoingGamePacked {
         val user = getUserByName(principal.name)
-        var existingGame = ongoingGameRepository?.findAllByUserInfoAndGameType(user, "detective")
+        var existingGame = ongoingGameRepository?.findAllByUserInfoAndGameType(user, "competitive")
         return if (existingGame != null) {
             val checkResults = ongoingGameCheckEntryRepository?.findAllByOngoingGame(existingGame) ?: emptyList()
             val resultsList = ArrayList<Dot>()
@@ -187,7 +187,7 @@ class CompetitiveController {
             gamePacked
         } else {
             val suspectList = generateSuspects()
-            existingGame = OngoingGame("time", LocalDateTime.now())
+            existingGame = OngoingGame("competitive", LocalDateTime.now())
             existingGame.graphType = (trueGraph!!.area4 shl 24) or (trueGraph!!.area3 shl 16) or (trueGraph!!.area2 shl 8) or trueGraph!!.area1
             existingGame.suspectsTypes = ArrayList()
             suspectList.forEach {
@@ -205,7 +205,7 @@ class CompetitiveController {
     fun checkDot(@RequestBody p: DotCheckRequest, principal: Principal): Dot? {
         val dot = compute(p.x, p.y) ?: return null
         val user = getUserByName(principal.name)
-        val currentGame = ongoingGameRepository?.findAllByUserInfoAndGameType(user, "time")
+        val currentGame = ongoingGameRepository?.findAllByUserInfoAndGameType(user, "competitive")
         currentGame?.gameCheckEntries?.add(OngoingGameCheckEntry(p.x, p.y, dot.isHit).apply { this.ongoingGame = currentGame })
         ongoingGameRepository?.save(currentGame!!)
         return dot
@@ -214,7 +214,7 @@ class CompetitiveController {
     @PostMapping("/getResult")
     fun getGameResult(@RequestBody p: Suspect, principal: Principal): GameResult? {
         val user = getUserByName(principal.name)
-        val currentGame = ongoingGameRepository?.findAllByUserInfoAndGameType(user, "time")
+        val currentGame = ongoingGameRepository?.findAllByUserInfoAndGameType(user, "competitive")
         val result = getAnswer(p.area1, p.area2, p.area3, p.area4)
         val clicks = currentGame?.gameCheckEntries?.size
         val elapsedTime = Duration.between(currentGame?.startTime, LocalDateTime.now()).toMillis()

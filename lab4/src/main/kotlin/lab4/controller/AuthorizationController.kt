@@ -22,21 +22,6 @@ class AuthorizationController {
     @GetMapping("/register")
     fun register() = "/index.html"
 
-    @PostMapping("/login")
-    @ResponseBody
-    fun signIn(@RequestBody user: UserInfo) : AuthResponse {
-        val existingUser = userInfoRepository?.findByUsername(user.username)
-        val authResponse = AuthResponse(user.username, AuthType.LOGIN)
-        return if (existingUser != null && user.password == existingUser.password) {
-            authResponse.success = true
-            authResponse.message = "Successfully logged in!"
-            authResponse
-        } else {
-            authResponse.success = false
-            authResponse.message = "Incorrect username or password. Please try again"
-            authResponse
-        }
-    }
 
     @PostMapping("/register")
     @ResponseBody

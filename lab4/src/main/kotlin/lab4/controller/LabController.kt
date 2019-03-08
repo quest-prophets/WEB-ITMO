@@ -9,7 +9,8 @@ import lab4.repository.ResultRepository
 import lab4.repository.UserInfoRepository
 import org.springframework.web.bind.annotation.RequestMapping
 import java.security.Principal
-import javax.servlet.http.HttpServletResponse
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 @RestController
 @RequestMapping("/dotCheck")
@@ -21,7 +22,9 @@ class LabController {
     var resultRepository: ResultRepository? = null
 
     data class DotCheckRequest(var x: Double = 0.0, var y: Double = 0.0, var r: Double = 0.0)
-    data class ResultsEntry(var x: Double = 0.0, var y: Double = 0.0, var r: Double = 0.0, var isHit: Boolean = false)
+    data class ResultsEntry(var x: Double = 0.0, var y: Double = 0.0, var r: Double = 0.0,
+                            var isHit: Boolean = false,
+                            var time: String = DateTimeFormatter.ofPattern("dd-MM-yyyy'\n'HH:mm:ss").format(LocalDateTime.now()))
 
 
     private fun checkDataValidity(x: Double, y: Double, r: Double) = r in (1.0..5.0) && x in (-5.0..3.0) && y in (-3.0..3.0)
@@ -46,20 +49,23 @@ class LabController {
     }
 
     @PostMapping
-    fun addDot(@RequestBody p: DotCheckRequest, principal: Principal): Dot? {
+    fun addDot(@RequestBody p: DotCheckRequest, principal: Principal): Result? {
         val dot = compute(p.x, p.y, p.r) ?: return null
         val user = getUserByName(principal.name)
-        user.results?.add(Result(p.x, p.y, p.r, dot.isHit).apply { this.userInfo = user }) ?: ArrayList<Result>()
+        val result = Result(p.x, p.y, p.r, dot.isHit)
+        user.results?.add(result.apply { this.userInfo = user }) ?: ArrayList<Result>()
         userInfoRepository?.save(user)
-        return dot
+        return result
     }
 
     @PostMapping("/clear")
-    fun clearResults(principal: Principal, response: HttpServletResponse) {
-        val user = getUserByName(principal.name)
-        resultRepository?.deleteAllByUserInfo(user)
-        response.sendRedirect("/practice")
-    }
+    fun clearResults(principal: Principal): Boolean = try {
+            val user = getUserByName(principal.name)
+            resultRepository?.deleteAllByUserInfo(user)
+            true
+        } catch (e: Exception) {
+            false
+        }
 
     @GetMapping("/update/{r}")
     fun recomputeDotChecks(@PathVariable r: Double, principal: Principal): List<Dot> {
@@ -79,7 +85,7 @@ class LabController {
         val user = getUserByName(principal.name)
         val results = resultRepository?.findAllByUserInfo(user) ?: emptyList()
         val resultsList = ArrayList<ResultsEntry>()
-        results.forEach { resultsList.add(ResultsEntry(it.x, it.y, it.r, it.isHit)) }
+        results.forEach { resultsList.add(ResultsEntry(it.x, it.y, it.r, it.isHit, it.time)) }
         return resultsList
     }
 
