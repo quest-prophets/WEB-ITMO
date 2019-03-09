@@ -194,7 +194,8 @@ class CompetitiveController {
                 existingGame.suspectsTypes?.add(
                     (it.area4 shl 24) or (it.area3 shl 16) or (it.area2 shl 8) or it.area1)
             }
-            ongoingGameRepository?.save(existingGame)
+            user.ongoingGames?.add(existingGame.apply { this.userInfo = user }) ?: ArrayList<OngoingGame>()
+            userInfoRepository?.save(user)
 
             val gamePacked = OngoingGamePacked(suspectList, null)
             gamePacked
