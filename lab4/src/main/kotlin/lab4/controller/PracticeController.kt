@@ -22,7 +22,7 @@ class PracticeController {
     var ongoingGameCheckEntryRepository: OngoingGameCheckEntryRepository? = null
 
     data class DotCheckRequest(var x: Double = 0.0, var y: Double = 0.0)
-    data class GameResult(var success: Boolean = false, var clicks: Int = 0)
+    data class GameResult(var success: Boolean = false, var clicks: Int = 0, var trueGraph: Suspect? = null)
 
 
     private fun generateSuspects() : MutableList<Suspect> {
@@ -210,7 +210,7 @@ class PracticeController {
 
         ongoingGameCheckEntryRepository?.deleteAllByOngoingGame(currentGame)
         ongoingGameRepository?.delete(currentGame)
-        return GameResult(result, clicks!!)
+        return GameResult(result, clicks!!, Suspect.decode(currentGame.graphType!!))
     }
 
     private fun getUserByName(username: String) = userInfoRepository?.findByUsername(username)
