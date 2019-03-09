@@ -152,8 +152,6 @@ class PracticeController {
         return Dot(x, y, hit)
     }
 
-
-
     @PostMapping
     fun createGame (principal: Principal) : OngoingGamePacked {
         val user = getUserByName(principal.name)
