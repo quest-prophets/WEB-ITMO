@@ -9,3 +9,4 @@ build/
 .gradle/
 lib/
 node_modules/
+*assets
