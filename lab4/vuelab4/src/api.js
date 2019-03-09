@@ -1,5 +1,5 @@
 function post(url, body = '{}') {
-    return fetch('http://localhost:8019' + url, {
+    return fetch(url, {
         method: 'POST',
         credentials: 'same-origin',
         headers: {
@@ -10,7 +10,7 @@ function post(url, body = '{}') {
 }
 
 function get(url) {
-    return fetch('http://localhost:8019' + url, {
+    return fetch(url, {
         method: 'GET',
         credentials: 'same-origin'
     });
@@ -37,7 +37,6 @@ export async function postLogin(username, password) {
 
 export async function postSetDot(x, y, r) {
     const response = await post("/dotCheck", {x: x, y: y, r: r});
-    console.log(response);
     const json = await response.json();
     return {figura: json.isHit, time: json.time}
 }

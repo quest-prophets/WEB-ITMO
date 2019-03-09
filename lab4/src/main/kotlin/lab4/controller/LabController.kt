@@ -49,13 +49,13 @@ class LabController {
     }
 
     @PostMapping
-    fun addDot(@RequestBody p: DotCheckRequest, principal: Principal): Result? {
+    fun addDot(@RequestBody p: DotCheckRequest, principal: Principal): ResultsEntry? {
         val dot = compute(p.x, p.y, p.r) ?: return null
         val user = getUserByName(principal.name)
         val result = Result(p.x, p.y, p.r, dot.isHit)
         user.results?.add(result.apply { this.userInfo = user }) ?: ArrayList<Result>()
         userInfoRepository?.save(user)
-        return result
+        return ResultsEntry(result.x, result.y, result.r, result.isHit, result.time)
     }
 
     @PostMapping("/clear")

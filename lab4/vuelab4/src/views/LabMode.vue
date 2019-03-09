@@ -66,7 +66,7 @@
                 console.log("penis");
                 const response = await getLabDots();
                 response.forEach(function (dot) {
-                    addDot(dot.r, dot.x, dot.y, dot.figura, dot.time);
+                    this.addDot(dot.r, dot.x, dot.y, dot.figura, dot.time);
                 });
             },
             setR({r}) {
@@ -76,23 +76,23 @@
                     graphDots.removeChild(graphDots.firstChild);
                 }
                 this.results.forEach(function (dot) {
-                    addDot(dot.r, dot.x, dot.y, dot.figura, dot.time, false);
+                    this.addDot(dot.r, dot.x, dot.y, dot.figura, dot.time, false);
                 })
             },
             async addDotFromPanel({x, y}) {
                 const response = await postSetDot(parseFloat(x), parseFloat(y), parseFloat(this.r));
-                await addDot(this.r, x, y, response.figura, response.time);
+                await this.addDot(this.r, x, y, response.figura, response.time);
             },
             async addDotFromGraph(e) {
-                const x = (e.clientX - document.getElementById("mainGraph").getBoundingClientRect().left - 200) / 160 * r;
-                const y = -(e.clientY - document.getElementById("mainGraph").getBoundingClientRect().top - 200) / 160 * r;
+                const x = (e.clientX - document.getElementById("mainGraph").getBoundingClientRect().left - 200) / 160 * this.r;
+                const y = -(e.clientY - document.getElementById("mainGraph").getBoundingClientRect().top - 200) / 160 * this.r;
                 const response = await postSetDot(parseFloat(x), parseFloat(y), parseFloat(this.r));
-                await addDot(this.r, x, y, response.figura, response.time);
+                await this.addDot(this.r, x, y, response.figura, response.time);
             },
             async addDot(r = this.r, x, y, figura, time, ifAddToTable = true) {
                 const graphX = x * 160 / r;
                 const graphY = -y * 160 / r;
-                const circle = document.createElementNS(svgns, 'circle');
+                const circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');
                 circle.setAttributeNS(null, 'cx', graphX);
                 circle.setAttributeNS(null, 'cy', graphY);
                 circle.setAttributeNS(null, 'r', '3');

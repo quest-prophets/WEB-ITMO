@@ -38,20 +38,20 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
         return RequestContextListener()
     }
 
-    @Bean
-    fun corsConfigurationSource(): CorsConfigurationSource {
-        val configuration = CorsConfiguration()
-        configuration.allowedOrigins = listOf("*")
-        configuration.allowedMethods = listOf("HEAD", "GET", "POST", "PUT", "DELETE", "PATCH")
-        configuration.allowCredentials = true
-        configuration.allowedHeaders = listOf("*")
-        configuration.exposedHeaders = listOf("Access-Control-Allow-Origin", "Access-Control-Allow-Methods",
-            "Access-Control-Allow-Headers", "Access-Control-Max-Age",
-            "Access-Control-Request-Headers", "Access-Control-Request-Method")
-        val source = UrlBasedCorsConfigurationSource()
-        source.registerCorsConfiguration("/**", configuration)
-        return source
-    }
+//    @Bean
+//    fun corsConfigurationSource(): CorsConfigurationSource {
+//        val configuration = CorsConfiguration()
+//        configuration.allowedOrigins = listOf("*")
+//        configuration.allowedMethods = listOf("HEAD", "GET", "POST", "PUT", "DELETE", "PATCH")
+//        configuration.allowCredentials = true
+//        configuration.allowedHeaders = listOf("*")
+//        configuration.exposedHeaders = listOf("Access-Control-Allow-Origin", "Access-Control-Allow-Methods",
+//            "Access-Control-Allow-Headers", "Access-Control-Max-Age",
+//            "Access-Control-Request-Headers", "Access-Control-Request-Method")
+//        val source = UrlBasedCorsConfigurationSource()
+//        source.registerCorsConfiguration("/**", configuration)
+//        return source
+//    }
 
     override fun configure(web: WebSecurity) {
         web
@@ -69,13 +69,13 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
                 .formLogin()
                 .loginPage("/auth/login")
                 .successHandler { request, response, authentication -> run {
-                    val cookies = request.cookies
+                    /*val cookies = request.cookies
                     if (cookies != null)
                         for (i in 0..cookies.size) {
                             if (cookies[i].name == "JSESSIONID")
                                 response.setHeader("Set-Cookie", "JSESSIONID=${cookies[i].value}")
 
-                        }
+                        }*/
 
                     response.status = 200
                     response.contentType = MediaType.APPLICATION_JSON_VALUE
@@ -92,8 +92,6 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
                 response.outputStream.print("Not authorized")
                 response.status = 401
             }}
-            .and()
-                .cors()
     }
 
 
