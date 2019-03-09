@@ -11,3 +11,4 @@ lib/
 node_modules/
 *assets
 *.hot-update.json
+*.hot-update.js

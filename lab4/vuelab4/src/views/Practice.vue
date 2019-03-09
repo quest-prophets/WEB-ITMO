@@ -1,6 +1,6 @@
 <template>
     <div class="gamePage">
-        <div class="practiceGrid">
+        <div class="practiceGrid" v-if="result == null">
             <div class="grid--exit">
                 <router-link to="MainMenu" class="exitButton">
                     Main Menu
@@ -30,10 +30,13 @@
                     </svg>
                 </div>
                 <div class="flexColumn" v-for="(graph, i) in suspectGraphs" :key="i">
-                    <Suspect :style="{ gridArea: `suspect${i}` }" :graph="graph" />
+                    <Suspect :style="{ gridArea: `suspect${i}` }" :graph="graph" @click.native="chooseSuspect(graph)"/>
                 </div>
             </div>
             <HelpPanel id="graphPanel"/>
+        </div>
+        <div v-else>
+            {{result}}
         </div>
     </div>
 </template>
@@ -41,20 +44,21 @@
 <script>
     import HelpPanel from "../components/HelpPanel";
     import Suspect from "../components/Suspect";
-    import {postStartPractice} from "../api";
+    import {postStartPractice, postFinishPractice} from "../api";
 
     export default {
         name: "Practice",
         components: {Suspect, HelpPanel},
         data() {
             return {
-                suspectGraphs: []
+                suspectGraphs: [],
+                result: null
             };
         },
         async mounted() {
             const {suspectTypes, checkedDots} = await postStartPractice();
             this.suspectGraphs = suspectTypes;
-
+            if (checkedDots == null) return;
             checkedDots.forEach(dot => {
                 this.addDot(dot.x, dot.y, dot.isHit)
             });
@@ -76,6 +80,10 @@
                     cross.setAttributeNS(null, 'd', 'M ' + graphX - 3 + " " + graphY - 3 + " l 6 6 M " + graphX + 3 + " " + graphY - 3 + " l -6 6");
                     document.getElementById("graphDots").appendChild(cross);
                 }
+            },
+            async chooseSuspect(graph) {
+                const response = await postFinishPractice(graph);
+                this.result = await response.json()
             }
         }
     }

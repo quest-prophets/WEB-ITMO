@@ -43,7 +43,7 @@ export async function postSetDot(x, y, r) {
 
 export async function getLabDots() {
     const response = await get("/dotCheck/fetchResults");
-    return response.json;
+    return response.json();
 }
 
 export async function postEraseDots() {
@@ -55,8 +55,8 @@ export async function postStartPractice(){
     return response.json();
 }
 
-export async function postFinishPractice() {
-
+export async function postFinishPractice(graph) {
+    return post("/pracCheck/getResult", graph);
 }
 
 export async function postStartCompetitive() {

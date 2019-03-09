@@ -5,7 +5,7 @@
             <path d="M 0 200 h 400"></path>
             <path d="M 200 0 v 400"></path>
         </g>
-        <g class="suspectSectors" fill="white" stroke="white">
+        <g class="suspectSectors" fill="white" stroke="black" stroke-width="2px">
             <path :d="topRightPath"></path>
             <path :d="topLeftPath" style="transform: rotate(-90deg); transform-origin: 200px 200px"></path>
             <path :d="bottomLeftPath" style="transform: rotate(180deg); transform-origin: 200px 200px"></path>
@@ -70,13 +70,13 @@
         box-shadow: black 0 0 4px 1px;
     }
 
-    .suspectBase:hover path {
+    .suspect:hover .suspectBase path{
         fill: white;
         stroke: black;
     }
 
-    .suspectSectors:hover path {
-        fill: white;
-        stroke: black;
+    .suspect:hover .suspectSectors path{
+        fill: black;
+        stroke: white;
     }
 </style>

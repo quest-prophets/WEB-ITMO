@@ -25,14 +25,9 @@
                         <path d="M 400 400 h -50"></path>
                         <path d="M 400 400 v -50"></path>
                     </g>
-                    <path stroke="white" fill="white" d="M 200 200 h -160 v -80 h 160 Z"></path>
-                    <path stroke="white" fill="white" d="M 200 200 v -80 q 80 0 80 80 Z"></path>
-                    <path stroke="white" fill="white" d="M 200 200 v 80 l -160 -80 Z"></path>
-
-                    <path stroke="black" stroke-width="2px" d="M 200 200 h -160"></path>
-                    <path stroke="black" stroke-width="2px" d="M 200 200 h 80"></path>
-                    <path stroke="black" stroke-width="2px" d="M 200 200 v 80"></path>
-                    <path stroke="black" stroke-width="2px" d="M 200 200 v -80"></path>
+                    <path stroke="black" fill="white" d="M 200 200 h -160 v -80 h 160 Z"></path>
+                    <path stroke="black" fill="white" d="M 200 200 v -80 q 80 0 80 80 Z"></path>
+                    <path stroke="black" fill="white" d="M 200 200 v 80 l -160 -80 Z"></path>
 
                     <text stroke="white" fill="white" font-size="22px" x="32" y="225">R</text>
                     <text stroke="white" fill="white" font-size="22px" x="265" y="225">R/2</text>
