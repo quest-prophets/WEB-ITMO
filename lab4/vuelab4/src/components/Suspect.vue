@@ -1,5 +1,5 @@
 <template>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" class="suspect">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" class="suspect" :class="{clickableSuspect: clickable}">
         <g class="suspectBase" stroke="white" stroke-width="2px">
             <path fill="black" d="M 0 0 h 400 v 400 h -400 Z"></path>
             <path d="M 0 200 h 400"></path>
@@ -17,7 +17,7 @@
 <script>
     export default {
         name: "Suspect",
-        props: ['graph'],
+        props: ['graph', 'clickable'],
         methods: {
             getPath(areaNumber) {
                 switch (areaNumber) {
@@ -65,17 +65,17 @@
         box-shadow: white 0 0 4px 1px;
     }
 
-    .suspect:hover {
+    .clickableSuspect:hover {
         cursor: pointer;
         box-shadow: black 0 0 4px 1px;
     }
 
-    .suspect:hover .suspectBase path{
+    .clickableSuspect:hover .suspectBase path{
         fill: white;
         stroke: black;
     }
 
-    .suspect:hover .suspectSectors path{
+    .clickableSuspect:hover .suspectSectors path{
         fill: black;
         stroke: white;
     }

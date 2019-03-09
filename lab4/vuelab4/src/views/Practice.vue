@@ -30,13 +30,15 @@
                     </svg>
                 </div>
                 <div class="flexColumn" v-for="(graph, i) in suspectGraphs" :key="i">
-                    <Suspect :style="{ gridArea: `suspect${i}` }" :graph="graph" @click.native="chooseSuspect(graph)"/>
+                    <Suspect :style="{ gridArea: `suspect${i}` }" :graph="graph" :clickable="true" @click.native="chooseSuspect(graph)"/>
                 </div>
             </div>
             <HelpPanel id="graphPanel"/>
         </div>
-        <div v-else>
+        <div v-else class="result">
             {{result}}
+            <Suspect :graph="clickedGraph" :clickable="false"/>
+            <Suspect :graph="result.trueGraph" v-if="result.success === false" :clickable="false"/>
         </div>
     </div>
 </template>
@@ -52,7 +54,8 @@
         data() {
             return {
                 suspectGraphs: [],
-                result: null
+                result: null,
+                clickedGraph: null
             };
         },
         async mounted() {
@@ -83,6 +86,7 @@
             },
             async chooseSuspect(graph) {
                 const response = await postFinishPractice(graph);
+                this.clickedGraph = graph;
                 this.result = await response.json()
             }
         }
@@ -132,6 +136,10 @@
 
     .graphMain:hover {
         cursor: url("../assets/aim.svg") 16 16, pointer;
+    }
+
+    .result {
+        color: white;
     }
 
     @media (max-width: 1400px) {
