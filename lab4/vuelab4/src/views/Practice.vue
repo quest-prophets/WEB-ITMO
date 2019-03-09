@@ -62,10 +62,14 @@
 <script>
     import HelpPanel from "../components/HelpPanel";
     import Suspect from "../components/Suspect";
+    import {postStartPractice} from "../api";
 
     export default {
         name: "Practice",
-        components: {Suspect, HelpPanel}
+        components: {Suspect, HelpPanel},
+        async mounted(){
+            await postStartPractice();
+        }
     }
 </script>
 

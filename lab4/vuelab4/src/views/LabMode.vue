@@ -61,14 +61,13 @@
                 results: []
             }
         },
+        async mounted(){
+            const response = await getLabDots();
+            response.forEach(function (dot) {
+                this.addDot(dot.r, dot.x, dot.y, dot.figura, dot.time);
+            });
+        },
         methods: {
-            async mount() {
-                console.log("penis");
-                const response = await getLabDots();
-                response.forEach(function (dot) {
-                    this.addDot(dot.r, dot.x, dot.y, dot.figura, dot.time);
-                });
-            },
             setR({r}) {
                 this.r = r;
                 let graphDots = document.getElementById("graphDots");
@@ -84,14 +83,14 @@
                 await this.addDot(this.r, x, y, response.figura, response.time);
             },
             async addDotFromGraph(e) {
-                const x = (e.clientX - document.getElementById("mainGraph").getBoundingClientRect().left - 200) / 160 * this.r;
-                const y = -(e.clientY - document.getElementById("mainGraph").getBoundingClientRect().top - 200) / 160 * this.r;
+                const x = (e.clientX - document.getElementById("mainGraph").getBoundingClientRect().left) / 160 * this.r - 200;
+                const y = -(e.clientY - document.getElementById("mainGraph").getBoundingClientRect().top) / 160 * this.r - 200;
                 const response = await postSetDot(parseFloat(x), parseFloat(y), parseFloat(this.r));
                 await this.addDot(this.r, x, y, response.figura, response.time);
             },
             async addDot(r = this.r, x, y, figura, time, ifAddToTable = true) {
-                const graphX = x * 160 / r;
-                const graphY = -y * 160 / r;
+                const graphX = x * 160 / r + 200;
+                const graphY = -y * 160 / r + 200;
                 const circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');
                 circle.setAttributeNS(null, 'cx', graphX);
                 circle.setAttributeNS(null, 'cy', graphY);

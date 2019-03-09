@@ -188,6 +188,8 @@ class PracticeController {
                 existingGame.suspectsTypes?.add(
                     (it.area4 shl 24) or (it.area3 shl 16) or (it.area2 shl 8) or it.area1)
             }
+            user.ongoingGames?.add(existingGame.apply { this.userInfo = user }) ?: ArrayList<OngoingGame>()
+            userInfoRepository?.save(user)
             ongoingGameRepository?.save(existingGame)
 
             val gamePacked = OngoingGamePacked(suspectList, null)

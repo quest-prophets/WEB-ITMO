@@ -50,11 +50,21 @@ export async function postEraseDots() {
     return await post("/dotCheck/clear");
 }
 
-export async function postStartGame() {
+export async function postStartPractice(){
+    const { suspectTypes, checkedDots } = await post("/pracCheck");
+    console.log(suspectTypes);
+    console.log(checkedDots);
+}
+
+export async function postFinishPractice() {
 
 }
 
-export async function postFinishGame() {
+export async function postStartCompetitive() {
+
+}
+
+export async function postFinishCompetitive() {
 
 }
 

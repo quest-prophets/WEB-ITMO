@@ -21,6 +21,9 @@ data class UserInfo(@Column(nullable = false, unique = true) var username: Strin
     @OneToMany(fetch = FetchType.LAZY, cascade = [CascadeType.ALL], mappedBy = "userInfo")
     var results: MutableList<Result>? = null
 
+    @OneToMany(fetch = FetchType.LAZY, cascade = [CascadeType.ALL], mappedBy = "userInfo")
+    var ongoingGames: MutableList<OngoingGame>? = null
+
     var overallDots: Long = 0
     var overallElapsedTime: Long = 0
     var overallGames: Long = 0
