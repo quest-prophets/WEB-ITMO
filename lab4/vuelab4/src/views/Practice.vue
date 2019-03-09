@@ -29,29 +29,8 @@
                         <g id="graphDots"></g>
                     </svg>
                 </div>
-                <div class="flexColumn">
-                    <Suspect style="grid-area: suspect1"
-                             :ids="{path1id: 'suspect1--path1', path2id: 'suspect1--path2',path3id: 'suspect1--path3',path4id: 'suspect1--path4'}"/>
-                </div>
-                <div class="flexColumn">
-                    <Suspect style="grid-area: suspect2"
-                             :ids="{path1id: 'suspect2--path1', path2id: 'suspect2--path2',path3id: 'suspect2--path3',path4id: 'suspect2--path4'}"/>
-                </div>
-                <div class="flexColumn">
-                    <Suspect style="grid-area: suspect3"
-                             :ids="{path1id: 'suspect3--path1', path2id: 'suspect3--path2',path3id: 'suspect3--path3',path4id: 'suspect3--path4'}"/>
-                </div>
-                <div class="flexColumn">
-                    <Suspect style="grid-area: suspect4"
-                             :ids="{path1id: 'suspect4--path1', path2id: 'suspect4--path2',path3id: 'suspect4--path3',path4id: 'suspect4--path4'}"/>
-                </div>
-                <div class="flexColumn">
-                    <Suspect style="grid-area: suspect5"
-                             :ids="{path1id: 'suspect5--path1', path2id: 'suspect5--path2',path3id: 'suspect5--path3',path4id: 'suspect5--path4'}"/>
-                </div>
-                <div class="flexColumn">
-                    <Suspect style="grid-area: suspect6"
-                             :ids="{path1id: 'suspect6--path1', path2id: 'suspect6--path2',path3id: 'suspect6--path3',path4id: 'suspect6--path4'}"/>
+                <div class="flexColumn" v-for="(graph, i) in suspectGraphs" :key="i">
+                    <Suspect :style="{ gridArea: `suspect${i}` }" :graph="graph" />
                 </div>
             </div>
             <HelpPanel id="graphPanel"/>
@@ -67,8 +46,37 @@
     export default {
         name: "Practice",
         components: {Suspect, HelpPanel},
-        async mounted(){
-            await postStartPractice();
+        data() {
+            return {
+                suspectGraphs: []
+            };
+        },
+        async mounted() {
+            const {suspectTypes, checkedDots} = await postStartPractice();
+            this.suspectGraphs = suspectTypes;
+
+            checkedDots.forEach(dot => {
+                this.addDot(dot.x, dot.y, dot.isHit)
+            });
+        },
+        methods: {
+            async addDot(x, y, figura) {
+                const graphX = x * 160 + 200;
+                const graphY = -y * 160 + 200;
+                if (figura) {
+                    const circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');
+                    circle.setAttributeNS(null, 'cx', graphX);
+                    circle.setAttributeNS(null, 'cy', graphY);
+                    circle.setAttributeNS(null, 'r', '3');
+                    circle.setAttributeNS(null, 'style', 'fill: black; stroke: white; stroke-width: 1px;');
+                    document.getElementById("graphDots").appendChild(circle);
+                } else {
+                    const cross = document.createElementNS("http://www.w3.org/2000/svg", 'path');
+                    cross.setAttributeNS(null, 'stroke', "white");
+                    cross.setAttributeNS(null, 'd', 'M ' + graphX - 3 + " " + graphY - 3 + " l 6 6 M " + graphX + 3 + " " + graphY - 3 + " l -6 6");
+                    document.getElementById("graphDots").appendChild(cross);
+                }
+            }
         }
     }
 </script>

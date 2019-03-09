@@ -52,9 +52,7 @@ export async function postEraseDots() {
 
 export async function postStartPractice(){
     const response = await post("/pracCheck");
-    const { suspectTypes, checkedDots } = await response.json();
-    console.log(suspectTypes);
-    console.log(checkedDots);
+    return response.json();
 }
 
 export async function postFinishPractice() {

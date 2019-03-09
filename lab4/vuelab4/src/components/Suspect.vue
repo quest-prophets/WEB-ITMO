@@ -6,10 +6,10 @@
             <path d="M 200 0 v 400"></path>
         </g>
         <g class="suspectSectors" fill="white" stroke="white">
-            <path :id="ids.path1id" d=""></path>
-            <path :id="ids.path2id" d=""></path>
-            <path :id="ids.path3id" d=""></path>
-            <path :id="ids.path4id" d=""></path>
+            <path :d="topRightPath"></path>
+            <path :d="topLeftPath" style="transform: rotate(-90deg); transform-origin: 200px 200px"></path>
+            <path :d="bottomLeftPath" style="transform: rotate(180deg); transform-origin: 200px 200px"></path>
+            <path :d="bottomRightPath" style="transform: rotate(90deg); transform-origin: 200px 200px"></path>
         </g>
     </svg>
 </template>
@@ -17,7 +17,46 @@
 <script>
     export default {
         name: "Suspect",
-        props: ["ids"]
+        props: ['graph'],
+        methods: {
+            getPath(areaNumber) {
+                switch (areaNumber) {
+                    case 1: //big circle
+                        return "M 200 200 v -160 q 160 0 160 160 Z";
+                    case 2: //small circle
+                        return "M 200 200 v -80 q 80 0 80 80 Z";
+                    case 3: //big square
+                        return "M 200 200 v -160 h 160 v 160 Z";
+                    case 4: //small square
+                        return "M 200 200 v -80 h 80 v 80 Z";
+                    case 6: //rectangle stand up
+                        return "M 200 200 v -160 h 80 v 160 Z";
+                    case 7: //rectangle lie down
+                        return "M 200 200 v -80 h 160 v 80 Z";
+                    case 8: //triangle equal
+                        return "M 200 200 v -160 l 160 160 Z";
+                    case 9: //triangle stand up
+                        return "M 200 200 v -160 l 80 160 Z";
+                    default:
+                        return "";
+                }
+            }
+        },
+        computed: {
+            topRightPath() {
+                return this.getPath(this.graph.area1);
+            },
+            topLeftPath() {
+                return this.getPath(this.graph.area2);
+
+            },
+            bottomLeftPath() {
+                return this.getPath(this.graph.area3);
+            },
+            bottomRightPath() {
+                return this.getPath(this.graph.area4);
+            }
+        }
     }
 </script>
 
