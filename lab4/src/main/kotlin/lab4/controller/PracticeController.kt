@@ -21,18 +21,15 @@ class PracticeController {
     @Autowired
     var ongoingGameCheckEntryRepository: OngoingGameCheckEntryRepository? = null
 
-    var trueGraph: Suspect? = null
-
     data class DotCheckRequest(var x: Double = 0.0, var y: Double = 0.0)
     data class GameResult(var success: Boolean = false, var clicks: Int = 0)
 
 
-    private fun generateSuspects() : List<Suspect> {
+    private fun generateSuspects() : MutableList<Suspect> {
         val area1 = Random.nextInt(1, 9)
         val area2 = Random.nextInt(1, 9)
         val area3 = Random.nextInt(1, 9)
         val area4 = Random.nextInt(1, 9)
-        trueGraph = Suspect(area1, area2, area3, area4)
         val suspectList = ArrayList<Suspect>()
         suspectList.add(Suspect(area1, area2, area3, area4))
         for (i in 0..2){
@@ -94,7 +91,6 @@ class PracticeController {
                                 Random.nextInt(1, 9), Random.nextInt(1, 9)))
         suspectList.add(Suspect(Random.nextInt(1, 9), Random.nextInt(1, 9),
                                 Random.nextInt(1, 9), Random.nextInt(1, 9)))
-        suspectList.shuffle()
         return suspectList
     }
 
@@ -151,13 +147,11 @@ class PracticeController {
         return false
     }
 
-    private fun compute(x: Double, y: Double): Dot? {
-        val hit = checkAreaHit(x, y, trueGraph?.area1!!, trueGraph?.area2!!, trueGraph?.area3!!, trueGraph?.area4!!)
+    private fun compute(x: Double, y: Double, trueGraph: Suspect): Dot? {
+        val hit = checkAreaHit(x, y, trueGraph.area1, trueGraph.area2, trueGraph.area3, trueGraph.area4)
         return Dot(x, y, hit)
     }
 
-    private fun getAnswer (area1: Int, area2: Int, area3: Int, area4: Int): Boolean =
-        (area1 == trueGraph?.area1!! && area2 == trueGraph?.area2!! && area3 == trueGraph?.area3!! && area4 == trueGraph?.area4!!)
 
 
     @PostMapping
@@ -171,22 +165,23 @@ class PracticeController {
 
             val suspectList = ArrayList<Suspect>()
             existingGame.suspectsTypes?.forEach { suspectList.add(
-                Suspect(it and 255,
-                    (it shr 8) and 255,
-                    (it shr 16) and 255,
-                    (it shr 24) and 255))
+                Suspect.decode(it))
             }
 
             val gamePacked = OngoingGamePacked (suspectList, resultsList)
             gamePacked
         } else {
             val suspectList = generateSuspects()
+            val trueGraph = suspectList.first()
+            suspectList.shuffle()
+
             existingGame = OngoingGame("practice")
-            existingGame.graphType = (trueGraph!!.area4 shl 24) or (trueGraph!!.area3 shl 16) or (trueGraph!!.area2 shl 8) or trueGraph!!.area1
+            existingGame.graphType = trueGraph.encode()
             existingGame.suspectsTypes = ArrayList()
             suspectList.forEach {
                 existingGame.suspectsTypes?.add(
-                    (it.area4 shl 24) or (it.area3 shl 16) or (it.area2 shl 8) or it.area1)
+                    it.encode()
+                )
             }
             user.ongoingGames?.add(existingGame.apply { this.userInfo = user }) ?: ArrayList<OngoingGame>()
             userInfoRepository?.save(user)
@@ -199,23 +194,24 @@ class PracticeController {
 
     @PostMapping("/checkDot")
     fun checkDot(@RequestBody p: DotCheckRequest, principal: Principal): Dot? {
-        val dot = compute(p.x, p.y) ?: return null
         val user = getUserByName(principal.name)
         val currentGame = ongoingGameRepository?.findAllByUserInfoAndGameType(user, "practice")
-        currentGame?.gameCheckEntries?.add(OngoingGameCheckEntry(p.x, p.y, dot.isHit).apply { this.ongoingGame = currentGame })
-        ongoingGameRepository?.save(currentGame!!)
+        val dot = compute(p.x, p.y, Suspect.decode(currentGame?.graphType!!)) ?: return null
+
+        currentGame.gameCheckEntries?.add(OngoingGameCheckEntry(p.x, p.y, dot.isHit).apply { this.ongoingGame = currentGame })
+        ongoingGameRepository?.save(currentGame)
         return dot
     }
 
     @PostMapping("/getResult")
     fun getGameResult(@RequestBody p: Suspect, principal: Principal): GameResult? {
         val user = getUserByName(principal.name)
-        val currentGame = ongoingGameRepository?.findAllByUserInfoAndGameType(user, "practice")
-        val result = getAnswer(p.area1, p.area2, p.area3, p.area4)
-        val clicks = currentGame?.gameCheckEntries?.size
+        val currentGame = ongoingGameRepository?.findAllByUserInfoAndGameType(user, "practice")!!
+        val result = (currentGame.graphType == p.encode())
+        val clicks = currentGame.gameCheckEntries?.size
 
-        ongoingGameCheckEntryRepository?.deleteAllByOngoingGame(currentGame!!)
-        ongoingGameRepository?.delete(currentGame!!)
+        ongoingGameCheckEntryRepository?.deleteAllByOngoingGame(currentGame)
+        ongoingGameRepository?.delete(currentGame)
         return GameResult(result, clicks!!)
     }
 
