@@ -63,7 +63,7 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
         http
             .csrf().disable()
             .authorizeRequests()
-                .antMatchers( "/auth/login", "/auth/register", "/", "/*.ico", "/assets/**").permitAll()
+                .antMatchers( "/auth/login", "/auth/register", "/", "/*.ico", "/img/**", "/*.js", "/index.html").permitAll()
                 .anyRequest().authenticated()
             .and()
                 .formLogin()

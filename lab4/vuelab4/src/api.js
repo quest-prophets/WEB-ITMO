@@ -1,5 +1,5 @@
 function post(url, body = '{}') {
-    return fetch('http://localhost:8029' + url, {
+    return fetch('http://localhost:8019' + url, {
         method: 'POST',
         credentials: 'same-origin',
         headers: {
@@ -10,7 +10,7 @@ function post(url, body = '{}') {
 }
 
 function get(url) {
-    return fetch('http://localhost:8029' + url, {
+    return fetch('http://localhost:8019' + url, {
         method: 'GET',
         credentials: 'same-origin'
     });
@@ -43,12 +43,12 @@ export async function postSetDot(x, y, r) {
 }
 
 export async function getLabDots() {
-    const response = await get("/fetchResults");
+    const response = await get("/dotCheck/fetchResults");
     return response.json;
 }
 
 export async function postEraseDots() {
-    return await post("/clear");
+    return await post("/dotCheck/clear");
 }
 
 export async function postStartGame() {

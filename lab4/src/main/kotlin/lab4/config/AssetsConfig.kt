@@ -10,10 +10,11 @@ class AssetsConfig : WebMvcConfigurer {
     fun getViewResolver() = InternalResourceViewResolver().apply { setSuffix(".html") }
 
     override fun addViewControllers(registry: ViewControllerRegistry) {
-        registry.addViewController("/").setViewName("index")
+        registry.addViewController("/").setViewName("forward:/index.html")
     }
 
     override fun addResourceHandlers(registry: ResourceHandlerRegistry) {
-        registry.addResourceHandler("/assets/**").addResourceLocations("classpath:assets/")
+        registry.addResourceHandler("/*.js").addResourceLocations("classpath:assets/")
+        registry.addResourceHandler("/img/**").addResourceLocations("classpath:assets/img/")
     }
 }
