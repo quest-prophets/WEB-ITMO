@@ -190,7 +190,7 @@ class PracticeController {
             }
             user.ongoingGames?.add(existingGame.apply { this.userInfo = user }) ?: ArrayList<OngoingGame>()
             userInfoRepository?.save(user)
-            ongoingGameRepository?.save(existingGame)
+//            ongoingGameRepository?.save(existingGame)
 
             val gamePacked = OngoingGamePacked(suspectList, null)
             gamePacked
