@@ -176,6 +176,11 @@ class CompetitiveController {
         return false
     }
 
+    private fun compute(x: Double, y: Double, trueGraph: Suspect): Dot? {
+        val hit = checkAreaHit(x, y, trueGraph.area1, trueGraph.area2, trueGraph.area3, trueGraph.area4)
+        return Dot(x, y, hit)
+    }
+
     @PostMapping
     fun createGame (principal: Principal) : OngoingGamePacked {
         val user = getUserByName(principal.name)
