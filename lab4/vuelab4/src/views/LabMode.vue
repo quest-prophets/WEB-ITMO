@@ -101,7 +101,7 @@
             const response = await getLabDots();
             if (response == null) return; //надо ли?????
             response.forEach(function (dot) {
-                this.addDot(dot.r, dot.x, dot.y, dot.figura, dot.time);
+                this.addDot(dot.r, dot.x, dot.y, dot.figura, dot.time, true);
             });
         },
         methods: {
@@ -111,13 +111,11 @@
                 while (graphDots.firstChild) {
                     graphDots.removeChild(graphDots.firstChild);
                 }
-                this.results.forEach(function (dot) {
-                    this.addDot(dot.r, dot.x, dot.y, dot.figura, dot.time, false);
-                })
+               
             },
             async addDotFromPanel({x, y}) {
                 const response = await postSetDot(parseFloat(x), parseFloat(y), parseFloat(this.r));
-                await this.addDot(this.r, x, y, response.figura, response.time);
+                await this.addDot(response.r, response.x, response.y, response.figura, response.time);
             },
             async addDotFromGraph(e) {
                 const x = (e.clientX - document.getElementById("mainGraph").getBoundingClientRect().left - 200) / 160 * this.r;
@@ -125,7 +123,7 @@
                 console.log("x:" + x);
                 const y = -(e.clientY - document.getElementById("mainGraph").getBoundingClientRect().top - 200) / 160 * this.r;
                 const response = await postSetDot(parseFloat(x), parseFloat(y), parseFloat(this.r));
-                await this.addDot(this.r, x, y, response.figura, response.time);
+                await this.addDot(response.r, response.x, response.y, response.figura, response.time);
             },
             async addDot(r = this.r, x, y, figura, time, ifAddToTable = true) {
                 const graphX = x * 160 / r + 200;

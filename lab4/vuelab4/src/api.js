@@ -38,7 +38,7 @@ export async function postLogin(username, password) {
 export async function postSetDot(x, y, r) {
     const response = await post("/dotCheck", {x: x, y: y, r: r});
     const json = await response.json();
-    return {figura: json.isHit, time: json.time}
+    return {r: json.r, x: json.x, y: json.y, figura: json.hit, time: json.time}
 }
 
 export async function getLabDots() {
