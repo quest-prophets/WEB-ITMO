@@ -84,7 +84,8 @@
     .loginBox {
         background: white;
         padding: 10px 20px;
-        box-shadow: 0 0 22px 30px white
+        box-shadow: 0 0 22px 30px white;
+        max-width: 250px;
     }
 
     @keyframes logoAppearance {

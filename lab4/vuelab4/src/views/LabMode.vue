@@ -128,10 +128,12 @@
                 await this.addDot(response.r, response.x, response.y, response.figura, response.time, true);
             },
             async addDotFromGraph(e) {
-                const x = (e.clientX - document.getElementById("mainGraph").getBoundingClientRect().left - 200) / 160 * this.r;
-                console.log("clientX: " + e.clientX + "; getBoundingClientRect().left: " + document.getElementById("mainGraph").getBoundingClientRect().left);
-                console.log("x:" + x);
-                const y = -(e.clientY - document.getElementById("mainGraph").getBoundingClientRect().top - 200) / 160 * this.r;
+                let pt = document.getElementById('mainGraph').createSVGPoint();
+                pt.x = e.clientX;
+                pt.y = e.clientY;
+                let cursorpt = pt.matrixTransform(document.getElementById('mainGraph').getScreenCTM().inverse());
+                const x = (cursorpt.x - 200) / 160 * this.r;
+                const y = -(cursorpt.y - 200) / 160 * this.r;
                 const response = await postSetDot(parseFloat(x), parseFloat(y), parseFloat(this.r));
                 await this.addDot(response.r, response.x, response.y, response.figura, response.time, true);
             },

@@ -95,8 +95,12 @@
                 this.suspectGraphs = suspectTypes;
             },
             async addFromGraph(e) {
-                const x = (e.clientX - document.getElementById("mainGraph").getBoundingClientRect().left - 200) / 160;
-                const y = -(e.clientY - document.getElementById("mainGraph").getBoundingClientRect().top - 200) / 160;
+                let pt = document.getElementById('mainGraph').createSVGPoint();
+                pt.x = e.clientX;
+                pt.y = e.clientY;
+                let cursorpt = pt.matrixTransform(document.getElementById('mainGraph').getScreenCTM().inverse());
+                const x = (cursorpt.x - 200) / 160;
+                const y = -(cursorpt.y - 200) / 160;
                 const response = await postSetPracticeDot(parseFloat(x), parseFloat(y));
                 await this.addDot(response.x, response.y, response.figura);
             },
@@ -177,7 +181,7 @@
         font-size: 18px;
     }
 
-    .resultButton{
+    .resultButton {
         font-size: 18px;
         margin-top: 15px;
     }

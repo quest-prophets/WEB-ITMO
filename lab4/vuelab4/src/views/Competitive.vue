@@ -101,8 +101,12 @@
             },
             async addFromGraph(e) {
                 if (this.suspectGraphs !== null) {
-                    const x = (e.clientX - document.getElementById("mainGraph").getBoundingClientRect().left - 200) / 160;
-                    const y = -(e.clientY - document.getElementById("mainGraph").getBoundingClientRect().top - 200) / 160;
+                    let pt = document.getElementById('mainGraph').createSVGPoint();
+                    pt.x = e.clientX;
+                    pt.y = e.clientY;
+                    let cursorpt = pt.matrixTransform(document.getElementById('mainGraph').getScreenCTM().inverse());
+                    const x = (cursorpt.x - 200) / 160;
+                    const y = -(cursorpt.y - 200) / 160;
                     const response = await postSetCompetitiveDot(parseFloat(x), parseFloat(y));
                     await this.addDot(response.x, response.y, response.figura);
                 }
