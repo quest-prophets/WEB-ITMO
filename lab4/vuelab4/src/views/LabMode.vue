@@ -37,27 +37,69 @@
                 </svg>
             </div>
             <GraphPanel id="panel" @change-r="setR" @add-data="addDotFromPanel" @erase-data="removeAllDots"/>
-            <PaperTable :results="results"/>
+            <div class="historyTable">
+                <table>
+                    <thead>
+                    <tr>
+                        <td>
+                            R
+                        </td>
+                        <td>
+                            X
+                        </td>
+                        <td>
+                            Y
+                        </td>
+                        <td>
+                            FIGURA
+                        </td>
+                        <td>
+                            TIME
+                        </td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr v-for="(result,i) in results" v-bind:key="i">
+                        <td>
+                            {{result.r}}
+                        </td>
+                        <td>
+                            {{result.x}}
+                        </td>
+                        <td>
+                            {{result.y}}
+                        </td>
+                        <td>
+                            <span v-if="result.figura">Present</span>
+                            <span v-else>Absent</span>
+                        </td>
+                        <td>
+                            {{result.time}}
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
-    import PaperTable from "../components/PaperTable";
     import GraphPanel from "../components/GraphPanel";
     import {postSetDot, getLabDots, postEraseDots} from "../api";
 
     export default {
         name: "LabMode",
-        components: {GraphPanel, PaperTable},
+        components: {GraphPanel},
         data: function () {
             return {
                 r: null,
                 results: []
             }
         },
-        async mounted(){
+        async mounted() {
             const response = await getLabDots();
+            if (response == null) return; //надо ли?????
             response.forEach(function (dot) {
                 this.addDot(dot.r, dot.x, dot.y, dot.figura, dot.time);
             });
@@ -78,8 +120,10 @@
                 await this.addDot(this.r, x, y, response.figura, response.time);
             },
             async addDotFromGraph(e) {
-                const x = (e.clientX - document.getElementById("mainGraph").getBoundingClientRect().left) / 160 * this.r - 200;
-                const y = -(e.clientY - document.getElementById("mainGraph").getBoundingClientRect().top) / 160 * this.r - 200;
+                const x = (e.clientX - document.getElementById("mainGraph").getBoundingClientRect().left - 200) / 160 * this.r;
+                console.log("clientX: " + e.clientX + "; getBoundingClientRect().left: " + document.getElementById("mainGraph").getBoundingClientRect().left);
+                console.log("x:" + x);
+                const y = -(e.clientY - document.getElementById("mainGraph").getBoundingClientRect().top - 200) / 160 * this.r;
                 const response = await postSetDot(parseFloat(x), parseFloat(y), parseFloat(this.r));
                 await this.addDot(this.r, x, y, response.figura, response.time);
             },
@@ -118,7 +162,7 @@
         height: 100vh;
         grid-row-gap: 40px;
         grid-column-gap: 20px;
-        grid: "exit nothing1 nothing2 nothing3" auto "nothing0 graph graphPanel nothing3" calc(30vh + 100px) "graphTable graphTable graphTable graphTable" auto;
+        grid: "exit nothing1 nothing2 nothing3" 50px "nothing0 graph graphPanel nothing3" calc(30vh + 100px) "nothing0 graphTable graphTable nothing3" auto;
         grid-template-columns: 6fr 10fr 10fr 6fr;
         box-sizing: border-box;
     }
@@ -147,9 +191,33 @@
         cursor: pointer;
     }
 
+    .historyTable {
+        grid-area: graphTable;
+    }
+
+    table {
+        background: white;
+        width: 95%;
+        margin: 0 auto;
+        border-collapse: collapse;
+    }
+
+    thead {
+        border-bottom: 2px solid black;
+    }
+
+    td {
+        padding: 4px 7px;
+        border-right: 2px solid black;
+    }
+
+    td:last-child {
+        border: none;
+    }
+
     @media (max-width: 1200px) {
         .labGrid {
-            grid: "exit exit nothing2 nothing3" auto "nothing0 graph graphPanel nothing3" calc(30vh + 100px) "graphTable graphTable graphTable graphTable" auto;
+            grid: "exit exit nothing2 nothing3" 50px "nothing0 graph graphPanel nothing3" calc(30vh + 100px) "nothing0 graphTable graphTable nothing3" auto;
             grid-template-columns: 2fr 7fr 7fr 1fr;
             grid-column-gap: 15px;
             grid-row-gap: 30px;
@@ -167,7 +235,7 @@
 
     @media (max-width: 1055px) {
         .labGrid {
-            grid: "exit exit nothing2 nothing3" auto "nothing0 graph graphPanel nothing3" calc(30vh + 100px) "graphTable graphTable graphTable graphTable" auto;
+            grid: "exit exit nothing2 nothing3" 50px "nothing0 graph graphPanel nothing3" calc(30vh + 100px) "graphTable graphTable graphTable graphTable" auto;
             grid-template-columns: 0.5fr 7fr 4fr 0.5fr;
             grid-column-gap: 30px;
             grid-row-gap: 30px;
@@ -206,7 +274,7 @@
 
     @media (max-width: 700px) {
         .labGrid {
-            grid: "exit" auto "graph" calc(30vh + 100px) "graphPanel" auto "graphTable" auto;
+            grid: "exit" 50px "graph" calc(30vh + 100px) "graphPanel" auto "graphTable" auto;
             grid-row-gap: 15px;
             grid-column-gap: 0;
             padding: 0;
@@ -216,13 +284,13 @@
 
     @media (max-width: 420px) {
         .labGrid {
-            grid: "exit" auto "graph" calc(25vh + 100px) "graphPanel" auto "graphTable" auto;
+            grid: "exit" 50px "graph" calc(25vh + 100px) "graphPanel" auto "graphTable" auto;
         }
     }
 
     @media (max-width: 380px) {
         .labGrid {
-            grid: "exit" auto "graph" calc(25vh) "graphPanel" auto "graphTable" auto;
+            grid: "exit" 50px "graph" calc(25vh) "graphPanel" auto "graphTable" auto;
         }
     }
 </style>

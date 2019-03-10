@@ -9,7 +9,7 @@
 
             <div class="grid--graph">
                 <div class="flexColumn grid--graphMain">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" class="graphMain">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" class="graphMain" @click="addDot">
                         <g stroke="white" stroke-width="2px">
                             <path d="M 0 200 h 400"></path>
                             <path d="M 200 0 v 400"></path>
@@ -84,7 +84,7 @@
                 const {suspectTypes} = await postStartPractice();
                 this.suspectGraphs = suspectTypes;
             },
-            async addDot(x, y, figura) {
+            async addDot() {
                 const graphX = x * 160 + 200;
                 const graphY = -y * 160 + 200;
                 if (figura) {
