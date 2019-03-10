@@ -20,11 +20,11 @@
                 L<a>E</a>A<a>D</a>E<a>R</a>B<a>O</a>A<a>R</a>D
             </span>
         </router-link>
-        <router-link to="/" class="mainMenuButtonDiv">
+        <a href="/auth/logout" class="mainMenuButtonDiv">
             <span class="mainMenuButton">
                 <a>L</a>O<a>G</a>&nbsp;<a>O</a>U<a>T</a>
             </span>
-        </router-link>
+        </a>
     </div>
 </template>
 
