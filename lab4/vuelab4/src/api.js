@@ -86,6 +86,17 @@ export async function postFinishCompetitive(graph) {
     return post("/compCheck/getResult", graph);
 }
 
-export async function getLeaderboard() {
+export async function getUserStats() {
+    const response = await get("/leaderboards");
+}
+
+export async function getLeaderboardsPage(page) {
+    const response = await get("/leaderboards/getLeaderboard/" + page);
+    return await response.json();
+}
+
+export async function getPageCount() {
+    const response = await get("/leaderboards/getPageCount");
+    return await response.json();
 
 }

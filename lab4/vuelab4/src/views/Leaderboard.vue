@@ -31,16 +31,80 @@
                     </tr>
                     </thead>
                     <tbody>
+                    <tr v-for="(entry,i) in leaderboardEntries" v-bind:key="i">
+                        <td>
+                            {{entry.place}}
+                        </td>
+                        <td>
+                            {{entry.name}}
+                        </td>
+                        <td>
+                            {{entry.score}}
+                        </td>
+                        <td>
+                            {{entry.performance}}
+                        </td>
+                    </tr>
                     </tbody>
                 </table>
+                <a id="prevPage" class="pageButton" style="float: left" @click="prevPage">Prev. page</a>
+                <a id="nextPage" class="pageButton" style="float: right" @click="nextPage">Next page</a>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+    import {getUserStats, getLeaderboardsPage, getPageCount} from "../api";
+
     export default {
-        name: "Leaderboard"
+        name: "Leaderboard",
+        data() {
+            return {
+                leaderboardEntries: [],
+                totalPages: 1,
+                currentPage: 1
+            }
+        },
+        async mounted() {
+            this.totalPages = await getPageCount();
+            document.getElementById("prevPage").classList.add("hidden");
+            if (this.totalPages <= 1) {
+                document.getElementById("nextPage").classList.add("hidden");
+            }
+            await this.loadLeaderboardPage(this.currentPage);
+        },
+        methods: {
+            async prevPage() {
+                this.currentPage--;
+                document.getElementById("nextPage").classList.remove("hidden");
+                if (this.currentPage === 1) {
+                    document.getElementById("prevPage").classList.add("hidden");
+                }
+                await this.loadLeaderboardPage(this.currentPage);
+            },
+            async nextPage() {
+                this.currentPage++;
+                document.getElementById("prevPage").classList.remove("hidden");
+                if (this.totalPages <= this.currentPage) {
+                    document.getElementById("nextPage").classList.add("hidden");
+                }
+                await this.loadLeaderboardPage(this.currentPage);
+            },
+            async loadLeaderboardPage(page){
+                this.leaderboardEntries = [];
+                const response = await getLeaderboardsPage(page);
+                if (response == null) return;
+                response.forEach(entry => {
+                    this.leaderboardEntries.push({
+                        place: entry.place,
+                        name: entry.name,
+                        score: entry.score,
+                        performance: entry.performance
+                    });
+                });
+            }
+        }
     }
 </script>
 
@@ -78,12 +142,13 @@
     }
 
     .grid--leaderboard {
+        font-size: 18px;
         grid-area: leaderboard;
         border-radius: 10px;
         background: rgba(255, 255, 255, 0.96);
         width: 70%;
         margin: 0 auto;
-        height: 90%;
+        height: 410px;
     }
 
     .leaderboardTable {
@@ -91,6 +156,7 @@
     }
 
     table {
+        text-align: center;
         margin: 0 auto;
         border-collapse: collapse;
     }
@@ -106,6 +172,15 @@
 
     td:last-child {
         border: none;
+    }
+
+    .pageButton{
+        padding: 15px;
+        cursor: pointer;
+    }
+
+    .pageButton:hover{
+        text-decoration: underline;
     }
 
     @media (max-width: 800px) {

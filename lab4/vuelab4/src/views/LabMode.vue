@@ -204,6 +204,7 @@
     }
 
     table {
+        text-align: center;
         background: white;
         width: 95%;
         margin: 0 auto;

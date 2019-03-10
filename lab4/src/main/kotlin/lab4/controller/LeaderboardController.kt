@@ -48,8 +48,7 @@ class LeaderboardController {
 
     @GetMapping("/getPageCount")
     fun getPages() : Int {
-        val pageFormat = PageRequest.of(0, Int.MAX_VALUE)
-        val users = userInfoRepository?.findAllByOrderByScoreDesc(pageFormat)!!
+        val users = userInfoRepository?.findAll()!!
         return (users.size/usersPerPage)+1
     }
 
