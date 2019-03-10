@@ -42,7 +42,8 @@
                     <g id="graphDots"></g>
                 </svg>
             </div>
-            <GraphPanel id="panel" @change-r="setR" @add-data="addDotFromPanel" @erase-data="removeAllDots"/>
+            <GraphPanel id="panel" :message="message" @change-r="setR" @add-data="addDotFromPanel"
+                        @erase-data="removeAllDots"/>
             <div class="historyTable">
                 <table>
                     <thead>
@@ -100,7 +101,8 @@
         data: function () {
             return {
                 r: null,
-                results: []
+                results: [],
+                message: ""
             }
         },
         async mounted() {
@@ -112,7 +114,12 @@
         },
         methods: {
             async setR({r}) {
+                if (r == null || this.r === "" || r < 1 || r > 5) {
+                    this.message = "Invalid R";
+                    return;
+                }
                 this.r = r;
+                this.message = "";
                 let graphDots = document.getElementById("graphDots");
                 while (graphDots.firstChild) {
                     graphDots.removeChild(graphDots.firstChild);
@@ -124,10 +131,27 @@
                 })
             },
             async addDotFromPanel({x, y}) {
+                if (this.r == null || this.r === "" || this.r < 1 || this.r > 5) {
+                    this.message = "Invalid R";
+                    return;
+                }
+                if (x == null || x === "" || x < -5 || x > 3) {
+                    this.message = "Invalid X";
+                    return;
+                }
+                if (y == null || y === "" || y < -3 || y > 3) {
+                    this.message = "Invalid Y";
+                    return;
+                }
+                this.message = "";
                 const response = await postSetDot(parseFloat(x), parseFloat(y), parseFloat(this.r));
                 await this.addDot(response.r, response.x, response.y, response.figura, response.time, true);
             },
             async addDotFromGraph(e) {
+                if (this.r == null || this.r < 1 || this.r > 5) {
+                    this.message = "Invalid R";
+                    return;
+                }
                 let pt = document.getElementById('mainGraph').createSVGPoint();
                 pt.x = e.clientX;
                 pt.y = e.clientY;
@@ -203,6 +227,7 @@
 
     .historyTable {
         grid-area: graphTable;
+        border-radius: 10px;
     }
 
     table {

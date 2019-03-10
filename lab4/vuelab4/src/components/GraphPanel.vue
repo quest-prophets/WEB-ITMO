@@ -25,6 +25,7 @@
                 <button @click="focus" class="bwButton bwButton-blackBackground">Focus</button>
                 <button @click="erase" class="bwButton bwButton-blackBackground">Erase</button>
             </div>
+            <div style="margin-top: 10px">{{message}}</div>
         </div>
     </div>
 </template>
@@ -32,6 +33,7 @@
 <script>
     export default {
         name: "GraphPanel",
+        props: ["message"],
         data: function () {
             return {r: null, x: null, y: null}
         },
