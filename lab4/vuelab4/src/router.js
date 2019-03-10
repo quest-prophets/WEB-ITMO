@@ -10,7 +10,19 @@ import Leaderboard from "./views/Leaderboard";
 
 Vue.use(Router);
 
-const router = new Router({
+export function bindVue(vue) {
+    router.beforeEach((to, from, next) => {
+        if (vue.username != null && to.path === "/") {
+            next('/mainmenu');
+        }
+        else if (vue.username == null && to.path !== "/") {
+            next('/');
+        }
+        else next();
+    });
+}
+
+export const router = new Router({
     routes: [
         {
             path: '/',
@@ -45,16 +57,3 @@ const router = new Router({
         }
     ]
 });
-
-router.beforeEach((to, from, next) => {
-    if (router.app.username != null && to.path === "/") {
-        next('/mainmenu');
-    }
-    else if (router.app.username == null && to.path !== "/") {
-        next('/');
-    }
-    else next();
-});
-
-
-export default router;
