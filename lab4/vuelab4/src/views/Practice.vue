@@ -9,7 +9,8 @@
 
             <div class="grid--graph">
                 <div class="flexColumn grid--graphMain">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" class="graphMain" @click="addDot">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" class="graphMain" id="mainGraph"
+                         @click="addFromGraph">
                         <g stroke="white" stroke-width="2px">
                             <path d="M 0 200 h 400"></path>
                             <path d="M 200 0 v 400"></path>
@@ -40,17 +41,14 @@
             <div v-if="result.success === true">Success!</div>
             <div v-else>Failure</div>
             <div>Clicks: {{result.clicks}}</div>
-            <br>
-            Your answer:
+            <div style="margin-top: 20px">Your answer:</div>
             <Suspect :graph="clickedGraph" :clickable="false" class="resultSuspects"/>
-            <br>
-            <div v-if="result.success === false">True answer:</div>
+            <div style="margin-top: 20px;" v-if="result.success === false">True answer:</div>
             <Suspect :graph="result.trueGraph" v-if="result.success === false" :clickable="false"
                      class="resultSuspects"/>
-            <button class="bwButton bwButton-blackBackground" @click="restartGame" style="font-size: 18px;">Retry
+            <button class="bwButton bwButton-blackBackground resultButton" @click="restartGame">Retry
             </button>
-            <br>
-            <router-link to="MainMenu" class="bwButton bwButton-blackBackground">Main Menu</router-link>
+            <router-link to="MainMenu" class="bwButton bwButton-blackBackground resultButton">Main Menu</router-link>
         </div>
     </div>
 </template>
@@ -58,7 +56,7 @@
 <script>
     import HelpPanel from "../components/HelpPanel";
     import Suspect from "../components/Suspect";
-    import {postStartPractice, postFinishPractice} from "../api";
+    import {postStartPractice, postSetPracticeDot, postFinishPractice} from "../api";
 
     export default {
         name: "Practice",
@@ -75,18 +73,24 @@
             this.suspectGraphs = suspectTypes;
             if (checkedDots == null) return;
             checkedDots.forEach(dot => {
-                this.addDot(dot.x, dot.y, dot.isHit)
+                this.addDot(dot.x, dot.y, dot.hit)
             });
         },
         methods: {
-            async restartGame(){
+            async restartGame() {
                 this.result = null;
                 const {suspectTypes} = await postStartPractice();
                 this.suspectGraphs = suspectTypes;
             },
-            async addDot() {
+            async addFromGraph(e) {
+                const x = (e.clientX - document.getElementById("mainGraph").getBoundingClientRect().left - 200) / 160;
+                const y = -(e.clientY - document.getElementById("mainGraph").getBoundingClientRect().top - 200) / 160;
+                const response = await postSetPracticeDot(parseFloat(x), parseFloat(y));
+                await this.addDot(response.x, response.y, response.figura);
+            },
+            async addDot(x, y, figura) {
                 const graphX = x * 160 + 200;
-                const graphY = -y * 160 + 200;
+                const graphY = y * 160 + 200;
                 if (figura) {
                     const circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');
                     circle.setAttributeNS(null, 'cx', graphX);
@@ -97,7 +101,7 @@
                 } else {
                     const cross = document.createElementNS("http://www.w3.org/2000/svg", 'path');
                     cross.setAttributeNS(null, 'stroke', "white");
-                    cross.setAttributeNS(null, 'd', 'M ' + graphX - 3 + " " + graphY - 3 + " l 6 6 M " + graphX + 3 + " " + graphY - 3 + " l -6 6");
+                    cross.setAttributeNS(null, 'd', 'M ' + (graphX - 3) + " " + (graphY - 3) + " l 6 6 M " + (graphX + 3) + " " + (graphY - 3) + " l -6 6");
                     document.getElementById("graphDots").appendChild(cross);
                 }
             },
@@ -159,6 +163,11 @@
         color: white;
         margin-top: 40px;
         font-size: 18px;
+    }
+
+    .resultButton{
+        font-size: 18px;
+        margin-top: 15px;
     }
 
     .resultSuspects {

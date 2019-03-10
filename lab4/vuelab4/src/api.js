@@ -1,3 +1,4 @@
+
 function post(url, body = '{}') {
     return fetch(url, {
         method: 'POST',
@@ -55,9 +56,15 @@ export async function postEraseDots() {
     return await post("/dotCheck/clear");
 }
 
-export async function postStartPractice(){
+export async function postStartPractice() {
     const response = await post("/pracCheck");
-    return response.json();
+    return await response.json();
+}
+
+export async function postSetPracticeDot(x, y) {
+    const response = await post("/pracCheck/checkDot", {x: x, y: y});
+    const json = await response.json();
+    return {x: json.x, y: json.y, figura: json.hit};
 }
 
 export async function postFinishPractice(graph) {
