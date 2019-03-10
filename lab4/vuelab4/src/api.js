@@ -72,11 +72,18 @@ export async function postFinishPractice(graph) {
 }
 
 export async function postStartCompetitive() {
-
+    const response = await post("/compCheck");
+    return await response.json();
 }
 
-export async function postFinishCompetitive() {
+export async function postSetCompetitiveDot(x, y) {
+    const response = await post("/compCheck/checkDot", {x: x, y: y});
+    const json = await response.json();
+    return {x: json.x, y: json.y, figura: json.hit};
+}
 
+export async function postFinishCompetitive(graph) {
+    return post("/compCheck/getResult", graph);
 }
 
 export async function getLeaderboard() {

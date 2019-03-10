@@ -1,6 +1,6 @@
 <template>
     <div class="gamePage">
-        <div class="competitiveGrid">
+        <div class="competitiveGrid" v-if="result == null">
             <div class="grid--exit">
                 <router-link to="MainMenu" class="exitButton">
                     Main Menu
@@ -8,14 +8,18 @@
             </div>
             <div class="grid--graph">
                 <div class="flexColumn grid--graphMain">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" class="graphMain">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" class="graphMain" id="mainGraph"
+                         @click="addFromGraph">
                         <g stroke="white" stroke-width="2px">
+                            <!-- axis -->
                             <path d="M 0 200 h 400"></path>
                             <path d="M 200 0 v 400"></path>
+                            <!-- arrows -->
                             <path d="M 200 0 l -4 7"></path>
                             <path d="M 200 0 l 4 7"></path>
                             <path d="M 400 200 l -7 -4"></path>
                             <path d="M 400 200 l -7 4"></path>
+                            <!-- frame -->
                             <path d="M 0 0 h 50"></path>
                             <path d="M 0 0 v 50"></path>
                             <path d="M 400 0 h -50"></path>
@@ -24,40 +28,40 @@
                             <path d="M 0 400 v -50"></path>
                             <path d="M 400 400 h -50"></path>
                             <path d="M 400 400 v -50"></path>
-                        </g>
-                        <g stroke="white" stroke-width="1px" stroke-dasharray="10">
-                            <path id="xRuler" d=""></path>
-                            <path id="yRuler" d=""></path>
+                            <!-- markup -->
+                            <path d="M 40 190 v 20"></path>
+                            <path d="M 360 190 v 20"></path>
+                            <path d="M 190 40 h 20"></path>
+                            <path d="M 190 360 h 20"></path>
+                            <path d="M 120 195 v 10"></path>
+                            <path d="M 280 195 v 10"></path>
+                            <path d="M 195 120 h 10"></path>
+                            <path d="M 195 280 h 10"></path>
                         </g>
                         <g id="graphDots"></g>
                     </svg>
                 </div>
-                <div class="flexColumn">
-                    <Suspect style="grid-area: suspect1"
-                             :ids="{path1id: 'suspect1--path1', path2id: 'suspect1--path2',path3id: 'suspect1--path3',path4id: 'suspect1--path4'}"/>
-                </div>
-                <div class="flexColumn">
-                    <Suspect style="grid-area: suspect2"
-                             :ids="{path1id: 'suspect2--path1', path2id: 'suspect2--path2',path3id: 'suspect2--path3',path4id: 'suspect2--path4'}"/>
-                </div>
-                <div class="flexColumn">
-                    <Suspect style="grid-area: suspect3"
-                             :ids="{path1id: 'suspect3--path1', path2id: 'suspect3--path2',path3id: 'suspect3--path3',path4id: 'suspect3--path4'}"/>
-                </div>
-                <div class="flexColumn">
-                    <Suspect style="grid-area: suspect4"
-                             :ids="{path1id: 'suspect4--path1', path2id: 'suspect4--path2',path3id: 'suspect4--path3',path4id: 'suspect4--path4'}"/>
-                </div>
-                <div class="flexColumn">
-                    <Suspect style="grid-area: suspect5"
-                             :ids="{path1id: 'suspect5--path1', path2id: 'suspect5--path2',path3id: 'suspect5--path3',path4id: 'suspect5--path4'}"/>
-                </div>
-                <div class="flexColumn">
-                    <Suspect style="grid-area: suspect6"
-                             :ids="{path1id: 'suspect6--path1', path2id: 'suspect6--path2',path3id: 'suspect6--path3',path4id: 'suspect6--path4'}"/>
+                <div class="flexColumn" v-for="(graph, i) in suspectGraphs" :key="i">
+                    <Suspect :style="{ gridArea: `suspect${i}` }" :graph="graph" :clickable="true"
+                             @click.native="chooseSuspect(graph)"/>
                 </div>
             </div>
             <ClockPanel id="graphPanel" @start-game="startGame"/>
+        </div>
+        <div v-else class="result flexColumn">
+            <div v-if="result.success === true">Success!</div>
+            <div v-else>Failure</div>
+            <div>Time: {{result.elapsedTime}}</div>
+            <div>Clicks: {{result.clicks}}</div>
+            <div>Score: {{result.gameScore}}</div>
+            <div style="margin-top: 20px">Your answer:</div>
+            <Suspect :graph="clickedGraph" :clickable="false" class="resultSuspects"/>
+            <div style="margin-top: 20px;" v-if="result.success === false">True answer:</div>
+            <Suspect :graph="result.trueGraph" v-if="result.success === false" :clickable="false"
+                     class="resultSuspects"/>
+            <button class="bwButton bwButton-blackBackground resultButton" @click="restartGame">Retry
+            </button>
+            <router-link to="MainMenu" class="bwButton bwButton-blackBackground resultButton">Main Menu</router-link>
         </div>
     </div>
 </template>
@@ -65,13 +69,71 @@
 <script>
     import ClockPanel from "../components/ClockPanel";
     import Suspect from "../components/Suspect";
+    import {postStartCompetitive, postSetCompetitiveDot, postFinishCompetitive} from "../api";
 
     export default {
         name: "competitive",
         components: {Suspect, ClockPanel},
+        data() {
+            return {
+                suspectGraphs: null,
+                result: null,
+                clickedGraph: null
+            };
+        },
         methods: {
-            startGame: function () {
-
+            async startGame() {
+                const {suspectTypes, checkedDots} = await postStartCompetitive();
+                this.suspectGraphs = suspectTypes;
+                if (checkedDots == null) return;
+                checkedDots.forEach(dot => {
+                    this.addDot(dot.x, dot.y, dot.hit)
+                });
+            },
+            async restartGame() {
+                this.result = null;
+                const {suspectTypes} = await postStartCompetitive();
+                this.suspectGraphs = suspectTypes;
+            },
+            async addFromGraph(e) {
+                if (this.suspectGraphs !== null) {
+                    const x = (e.clientX - document.getElementById("mainGraph").getBoundingClientRect().left - 200) / 160;
+                    const y = -(e.clientY - document.getElementById("mainGraph").getBoundingClientRect().top - 200) / 160;
+                    const response = await postSetCompetitiveDot(parseFloat(x), parseFloat(y));
+                    await this.addDot(response.x, response.y, response.figura);
+                }
+            },
+            async addDot(x, y, figura) {
+                const graphX = x * 160 + 200;
+                const graphY = -y * 160 + 200;
+                if (figura) {
+                    const circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');
+                    circle.setAttributeNS(null, 'cx', graphX);
+                    circle.setAttributeNS(null, 'cy', graphY);
+                    circle.setAttributeNS(null, 'r', '3');
+                    circle.setAttributeNS(null, 'style', 'fill: black; stroke: white; stroke-width: 1px;');
+                    document.getElementById("graphDots").appendChild(circle);
+                } else {
+                    const cross = document.createElementNS("http://www.w3.org/2000/svg", 'path');
+                    cross.setAttributeNS(null, 'stroke', "white");
+                    cross.setAttributeNS(null, 'd', 'M ' + (graphX - 3) + " " + (graphY - 3) + " l 6 6 M " + (graphX + 3) + " " + (graphY - 3) + " l -6 6");
+                    document.getElementById("graphDots").appendChild(cross);
+                }
+            },
+            async chooseSuspect(graph) {
+                const response = await postFinishCompetitive(graph);
+                this.clickedGraph = graph;
+                this.result = await response.json();
+                this.result.elapsedTime = await this.msToTime(this.result.elapsedTime);
+            },
+            async msToTime(msTime) {
+                const ms = msTime % 1000;
+                msTime = (msTime - ms) / 1000;
+                const s = msTime % 60;
+                msTime = (msTime - s) / 60;
+                const mins = msTime % 60;
+                const hrs = (msTime - mins) / 60;
+                return hrs + ' : ' + mins + ' : ' + s + ' . ' + ms;
             }
         }
     }
@@ -127,10 +189,19 @@
         cursor: url("../assets/aim.svg") 16 16, pointer;
     }
 
-    @media (max-width: 1400px) {
-        .grid--graph {
-            width: 70%;
-        }
+    .result {
+        color: white;
+        margin-top: 40px;
+        font-size: 18px;
+    }
+
+    .resultButton {
+        font-size: 18px;
+        margin-top: 15px;
+    }
+
+    .resultSuspects {
+        max-width: 300px;
     }
 
     @media (max-width: 1400px) {
