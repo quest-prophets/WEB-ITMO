@@ -86,7 +86,8 @@ class LabController {
         val user = getUserByName(principal.name)
         val results = resultRepository?.findAllByUserInfo(user) ?: emptyList()
         val resultsList = ArrayList<ResultsEntry>()
-        results.forEach { resultsList.add(ResultsEntry(it.x, it.y, it.r, it.isHit, it.time)) }
+        results.forEach { resultsList.add(ResultsEntry(Math.round(it.x*1000.0)/1000.0, Math.round(it.y*1000.0)/1000.0, Math.round(it.r*1000.0)/1000.0,
+                                                            it.isHit, it.time)) }
         return resultsList
     }
 
