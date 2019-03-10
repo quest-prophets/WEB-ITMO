@@ -12,12 +12,15 @@
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" class="graphMain" id="mainGraph"
                          @click="addFromGraph">
                         <g stroke="white" stroke-width="2px">
+                            <!-- axis -->
                             <path d="M 0 200 h 400"></path>
                             <path d="M 200 0 v 400"></path>
+                            <!-- arrows -->
                             <path d="M 200 0 l -4 7"></path>
                             <path d="M 200 0 l 4 7"></path>
                             <path d="M 400 200 l -7 -4"></path>
                             <path d="M 400 200 l -7 4"></path>
+                            <!-- frame -->
                             <path d="M 0 0 h 50"></path>
                             <path d="M 0 0 v 50"></path>
                             <path d="M 400 0 h -50"></path>
@@ -26,6 +29,15 @@
                             <path d="M 0 400 v -50"></path>
                             <path d="M 400 400 h -50"></path>
                             <path d="M 400 400 v -50"></path>
+                            <!-- markup -->
+                            <path d="M 40 190 v 20"></path>
+                            <path d="M 360 190 v 20"></path>
+                            <path d="M 190 40 h 20"></path>
+                            <path d="M 190 360 h 20"></path>
+                            <path d="M 120 195 v 10"></path>
+                            <path d="M 280 195 v 10"></path>
+                            <path d="M 195 120 h 10"></path>
+                            <path d="M 195 280 h 10"></path>
                         </g>
                         <g id="graphDots"></g>
                     </svg>
@@ -90,7 +102,7 @@
             },
             async addDot(x, y, figura) {
                 const graphX = x * 160 + 200;
-                const graphY = y * 160 + 200;
+                const graphY = -y * 160 + 200;
                 if (figura) {
                     const circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');
                     circle.setAttributeNS(null, 'cx', graphX);
