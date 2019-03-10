@@ -4,6 +4,7 @@ import lab4.model.*
 import lab4.repository.*
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
+import java.lang.Math.pow
 import java.security.Principal
 import java.time.*
 import kotlin.random.Random
@@ -125,20 +126,20 @@ class CompetitiveController {
     private fun checkAreaHit(x: Double, y: Double, area1: Int, area2: Int, area3: Int, area4: Int): Boolean {
         if (x >= 0 && y >= 0) {
             when (area1) {
-                1 -> return Math.pow(x, 2.0) + Math.pow(y, 2.0) <= Math.pow(1.0, 2.0)
-                2 -> return Math.pow(x, 2.0) + Math.pow(y, 2.0) <= Math.pow(1.0 / 2, 2.0)
+                1 -> return pow(x, 2.0) + pow(y, 2.0) <= pow(1.0, 2.0)
+                2 -> return pow(x, 2.0) + pow(y, 2.0) <= pow(1.0 / 2, 2.0)
                 3 -> return x <= 1.0 && y <= 1.0
                 4 -> return x <= 1.0 / 2 && y <= 1.0 / 2
-                6 -> return x <= 1.0 && y <= 1.0 / 2
-                7 -> return x <= 1.0 / 2 && y <= 1.0
+                6 -> return y <= 1.0 && x <= 1.0 / 2
+                7 -> return y <= 1.0 / 2 && x <= 1.0
                 8 -> return y <= -1 * x + 1.0
                 9 -> return y <= -2 * x + 1.0
                 else -> return false
             }
         } else if (x <= 0 && y >= 0) {
             when (area2) {
-                1 -> return Math.pow(x, 2.0) + Math.pow(y, 2.0) <= Math.pow(1.0, 2.0)
-                2 -> return Math.pow(x, 2.0) + Math.pow(y, 2.0) <= Math.pow(1.0 / 2, 2.0)
+                1 -> return pow(x, 2.0) + pow(y, 2.0) <= pow(1.0, 2.0)
+                2 -> return pow(x, 2.0) + pow(y, 2.0) <= pow(1.0 / 2, 2.0)
                 3 -> return x >= -1.0 && y <= 1.0
                 4 -> return x >= -1.0 / 2 && y <= 1.0 / 2
                 6 -> return x >= -1.0 / 2 && y <= 1.0
@@ -149,20 +150,20 @@ class CompetitiveController {
             }
         } else if (x <= 0 && y <= 0) {
             when (area3) {
-                1 -> return Math.pow(x, 2.0) + Math.pow(y, 2.0) <= Math.pow(1.0, 2.0)
-                2 -> return Math.pow(x, 2.0) + Math.pow(y, 2.0) <= Math.pow(1.0 / 2, 2.0)
+                1 -> return pow(x, 2.0) + pow(y, 2.0) <= pow(1.0, 2.0)
+                2 -> return pow(x, 2.0) + pow(y, 2.0) <= pow(1.0 / 2, 2.0)
                 3 -> return x >= -1.0 && y >= -1.0
                 4 -> return x >= -1.0 / 2 && y >= -1.0 / 2
-                6 -> return x >= -1.0 && y >= -1.0 / 2
-                7 -> return x >= -1.0 / 2 && y >= -1.0
+                6 -> return y >= -1.0 && x >= -1.0 / 2
+                7 -> return y >= -1.0 / 2 && x >= -1.0
                 8 -> return y >= -(x + 1.0)
                 9 -> return y >= -(2 * x + 1.0)
                 else -> return false
             }
         } else if (x >= 0 && y <= 0) {
             when (area4) {
-                1 -> return Math.pow(x, 2.0) + Math.pow(y, 2.0) <= Math.pow(1.0, 2.0)
-                2 -> return Math.pow(x, 2.0) + Math.pow(y, 2.0) <= Math.pow(1.0 / 2, 2.0)
+                1 -> return pow(x, 2.0) + pow(y, 2.0) <= pow(1.0, 2.0)
+                2 -> return pow(x, 2.0) + pow(y, 2.0) <= pow(1.0 / 2, 2.0)
                 3 -> return x <= 1.0 && y >= -1.0
                 4 -> return x <= 1.0 / 2 && y >= -1.0 / 2
                 6 -> return x <= 1.0 / 2 && y >= -1.0
