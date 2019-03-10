@@ -186,6 +186,7 @@ class CompetitiveController {
         val user = getUserByName(principal.name)
         var existingGame = ongoingGameRepository?.findAllByUserInfoAndGameType(user, "competitive")
         return if (existingGame != null) {
+            val passedTime = Duration.between(existingGame.startTime, LocalDateTime.now()).toMillis()
             val checkResults = ongoingGameCheckEntryRepository?.findAllByOngoingGame(existingGame) ?: emptyList()
             val resultsList = ArrayList<Dot>()
             checkResults.forEach { resultsList.add(Dot(it.x, it.y, it.isHit)) }
@@ -195,7 +196,7 @@ class CompetitiveController {
                 Suspect.decode(it))
             }
 
-            val gamePacked = OngoingGamePacked (suspectList, resultsList)
+            val gamePacked = OngoingGamePacked (suspectList, resultsList, passedTime)
             gamePacked
         } else {
             val suspectList = generateSuspects()
@@ -213,7 +214,7 @@ class CompetitiveController {
             user.ongoingGames?.add(existingGame.apply { this.userInfo = user }) ?: ArrayList<OngoingGame>()
             userInfoRepository?.save(user)
 
-            val gamePacked = OngoingGamePacked(suspectList, null)
+            val gamePacked = OngoingGamePacked(suspectList, null, 0)
             gamePacked
         }
     }

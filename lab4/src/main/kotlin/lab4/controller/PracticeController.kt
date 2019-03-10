@@ -194,7 +194,7 @@ class PracticeController {
                 Suspect.decode(it))
             }
 
-            val gamePacked = OngoingGamePacked (suspectList, resultsList)
+            val gamePacked = OngoingGamePacked (suspectList, resultsList, null)
             gamePacked
         } else {
             val suspectList = generateSuspects()
@@ -213,7 +213,7 @@ class PracticeController {
             userInfoRepository?.save(user)
 //            ongoingGameRepository?.save(existingGame)
 
-            val gamePacked = OngoingGamePacked(suspectList, null)
+            val gamePacked = OngoingGamePacked(suspectList, null, null)
             gamePacked
         }
     }
