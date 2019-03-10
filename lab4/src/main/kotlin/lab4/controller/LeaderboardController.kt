@@ -28,8 +28,8 @@ class LeaderboardController {
         val userPage = userInfoRepository?.findAllByOrderByScoreDesc(pageFormat)!!
         val statsPacked = ArrayList<LeaderboardStatsPacked>()
         userPage.forEachIndexed { index, element ->
-            statsPacked.add(LeaderboardStatsPacked((page-1)*10+index, element.username, element.overallWins, element.overallGames,
-                element.overallDots, element.overallElapsedTime, element.score, element.performance))
+            statsPacked.add(LeaderboardStatsPacked((page-1)*10+index+1, element.username, element.overallWins, element.overallGames,
+                element.overallDots, element.overallElapsedTime, element.score, Math.round(element.performance*1000.0)/1000.0))
         }
         return statsPacked
     }
