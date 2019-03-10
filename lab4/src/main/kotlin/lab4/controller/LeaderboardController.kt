@@ -20,7 +20,19 @@ class LeaderboardController {
     val usersPerPage = 10
 
     @GetMapping
-    fun getUserInfo(principal: Principal) = getUserByName(principal.name)
+    fun getUserInfo(principal: Principal) : LeaderboardStatsPacked {
+        val user = getUserByName(principal.name)
+        val pageFormat = PageRequest.of(0, Int.MAX_VALUE)
+        val leaderboard = userInfoRepository?.findAllByOrderByScoreDesc(pageFormat)!!
+        var userStats: LeaderboardStatsPacked? = null
+        leaderboard.forEachIndexed { index, element ->
+            if(user == element) {
+                userStats = LeaderboardStatsPacked(index+1, element.username, element.overallWins, element.overallGames,
+                    element.overallDots, element.overallElapsedTime, element.score, Math.round(element.performance*1000.0)/1000.0)
+            }
+        }
+        return userStats!!
+    }
 
     @GetMapping("/getLeaderboard/{page}")
     fun getLeaderboardPage(@PathVariable page: Int) : List<LeaderboardStatsPacked> {
@@ -38,7 +50,7 @@ class LeaderboardController {
     fun getPages() : Int {
         val pageFormat = PageRequest.of(0, Int.MAX_VALUE)
         val users = userInfoRepository?.findAllByOrderByScoreDesc(pageFormat)!!
-        return (users.size%usersPerPage)+1
+        return (users.size/usersPerPage)+1
     }
 
     private fun getUserByName(username: String) = userInfoRepository?.findByUsername(username)
