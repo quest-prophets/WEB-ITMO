@@ -41,6 +41,11 @@ export async function postSetDot(x, y, r) {
     return {r: json.r, x: json.x, y: json.y, figura: json.hit, time: json.time}
 }
 
+export async function getRecomputeDots(r) {
+    const response = await get("/dotCheck/update/" + r);
+    return await response.json();
+}
+
 export async function getLabDots() {
     const response = await get("/dotCheck/fetchResults");
     return response.json();

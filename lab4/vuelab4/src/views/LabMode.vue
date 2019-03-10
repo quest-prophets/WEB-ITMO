@@ -86,7 +86,7 @@
 
 <script>
     import GraphPanel from "../components/GraphPanel";
-    import {postSetDot, getLabDots, postEraseDots} from "../api";
+    import {postSetDot, getLabDots, postEraseDots, getRecomputeDots} from "../api";
 
     export default {
         name: "LabMode",
@@ -100,22 +100,26 @@
         async mounted() {
             const response = await getLabDots();
             if (response == null) return; //надо ли?????
-            response.forEach(function (dot) {
+            response.forEach(dot => {
                 this.addDot(dot.r, dot.x, dot.y, dot.figura, dot.time, true);
             });
         },
         methods: {
-            setR({r}) {
+            async setR({r}) {
                 this.r = r;
                 let graphDots = document.getElementById("graphDots");
                 while (graphDots.firstChild) {
                     graphDots.removeChild(graphDots.firstChild);
                 }
-               
+                const response = await getRecomputeDots(r);
+                if (response == null) return;
+                response.forEach(dot => {
+                    this.addDot(r, dot.x, dot.y, dot.hit, false)
+                })
             },
             async addDotFromPanel({x, y}) {
                 const response = await postSetDot(parseFloat(x), parseFloat(y), parseFloat(this.r));
-                await this.addDot(response.r, response.x, response.y, response.figura, response.time);
+                await this.addDot(response.r, response.x, response.y, response.figura, response.time, true);
             },
             async addDotFromGraph(e) {
                 const x = (e.clientX - document.getElementById("mainGraph").getBoundingClientRect().left - 200) / 160 * this.r;
@@ -123,9 +127,9 @@
                 console.log("x:" + x);
                 const y = -(e.clientY - document.getElementById("mainGraph").getBoundingClientRect().top - 200) / 160 * this.r;
                 const response = await postSetDot(parseFloat(x), parseFloat(y), parseFloat(this.r));
-                await this.addDot(response.r, response.x, response.y, response.figura, response.time);
+                await this.addDot(response.r, response.x, response.y, response.figura, response.time, true);
             },
-            async addDot(r = this.r, x, y, figura, time, ifAddToTable = true) {
+            async addDot(r, x, y, figura, time, ifAddToTable) {
                 const graphX = x * 160 / r + 200;
                 const graphY = -y * 160 / r + 200;
                 const circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');
