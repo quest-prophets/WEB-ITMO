@@ -30,15 +30,27 @@
                     </svg>
                 </div>
                 <div class="flexColumn" v-for="(graph, i) in suspectGraphs" :key="i">
-                    <Suspect :style="{ gridArea: `suspect${i}` }" :graph="graph" :clickable="true" @click.native="chooseSuspect(graph)"/>
+                    <Suspect :style="{ gridArea: `suspect${i}` }" :graph="graph" :clickable="true"
+                             @click.native="chooseSuspect(graph)"/>
                 </div>
             </div>
             <HelpPanel id="graphPanel"/>
         </div>
-        <div v-else class="result">
-            {{result}}
-            <Suspect :graph="clickedGraph" :clickable="false"/>
-            <Suspect :graph="result.trueGraph" v-if="result.success === false" :clickable="false"/>
+        <div v-else class="result flexColumn">
+            <div v-if="result.success === true">Success!</div>
+            <div v-else>Failure</div>
+            <div>Clicks: {{result.clicks}}</div>
+            <br>
+            Your answer:
+            <Suspect :graph="clickedGraph" :clickable="false" class="resultSuspects"/>
+            <br>
+            <div v-if="result.success === false">True answer:</div>
+            <Suspect :graph="result.trueGraph" v-if="result.success === false" :clickable="false"
+                     class="resultSuspects"/>
+            <button class="bwButton bwButton-blackBackground" @click="restartGame" style="font-size: 18px;">Retry
+            </button>
+            <br>
+            <router-link to="MainMenu" class="bwButton bwButton-blackBackground">Main Menu</router-link>
         </div>
     </div>
 </template>
@@ -67,6 +79,11 @@
             });
         },
         methods: {
+            async restartGame(){
+                this.result = null;
+                const {suspectTypes} = await postStartPractice();
+                this.suspectGraphs = suspectTypes;
+            },
             async addDot(x, y, figura) {
                 const graphX = x * 160 + 200;
                 const graphY = -y * 160 + 200;
@@ -140,6 +157,12 @@
 
     .result {
         color: white;
+        margin-top: 40px;
+        font-size: 18px;
+    }
+
+    .resultSuspects {
+        max-width: 300px;
     }
 
     @media (max-width: 1400px) {
@@ -194,6 +217,12 @@
 
         .grid--graph {
             grid: "suspect1 suspect2 suspect3" "graphMain graphMain graphMain" "suspect4 suspect5 suspect6";
+        }
+    }
+
+    @media (max-width: 320px) {
+        .resultSuspects {
+            max-width: 200px;
         }
     }
 </style>

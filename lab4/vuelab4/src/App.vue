@@ -23,6 +23,13 @@
     align-items: center;
   }
 
+  .flexRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
   .gamePage {
     background: url('assets/gamePage.svg') no-repeat fixed center center;
     background-size: cover;
