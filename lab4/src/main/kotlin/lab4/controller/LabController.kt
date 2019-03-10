@@ -68,7 +68,7 @@ class LabController {
             false
         }
 
-    @GetMapping("/update/{r}")
+    @GetMapping("/update/{r:.+}")
     fun recomputeDotChecks(@PathVariable r: Double, principal: Principal): List<Dot> {
         val user = userInfoRepository?.findByUsername(principal.name)
             ?: throw Exception("User with name \"${principal.name}\" does not exist.")
