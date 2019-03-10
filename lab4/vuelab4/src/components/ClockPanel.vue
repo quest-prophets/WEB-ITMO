@@ -4,7 +4,7 @@
             <button @click="start" id="startButton" class="bwButton bwButton-blackBackground">Start!
             </button>
             <div id="clock" class="hidden clock">
-                00:00:00
+                {{currentTime}}
             </div>
         </div>
     </div>
@@ -13,6 +13,7 @@
 <script>
     export default {
         name: "ClockPanel",
+        props: ["currentTime"],
         methods: {
             start: function () {
                 document.getElementById("clock").classList.remove("hidden");

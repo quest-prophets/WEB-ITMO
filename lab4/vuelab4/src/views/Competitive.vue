@@ -46,7 +46,7 @@
                              @click.native="chooseSuspect(graph)"/>
                 </div>
             </div>
-            <ClockPanel id="graphPanel" @start-game="startGame"/>
+            <ClockPanel id="graphPanel" :current-time="this.currentTime" @start-game="startGame"/>
         </div>
         <div v-else class="result flexColumn">
             <div v-if="result.success === true">Success!</div>
@@ -76,6 +76,8 @@
         components: {Suspect, ClockPanel},
         data() {
             return {
+                timer: null,
+                currentTime: "00 : 00 : 00",
                 suspectGraphs: null,
                 result: null,
                 clickedGraph: null
@@ -83,8 +85,9 @@
         },
         methods: {
             async startGame() {
-                const {suspectTypes, checkedDots} = await postStartCompetitive();
+                const {suspectTypes, checkedDots, passedTime} = await postStartCompetitive();
                 this.suspectGraphs = suspectTypes;
+                this.startTimer(passedTime);
                 if (checkedDots == null) return;
                 checkedDots.forEach(dot => {
                     this.addDot(dot.x, dot.y, dot.hit)
@@ -92,8 +95,9 @@
             },
             async restartGame() {
                 this.result = null;
-                const {suspectTypes} = await postStartCompetitive();
-                this.suspectGraphs = suspectTypes;
+                this.suspectGraphs = null;
+                this.clickedGraph = null;
+                clearInterval(this.timer);
             },
             async addFromGraph(e) {
                 if (this.suspectGraphs !== null) {
@@ -129,11 +133,28 @@
             async msToTime(msTime) {
                 const ms = msTime % 1000;
                 msTime = (msTime - ms) / 1000;
-                const s = msTime % 60;
-                msTime = (msTime - s) / 60;
+                const secs = msTime % 60;
+                msTime = (msTime - secs) / 60;
                 const mins = msTime % 60;
                 const hrs = (msTime - mins) / 60;
-                return hrs + ' : ' + mins + ' : ' + s + ' . ' + ms;
+                return ((hrs < 10) ? ("0" + hrs) : hrs) + " : " + ((mins < 10) ? ("0" + mins) : mins) + " : " + ((secs < 10) ? ("0" + secs) : secs) + ' . ' + ms;
+            },
+            async startTimer(initTime) {
+                let totalMillis = initTime;
+                this.timer = setInterval(() => {
+                    totalMillis += 1000;
+                    let msTime = (totalMillis - totalMillis % 1000) / 1000;
+                    const secs = msTime % 60;
+                    msTime = (msTime - secs) / 60;
+                    const mins = msTime % 60;
+                    const hrs = (msTime - mins) / 60;
+                    this.currentTime = ((hrs < 10) ? ("0" + hrs) : hrs) + " : " + ((mins < 10) ? ("0" + mins) : mins) + " : " + ((secs < 10) ? ("0" + secs) : secs);
+                }, 1000);
+            },
+        },
+        beforeDestroy() {
+            if (this.timer !== null) {
+                clearInterval(this.timer);
             }
         }
     }
