@@ -83,6 +83,7 @@ export async function postFinishCompetitive(graph) {
 
 export async function getUserStats() {
     const response = await get("/leaderboards");
+    return await response.json();
 }
 
 export async function getLeaderboardsPage(page) {

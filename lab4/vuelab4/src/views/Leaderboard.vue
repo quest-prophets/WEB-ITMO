@@ -6,10 +6,12 @@
             </div>
             <div class="grid--stats">
                 <div class="stats">
-                    #Place Name <br>
-                    Wins / Total games: <br>
-                    Total shots: <br>
-                    Total time:
+                    #{{userStats.place}} — {{userStats.name}}<br>
+                    Wins / Total games: {{userStats.winCount}} / {{userStats.gameCount}}<br>
+                    Total shots: {{userStats.dotCount}}<br>
+                    Total time: {{userStats.overallTime}} <br>
+                    Score: {{userStats.score}} <br>
+                    Performance ratio: {{userStats.performance}} <br>
                 </div>
             </div>
             <div class="grid--leaderboard">
@@ -63,7 +65,17 @@
             return {
                 leaderboardEntries: [],
                 totalPages: 1,
-                currentPage: 1
+                currentPage: 1,
+                userStats: {
+                    place: null,
+                    name: null,
+                    winCount: null,
+                    gameCount: null,
+                    dotCount: null,
+                    overallTime: null,
+                    score: null,
+                    performance: null
+                }
             }
         },
         async mounted() {
@@ -72,6 +84,9 @@
             if (this.totalPages <= 1) {
                 document.getElementById("nextPage").classList.add("hidden");
             }
+            const userStats = await getUserStats();
+            this.userStats = userStats;
+            this.userStats.overallTime = await this.msToTime(userStats.overallTime);
             await this.loadLeaderboardPage(this.currentPage);
         },
         methods: {
@@ -103,6 +118,15 @@
                         performance: entry.performance
                     });
                 });
+            },
+            async msToTime(msTime) {
+                const ms = msTime % 1000;
+                msTime = (msTime - ms) / 1000;
+                const secs = msTime % 60;
+                msTime = (msTime - secs) / 60;
+                const mins = msTime % 60;
+                const hrs = (msTime - mins) / 60;
+                return ((hrs < 10) ? ("0" + hrs) : hrs) + " : " + ((mins < 10) ? ("0" + mins) : mins) + " : " + ((secs < 10) ? ("0" + secs) : secs) + ' . ' + ms;
             }
         }
     }
@@ -111,7 +135,7 @@
 <style scoped>
     .leaderboardGrid {
         display: grid;
-        grid: "exit" 40px "stats" 140px "leaderboard" 70vh;
+        grid: "exit" 40px "stats" 170px "leaderboard" 70vh;
         padding: 10px 25px;
     }
 
