@@ -39,6 +39,8 @@ class PracticeController {
                 susArea1 = listOf(1, 3, 6, 7, 8).random()
             if (area1 == 2 || area1 == 4)
                 susArea1 = listOf(2, 4, 6, 7, 9).random()
+            if (area1 == 5)
+                susArea1 = Random.nextInt(1, 9)
             if (area1 == 6)
                 susArea1 = listOf(6, 8).random()
             if (area1 == 7)
@@ -48,49 +50,75 @@ class PracticeController {
 
             var susArea2 = 5
 
-            if (area1 == 1 || area1 == 3 || area1 == 8)
+            if (area2 == 1 || area2 == 3 || area2 == 8)
                 susArea2 = listOf(1, 3, 6, 7, 8).random()
-            if (area1 == 2 || area1 == 4)
+            if (area2 == 2 || area2 == 4)
                 susArea2 = listOf(2, 4, 6, 7, 9).random()
-            if (area1 == 6)
+            if (area2 == 5)
+                susArea2 = Random.nextInt(1, 9)
+            if (area2 == 6)
                 susArea2 = listOf(6, 8).random()
-            if (area1 == 7)
+            if (area2 == 7)
                 susArea2 = listOf(7, 8, 9).random()
-            if (area1 == 9)
+            if (area2 == 9)
                 susArea2 = listOf(2, 4, 7, 9).random()
 
             var susArea3 = 5
 
-            if (area1 == 1 || area1 == 3 || area1 == 8)
+            if (area3 == 1 || area3 == 3 || area3 == 8)
                 susArea3 = listOf(1, 3, 6, 7, 8).random()
-            if (area1 == 2 || area1 == 4)
+            if (area3 == 2 || area3 == 4)
                 susArea3 = listOf(2, 4, 6, 7, 9).random()
-            if (area1 == 6)
+            if (area3 == 5)
+                susArea3 = Random.nextInt(1, 9)
+            if (area3 == 6)
                 susArea3 = listOf(6, 8).random()
-            if (area1 == 7)
+            if (area3 == 7)
                 susArea3 = listOf(7, 8, 9).random()
-            if (area1 == 9)
+            if (area3 == 9)
                 susArea3 = listOf(2, 4, 7, 9).random()
 
             var susArea4 = 5
 
-            if (area1 == 1 || area1 == 3 || area1 == 8)
+            if (area4 == 1 || area4 == 3 || area4 == 8)
                 susArea4 = listOf(1, 3, 6, 7, 8).random()
-            if (area1 == 2 || area1 == 4)
+            if (area4 == 2 || area4 == 4)
                 susArea4 = listOf(2, 4, 6, 7, 9).random()
-            if (area1 == 6)
+            if (area4 == 5)
+                susArea4 = Random.nextInt(1, 9)
+            if (area4 == 6)
                 susArea4 = listOf(6, 8).random()
-            if (area1 == 7)
+            if (area4 == 7)
                 susArea4 = listOf(7, 8, 9).random()
-            if (area1 == 9)
+            if (area4 == 9)
                 susArea4 = listOf(2, 4, 7, 9).random()
 
-            suspectList.add(Suspect(susArea1, susArea2, susArea3, susArea4))
+            val newSuspect = Suspect(susArea1, susArea2, susArea3, susArea4)
+
+            suspectList.forEach{
+                if (it == newSuspect) {
+                    newSuspect.area1 = listOf(1,2,3,4,5,6,7,8,9).minus(it.area1).random()
+                    newSuspect.area2 = listOf(1,2,3,4,5,6,7,8,9).minus(it.area2).random()
+                    newSuspect.area3 = listOf(1,2,3,4,5,6,7,8,9).minus(it.area3).random()
+                    newSuspect.area4 = listOf(1,2,3,4,5,6,7,8,9).minus(it.area4).random()
+                }
+            }
+            suspectList.add(newSuspect)
         }
-        suspectList.add(Suspect(Random.nextInt(1, 9), Random.nextInt(1, 9),
-                                Random.nextInt(1, 9), Random.nextInt(1, 9)))
-        suspectList.add(Suspect(Random.nextInt(1, 9), Random.nextInt(1, 9),
-                                Random.nextInt(1, 9), Random.nextInt(1, 9)))
+
+        for (i in 0..1) {
+            val newSuspect = Suspect(Random.nextInt(1, 9), Random.nextInt(1, 9),
+                Random.nextInt(1, 9), Random.nextInt(1, 9))
+            suspectList.forEach{
+                if (it == newSuspect) {
+                    newSuspect.area1 = listOf(1,2,3,4,5,6,7,8,9).minus(it.area1).random()
+                    newSuspect.area2 = listOf(1,2,3,4,5,6,7,8,9).minus(it.area2).random()
+                    newSuspect.area3 = listOf(1,2,3,4,5,6,7,8,9).minus(it.area3).random()
+                    newSuspect.area4 = listOf(1,2,3,4,5,6,7,8,9).minus(it.area4).random()
+                }
+            }
+            suspectList.add(newSuspect)
+        }
         return suspectList
     }
 
