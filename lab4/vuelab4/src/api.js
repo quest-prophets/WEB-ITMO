@@ -48,7 +48,7 @@ export async function getRecomputeDots(r) {
 
 export async function getLabDots() {
     const response = await get("/dotCheck/fetchResults");
-    return response.json();
+    return await response.json();
 }
 
 export async function postEraseDots() {

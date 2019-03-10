@@ -101,7 +101,7 @@
             const response = await getLabDots();
             if (response == null) return; //надо ли?????
             response.forEach(dot => {
-                this.addDot(dot.r, dot.x, dot.y, dot.figura, dot.time, true);
+                this.addDot(dot.r, dot.x, dot.y, dot.hit, dot.time, true);
             });
         },
         methods: {
