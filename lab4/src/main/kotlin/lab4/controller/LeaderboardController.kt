@@ -1,6 +1,6 @@
 package lab4.controller
 
-import lab4.model.UserInfo
+import lab4.model.LeaderboardStatsPacked
 import lab4.repository.UserInfoRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.PageRequest
@@ -23,9 +23,15 @@ class LeaderboardController {
     fun getUserInfo(principal: Principal) = getUserByName(principal.name)
 
     @GetMapping("/getLeaderboard/{page}")
-    fun getLeaderboardPage(@PathVariable page: Int) : List<UserInfo> {
+    fun getLeaderboardPage(@PathVariable page: Int) : List<LeaderboardStatsPacked> {
         val pageFormat = PageRequest.of(page-1, usersPerPage)
-        return userInfoRepository?.findAllByOrderByScoreDesc(pageFormat)!!
+        val userPage = userInfoRepository?.findAllByOrderByScoreDesc(pageFormat)!!
+        val statsPacked = ArrayList<LeaderboardStatsPacked>()
+        userPage.forEachIndexed { index, element ->
+            statsPacked.add(LeaderboardStatsPacked((page-1)*10+index, element.username, element.overallWins, element.overallGames,
+                element.overallDots, element.overallElapsedTime))
+        }
+        return statsPacked
     }
 
     private fun getUserByName(username: String) = userInfoRepository?.findByUsername(username)
