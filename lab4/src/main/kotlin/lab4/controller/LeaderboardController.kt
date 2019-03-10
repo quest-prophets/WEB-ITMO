@@ -34,6 +34,13 @@ class LeaderboardController {
         return statsPacked
     }
 
+    @GetMapping("/getPageCount")
+    fun getPages() : Int {
+        val pageFormat = PageRequest.of(0, Int.MAX_VALUE)
+        val users = userInfoRepository?.findAllByOrderByScoreDesc(pageFormat)!!
+        return (users.size%usersPerPage)+1
+    }
+
     private fun getUserByName(username: String) = userInfoRepository?.findByUsername(username)
         ?: throw Exception("User with name \"$username\" does not exist.")
 }
