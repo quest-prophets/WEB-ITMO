@@ -142,8 +142,8 @@ class CompetitiveController {
                 2 -> return pow(x, 2.0) + pow(y, 2.0) <= pow(1.0 / 2, 2.0)
                 3 -> return x >= -1.0 && y <= 1.0
                 4 -> return x >= -1.0 / 2 && y <= 1.0 / 2
-                6 -> return x >= -1.0 / 2 && y <= 1.0
-                7 -> return x >= -1.0 && y <= 1.0 / 2
+                6 -> return y >= -1.0 / 2 && x <= 1.0
+                7 -> return y >= -1.0 && x <= 1.0 / 2
                 8 -> return y <= x + 1.0
                 9 -> return y <= (x + 1.0) / 2
                 else -> return false
@@ -166,19 +166,14 @@ class CompetitiveController {
                 2 -> return pow(x, 2.0) + pow(y, 2.0) <= pow(1.0 / 2, 2.0)
                 3 -> return x <= 1.0 && y >= -1.0
                 4 -> return x <= 1.0 / 2 && y >= -1.0 / 2
-                6 -> return x <= 1.0 / 2 && y >= -1.0
-                7 -> return x <= 1.0 && y >= -1.0 / 2
+                6 -> return y <= 1.0 / 2 && x >= -1.0
+                7 -> return y <= 1.0 && x >= -1.0 / 2
                 8 -> return y >= x - 1.0
                 9 -> return y >= (x - 1.0) / 2
                 else -> return false
             }
         }
         return false
-    }
-
-    private fun compute(x: Double, y: Double, trueGraph: Suspect): Dot? {
-        val hit = checkAreaHit(x, y, trueGraph.area1, trueGraph.area2, trueGraph.area3, trueGraph.area4)
-        return Dot(x, y, hit)
     }
 
     @PostMapping
