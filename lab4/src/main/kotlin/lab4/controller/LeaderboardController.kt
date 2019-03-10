@@ -29,7 +29,7 @@ class LeaderboardController {
         val statsPacked = ArrayList<LeaderboardStatsPacked>()
         userPage.forEachIndexed { index, element ->
             statsPacked.add(LeaderboardStatsPacked((page-1)*10+index, element.username, element.overallWins, element.overallGames,
-                element.overallDots, element.overallElapsedTime))
+                element.overallDots, element.overallElapsedTime, element.performance))
         }
         return statsPacked
     }
