@@ -22,6 +22,9 @@ class AuthorizationController {
     @GetMapping("/register")
     fun register() = "/index.html"
 
+    @GetMapping("/logout")
+    fun logout() = "/index.html"
+
 
     @PostMapping("/register")
     @ResponseBody

@@ -69,14 +69,6 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
                 .formLogin()
                 .loginPage("/auth/login")
                 .successHandler { request, response, authentication -> run {
-                    /*val cookies = request.cookies
-                    if (cookies != null)
-                        for (i in 0..cookies.size) {
-                            if (cookies[i].name == "JSESSIONID")
-                                response.setHeader("Set-Cookie", "JSESSIONID=${cookies[i].value}")
-
-                        }*/
-
                     response.status = 200
                     response.contentType = MediaType.APPLICATION_JSON_VALUE
                     response.outputStream.print("{\"username\":\"" + request.getParameter("username") + "\"}")
@@ -86,7 +78,11 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
                 .passwordParameter("password")
                 .permitAll()
             .and()
-                .logout().logoutSuccessHandler { request, response, authentication -> response.status = 200 }.permitAll()
+                .logout()
+                .logoutUrl("/auth/logout")
+                .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID")
+                .permitAll()
             .and()
                 .exceptionHandling().authenticationEntryPoint { request, response, authException -> run {
                 response.outputStream.print("Not authorized")
