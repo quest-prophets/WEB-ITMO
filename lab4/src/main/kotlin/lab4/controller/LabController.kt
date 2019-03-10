@@ -55,7 +55,8 @@ class LabController {
         val result = Result(p.x, p.y, p.r, dot.isHit)
         user.results?.add(result.apply { this.userInfo = user }) ?: ArrayList<Result>()
         userInfoRepository?.save(user)
-        return ResultsEntry(result.x, result.y, result.r, result.isHit, result.time)
+        return ResultsEntry(Math.round(result.x*1000.0)/1000.0, Math.round(result.y*1000.0)/1000.0, Math.round(result.r*1000.0)/1000.0,
+            result.isHit, result.time)
     }
 
     @PostMapping("/clear")
