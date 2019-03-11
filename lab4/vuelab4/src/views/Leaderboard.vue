@@ -225,7 +225,7 @@
         }
 
         .leaderboardGrid {
-            grid: "exit" 50px "stats" 130px "leaderboard" 70vh;
+            grid: "exit" 50px "stats" 170px "leaderboard" 70vh;
         }
     }
 

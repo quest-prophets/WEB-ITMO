@@ -227,10 +227,10 @@
 
     .historyTable {
         grid-area: graphTable;
-        border-radius: 10px;
     }
 
     table {
+        border-radius: 10px;
         text-align: center;
         background: white;
         width: 95%;
