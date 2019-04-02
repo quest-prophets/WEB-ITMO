@@ -1,6 +1,6 @@
 # Internet Applications Development
 
-This is a compilation of our solutions for laboratory tasks in discipline *'Internet Applications Development'*.
+This is a compilation of our solutions for laboratory assignments in discipline *'Internet Applications Development'*.
 
 They may not be the best. They do work, though.
 
