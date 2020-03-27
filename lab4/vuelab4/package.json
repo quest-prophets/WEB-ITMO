@@ -9,7 +9,7 @@
     "watch": "vue-cli-service build --watch"
   },
   "dependencies": {
-    "npm": "^6.8.0",
+    "npm": "^6.13.4",
     "vue": "^2.5.22",
     "vue-router": "^3.0.1"
   },
